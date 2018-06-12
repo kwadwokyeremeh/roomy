@@ -4,6 +4,9 @@ namespace myRoommie\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use http\Env\Request;
+use Illuminate\Auth\AuthenticationException;
+
 
 class Handler extends ExceptionHandler
 {
@@ -48,4 +51,28 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return reponse()->json(['error' => 'Unauthenticated'], 401);
+
+        }
+        $guard = array_get($exception->guards(), 0);
+        switch ($guard) {
+            case 'hosteller':
+                $login = 'hosteller.login';
+                break;
+
+            default:
+                $login = 'login';
+
+                break;
+        }
+        return redirect()->guest(route($login));
+    }
+
+
+
 }

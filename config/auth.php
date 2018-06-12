@@ -113,8 +113,8 @@ return [
             'expire' => 60,
         ],
         'hostellers' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
+            'provider' => 'hostellers',
+            'table' => 'hostellers_password_resets',
             'expire' => 15,
         ],
     ],

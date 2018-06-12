@@ -57,7 +57,7 @@
                                                                         <span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>  Have at least 1 symbol.
                                                                     </div>
                                                                 </div>
-                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('password.request') }}">
+                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('hosteller.password.request') }}">
                                                                     @csrf
 
                                                                     <div class="col-md-12">
@@ -67,7 +67,7 @@
 
                                                                         @if ($errors->has('email'))
                                                                             <span class="invalid-feedback">
-                                                                                <strong>{{ $errors->first('email') }}</strong>
+                                                                                <strong style="color: #ff0000">{{ $errors->first('email') }}</strong>
                                                                             </span>
                                                                         @endif
                                                                         </p>
@@ -79,7 +79,7 @@
 
                                                                             @if ($errors->has('password'))
                                                                                 <span class="invalid-feedback">
-                                                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                                                    <strong style="color: #ff0000">{{ $errors->first('password') }}</strong>
                                                                                 </span>
                                                                             @endif</p>
                                                                     </div>

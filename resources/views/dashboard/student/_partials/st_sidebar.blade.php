@@ -9,7 +9,7 @@
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <h4>Student Name</h4>
+                <h4>{{Auth::user()->lastName}}</h4>
             </div>
         </div>
 
@@ -93,7 +93,7 @@
                 </ul>
             </li>
             <li><a href="tos.php"><i class="fa fa-link"></i> <span>Terms of Services</span></a></li>
-            
+
         </ul>
         <!-- /.sidebar-menu -->
     </section>

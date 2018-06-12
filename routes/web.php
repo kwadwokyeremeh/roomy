@@ -12,9 +12,20 @@
 */
 
 
+/*************************
+ * * Testing Routes
+ ************************/
+Route::get('/ll',function (){
+    return view('dashboard.student.index');
+});
+/*************************
+ * * Testing Routes
+ ************************/
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/student', 'HomeController@index')->name('student');
 
 
 
@@ -22,7 +33,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*************
  ** Master Route
  *************/
-Route::get('/','HomePageController@index');
+Route::get('/','HomePageController@index')->name('home');
 
 Route::prefix('knust')->group(function (){
 
@@ -40,9 +51,14 @@ Route::prefix('hosteller')->group(function (){
     Route::get('/register', 'Hosteller\RegistrationController@showRegistrationForm')->name('hosteller.register');
     Route::post('/register', 'Hosteller\RegistrationController@register')->name('hosteller.register.submit');
     Route::get('/', 'Hosteller\HostellerController@index')->name('dashboard.hostel');
+    Route::post('/', 'Hosteller\LoginController@destroy')->name('hosteller.logout');
 
+/***********************************
+     * Hostellers Password reset routes
+     ***************************** */
+Route::post('password/email','Hosteller\ForgotPasswordController@sendResetLinkEmail')->name('hosteller.password.email');
+Route::get('password/reset','Hosteller\ForgotPasswordController@showLinkRequestForm')->name('hosteller.password.request');
+Route::post('password/reset','Hosteller\ResetPasswordController@reset')->name('hosteller.password.submit');
+Route::get('password/reset/{token}','Hosteller\ResetPasswordController@showResetForm')->name('hosteller.password.reset');
 });
 
-Route::get('/ll',function (){
-    return view('dashboard.hostelmanager.index');
-});

@@ -12,7 +12,7 @@
                         <div class="vk-about-banner-destop">
                             <div class="vk-banner-img"></div>
                             <div class="vk-about-banner-caption">
-                                <h2>Register</h2>
+                                <h2>Add your hostel</h2>
                                 <h3>
                                     <a href="#">Register to start your session</a>
                                 </h3>

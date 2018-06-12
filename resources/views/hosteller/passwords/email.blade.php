@@ -43,7 +43,7 @@
                                                                         {{ session('status') }}
                                                                     </div>
                                                                 @endif
-                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('password.email') }}">
+                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('hosteller.password.email') }}">
                                                                     @csrf
                                                                     <div class="col-md-12">
                                                                         <p>Please enter your email in the box below.
@@ -57,7 +57,7 @@
 
                                                                             @if ($errors->has('email'))
                                                                                 <span class="invalid-feedback">
-                                                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                                                    <strong style="color: #ff0000">{{ $errors->first('email') }}</strong>
                                                                                 </span>
                                                                             @endif                                                                        </p>
                                                                     </div>
@@ -76,7 +76,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-3">
                                                                                     <p class="lost_password">
-                                                                                        <a href="{{route('login')}}"><i class="fa fa-question-circle" aria-hidden="true"></i>Remembered password, sign in</a>
+                                                                                        <a href="{{route('hosteller.login')}}"><i class="fa fa-question-circle" aria-hidden="true"></i>Remembered password, sign in</a>
                                                                                     </p>
                                                                                 </div>
                                                                             </div>

@@ -51,7 +51,7 @@
                                                                     @csrf
                                                                     <div class="col-md-12">
                                                                         <p>If you've done business with us before, please enter your details in the boxes below.
-                                                                            If you are a new customer, <a href="{{ url('/register') }}">please click here to sign up</a>.
+                                                                            If you are a new customer, <a href="{{ url('hosteller.register') }}">please click here to sign up</a>.
                                                                         </p>
                                                                     </div>
                                                                     <div class="col-md-7">
@@ -62,7 +62,7 @@
 
                                                                             @if ($errors->has('email'))
                                                                                 <span class="invalid-feedback">
-                                                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                                                    <strong style="color: #ff0000">{{ $errors->first('email') }}</strong>
                                                                                 </span>
                                                                             @endif
 
@@ -75,7 +75,7 @@
 
                                                                             @if ($errors->has('password'))
                                                                                 <span class="invalid-feedback">
-                                                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                                                    <strong style="color: #ff0000">{{ $errors->first('password') }}</strong>
                                                                                 </span>
                                                                             @endif
 
@@ -101,7 +101,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-3">
                                                                                     <p class="lost_password">
-                                                                                        <a href="{{ route('password.request') }}"><i class="fa fa-question-circle" aria-hidden="true"></i>Forgot your password?</a>
+                                                                                        <a href="{{ route('hosteller.password.request') }}"><i class="fa fa-question-circle" aria-hidden="true"></i>Forgot your password?</a>
                                                                                     </p>
                                                                                 </div>
                                                                             </div>

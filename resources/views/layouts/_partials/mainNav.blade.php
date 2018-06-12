@@ -23,15 +23,24 @@
                                 </li>-->
                                 <li><a href="#">Help</a>
                                 </li>
-                                <li><a href="{{url('manager/register')}}">Add your hostel</a>
+                                <li><a href="{{url('hosteller/register')}}">Add your hostel</a>
                                 </li>
+                                @guest
                                 <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true" ></i>
                                     <ul class="sub-menu1 animated fadeIn">
                                         <li><a href="{{url('/register')}}">Register</a></li>
                                         <li><a href="{{url('/login')}}">Sign in</a></li>
-                                        <li><a href="{{url('/manager/login')}}">Sign in as manager</a></li>
+                                        <li><a href="{{url('/hosteller/login')}}">Sign in as manager</a></li>
                                     </ul>
                                 </li>
+                                    @else
+                                    <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true" ></i>
+                                        <ul class="sub-menu1 animated fadeIn">
+                                            <li><a href="{{url('/student')}}">{{Auth::user()->firstName}}</a></li>
+                                            <li><a href="{{url('/dashboard.hostel')}}">{{Auth::guard()->firstName}}</a></li>
+                                        </ul>
+                                    </li>
+                                @endguest
 
                                 <li class="vk-icon-search"><i class="fa fa-search" aria-hidden="true"></i></li>
 

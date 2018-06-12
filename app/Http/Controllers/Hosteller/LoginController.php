@@ -32,9 +32,11 @@ class LoginController extends Controller
 
         if (Auth::guard('hosteller')->attempt($credentials,$request->remember)){
 
-            return redirect()->intended(route('dashboard.hostelmanager'));
+            return redirect()->intended(route('dashboard.hostel'));
         }
-        return redirect()->back()->withInput($request->only('email','remember'));
+        return redirect()->back()
+            ->withInput($request->only('email','remember')
+            )->withErrors(['email' => 'These credentials do not match our records']);
     }
 
     public function destroy()

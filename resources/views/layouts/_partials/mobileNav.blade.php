@@ -23,18 +23,22 @@
 
             </li>-->
             <li class="sub"><a href="#">Help</a>
-            <li><a href="{{url('manager/register')}}">Add your hostel</a>
+            <li><a href="{{url('hosteller/register')}}">Add your hostel</a>
             </li>
 
             </li>
+            @guest
             <li class="sub"><a href="{{url('/register')}}">Register</a>
 
             </li>
             <li class="sub"><a href="{{url('/login')}}">Sign in</a></li>
-            <li class="sub"><a href="{{url('/manager/login')}}">Sign in as manager</a>
+            <li class="sub"><a href="{{url('/hosteller/login')}}">Sign in as manager</a>
 
             </li>
-
+                @else
+                <li> {{Auth::user()->firstName}}</li>
+                <li> {{Auth::guard()->firstName}}</li>
+@endguest
 
         </ul>
         <div class="uni-nav-mobile-bottom">

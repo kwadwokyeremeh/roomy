@@ -4,6 +4,7 @@ namespace myRoommie;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use myRoommie\Notifications\HostellerResetPasswordNotification;
 
 class Hosteller extends Authenticatable
 {
@@ -29,4 +30,16 @@ class Hosteller extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new HostellerResetPasswordNotification($token));
+    }
 }
