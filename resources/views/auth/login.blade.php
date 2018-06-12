@@ -62,7 +62,7 @@
 
                                                                             @if ($errors->has('email'))
                                                                                 <span class="invalid-feedback">
-                                                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email') }}</strong>
                                                                                 </span>
                                                                             @endif
 
@@ -91,7 +91,7 @@
                                                                                 <div class="col-md-9">
                                                                                     <p class="form-row">
                                                                                         <a href="#"><input type="submit" class="button" name="login" value="LOGIN"></a>
-                                                                                        <input type="hidden" name="redirect" value="">
+
                                                                                         <span>
 
                                                                                                 <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}

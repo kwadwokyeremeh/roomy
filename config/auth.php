@@ -36,14 +36,25 @@ return [
     */
 
     'guards' => [
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
 
+        'hosteller' => [
+            'driver' => 'session',
+            'provider' => 'hostellers',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
+        ],
+
+        'hosteller-api' => [
+            'driver' => 'token',
+            'provider' => 'hostellers',
         ],
     ],
 
@@ -68,6 +79,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => myRoommie\User::class,
+        ],
+        'hostellers' => [
+            'driver' => 'eloquent',
+            'model' => myRoommie\Hosteller::class,
         ],
 
         // 'users' => [
@@ -96,6 +111,11 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'hostellers' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 15,
         ],
     ],
 

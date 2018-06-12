@@ -10,9 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('passwordreset',function (){
-   return view('auth.passwords.reset');
-});
+
 
 Auth::routes();
 
@@ -34,12 +32,17 @@ Route::prefix('knust')->group(function (){
 });
 
 /*****************
- ** Manager's authentication
+ ** Hosteller's Login and Registration routes
  *****************/
-Route::prefix('manager')->group(function (){
-    Route::get('/login', 'Manager\LoginController@showLoginForm')->name('manager.login');
-    Route::get('/register', 'Manager\RegistrationController@showRegistrationForm')->name('manager.register');
-    Route::post('/login', 'Manager\LoginController@authenticate')->name('manager.login.submit');
-    Route::get('/', 'Manager\ManagerController@index')->name('manager.dashboard');
+Route::prefix('hosteller')->group(function (){
+    Route::get('/login', 'Hosteller\LoginController@showLoginForm')->name('hosteller.login');
+    Route::post('/login', 'Hosteller\LoginController@authenticate')->name('hosteller.login.submit');
+    Route::get('/register', 'Hosteller\RegistrationController@showRegistrationForm')->name('hosteller.register');
+    Route::post('/register', 'Hosteller\RegistrationController@register')->name('hosteller.register.submit');
+    Route::get('/', 'Hosteller\HostellerController@index')->name('dashboard.hostel');
 
+});
+
+Route::get('/ll',function (){
+    return view('dashboard.hostelmanager.index');
 });
