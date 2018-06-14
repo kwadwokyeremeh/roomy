@@ -17,7 +17,10 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->string('bank_name');
             $table->string('bank_location');
-            $table->
+            $table->string('vodafone')->nullable();
+            $table->string('mtn')->nullable();
+            $table->string('airtel')->nullable();
+            $table->string('tigo')->nullable();
             $table->integer('hostel_id')->unsigned();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });

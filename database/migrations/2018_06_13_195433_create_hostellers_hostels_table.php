@@ -15,8 +15,8 @@ class CreateHostellersHostelsTable extends Migration
     {
         Schema::create('hostellers_hostels', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->increments('hosteller_id')->unsigned()->index();
-            $table->increments('hostel_id')->unsigned()->index();
+            $table->integer('hosteller_id')->unsigned()->index();
+            $table->integer('hostel_id')->unsigned()->index();
             $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
             $table->foreign('hostel_id')->references('id')->on('hostellers')->onDelete('cascade');
 
