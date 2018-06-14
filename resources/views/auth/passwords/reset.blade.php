@@ -67,7 +67,7 @@
 
                                                                         @if ($errors->has('email'))
                                                                             <span class="invalid-feedback">
-                                                                                <strong>{{ $errors->first('email') }}</strong>
+                                                                                <strong style="color: #ff0000">{{ $errors->first('email') }}</strong>
                                                                             </span>
                                                                         @endif
                                                                         </p>
@@ -79,7 +79,7 @@
 
                                                                             @if ($errors->has('password'))
                                                                                 <span class="invalid-feedback">
-                                                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                                                    <strong style="color: #ff0000">{{ $errors->first('password') }}</strong>
                                                                                 </span>
                                                                             @endif</p>
                                                                     </div>
@@ -93,7 +93,7 @@
                                                                     </div>
                                                                     <div class="clear"></div>
 
-
+<div class="row"></div>
                                                                     <div class="">
                                                                         <div class="vk-checkout-login">
                                                                             <div class="row">
@@ -106,12 +106,12 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
+                                                                    <div class="row"></div>
                                                                     <div class="clear"></div>
                                                                 </form>
                                                             </div>
                                                             <div class="clearfix"></div>
-                                                        </div>
+                                                        </div><div class="row"></div>
 
 
                                                     </div>
@@ -131,6 +131,7 @@
 
         </div>
     </div>
+    <div class="row"></div>
 
 
 @endsection

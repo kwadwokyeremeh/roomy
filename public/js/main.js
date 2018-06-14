@@ -241,7 +241,7 @@ jQuery(document).ready(function ($) {
             autoWidth:false
         });
     }
-    
+
     // ============================ACCORDION===================================
 
     $('.vk-accordion-default .vk-accordion-toggle-default , .vk-accordion-with-bg .vk-accordion-toggle-default').on('click', function (e) {
@@ -584,5 +584,12 @@ jQuery(document).ready(function ($) {
             $("html, body").animate({ scrollTop: 0 }, 600);
             return false;
         }
+    });
+
+    $(function () {
+        $('.multi-submit-prevent').on('submit',function () {
+            $('.multi-submit-prevent').attr('disabled','true');
+            $('.spinner').show();
+        });
     });
 });

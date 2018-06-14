@@ -43,7 +43,7 @@
                                                         <div class="vk-checkout-login">
 
                                                             <div class="row">
-                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('hosteller.register') }}">
+                                                                <form class="woocomerce-form woocommerce-form-login login multi-submit-prevent" method="POST" action="{{ route('hosteller.register') }}">
                                                                     @csrf
                                                                     <p>Enter your personal details</p>
                                                                     <div class="woocommerce-billing-fields__field-wrapper">
@@ -131,7 +131,7 @@
 
                                                                         <div class="row">
                                                                             <div class="form-row">
-                                                                                <button type="submit" class="vk-btn  vk-btn-l vk-btn-default text-uppercase">
+                                                                                <button type="submit" class="vk-btn  vk-btn-l vk-btn-default text-uppercase multi-submit-prevent">
                                                                                     {{ __('Register') }}
                                                                                 </button>
 

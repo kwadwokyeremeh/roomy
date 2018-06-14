@@ -32,6 +32,7 @@ class Hosteller extends Authenticatable
     ];
 
 
+
     /**
      * Send the password reset notification.
      *

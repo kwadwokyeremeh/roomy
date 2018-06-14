@@ -90,7 +90,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-9">
                                                                                     <p class="form-row">
-                                                                                        <a href="#"><input type="submit" class="button" name="login" value="LOGIN"></a>
+                                                                                        <a href="#"><input type="submit" class="button multi-submit-prevent" name="login" value="LOGIN"></a>
 
                                                                                         <span>
 

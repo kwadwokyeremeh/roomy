@@ -2,11 +2,14 @@
 
 namespace myRoommie\Http\Controllers\Hosteller;
 
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use myRoommie\Hosteller;
 use myRoommie\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+
 
 class ResetPasswordController extends Controller
 {
@@ -38,6 +41,7 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest:hosteller');
+
     }
 
     protected function broker()
@@ -50,10 +54,6 @@ class ResetPasswordController extends Controller
         return Auth::guard('hosteller');
      }
 
-    public function reset()
-    {
-
-     }
 
 
     /**
@@ -71,4 +71,7 @@ class ResetPasswordController extends Controller
             ['token' => $token, 'email' => $request->email]
         );
     }
+
+
+
 }

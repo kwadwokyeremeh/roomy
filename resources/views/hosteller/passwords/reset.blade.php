@@ -57,7 +57,7 @@
                                                                         <span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>  Have at least 1 symbol.
                                                                     </div>
                                                                 </div>
-                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('hosteller.password.request') }}">
+                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('hosteller.password.submit') }}">
                                                                     @csrf
 
                                                                     <div class="col-md-12">
@@ -91,6 +91,7 @@
                                                                         </p>
 
                                                                     </div>
+                                                                    <div class="row"></div>
                                                                     <div class="clear"></div>
 
 
@@ -106,7 +107,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
+                                                                    <div class="row"></div>
                                                                     <div class="clear"></div>
                                                                 </form>
                                                             </div>
@@ -120,7 +121,7 @@
                                         </div>
                                     </div>
 
-
+                                    <div class="row"></div>
                                 </div> <!-- Primary end -->
                             </div>
                         </main>
@@ -131,6 +132,6 @@
 
         </div>
     </div>
-
+    <div class="row"></div>
 
 @endsection
