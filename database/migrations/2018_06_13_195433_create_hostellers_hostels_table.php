@@ -17,13 +17,9 @@ class CreateHostellersHostelsTable extends Migration
             $table->increments('id')->unsigned();
             $table->increments('hosteller_id')->unsigned()->index();
             $table->increments('hostel_id')->unsigned()->index();
-            $table->foreign('hosteller_id')->references('id')
-                ->on('hostellers')
-                ->onDelete('cascade');
-            $table->foreign('hostel_id')->references('id')
-                ->on('hostellers')
-                ->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
+            $table->foreign('hostel_id')->references('id')->on('hostellers')->onDelete('cascade');
+
         });
     }
 

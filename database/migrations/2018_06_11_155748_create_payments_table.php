@@ -15,7 +15,11 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('bank_name');
+            $table->string('bank_location');
+            $table->
+            $table->integer('hostel_id')->unsigned();
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
     }
 

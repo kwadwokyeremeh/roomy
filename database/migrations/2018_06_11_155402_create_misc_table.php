@@ -15,7 +15,10 @@ class CreateMiscTable extends Migration
     {
         Schema::create('misc', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('title');
+            $table->string('image');
+            $table->integer('hostel_id')->unsigned();
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
     }
 

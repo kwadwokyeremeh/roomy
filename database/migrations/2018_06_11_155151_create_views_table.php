@@ -15,7 +15,12 @@ class CreateViewsTable extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('hostel_id')->unsigned();
+            $table->string('front');
+            $table->string('right');
+            $table->string('left');
+            $table->string('video')->nullable();
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
     }
 

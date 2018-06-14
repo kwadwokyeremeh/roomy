@@ -15,7 +15,12 @@ class CreatePoliciesTable extends Migration
     {
         Schema::create('policies', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('tenancy');
+            $table->string('smoking');
+            $table->string('other')->nullable();
+            $table->string('room_cancellation');
+            $table->integer('hostel_id')->unsigned();
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
     }
 
