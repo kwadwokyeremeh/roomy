@@ -15,7 +15,6 @@ class CreateHostelsTable extends Migration
     {
         Schema::create('hostels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hosteller_id')->unsigned();
             $table->string('name');
             $table->string('slug')->nullable();
             $table->integer('number_of_blocks');
@@ -25,6 +24,8 @@ class CreateHostelsTable extends Migration
             $table->string('country')->nullable();
             $table->string('map_link')->nullable();
             $table->boolean('status')->default(false);
+            $table->integer('hosteller_id')->unsigned();
+            $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
             $table->timestamps();
         });
     }

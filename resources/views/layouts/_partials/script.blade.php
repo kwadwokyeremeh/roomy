@@ -1,4 +1,3 @@
-
 <script src="{{asset('/js/jquery.min.js')}}"></script>
 <script src="{{asset('/js/jquery1.min.js')}}"></script>
 <script src="{{asset('/plugin/dist/owl.carousel.min.js')}}"></script>
@@ -25,3 +24,7 @@
 <script src="{{asset('/js/parallax.min.js')}}"></script>
 <script src="{{asset('/js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('/js/jquery.sticky.js')}}"></script>
+<script src="{{asset('/js/main.js')}}"></script>
+
+
+

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHostellersHostelsTable extends Migration
+class CreateFloorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateHostellersHostelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hostellers_hostels', function (Blueprint $table) {
+        Schema::create('floors', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('hosteller_id')->unsigned()->index();
-            $table->integer('hostel_id')->unsigned()->index();
-            $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
+            $table->integer('hostel_id')->unsigned();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
-
+            $table->integer('block_id')->unsigned();
+            $table->foreign('block_id')->references('id')->on('blocks')->onDelete('cascade');
+            $table->string('name')->nullable();
+            $table->integer('number');
+            $table->integer('number_of_rooms');
         });
     }
 
@@ -30,6 +32,6 @@ class CreateHostellersHostelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hostellers_hostels');
+        Schema::dropIfExists('floors');
     }
 }

@@ -21,8 +21,8 @@ class Room extends Model
         return $this->hasOne('myRoommie\Modules\Hostel\SexType');
     }
 
-    public function roomType()
+    public function price()
     {
-        return $this->hasOne('myRoommie\Modules\Hostel\RoomType');
+        return $this->hasOne('myRoommie\Modules\Hostel\Price');
     }
 }

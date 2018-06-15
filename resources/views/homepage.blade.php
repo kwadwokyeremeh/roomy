@@ -12,7 +12,7 @@
                                 <div class="vk-item-slide">
                                     <div class="slider-video">
                                         <video id="video-demo" loop>
-                                            <source src="../images/01_01_default/slide-video/1.mp4" type="video/mp4">
+                                            <source src="images/01_01_default/slide-video/1.mp4" type="video/mp4">
                                         </video>
                                     </div>
                                     <div class="vk-item-slide-btn">
@@ -34,7 +34,7 @@
                             </div>
                             <div class="item  animated">
                                 <div class="vk-item-slide">
-                                    <img src="../images/01_01_default/banner.jpg" alt="" class="img-responsive">
+                                    <img src="images/01_01_default/banner.jpg" alt="" class="img-responsive">
                                     <div class="vk-slide-caption animated">
                                         <h2 class="animated fadeInUpBig slide-delay-2">SRC Hostel</h2>
                                     </div>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="item  animated">
                                 <div class="vk-item-slide">
-                                    <img src="../images/01_01_default/banner2.jpg" alt="" class="img-responsive">
+                                    <img src="images/01_01_default/banner2.jpg" alt="" class="img-responsive">
                                     <div class="vk-slide-caption animated">
                                         <h2 class="animated fadeInUp slide-delay-2">Evandy Hostel</h2>
                                     </div>
@@ -89,11 +89,11 @@
                                         <div class="vk-sparta-image-item">
                                             <div class="vk-sparta-item-img">
                                                 <a href="#">
-                                                    <img src="../images/01_01_default/vk-sparta-image/img1.jpg" alt="" class="img-responsive">
+                                                    <img src="images/01_01_default/vk-sparta-image/img1.jpg" alt="" class="img-responsive">
                                                 </a>
                                             </div>
                                             <div class="vk-iamge-item-caption">
-                                                <img src="../images/01_01_default/vk-sparta-image-icon/spa2.png" alt="">
+                                                <img src="images/01_01_default/vk-sparta-image-icon/spa2.png" alt="">
                                                 <h2>Brunei Hostel</h2>
                                             </div>
                                         </div>
@@ -102,11 +102,11 @@
                                         <div class="vk-sparta-image-item">
                                             <div class="vk-sparta-item-img">
                                                 <a href="#">
-                                                    <img src="../images/01_01_default/vk-sparta-image/img2.jpg" alt="" class="img-responsive">
+                                                    <img src="images/01_01_default/vk-sparta-image/img2.jpg" alt="" class="img-responsive">
                                                 </a>
                                             </div>
                                             <div class="vk-iamge-item-caption">
-                                                <img src="../images/01_01_default/vk-sparta-image-icon/food.png" alt="">
+                                                <img src="images/01_01_default/vk-sparta-image-icon/food.png" alt="">
                                                 <h2>SRC Hostel</h2>
                                             </div>
                                         </div>
@@ -115,11 +115,11 @@
                                         <div class="vk-sparta-image-item">
                                             <div class="vk-sparta-item-img">
                                                 <a href="#">
-                                                    <img src="../images/01_01_default/vk-sparta-image/img3.jpg" alt="" class="img-responsive">
+                                                    <img src="images/01_01_default/vk-sparta-image/img3.jpg" alt="" class="img-responsive">
                                                 </a>
                                             </div>
                                             <div class="vk-iamge-item-caption">
-                                                <img src="../images/01_01_default/vk-sparta-image-icon/gym.png" alt="">
+                                                <img src="images/01_01_default/vk-sparta-image-icon/gym.png" alt="">
                                                 <h2>Evandy Hostel</h2>
                                             </div>
                                         </div>
@@ -128,11 +128,11 @@
                                         <div class="vk-sparta-image-item">
                                             <div class="vk-sparta-item-img">
                                                 <a href="#">
-                                                    <img src="../images/01_01_default/vk-sparta-image/img4.jpg" alt="" class="img-responsive">
+                                                    <img src="images/01_01_default/vk-sparta-image/img4.jpg" alt="" class="img-responsive">
                                                 </a>
                                             </div>
                                             <div class="vk-iamge-item-caption">
-                                                <img src="../images/01_01_default/vk-sparta-image-icon/event.png" alt="">
+                                                <img src="images/01_01_default/vk-sparta-image-icon/event.png" alt="">
                                                 <h2>By His Grace Hostel</h2>
                                             </div>
                                         </div>
@@ -155,7 +155,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Evandy Hostel</a></h2>
@@ -166,7 +166,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">By His Grace Hostel</a></h2>
@@ -177,7 +177,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">SRC Hostel</a></h2>
@@ -188,7 +188,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Evandy Hostel</a></h2>
@@ -199,7 +199,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">By His Grace Hostel</a></h2>
@@ -210,7 +210,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">SRC Hostel</a></h2>
@@ -221,7 +221,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Evandy Hostel</a></h2>
@@ -232,7 +232,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">By His Grace Hostel</a></h2>
@@ -243,7 +243,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">SRC Hostel</a></h2>
@@ -259,7 +259,7 @@
                                 <div class="item">
                                     <div class="vk-sparta-item-content">
                                         <div class="vk-item-img">
-                                            <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                            <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="vk-item-text">
                                             <h2><a href="#">Evandy Hostel</a></h2>
@@ -269,7 +269,7 @@
                                 <div class="item">
                                     <div class="vk-sparta-item-content">
                                         <div class="vk-item-img">
-                                            <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                            <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="vk-item-text">
                                             <h2><a href="#">By His Grace Hostel</a></h2>
@@ -279,7 +279,7 @@
                                 <div class="item">
                                     <div class="vk-sparta-item-content">
                                         <div class="vk-item-img">
-                                            <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                            <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="vk-item-text">
                                             <h2><a href="#">SRC Hostel</a></h2>
@@ -305,7 +305,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose Brunei Hostel</a></h2>
@@ -316,7 +316,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose Evandy Hostel</a></h2>
@@ -327,7 +327,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose SRC Hostel</a></h2>
@@ -338,7 +338,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose Brunei Hostel</a></h2>
@@ -349,7 +349,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose Evandy Hostel</a></h2>
@@ -360,7 +360,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose SRC Hostel</a></h2>
@@ -371,7 +371,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose Brunei Hostel</a></h2>
@@ -382,7 +382,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose Evandy Hostel</a></h2>
@@ -393,7 +393,7 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-blog-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">Why choose SRC Hostel</a></h2>
@@ -409,7 +409,7 @@
                                 <div class="item">
                                     <div class="vk-sparta-item-blog-content">
                                         <div class="vk-item-img">
-                                            <a href="#"><img src="../images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
+                                            <a href="#"><img src="images/01_01_default/our-room/img.jpg" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="vk-item-text">
                                             <h2><a href="#">Why choose Sparta Plaza Hotel to travel this summer</a></h2>
@@ -420,7 +420,7 @@
                                 <div class="item">
                                     <div class="vk-sparta-item-blog-content">
                                         <div class="vk-item-img">
-                                            <a href="#"><img src="../images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
+                                            <a href="#"><img src="images/01_01_default/our-room/img1.jpg" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="vk-item-text">
                                             <h2><a href="#">Why choose Sparta Plaza Hotel to travel this summer</a></h2>
@@ -431,7 +431,7 @@
                                 <div class="item">
                                     <div class="vk-sparta-item-blog-content">
                                         <div class="vk-item-img">
-                                            <a href="#"><img src="../images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
+                                            <a href="#"><img src="images/01_01_default/our-room/img2.jpg" alt="" class="img-responsive"></a>
                                         </div>
                                         <div class="vk-item-text">
                                             <h2><a href="#">Why choose Sparta Plaza Hotel to travel this summer</a></h2>
@@ -450,7 +450,7 @@
                             <div id="lightgallery">
                                 <div class="col-md-2 col-md-6 col-xs-6 vk-clear-padding" data-src="images/01_01_default/gallery/1-1.jpg">
                                     <div class="vk-gallery-item-img">
-                                        <img src="../images/01_01_default/gallery/1.jpg" alt="" class="img-responsive">
+                                        <img src="images/01_01_default/gallery/1.jpg" alt="" class="img-responsive">
                                         <div class="vk-item-caption">
                                             <div class="featured-slider-overlay"></div>
                                             <div class="vk-item-caption-text">
@@ -462,7 +462,7 @@
                                 </div>
                                 <div class="col-md-2  col-md-6 col-xs-6 vk-clear-padding" data-src="images/01_01_default/gallery/1-2.jpg">
                                     <div class="vk-gallery-item-img">
-                                        <img src="../images/01_01_default/gallery/2.jpg" alt="" class="img-responsive">
+                                        <img src="images/01_01_default/gallery/2.jpg" alt="" class="img-responsive">
                                         <div class="vk-item-caption">
                                             <div class="featured-slider-overlay"></div>
                                             <div class="vk-item-caption-text">
@@ -474,7 +474,7 @@
                                 </div>
                                 <div class="col-md-2 col-md-6 col-xs-6 vk-clear-padding" data-src="images/01_01_default/gallery/1-3.jpg">
                                     <div class="vk-gallery-item-img">
-                                        <img src="../images/01_01_default/gallery/3.jpg" alt="" class="img-responsive">
+                                        <img src="images/01_01_default/gallery/3.jpg" alt="" class="img-responsive">
                                         <div class="vk-item-caption">
                                             <div class="featured-slider-overlay"></div>
                                             <div class="vk-item-caption-text">
@@ -486,7 +486,7 @@
                                 </div>
                                 <div class="col-md-2 col-md-6 col-xs-6 vk-clear-padding" data-src="images/01_01_default/gallery/1-4.jpg">
                                     <div class="vk-gallery-item-img">
-                                        <img src="../images/01_01_default/gallery/4.jpg" alt="" class="img-responsive">
+                                        <img src="images/01_01_default/gallery/4.jpg" alt="" class="img-responsive">
                                         <div class="vk-item-caption">
                                             <div class="featured-slider-overlay"></div>
                                             <div class="vk-item-caption-text">
@@ -499,7 +499,7 @@
                                 </div>
                                 <div class="col-md-2 col-md-6 col-xs-6 vk-clear-padding" data-src="images/01_01_default/gallery/1-5.jpg">
                                     <div class="vk-gallery-item-img">
-                                        <img src="../images/01_01_default/gallery/5.jpg" alt="" class="img-responsive">
+                                        <img src="images/01_01_default/gallery/5.jpg" alt="" class="img-responsive">
                                         <div class="vk-item-caption">
                                             <div class="featured-slider-overlay"></div>
                                             <div class="vk-item-caption-text">
@@ -512,7 +512,7 @@
                                 </div>
                                 <div class="col-md-2 col-md-6 col-xs-6 vk-clear-padding" data-src="images/01_01_default/gallery/1-6.jpg">
                                     <div class="vk-gallery-item-img">
-                                        <img src="../images/01_01_default/gallery/6.jpg" alt="" class="img-responsive">
+                                        <img src="images/01_01_default/gallery/6.jpg" alt="" class="img-responsive">
                                         <div class="vk-item-caption">
                                             <div class="featured-slider-overlay"></div>
                                             <div class="vk-item-caption-text">

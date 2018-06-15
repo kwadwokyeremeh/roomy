@@ -31,9 +31,9 @@ class Hostel extends Model
         return $this->hasMany('myRoommie\Modules\Hostel\Food');
     }
 
-    public function roomType()
+    public function price()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\RoomType');
+        return $this->hasMany('myRoommie\Modules\Hostel\Price');
     }
 
     public function utilities()
@@ -49,5 +49,10 @@ class Hostel extends Model
     public function payment()
     {
         return $this->hasMany('myRoommie\Modules\Hostel\Payment');
+    }
+
+    public function roomType()
+    {
+        return $this->hasMany('myRoommie\Modules\Hostel\RoomType');
     }
 }

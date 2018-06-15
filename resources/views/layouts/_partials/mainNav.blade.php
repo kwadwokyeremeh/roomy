@@ -26,7 +26,7 @@
                                 <li><a href="{{url('hosteller/register')}}">Add your hostel</a>
                                 </li>
                                 @guest
-                                <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true" ></i>
+                                <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true"></i>
                                     <ul class="sub-menu1 animated fadeIn">
                                         <li><a href="{{url('/register')}}">Register</a></li>
                                         <li><a href="{{url('/login')}}">Sign in</a></li>
@@ -34,9 +34,9 @@
                                     </ul>
                                 </li>
                                     @else
-                                    <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true" ></i>
+                                    <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true"></i>
                                         <ul class="sub-menu1 animated fadeIn">
-                                            <li><a href="{{url('/student')}}">{{Auth::user()->firstName}}</a></li>
+                                            <li><a href="{{url('/student')}}">{{ Auth::user()->firstName}}</a></li>
                                             <li><a href="{{url('/dashboard.hostel')}}">{{Auth::guard()->firstName}}</a></li>
                                         </ul>
                                     </li>
