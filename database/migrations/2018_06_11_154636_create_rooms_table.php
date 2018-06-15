@@ -18,7 +18,7 @@ class CreateRoomsTable extends Migration
             $table->string('name')->nullable();
             $table->integer('number');
             $table->string('type');
-            $table->char('sex',1)->nullable();
+            $table->char('sexType',1)->nullable();
             $table->integer('number_of_beds');
             $table->boolean('status')->default(false);
         });

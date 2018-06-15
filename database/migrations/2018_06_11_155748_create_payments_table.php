@@ -15,6 +15,8 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('account_name');
+            $table->string('account_number');
             $table->string('bank_name');
             $table->string('bank_location');
             $table->string('vodafone')->nullable();
