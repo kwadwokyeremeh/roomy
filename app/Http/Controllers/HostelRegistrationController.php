@@ -22,6 +22,40 @@ class HostelRegistrationController extends Controller
         return view('hostelRegistration.01_basicInfo');
     }
 
+    public function showHostelDetails()
+    {
+        return view('hostelRegistration.02_hostelDetails');
+    }
+
+    public function showAddMedia()
+    {
+        return view('hostelRegistration.03_addMedia');
+    }
+
+    public function showAmenities()
+    {
+        return view('hostelRegistration.04_amenities');
+    }
+
+    public function showLayoutAndPricing()
+    {
+        return view('hostelRegistration.05_layoutAndPricing');
+    }
+
+    public function showPolicies()
+    {
+        return view('hostelRegistration.06_policies');
+    }
+
+    public function showPaymentProtocols()
+    {
+        return view('hostelRegistration.07_paymentProtocols');
+    }
+
+    public function showConfirmation()
+    {
+        return view('hostelRegistration.08_confirmation');
+    }
     /**
      * Show the form for creating a new resource.
      *

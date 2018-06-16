@@ -32,15 +32,21 @@ class LoginController extends Controller
 
         if (Auth::guard('hosteller')->attempt($credentials,$request->remember)){
 
-           /* if (! (Auth::guard('hosteller')->user()->status = false)){*/
+            /*
+             * Check to see if hosteller's status is not active
+             * if active redirect to the hosteller's dashboard
+             * if inactive redirect hosteller to the hostel registration
+             * */
+            /*if (! (Auth::guard('hosteller')->user()->status == true)){
 
             return redirect()->intended(route('hostel.registration'));
-       /* }
-        else{
+       }
+        else{*/
         return redirect()->intended(route('dashboard.hostel'));
 
-        }*/
+       /* }*/
         }
+
         return redirect()->back()
             ->withInput($request->only('email','remember')
             )->withErrors(['email' => 'These credentials do not match our records']);
