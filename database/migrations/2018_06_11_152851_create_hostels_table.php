@@ -16,14 +16,15 @@ class CreateHostelsTable extends Migration
         Schema::create('hostels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('slug')->nullable();
+            $table->string('alias')->nullable();
             $table->integer('number_of_blocks');
             $table->string('street_address')->nullable();
             $table->string('town')->nullable();
             $table->string('region')->nullable();
             $table->string('country')->nullable();
-            $table->string('map_link')->nullable();
-            $table->boolean('status')->default(false);
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->boolean('published')->default(false);
             $table->integer('hosteller_id')->unsigned();
             $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
             $table->timestamps();

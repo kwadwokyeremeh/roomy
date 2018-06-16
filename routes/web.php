@@ -60,5 +60,19 @@ Route::post('password/email','Hosteller\ForgotPasswordController@sendResetLinkEm
 Route::get('password/reset','Hosteller\ForgotPasswordController@showLinkRequestForm')->name('hosteller.password.request');
 Route::post('password/reset','Hosteller\ResetPasswordController@reset')->name('hosteller.password.submit');
 Route::get('password/reset/{token}','Hosteller\ResetPasswordController@showResetForm')->name('hosteller.password.reset');
+
+
+/*********************************************
+ *  Hostel Registration
+ **********************************************/
+Route::prefix('hostelRegistration')->group(function (){
+
+    Route::get('/','HostelRegistrationController@showBasicInfo')->name('hostel.registration');
+
+
+});
+
+
+
 });
 

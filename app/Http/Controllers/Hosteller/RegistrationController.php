@@ -76,7 +76,7 @@ class RegistrationController extends Controller
         ]);
 
          Auth::guard('hosteller')->login($hosteller);
-         return redirect('/hostel.registration');
+        return redirect()->intended(route('hostel.registration'));
     }
 
 

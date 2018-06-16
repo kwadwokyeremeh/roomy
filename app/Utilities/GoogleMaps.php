@@ -14,13 +14,13 @@ use GuzzleHttp\Client;
 class GoogleMaps
 {
     /*
-   Geocodes an addres so we can get the latitude and longitude
+   Geocodes an address so we can get the latitude and longitude
  */
-    public static function geocodeAddress( $address, $city, $state, $zip ){
+    public static function geocodeAddress( $address, $city, $region, $zip ){
         /*
           Builds the URL and request to the Google Maps API
         */
-        $url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode( $address.' '.$city.', '.$state.' '.$zip ).'&key='.env( 'GOOGLE_MAPS_KEY' );
+        $url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode( $address.' '.$city.', '.$region.' '.$zip ).'&key='.env( 'GOOGLE_MAPS_KEY' );
 
         /*
           Creates a Guzzle Client to make the Google Maps request.
@@ -41,8 +41,8 @@ class GoogleMaps
         /*
           Initializes the response for the GeoCode Location
         */
-        $coordinates['lat'] = null;
-        $coordinates['lng'] = null;
+        $coordinates['latitude'] = null;
+        $coordinates['longitude'] = null;
 
         /*
           If the response is not empty (something returned),
@@ -53,8 +53,8 @@ class GoogleMaps
             && $geocodeData->status != 'ZERO_RESULTS'
             && isset( $geocodeData->results )
             && isset( $geocodeData->results[0] ) ){
-            $coordinates['lat'] = $geocodeData->results[0]->geometry->location->lat;
-            $coordinates['lng'] = $geocodeData->results[0]->geometry->location->lng;
+            $coordinates['latitude'] = $geocodeData->results[0]->geometry->location->latitude;
+            $coordinates['longitude'] = $geocodeData->results[0]->geometry->location->longitude;
         }
 
         /*

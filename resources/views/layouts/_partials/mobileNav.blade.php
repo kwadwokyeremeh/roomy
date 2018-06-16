@@ -27,18 +27,48 @@
             </li>
 
             </li>
-            @guest
-            <li class="sub"><a href="{{url('/register')}}">Register</a>
+            @if(Auth::guard('hosteller')->check())
 
-            </li>
-            <li class="sub"><a href="{{url('/login')}}">Sign in</a></li>
-            <li class="sub"><a href="{{url('/hosteller/login')}}">Sign in as manager</a>
+                <li class="sub"><a href="{{route('dashboard.hostel')}}"><i class="fa fa-user" aria-hidden="true"></i>{{ Auth::guard('hosteller')->user()->firstName}}</a>
+                    <ul class="sub-menu1 animated fadeIn">
+                        <li>
+                            <form id="logout-form" action="{{ route('dashboard.hostel') }}" method="POST">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @else
+                @guest
 
-            </li>
+                    <li><a href="{{url('/register')}}">Register</a></li>
+                    <li><a href="{{url('/login')}}">Sign in</a></li>
+                    <li><a href="{{url('/hosteller/login')}}">Sign in as manager</a></li>
+
                 @else
-                <li> {{Auth::user()->firstName}}</li>
-                <li> {{Auth::guard()->firstName}}</li>
-@endguest
+
+                    <li class="sub"><a href="{{route('student')}}"><i class="fa fa-user" aria-hidden="true"></i>{{ Auth::user()->firstName}}</a>
+                        <ul class="sub-menu1 animated fadeIn">
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endguest
+
+            @endif
 
         </ul>
         <div class="uni-nav-mobile-bottom">

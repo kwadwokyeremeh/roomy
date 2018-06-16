@@ -51,7 +51,7 @@
                                                                     @csrf
                                                                     <div class="col-md-12">
                                                                         <p>If you've done business with us before, please enter your details in the boxes below.
-                                                                            If you are a new customer, <a href="{{ url('hosteller.register') }}">please click here to sign up</a>.
+                                                                            If you are a new customer, <a href="{{ route('hosteller.register') }}">please click here to sign up</a>.
                                                                         </p>
                                                                     </div>
                                                                     <div class="col-md-7">

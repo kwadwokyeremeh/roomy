@@ -27,7 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+/*
+ * Get the bed associated with the user
+ * */
     public function bed()
     {
         return $this->hasOne('myRoommie\Modules\Hostel\Bed');

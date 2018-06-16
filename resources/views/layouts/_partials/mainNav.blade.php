@@ -25,22 +25,53 @@
                                 </li>
                                 <li><a href="{{url('hosteller/register')}}">Add your hostel</a>
                                 </li>
-                                @guest
-                                <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true"></i>
-                                    <ul class="sub-menu1 animated fadeIn">
-                                        <li><a href="{{url('/register')}}">Register</a></li>
-                                        <li><a href="{{url('/login')}}">Sign in</a></li>
-                                        <li><a href="{{url('/hosteller/login')}}">Sign in as manager</a></li>
-                                    </ul>
-                                </li>
-                                    @else
-                                    <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true"></i>
+                                @if(Auth::guard('hosteller')->check())
+
+                                    <li class="has-sub vk-iconbox-item-icon"><a href="{{route('dashboard.hostel')}}">{{ Auth::guard('hosteller')->user()->firstName}}</a><i class="fa fa-user" aria-hidden="true"></i>
                                         <ul class="sub-menu1 animated fadeIn">
-                                            <li><a href="{{url('/student')}}">{{ Auth::user()->firstName}}</a></li>
-                                            <li><a href="{{url('/dashboard.hostel')}}">{{Auth::guard()->firstName}}</a></li>
+                                            <li>
+                                                <form id="logout-form" action="{{ route('dashboard.hostel') }}" method="POST">
+                                                    @csrf
+                                                    <a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                    </a>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </li>
-                                @endguest
+                                    @else
+                                        @guest
+                                            <li class="has-sub vk-iconbox-item-icon"><i class="fa fa-user" aria-hidden="true"></i>
+                                                <ul class="sub-menu1 animated fadeIn">
+                                                    <li><a href="{{url('/register')}}">Register</a></li>
+                                                    <li><a href="{{url('/login')}}">Sign in</a></li>
+                                                    <li><a href="{{url('/hosteller/login')}}">Sign in as manager</a></li>
+                                                </ul>
+                                            </li>
+                                        @else
+
+                                            <li class="has-sub vk-iconbox-item-icon"><a href="{{route('student')}}">{{ Auth::user()->firstName}}</a><i class="fa fa-user" aria-hidden="true"></i>
+                                                <ul class="sub-menu1 animated fadeIn">
+                                                    <li>
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                            @csrf
+                                                            <a href="{{ route('logout') }}"
+                                                               onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                                {{ __('Logout') }}
+                                                            </a>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                    @endguest
+
+                                @endif
+
+
+
 
                                 <li class="vk-icon-search"><i class="fa fa-search" aria-hidden="true"></i></li>
 

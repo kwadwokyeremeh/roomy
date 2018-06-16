@@ -7,14 +7,19 @@ use Illuminate\Http\Request;
 
 class HostelRegistrationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:hosteller')->except('logout','destroy');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function showBasicInfo()
     {
-        //
+        return view('hostelRegistration.01_basicInfo');
     }
 
     /**

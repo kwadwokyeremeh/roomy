@@ -32,11 +32,14 @@ class LoginController extends Controller
 
         if (Auth::guard('hosteller')->attempt($credentials,$request->remember)){
 
-            if (Auth::guard('hosteller')->user()->status = false){
+           /* if (! (Auth::guard('hosteller')->user()->status = false)){*/
+
             return redirect()->intended(route('hostel.registration'));
-        }
+       /* }
+        else{
         return redirect()->intended(route('dashboard.hostel'));
 
+        }*/
         }
         return redirect()->back()
             ->withInput($request->only('email','remember')
