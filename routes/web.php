@@ -72,7 +72,7 @@ Route::get('password/reset/{token}','Hosteller\ResetPasswordController@showReset
 
 
 /*********************************************
- *  Hostel Registration routes
+ *  Hostel Registration wizard routes
  **********************************************/
 Route::prefix('hostelRegistration')->group(function (){
 
