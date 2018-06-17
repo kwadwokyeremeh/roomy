@@ -63,7 +63,8 @@
                          </span>
                         </li>
                     </ul>
-                </div>
+                    @include('hostelRegistration._partials.progressBar')
+                   </div>
                 <div class="vk-shop-checkout-body">
                     <div class="container">
                         <main id="main" class="clearfix right_sidebar">
@@ -267,32 +268,7 @@
 
 
 
-                                                                <div class="vk-checkout-order-paypal">
-                                                                    <div class="row">
-                                                                        <div id="order_review" class="woocommerce-checkout-review-order">
-
-
-                                                                            <div class="col-md-12">
-                                                                                <div id="payment" class="woocommerce-checkout-payment">
-
-                                                                                    <div class="form-row place-order">
-                                                                                        <noscript>
-                                                                                            Since your browser does not support JavaScript, or it is disabled, please ensure you click the &lt;em&gt;Update Totals&lt;/em&gt; button before placing your order. You may be charged more than the amount stated above if you fail to do so.			&lt;br/&gt;&lt;input type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="Update totals" /&gt;
-                                                                                        </noscript>
-
-                                                                                        <div class="col-xs-6">
-                                                                                            <a href="01_basic_info.php"><input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="previous" value="Previous" data-value="Previous"></a>
-                                                                                        </div>
-                                                                                        <div class="col-xs-6">
-                                                                                            <a href="03_add_media.php"> <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="next" value="Next" data-value="Next"></a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                @include('hostelRegistration._partials.wizardControl')
                                                             </div>
                                                         </div><!-- .entry-content -->
                                                     </div>
@@ -303,12 +279,12 @@
                                         </div> <!-- Primary end -->
                                     </div>
                                 </div>
-                        </main>
-                    </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         </div>
-
+        </div>
     </section>
 
 @endsection

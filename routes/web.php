@@ -76,25 +76,27 @@ Route::get('password/reset/{token}','Hosteller\ResetPasswordController@showReset
  **********************************************/
 Route::prefix('hostelRegistration')->group(function (){
 
+
+
     /* Get routes*/
-    Route::get('/','HostelRegistrationController@showBasicInfo')->name('hostel.registration');
-    Route::get('/02','HostelRegistrationController@showHostelDetails')->name('hostel.registration.02');
+    Route::get('/{step?}','HostelRegistrationController@wizard')->name('hostel.registration');
+   /* Route::get('/02','HostelRegistrationController@showHostelDetails')->name('hostel.registration.02');
     Route::get('/03','HostelRegistrationController@showAddMedia')->name('hostel.registration.03');
     Route::get('/04','HostelRegistrationController@showAmenities')->name('hostel.registration.04');
     Route::get('/05','HostelRegistrationController@showLayoutAndPricing')->name('hostel.registration.05');
     Route::get('/06','HostelRegistrationController@showPolicies')->name('hostel.registration.06');
     Route::get('/07','HostelRegistrationController@showPaymentProtocols')->name('hostel.registration.07');
-    Route::get('/08','HostelRegistrationController@showConfirmation')->name('hostel.registration.08');
+    Route::get('/08','HostelRegistrationController@showConfirmation')->name('hostel.registration.08');*/
 
     /* Post routes*/
-    Route::post('/','HostelRegistrationController@storeBasicInfo')->name('hostel.registration.submit');
-    Route::post('/02','HostelRegistrationController@storeHostelDetails')->name('hostel.registration.02.submit');
+    Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit');
+   /* Route::post('/02','HostelRegistrationController@storeHostelDetails')->name('hostel.registration.02.submit');
     Route::post('/03','HostelRegistrationController@storeAddMedia')->name('hostel.registration.03.submit');
     Route::post('/04','HostelRegistrationController@storeAmenities')->name('hostel.registration.04.submit');
     Route::post('/05','HostelRegistrationController@storeLayoutAndPricing')->name('hostel.registration.05.submit');
     Route::post('/06','HostelRegistrationController@storePolicies')->name('hostel.registration.06.submit');
     Route::post('/07','HostelRegistrationController@storePaymentProtocols')->name('hostel.registration.07.submit');
-    Route::post('/08','HostelRegistrationController@storeConfirmation')->name('hostel.registration.08.submit');
+    Route::post('/08','HostelRegistrationController@storeConfirmation')->name('hostel.registration.08.submit');*/
 
 });
 

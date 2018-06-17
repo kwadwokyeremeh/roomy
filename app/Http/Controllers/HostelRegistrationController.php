@@ -4,121 +4,80 @@ namespace myRoommie\Http\Controllers;
 
 use myRoommie\Modules\HostelRegistration;
 use Illuminate\Http\Request;
+use Smajti1\Laravel\Wizard;
+
+
+use myRoommie\Wizard\Steps\HostelRegistration\BasicInfoStep;
+use myRoommie\Wizard\Steps\HostelRegistration\HostelDetailsStep;
+use myRoommie\Wizard\Steps\HostelRegistration\AddMediaStep;
+use myRoommie\Wizard\Steps\HostelRegistration\AmenitiesStep;
+use myRoommie\Wizard\Steps\HostelRegistration\LayoutAndPricingStep;
+use myRoommie\Wizard\Steps\HostelRegistration\PoliciesStep;
+use myRoommie\Wizard\Steps\HostelRegistration\PaymentProtocolsStep;
+use myRoommie\Wizard\Steps\HostelRegistration\ConfirmationStep;
+use Smajti1\Laravel\Step;
+
 
 class HostelRegistrationController extends Controller
 {
 
+    protected $wizard;
+
+
     public function __construct()
     {
         $this->middleware('auth:hosteller')->except('logout','destroy');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showBasicInfo()
-    {
-        return view('hostelRegistration.01_basicInfo');
+
+        $this->wizard = new Wizard($this->steps, $sessionKeyName = 'user');
     }
 
-    public function showHostelDetails()
-    {
-        return view('hostelRegistration.02_hostelDetails');
+
+
+    public $steps = [
+        'set-username-key' => BasicInfoStep::class,
+                              HostelDetailsStep::class,
+                              AddMediaStep::class,
+                              AmenitiesStep::class,
+                              LayoutAndPricingStep::class,
+                              PoliciesStep::class,
+                              PaymentProtocolsStep::class,
+                              ConfirmationStep::class,
+
+];
+
+
+
+
+
+public function wizard($step = null)
+{
+    try {
+        if (is_null($step)) {
+            $step = $this->wizard->firstOrLastProcessed();
+        } else {
+            $step = $this->wizard->getBySlug($step);
+        }
+    } catch (StepNotFoundException $e) {
+        abort(404);
     }
 
-    public function showAddMedia()
-    {
-        return view('hostelRegistration.03_addMedia');
+    return view('hostelRegistration.01_basicInfo', compact('step'));
+}
+
+public function wizardPost(Request $request, $step = null)
+{
+    try {
+        $step = $this->wizard->getBySlug($step);
+    } catch (StepNotFoundException $e) {
+        abort(404);
     }
 
-    public function showAmenities()
-    {
-        return view('hostelRegistration.04_amenities');
-    }
+    $this->validate($request, $step->rules($request));
+    $step->process($request);
 
-    public function showLayoutAndPricing()
-    {
-        return view('hostelRegistration.05_layoutAndPricing');
-    }
+    return redirect()->route('hostel.registration', [$this->wizard->nextSlug()]);
+}
 
-    public function showPolicies()
-    {
-        return view('hostelRegistration.06_policies');
-    }
 
-    public function showPaymentProtocols()
-    {
-        return view('hostelRegistration.07_paymentProtocols');
-    }
 
-    public function showConfirmation()
-    {
-        return view('hostelRegistration.08_confirmation');
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \myRoommie\Modules\HostelRegistration  $hostelRegistration
-     * @return \Illuminate\Http\Response
-     */
-    public function show(HostelRegistration $hostelRegistration)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \myRoommie\Modules\HostelRegistration  $hostelRegistration
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(HostelRegistration $hostelRegistration)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \myRoommie\Modules\HostelRegistration  $hostelRegistration
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, HostelRegistration $hostelRegistration)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \myRoommie\Modules\HostelRegistration  $hostelRegistration
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(HostelRegistration $hostelRegistration)
-    {
-        //
-    }
 }

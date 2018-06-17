@@ -10,7 +10,8 @@
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "smajti1/laravel-wizard": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.4",
@@ -27,12 +28,15 @@
             "database/factories"
         ],
         "psr-4": {
-            "myRoommie\\": "app/"
-        }
+            "myRoommie\\": "app/",
+            "myRoommie\\Wizard\\Steps\\HostelRegistration\\": "app/Modules/Steps/HostelRegistration",
+            "myRoommie\\Wizard\\Steps\\Booking\\": "app/Modules/Steps/Booking"
+            }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
+
         }
     },
     "extra": {
