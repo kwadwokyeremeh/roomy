@@ -19,7 +19,7 @@ class CreateHostelsTable extends Migration
             $table->string('alias')->nullable();
             $table->integer('number_of_blocks');
             $table->string('street_address')->nullable();
-            $table->string('town')->nullable();
+            $table->string('city')->nullable();
             $table->string('region')->nullable();
             $table->string('country')->nullable();
             $table->string('latitude')->nullable();

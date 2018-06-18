@@ -19,7 +19,19 @@
                             @endif
                         </div>
                         <div class="col-xs-4">
-                            <span>Step {{ $step->number }}/{{ $wizard->limit() }}</span>
+                            <div class="vk-dark-our-room-item-book">
+                                <div class="vk-dark-our-room-item-book-left">
+                                    <ul>
+                                        <li>
+                                            <p>Rating : </p>
+                                        </li>
+                                        <li>
+                                            <p>{{ $step->number }}/ <span>{{ $wizard->limit() }}</span></p>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="col-xs-4">
 
@@ -37,6 +49,6 @@
         </div>
     </div>
 </div>
-</form>
+
 
 

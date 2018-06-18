@@ -1,6 +1,3 @@
-@extends('hostelRegistration.master')
-
-@section('main-content')
 
     <section class="site-content-area">
         <div class="vk-gallery-grid-full-banner">
@@ -24,40 +21,46 @@
                 <div class="vk-select-room-breakcrumb">
                     <ul>
                         <li class="completed">
-                            <a href="javascript:void(0);">1.Basic Info</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">1.Basic Info</a>
                         </li>
                         <li class="active">
-                            <a href="javascript:void(0);"><small>2.Hostel Details</small></a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>2.Hostel Details</small></a>
                             <span class="round-tabs five">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li class="make-a-reservation">
-                            <a href="javascript:void(0);">3.Add media</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">3.Add media</a>
                             <span class="round-tabs five">
                               <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li class="confirmation">
-                            <a href="javascript:void(0);">4.Amenities</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">4.Amenities</a>
                             <span class="round-tabs five">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li class="confirmation">
-                            <a href="javascript:void(0);"><small>5.Layout and Pricing</small></a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>5.Layout and Pricing</small></a>
                             <span class="round-tabs five">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">6.Policies</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">6.Policies</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">7.Payment</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">7.Payment</a>
+                            <span class="round-tabs five">
+                             <i class="fa fa-angle-right" aria-hidden="true"></i>
+                         </span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">8.Confirmation</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
@@ -82,7 +85,8 @@
                                                             <div class="vk-checkout-billing-left">
                                                                 <div class="col-md-12">
                                                                     <div class="woocommerce-billing-fields">
-
+                                                                <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST">
+                                                                            @csrf
                                                                         <h3>Rooms and Prices</h3>
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
                                                                             <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="one_in_a_room" data-priority="10">
@@ -104,6 +108,8 @@
 
 
                                                                         </div>
+                                                                    @include('hostelRegistration._partials.wizardControl')
+                                                                </form>
                                                                     </div>
 
                                                                 </div>
@@ -111,33 +117,7 @@
 
 
 
-                                                            <div class="vk-checkout-order-paypal">
-                                                                <div class="row">
-                                                                    <div id="order_review" class="woocommerce-checkout-review-order">
 
-
-                                                                        <div class="col-md-12">
-                                                                            <div id="payment" class="woocommerce-checkout-payment">
-
-                                                                                <div class="form-row place-order">
-                                                                                    <noscript>
-                                                                                        Since your browser does not support JavaScript, or it is disabled, please ensure you click the &lt;em&gt;Update Totals&lt;/em&gt; button before placing your order. You may be charged more than the amount stated above if you fail to do so.			&lt;br/&gt;&lt;input type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="Update totals" /&gt;
-                                                                                    </noscript>
-
-
-                                                                                    <div class="col-xs-6">
-                                                                                        <a href="04_amenities.php"><input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="previous" value="Previous" data-value="Previous"></a>
-                                                                                    </div>
-                                                                                    <div class="col-xs-6">
-                                                                                        <a href="06_policies.php"> <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="next" value="Next" data-value="Next"></a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div><!-- .entry-content -->
                                                 </div>
@@ -156,4 +136,3 @@
 
     </section>
 
-@endsection

@@ -5,8 +5,6 @@ namespace myRoommie\Http\Controllers;
 use myRoommie\Modules\HostelRegistration;
 use Illuminate\Http\Request;
 use Smajti1\Laravel\Wizard;
-
-
 use myRoommie\Wizard\Steps\HostelRegistration\BasicInfoStep;
 use myRoommie\Wizard\Steps\HostelRegistration\HostelDetailsStep;
 use myRoommie\Wizard\Steps\HostelRegistration\AddMediaStep;
@@ -54,18 +52,21 @@ public function wizard($step = null)
     try {
         if (is_null($step)) {
             $step = $this->wizard->firstOrLastProcessed();
-        } else {
+        }
+        else {
             $step = $this->wizard->getBySlug($step);
         }
+
     } catch (StepNotFoundException $e) {
         abort(404);
     }
 
-    return view('hostelRegistration.01_basicInfo', compact('step'));
+    return view('hostelRegistration.master', compact('step'));
 }
 
 public function wizardPost(Request $request, $step = null)
 {
+dd($request->all());
     try {
         $step = $this->wizard->getBySlug($step);
     } catch (StepNotFoundException $e) {

@@ -81,7 +81,7 @@
 
                                                                             <p class="col-md-4 form-row form-row-last validate-required mb-5" id="phone" data-priority="20">
                                                                                 <label for="phone" class="">Phone <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="phone" type="phone" class="input-text{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
+                                                                                <input id="phone" type="tel" class="input-text{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
 
                                                                                 @if ($errors->has('phone'))
                                                                                     <span class="invalid-feedback">

@@ -21,12 +21,25 @@
 
     @include('layouts._partials.mainNav')
     {{--<!--BENGIN CONTENT HEADER-->--}}
-    @yield('main-content')
+    @include($step::$view, compact('step', 'errors'))
     {{--<!--END CONTENT ABOUT-->--}}
 
     @include('layouts._partials.footer')
 </div>
 
 @include('hostelRegistration._partials.script')
+{{----}}
+<script>
+
+    {{--Hostel Details--}}
+    @include('hostelRegistration._partials.hostelDetails')
+
+    /*Add Media*/
+
+    @include('hostelRegistration._partials.addMedia')
+    /*Add Amenities*/
+    @include('hostelRegistration._partials.amenities')
+    /*Add Amenities*/
+</script>
 </body>
 </html>

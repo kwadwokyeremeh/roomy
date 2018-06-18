@@ -1,7 +1,3 @@
-@extends('hostelRegistration.master')
-
-@section('main-content')
-
     <section class="site-content-area">
         <div class="vk-gallery-grid-full-banner">
             <div class="vk-about-banner">
@@ -24,40 +20,46 @@
                 <div class="vk-select-room-breakcrumb">
                     <ul>
                         <li class="completed">
-                            <a href="javascript:void(0);">1.Basic Info</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">1.Basic Info</a>
                         </li>
                         <li class="active">
-                            <a href="javascript:void(0);"><small>2.Hostel Details</small></a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>2.Hostel Details</small></a>
                             <span class="round-tabs five">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li class="make-a-reservation">
-                            <a href="javascript:void(0);">3.Add media</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">3.Add media</a>
                             <span class="round-tabs five">
                               <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">4.Amenities</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">4.Amenities</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><small>5.Layout and Pricing</small></a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout and Pricing</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">6.Policies</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">6.Policies</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">7.Payment</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">7.Payment</a>
+                            <span class="round-tabs five">
+                             <i class="fa fa-angle-right" aria-hidden="true"></i>
+                         </span>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">8.Confirmation</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
@@ -78,7 +80,8 @@
                                             <div class="entry-content-wrapper">
                                                 <div class="entry-content">
                                                     <div class="woocommerce">
-
+                                                        <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST">
+                                                            @csrf
                                                         <div class="row">
                                                             <div class="vk-checkout-billing-left">
                                                                 <div class="woocommerce-billing-fields">
@@ -154,6 +157,7 @@
 
                                                             @include('hostelRegistration._partials.wizardControl')
                                                         </div>
+                                                        </form>
                                                     </div><!-- .entry-content -->
                                                 </div>
                                             </div>
@@ -171,4 +175,3 @@
 
     </section>
 
-@endsection

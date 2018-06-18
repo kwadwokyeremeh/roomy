@@ -15,7 +15,7 @@ class PoliciesStep extends Step
 
     public static $label = 'Policies';
     public static $slug = '06';
-    public static $view = 'hostelRegistration.06_Policies';
+    public static $view = 'hostelRegistration.06_policies';
 
     public function process(Request $request)
     {

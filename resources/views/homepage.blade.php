@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="vk-slide">
                         <div id="owl-slide-home" class="owl-carousel owl-theme animated">
-                            <div class="item animated">
+                            {{--<div class="item animated">
                                 <div class="vk-item-slide">
                                     <div class="slider-video">
                                         <video id="video-demo" loop>
@@ -31,7 +31,7 @@
                                         <h2 class="animated fadeInUp slide-delay-2 ">Brunei hostel</h2>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="item  animated">
                                 <div class="vk-item-slide">
                                     <img src="images/01_01_default/banner.jpg" alt="" class="img-responsive">

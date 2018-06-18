@@ -54,51 +54,52 @@
                         </div>
                         <!--Advanced search-->
 
-                        <div class="vk-booking-hotel">
-                            <div class="container-fluid">
-                                <form action="#" class="form-horizontal  booking-hotel-all">
+                        <div class="vk-booking-center-logo">
+                            <div class="container">
+                                <form action="searchResults.blade.php" class="form-horizontal  booking-hotel-all">
+                                    @csrf
                                     <ul>
-
-                                        <li>
-                                            <h4>Advanced Search</h4>
-                                        </li>
                                         <li>
                                             <h4>Hostel</h4>
                                             <div class="input-group">
-                                                <input name="hostelName" title="#" class="form-control" type="text" value="">
-                                                <span class="input-group-addon btn"><span class="fa fa-building" id="ti-calendar2"></span></span>
+                                                <input name="hostelName" class="form-control" type="text">
+                                                <span class="input-group-addon btn"><span class="fa fa-building"></span></span>
                                             </div>
                                         </li>
                                         <li>
                                             <h4>Location</h4>
-                                            <div class="wrap-select">
-                                                <div id="dd" class="wrapper-dropdown-3">
-                                                    <small>Choose your location</small>
-                                                    <ul class="dropdown">
-                                                        <li><a href="#">Ayeduase</a></li>
-                                                        <li><a href="#">Ayigya</a></li>
-                                                        <li><a href="#">Bomso</a></li>
-                                                        <li><a href="#">Kentikrono</a></li>
-                                                        <li><a href="#">Kotei</a></li>
-                                                    </ul>
-                                                </div>
+                                            <div class="input-group">
+                                                <input name="location" class="form-control" type="text">
+                                                <span class="input-group-addon btn"><span class="fa fa-map-pin"></span></span>
                                             </div>
                                         </li>
                                         <li>
                                             <h4>Price Filter</h4>
                                             <div class="wrap-select">
-                                                <div class="vk-newlist-title2" style="margin-top: 1px;">
-                                                    <div id="slider-range" style="margin-top: 5px">
-                                                        <label class="label-filter-price"><input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></label>
+                                                <div class="slider">
+                                                    <div id="slider-range-1" class="ui-slider-range">
+
                                                     </div>
+
                                                 </div>
                                             </div>
+                                        </li>
+                                        <li>
+                                            <h4>Amount</h4>
+                                            <div class="wrap-select" style="margin-bottom: auto">
+                                                <div id="dda">
+                                                    <span style="margin-right: 0; padding-right: 0">
+                                                        <label class="label-filter-price" style="max-width: 60%; margin-top: 0px; height: 50px;">
+                                                            <input type="text" id="amount-1" style="border:0; max-width: 60%; color:#f6931f; font-weight:bold;">
+                                                        </label>
+                                                   </span>
 
-
+                                                </div>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="vk-btn-check">
-                                                <button formaction="search_results.php" type="submit" class="btn vk-btn-primary btn-block btn-check">Advanced Search</button>
+                                                <button type="submit" class="btn vk-btn-primary btn-block btn-check">Advanced Search</button>
                                             </div>
                                         </li>
                                     </ul>

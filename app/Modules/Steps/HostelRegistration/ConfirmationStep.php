@@ -16,7 +16,7 @@ class ConfirmationStep extends Step
 
     public static $label = 'Confirmation';
     public static $slug = '08';
-    public static $view = 'hostelRegistration.08_Confirmation';
+    public static $view = 'hostelRegistration.08_confirmation';
 
     public function process(Request $request)
     {
