@@ -13661,3 +13661,94 @@ a {
   margin-bottom: 0.25rem; }
 .custom-controls-stacked .custom-control + .custom-control {
   margin-left: 0; }
+
+
+.hostel-layout {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.hostel-layout:after {
+
+  flex: 999 999 auto;
+}
+
+.square {
+  background-color: cyan;
+  padding: 2.5px;
+  width: 100px;
+  height: 100px;
+  margin: 2.5px;
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+}
+
+#accordion .panel-heading {
+  padding: 0;
+}
+
+#accordion .panel-title>a {
+  display: block;
+  padding: 0.4em 0.6em;
+  outline: none;
+  font-weight: bold;
+  text-decoration: none;
+  border-left: 4px solid #dcf30a;
+
+}
+
+#accordion .panel-title>a.accordion-toggle::before, #accordion a[data-toggle="collapse"]::before
+{
+  content: "\e113";
+  float: left;
+  font-family: 'Glyphicons Halflings';
+  margin-right: 1em;
+}
+
+#accordion .panel-title>a.accordion-toggle.collapsed::before, #accordion a.collapsed[data-toggle="collapse"]::before
+{
+  content: "\e114";
+}
+#accordion.panel-group .panel{
+  margin-top: 5px;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+#accordion .actions_div > a {
+  font-size: 14px;
+  margin-right: 15px;
+}
+#accordion .actions_div > a.exit-btn {
+  color:#dd4b39;
+}
+#accordion .remove_field.exit-btn{
+  color:#dd4b39;
+  margin-left:7px;
+  float: left;
+}
+
+.room{
+  display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  flex: 50 55 auto;
+  margin: 1px;
+}

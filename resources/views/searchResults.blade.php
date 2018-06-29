@@ -35,7 +35,7 @@
                                                                 </div>
                                                                 <div class="col-sm-6 vk-dark-our-room-item-right vk-clear-padding">
                                                                     <div class="vk-dark-our-room-item-content">
-                                                                        <h3><a href="individual_hostel/index.php">Hostel Name</a></h3>
+                                                                        <h3><a href="individualHostel/index.php">Hostel Name</a></h3>
                                                                         <ul>
                                                                             <li><p><i class="fa fa-diamond" aria-hidden="true"></i> Hostel slang <span> : Brunei</span></p></li>
                                                                             <li><p><i class="fa fa-address-card" aria-hidden="true"></i> Location <span> : 1 Hostel Address</span></p></li>
@@ -78,7 +78,7 @@
                                                                 </div>
                                                                 <div class="col-sm-6 vk-dark-our-room-item-right vk-clear-padding">
                                                                     <div class="vk-dark-our-room-item-content">
-                                                                        <h3><a href="individual_hostel/index.php">Hostel Name</a></h3>
+                                                                        <h3><a href="individualHostel/index.php">Hostel Name</a></h3>
                                                                         <ul>
                                                                             <li><p><i class="fa fa-diamond" aria-hidden="true"></i> Hostel slang <span> : Brunei</span></p></li>
                                                                             <li><p><i class="fa fa-address-card" aria-hidden="true"></i> Location <span> : 1 Hostel Address</span></p></li>
@@ -121,7 +121,7 @@
                                                                 </div>
                                                                 <div class="col-sm-6 vk-dark-our-room-item-right vk-clear-padding">
                                                                     <div class="vk-dark-our-room-item-content">
-                                                                        <h3><a href="individual_hostel/index.php">Hostel Name</a></h3>
+                                                                        <h3><a href="individualHostel/index.php">Hostel Name</a></h3>
                                                                         <ul>
                                                                             <li><p><i class="fa fa-diamond" aria-hidden="true"></i> Hostel slang <span> : Brunei</span></p></li>
                                                                             <li><p><i class="fa fa-address-card" aria-hidden="true"></i> Location <span> : 1 Hostel Address</span></p></li>

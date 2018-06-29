@@ -65,7 +65,7 @@
                          </span>
                         </li>
                     </ul>
-                    @include('hostelRegistration._partials.progressBar')
+                   {{-- @include('hostelRegistration._partials.progressBar')--}}
                    </div>
                 <div class="vk-shop-checkout-body">
                     <div class="container">
@@ -269,8 +269,21 @@
                                                                                             <span class="custom-control-description">Three in a room with balcony and washroom</span>
                                                                                         </label><br>
                                                                                     </p><!----><!---->
+                                                                                    <div class="woocommerce-billing-fields__field-wrapper" id="dynamic_field">
 
-                                                                                    <div class="form-group">
+                                                                                            {{--<p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                                                <label class="custom-checkbox custom-control">
+                                                                                                    <input type="checkbox" autocomplete="off" class="col-md-1 custom-control-input" value="other">
+                                                                                                    <span aria-hidden="true" class="custom-control-indicator"></span>
+                                                                                                    <span class="custom-control-description"></span>
+                                                                                                </label>
+                                                                                                <input type="text" name="roomType[]" placeholder="Enter the room type" class="col-md-8 input-text" />
+                                                                                            </p>--}}
+                                                                                            <button type="button" name="add" id="add" class="vk-btn vk-btn-m  vk-btn-default "><i class="fa fa-plus"></i></button>
+
+                                                                                    </div>
+
+                                                                                   {{-- <div class="form-group">
 
                                                                                             <div class="table-responsive">
                                                                                                 <table class="table" id="dynamic_field">
@@ -280,15 +293,15 @@
                                                                                                                 <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
                                                                                                                 <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                                                 <span class="custom-control-description"></span>
-                                                                                                                <input type="text" name="roomType[]" placeholder="Enter the room type" class="form-control name_list" />
                                                                                                             </label>
+                                                                                                            <input type="text" name="roomType[]" placeholder="Enter the room type" class="input-text" />
                                                                                                         </td>
                                                                                                         <td><button type="button" name="add" id="add" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius"><i class="fa fa-plus"></i></button></td>
                                                                                                     </tr>
                                                                                                 </table>
                                                                                             </div>
 
-                                                                                    </div>
+                                                                                    </div>--}}
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -318,3 +331,46 @@
         </div>
     </section>
 
+@section('custom-script')
+    // Same floor yes or no trigger
+    $('#r11').on('click', function(){
+    $(this).parent().find('a').trigger('click')
+    });
+
+    $('#r12').on('click', function(){
+    $(this).parent().find('a').trigger('click')
+    });
+    //Dynamically Add or Remove input fields in PHP with JQuery
+    $(document).ready(function(){
+    var i=1;
+    $('#add').click(function(){
+    i++;
+    $('#dynamic_field').prepend('<p class="form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field" id="row'+i+'">' +
+        '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
+            '<span aria-hidden="true" class="custom-control-indicator">'+'</span></label>'+''+
+        '<input type="text" name="roomType[]" placeholder="Enter the room type" class="col-md-8 input-text" />' +'<br>' + '' + ''  +
+        '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></p>');
+    });
+
+
+    $(document).on('click', '.btn_remove', function(){
+    var button_id = $(this).attr("id");
+    $('#row'+button_id+'').remove();
+    });
+
+    $('#submit').click(function(){
+    $.ajax({
+    url:"name.php",
+    method:"POST",
+    data:$('#add_name').serialize(),
+    success:function(data)
+    {
+    alert(data);
+    $('#add_name')[0].reset();
+    }
+    });
+    });
+
+    });
+
+@endsection

@@ -3,7 +3,7 @@
 
 @include('layouts._partials.head')
 
-<body class="" >
+<body>
 {{--onload="loadvideo()"--}}
 <!--load page-->
 {{--<div class="load-page">

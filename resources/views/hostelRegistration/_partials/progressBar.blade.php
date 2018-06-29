@@ -1,20 +1,24 @@
+
+
+{{--
 <ul>
     @foreach($wizard->all() as $key => $_step)
         <li>
             @if($step->index == $_step->index)
 
-                <strong>{{ $_step::$label }}</strong>
+                        {{ $_step::$label }}
 
             @elseif($step->index > $_step->index)
-                <a href="{{ route('hostel.registration', [$_step::$slug]) }}">{{ $_step::$label }}</a>
+                <a href="{{ route('hostel.registration', [$_step::$slug]) }}"></a>
             @else
                 {{ $_step::$label }}
             @endif
         </li>
     @endforeach
 </ul>
+--}}
 
     {{--@include($step::$view, compact('step', 'errors'))--}}
 
 
-
+ {{$step->progress()}}

@@ -74,4 +74,9 @@ class BasicInfoStep extends Step
 
 
     }
+
+    public function progress()
+    {
+        return view('hostelRegistration._partials.01progress');
+    }
 }

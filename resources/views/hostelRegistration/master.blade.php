@@ -3,7 +3,7 @@
 
 @include('hostelRegistration._partials.head')
 
-<body class="" onload="loadvideo()">
+<body>
 <!--load page-->
 <div class="load-page">
     <div class="spinner">
@@ -31,15 +31,16 @@
 {{----}}
 <script>
 
+    @yield('custom-script')
     {{--Hostel Details--}}
-    @include('hostelRegistration._partials.hostelDetails')
+   {{-- @include('hostelRegistration._partials.hostelDetails')
 
     /*Add Media*/
 
     @include('hostelRegistration._partials.addMedia')
     /*Add Amenities*/
     @include('hostelRegistration._partials.amenities')
-    /*Add Amenities*/
+    /*Add Amenities*/--}}
 </script>
 </body>
 </html>

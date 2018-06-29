@@ -32,4 +32,9 @@ class LayoutAndPricingStep extends Step
             'username' => 'required|min:4|max:255',
         ];
     }
+
+    public function progress()
+    {
+        return view('hostelRegistration._partials.05progress');
+    }
 }

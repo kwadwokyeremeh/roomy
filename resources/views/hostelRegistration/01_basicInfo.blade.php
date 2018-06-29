@@ -68,7 +68,7 @@
                         </li>
 
                     </ul>
-                    @include('hostelRegistration._partials.progressBar')
+                    {{--@include('hostelRegistration._partials.progressBar')--}}
                 </div>
                 <div class="vk-shop-checkout-body">
                     <div class="container">

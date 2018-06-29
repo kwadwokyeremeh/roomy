@@ -3,7 +3,7 @@
 
 @include('layouts._partials.head')
 
-<body class="" onload="loadvideo()">
+<body>
 <!--load page-->
 <div class="load-page">
     <div class="spinner">
