@@ -95,7 +95,7 @@
                                                                         <h3>Hostel Owner Details</h3>
 
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
-                                                                                <label for="first_name" class="">First name <abbr class="required" title="required">*</abbr></label>
+                                                                                <label for="firstName" class="">First name <abbr class="required" title="required">*</abbr></label>
                                                                                 <input id="firstName" type="text" class="input-text {{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName') }}" autofocus>
 
                                                                                 @if ($errors->has('firstName'))
@@ -105,8 +105,8 @@
                                                                                 @endif
                                                                                 </p>
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
-                                                                                <label for="last_name" class="">Last name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="name" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autofocus>
+                                                                                <label for="lastName" class="">Last name <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="lastName" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autofocus>
 
                                                                                 @if ($errors->has('lastName'))
                                                                                     <span class="invalid-feedback">
@@ -140,7 +140,7 @@
 
 
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
-                                                                                <label for="first_name" class="">First name <abbr class="required" title="required">*</abbr></label>
+                                                                                <label for="firstName" class="">First name <abbr class="required" title="required">*</abbr></label>
                                                                                 <input id="firstName" type="text" class="input-text {{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName_2') }}" autofocus>
 
                                                                                 @if ($errors->has('firstName'))
@@ -150,8 +150,8 @@
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
-                                                                                <label for="last_name" class="">Last name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="name" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autofocus>
+                                                                                <label for="lastName" class="">Last name <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="lastName" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autofocus>
 
                                                                                 @if ($errors->has('lastName'))
                                                                                     <span class="invalid-feedback">
@@ -187,8 +187,8 @@
 
 
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
-                                                                                <label for="first_name" class="">First name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="firstName" type="text" class="input-text {{ $errors->has('firstName_3') ? ' is-invalid' : '' }}" name="firstName_3" value="{{ old('firstName_3') }}" autofocus>
+                                                                                <label for="firstName_3" class="">First name <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="firstName_3" type="text" class="input-text {{ $errors->has('firstName_3') ? ' is-invalid' : '' }}" name="firstName_3" value="{{ old('firstName_3') }}" autofocus>
 
                                                                                 @if ($errors->has('firstName_3'))
                                                                                     <span class="invalid-feedback">
@@ -197,8 +197,8 @@
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
-                                                                                <label for="last_name" class="">Last name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="name" type="text" class="input-text {{ $errors->has('lastName_3') ? ' is-invalid' : '' }}" name="lastName_3" value="{{ old('lastName_3') }}" autofocus>
+                                                                                <label for="lastName_3" class="">Last name <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="lastName_3" type="text" class="input-text {{ $errors->has('lastName_3') ? ' is-invalid' : '' }}" name="lastName_3" value="{{ old('lastName_3') }}" autofocus>
 
                                                                                 @if ($errors->has('lastName_3'))
                                                                                     <span class="invalid-feedback">
@@ -207,8 +207,8 @@
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-7" id="email" data-priority="20">
-                                                                                <label for="email" class="">Email <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email_3') ? ' is-invalid' : '' }}" name="email_3" value="{{ old('email_3') }}">
+                                                                                <label for="email_3" class="">Email <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="email_3" type="email" class="input-text {{ $errors->has('email_3') ? ' is-invalid' : '' }}" name="email_3" value="{{ old('email_3') }}">
 
                                                                                 @if ($errors->has('email_3'))
                                                                                     <span class="invalid-feedback">
@@ -217,8 +217,8 @@
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-5" id="phone" data-priority="20">
-                                                                                <label for="phone" class="">Phone <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="phone" type="tel" class="input-text{{ $errors->has('phone_3') ? ' is-invalid' : '' }}" name="phone_3" value="{{ old('phone_3') }}">
+                                                                                <label for="phone_3" class="">Phone <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="phone_3" type="tel" class="input-text{{ $errors->has('phone_3') ? ' is-invalid' : '' }}" name="phone_3" value="{{ old('phone_3') }}">
 
                                                                                 @if ($errors->has('phone_3'))
                                                                                     <span class="invalid-feedback">

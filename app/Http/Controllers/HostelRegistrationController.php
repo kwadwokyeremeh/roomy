@@ -66,7 +66,7 @@ public function wizard($step = null)
 
 public function wizardPost(Request $request, $step = null)
 {
-dd($request->all());
+
     try {
         $step = $this->wizard->getBySlug($step);
     } catch (StepNotFoundException $e) {

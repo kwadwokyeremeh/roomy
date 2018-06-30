@@ -93,238 +93,260 @@
 
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="4">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="Backup Plant">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Backup plant</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="5">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="Parking Space">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Parking Space</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="6">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="Library">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Library</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="7">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="Swimming pool">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Swimming pool</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="8">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="Air conditioned rooms">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Air conditioned rooms</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="9">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="TV/Common rooms">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">TV/Common rooms</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="10">
+                                                                                    <input type="checkbox" name="general[]" autocomplete="off" class="custom-control-input" value="Study rooms">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Study rooms</span>
                                                                                 </label><br>
                                                                             </p><!----><!---->
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <form name="add_name" id="add_name">
+                                                                            <div class="woocommerce-billing-fields__field-wrapper col-md-6">
+
                                                                                     <div class="table-responsive">
                                                                                         <table class="table" id="general">
                                                                                             <tr>
-                                                                                                <td>
-                                                                                                    <!--<label class="custom-checkbox custom-control">
+                                                                                                    {{--<!--<label class="custom-checkbox custom-control">
                                                                                                         <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
                                                                                                         <span aria-hidden="true" class="custom-control-indicator"></span>
 
 
                                                                                                     </label>-->
+                                                                                                    {{ $errors->has('general[]') ? ' is-invalid' : '' }}" value="{{ old('general') }}
+                                                                                                    --}}
                                                                                                     <span class="custom-control-description">Please add any other</span>
-                                                                                                </td>
-                                                                                                <td><button type="button" name="add" id="add_general" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
+
+                                                                                                <td><button type="button" id="add_general" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                     </div>
-                                                                                </form>
+
                                                                             </div>
+                                                                            @if ($errors->has('general[]'))
+                                                                                <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('general[]') }}</strong>
+                                                                                    </span>
+                                                                            @endif
                                                                         </div>
                                                                         <h3>Services</h3>
                                                                         <div class="row">
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="1">
+                                                                                    <input type="checkbox" name="services[]" autocomplete="off" class="custom-control-input" value="Daily housekeeping">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Daily housekeeping</span>
                                                                                 </label><br>
                                                                             </p>
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="11">
+                                                                                    <input type="checkbox" name="services[]" autocomplete="off" class="custom-control-input" value="WiFi Access">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">WiFi Access</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="11">
+                                                                                    <input type="checkbox" name="services[]" autocomplete="off" class="custom-control-input" value="24 hour reception/portal">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">24 hour reception/portal</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="11">
+                                                                                    <input type="checkbox" name="services[]" autocomplete="off" class="custom-control-input" value="DsTV subscription">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">DsTV subscription</span>
                                                                                 </label><br>
                                                                             </p>
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="3">
+                                                                                    <input type="checkbox" name="services[]" autocomplete="off" class="custom-control-input" value="24 hour security">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">24 hour security</span>
                                                                                 </label><br>
                                                                             </p><!----><!---->
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <form name="add_name" id="add_name">
+                                                                            <div class="woocommerce-billing-fields__field-wrapper col-md-6">
+
                                                                                     <div class="table-responsive">
                                                                                         <table class="table" id="services">
                                                                                             <tr>
-                                                                                                <td>
-                                                                                                    <!--<label class="custom-checkbox custom-control">
+                                                                                                    {{--<!--<label class="custom-checkbox custom-control">
                                                                                                         <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
                                                                                                         <span aria-hidden="true" class="custom-control-indicator"></span>
 
 
-                                                                                                    </label>-->
+                                                                                                    </label>-->--}}
                                                                                                     <span class="custom-control-description">Please add any other services provided</span>
-                                                                                                </td>
-                                                                                                <td><button type="button" name="add" id="add_services" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
+
+                                                                                                <td><button type="button" id="add_services" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                     </div>
-                                                                                </form>
+
                                                                             </div>
+                                                                            @if ($errors->has('services[]'))
+                                                                                <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('services[]') }}</strong>
+                                                                                    </span>
+                                                                            @endif
                                                                         </div>
                                                                         <h3>Food and Drink</h3>
                                                                         <div class="row">
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="10">
+                                                                                    <input type="checkbox" name="food[]" autocomplete="off" class="custom-control-input" value="Restaurant">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Restaurant</span>
                                                                                 </label><br>
                                                                             </p><p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="10">
+                                                                                    <input type="checkbox" name="food[]" autocomplete="off" class="custom-control-input" value="Bar">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Bar</span>
                                                                                 </label><br>
                                                                             </p>
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="2">
+                                                                                    <input type="checkbox" name="food[]" autocomplete="off" class="custom-control-input" value="Catering Services">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Catering Services</span>
                                                                                 </label><br>
                                                                             </p><!----><!---->
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <form name="add_name" id="add_name">
+                                                                            <div class="woocommerce-billing-fields__field-wrapper col-md-6">
+
                                                                                     <div class="table-responsive">
                                                                                         <table class="table" id="food">
                                                                                             <tr>
-                                                                                                <td>
-                                                                                                    <!--<label class="custom-checkbox custom-control">
+                                                                                                    {{--<!--<label class="custom-checkbox custom-control">
                                                                                                         <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
                                                                                                         <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                                         <span class="custom-control-description">Please specify any other</span>
                                                                                                         <input type="text" name="name[]" placeholder="Please specify any other" class="form-control name_list" />
-                                                                                                    </label>-->
+                                                                                                    </label>-->--}}
                                                                                                     <span class="custom-control-description">Please specify any other catering services provided</span>
-                                                                                                </td>
-                                                                                                <td><button type="button" name="add" id="add_food" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
+
+                                                                                                <td><button type="button" id="add_food" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                     </div>
-                                                                                </form>
+
                                                                             </div>
+                                                                            @if ($errors->has('food[]'))
+                                                                                <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('food[]') }}</strong>
+                                                                                    </span>
+                                                                            @endif
                                                                         </div>
                                                                         <h3>Entertainment</h3>
                                                                         <div class="row">
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="10">
+                                                                                    <input type="checkbox" name="entertainment[]" autocomplete="off" class="custom-control-input" value="Board Games">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Board Games</span>
                                                                                 </label><br>
                                                                             </p><!----><!---->
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <form name="add_name" id="add_name">
+                                                                            <div class="woocommerce-billing-fields__field-wrapper col-md-6">
+
                                                                                     <div class="table-responsive">
                                                                                         <table class="table" id="entertainment">
                                                                                             <tr>
-                                                                                                <td>
-                                                                                                    <!--<label class="custom-checkbox custom-control">
+                                                                                                    {{--<!--<label class="custom-checkbox custom-control">
                                                                                                         <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
                                                                                                         <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                                         <span class="custom-control-description">Please specify any other</span>
                                                                                                         <input type="text" name="name[]" placeholder="Please specify any other" class="form-control name_list" />
-                                                                                                    </label>-->
+                                                                                                    </label>-->--}}
                                                                                                     <span class="custom-control-description">Please specify any other entertainment provided</span>
-                                                                                                </td>
-                                                                                                <td><button type="button" name="add" id="add_entertainment" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
+
+                                                                                                <td><button type="button" id="add_entertainment" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                     </div>
-                                                                                </form>
+
                                                                             </div>
+                                                                            @if ($errors->has('entertainment[]'))
+                                                                                <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('entertainment[]') }}</strong>
+                                                                                    </span>
+                                                                            @endif
                                                                         </div>
                                                                         <h3>Utilities</h3>
                                                                         <div class="row">
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="10">
+                                                                                    <input type="checkbox" name="utilities[]" autocomplete="off" class="custom-control-input" value="Monthly fuel(gas) refill">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">Monthly fuel(gas) refill</span>
                                                                                 </label><br>
                                                                             </p>
                                                                             <p class="col-md-6">
                                                                                 <label class="custom-checkbox custom-control">
-                                                                                    <input type="checkbox" autocomplete="off" class="custom-control-input" value="10">
+                                                                                    <input type="checkbox" name="utilities[]" autocomplete="off" class="custom-control-input" value="ECG credit(once in a year)">
                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                     <span class="custom-control-description">ECG credit(once in a year)</span>
                                                                                 </label><br>
                                                                             </p><!----><!---->
 
-                                                                            <div class="form-group col-md-6">
-                                                                                <form name="add_name" id="add_name">
+                                                                            <div class="woocommerce-billing-fields__field-wrapper col-md-6">
+                                                                                <span class="custom-control-description">Please specify any other utilities provided</span>
                                                                                     <div class="table-responsive">
                                                                                         <table class="table" id="utilities">
                                                                                             <tr>
-                                                                                                <td>
-                                                                                                    <!--<label class="custom-checkbox custom-control">
+
+                                                                                                    {{--<!--<label class="custom-checkbox custom-control">
                                                                                                         <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
                                                                                                         <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                                         <span class="custom-control-description">Please specify any other</span>
                                                                                                         <input type="text" name="name[]" placeholder="Please specify any other" class="form-control name_list" />
-                                                                                                    </label>-->
-                                                                                                    <span class="custom-control-description">Please specify any other utilities provided</span>
-                                                                                                </td>
-                                                                                                <td><button type="button" name="add" id="add_utilities" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
+                                                                                                    </label>-->--}}
+
+                                                                                                <td><button type="button" id="add_utilities" class="vk-btn vk-btn-m  vk-btn-default"><i class="fa fa-plus"></i></button></td>
                                                                                             </tr>
                                                                                         </table>
                                                                                     </div>
-                                                                                </form>
+
                                                                             </div>
+                                                                            @if ($errors->has('utilities[]'))
+                                                                                <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('utilities[]') }}</strong>
+                                                                                    </span>
+                                                                            @endif
                                                                         </div>
                                                                         @include('hostelRegistration._partials.wizardControl')
                                                                     </form>
@@ -356,153 +378,75 @@
 
 
 @section('custom-script')
-    <script>
+
     {{--//Dynamically Add or Remove input fields in PHP with JQuery--}}
     $(document).ready(function(){
     var i=1;
+
     $('#add_general').click(function(){
     i++;
-    $('#general').prepend('<tr id="row'+i+'">' +
-        '<td>' + '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
-                '<span aria-hidden="true" class="custom-control-indicator">'+'</span>'+''+
-                '<input type="text" name="name[]" placeholder="Add any other facilities" class="form-control name_list" />' +'</label>'+ '</td>' + '' + '' + '<td>' +
-            '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m  vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></td></tr>');
+    $('#general').prepend('<tr class="form-row form-row-last" id="row'+i+'">'+
+        '<td>' + '<label class="" for="general'+ i+'">'+
+                '<input type="text" name="general[]" placeholder="Add any other facilities" class="input-text" required />' +'</label>'+ '</td>' + '' + '' + '<td>' +
+            '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m  vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></td></tr>'+
+    '');
     });
 
 
-    $(document).on('click', '.btn_remove', function(){
-    var button_id = $(this).attr("id");
-    $('#row'+button_id+'').remove();
-    });
 
-    $('#submit').click(function(){
-    $.ajax({
-    url:"name.php",
-    method:"POST",
-    data:$('#add_name').serialize(),
-    success:function(data)
-    {
-    alert(data);
-    $('#add_name')[0].reset();
-    }
-    });
-    });
 
-    });
     // Services add on
-    $(document).ready(function(){
-    var i=1;
+
     $('#add_services').click(function(){
     i++;
-    $('#services').prepend('<tr id="row'+i+'">' +
-        '<td>' + '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
-                '<span aria-hidden="true" class="custom-control-indicator">'+'</span>'+''+
-                '<input type="text" name="name[]" placeholder="Add any other services provided" class="form-control name_list" />' +'</label>'+ '</td>' + '' + '' + '<td>' +
+    $('#services').prepend('<tr class="form-row form-row-last" id="row'+i+'">' +
+        '<td>' + '<label class="">' +
+                ''+''+
+                '<input type="text" name="services[]" placeholder="Add any other services provided" class="input-text" required />' +'</label>'+ '</td>' + '' + '' + '<td>' +
             '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m  vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></td></tr>');
     });
 
 
-    $(document).on('click', '.btn_remove', function(){
-    var button_id = $(this).attr("id");
-    $('#row'+button_id+'').remove();
-    });
-
-    $('#submit').click(function(){
-    $.ajax({
-    url:"name.php",
-    method:"POST",
-    data:$('#add_name').serialize(),
-    success:function(data)
-    {
-    alert(data);
-    $('#add_name')[0].reset();
-    }
-    });
-    });
-
-    });
     // Food and Drinks add on
-    $(document).ready(function(){
-    var i=1;
     $('#add_food').click(function(){
     i++;
-    $('#food').prepend('<tr id="row'+i+'">' +
-        '<td>' + '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
-                '<span aria-hidden="true" class="custom-control-indicator">'+'</span>'+''+
-                '<input type="text" name="name[]" placeholder="Add any Catering services provided" class="form-control name_list" />' +'</label>'+ '</td>' + '' + '' + '<td>' +
+    $('#food').prepend('<tr class="form-row form-row-last" id="row'+i+'">' +
+        '<td>' + '<label class="">'+
+                ''+''+
+                '<input type="text" name="food[]" placeholder="Add any Catering services provided" class="input-text" required />' +'</label>'+ '</td>' + '' + '' + '<td>' +
             '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m  vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></td></tr>');
     });
 
 
-    $(document).on('click', '.btn_remove', function(){
-    var button_id = $(this).attr("id");
-    $('#row'+button_id+'').remove();
-    });
+   // Entertainment add on
 
-    $('#submit').click(function(){
-    $.ajax({
-    url:"name.php",
-    method:"POST",
-    data:$('#add_name').serialize(),
-    success:function(data)
-    {
-    alert(data);
-    $('#add_name')[0].reset();
-    }
-    });
-    });
-
-    }); // Entertainment add on
-    $(document).ready(function(){
-    var i=1;
     $('#add_entertainment').click(function(){
     i++;
-    $('#entertainment').prepend('<tr id="row'+i+'">' +
-        '<td>' + '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
-                '<span aria-hidden="true" class="custom-control-indicator">'+'</span>'+''+
-                '<input type="text" name="name[]" placeholder="Add any other entertainment facilities" class="form-control name_list" />' +'</label>'+ '</td>' + '' + '' + '<td>' +
+    $('#entertainment').prepend('<tr class="form-row form-row-last" id="row'+i+'">' +
+        '<td>' + '<label class="">' +
+                ''+''+
+                '<input type="text" name="entertainment[]" placeholder="Add any other entertainment facilities" class="input-text" required />' +'</label>'+ '</td>' + '' + '' + '<td>' +
             '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m  vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></td></tr>');
     });
 
 
-    $(document).on('click', '.btn_remove', function(){
-    var button_id = $(this).attr("id");
-    $('#row'+button_id+'').remove();
-    });
 
-    $('#submit').click(function(){
-    $.ajax({
-    url:"name.php",
-    method:"POST",
-    data:$('#add_name').serialize(),
-    success:function(data)
-    {
-    alert(data);
-    $('#add_name')[0].reset();
-    }
-    });
-    });
 
-    });
+
+
     // Utilities add on
-    $(document).ready(function(){
-    var i=1;
     $('#add_utilities').click(function(){
     i++;
-    $('#utilities').prepend('<tr id="row'+i+'">' +
-        '<td>' + '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
-                '<span aria-hidden="true" class="custom-control-indicator">'+'</span>'+''+
-                '<input type="text" name="name[]" placeholder="Add any other utilities provided" class="form-control name_list" />' +'</label>'+ '</td>' + '' + '' + '<td>' +
+    $('#utilities').prepend('<tr class="form-row form-row-last" id="row'+i+'">' +
+        '<td>' + '<label class="">'+
+                ''+''+
+                '<input type="text" name="utilities[]" placeholder="Add any other utilities provided" class="input-text" required />' +'</label>'+ '</td>' + '' + '' + '<td>' +
             '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m  vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></td></tr>');
     });
 
 
-    $(document).on('click', '.btn_remove', function(){
-    var button_id = $(this).attr("id");
-    $('#row'+button_id+'').remove();
-    });
 
-    $('#submit').click(function(){
+    {{--$('#submit').click(function(){
     $.ajax({
     url:"name.php",
     method:"POST",
@@ -513,8 +457,12 @@
     $('#add_name')[0].reset();
     }
     });
-    });
+    });--}}
 
+    $(document).on('click', '.btn_remove', function(){
+        var button_id = $(this).attr("id");
+        $('#row'+button_id+'').remove();
+    });
     });
 
 

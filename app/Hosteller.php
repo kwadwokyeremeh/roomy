@@ -49,4 +49,11 @@ class Hosteller extends Authenticatable
     {
         return $this->hasMany('myRoommie\Modules\Hostel\Hostel');
     }
+
+    public function hostelRegistration()
+    {
+           return $this-> hasMany('myRoommie\Modules\HostelRegistration');
+
+
+    }
 }

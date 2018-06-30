@@ -48,7 +48,7 @@
                                                                         <p>Enter your personal details</p>
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
                                                                             <p class="col-md-6 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field_detail" data-priority="10">
-                                                                                <label for="first_name" class="">First name <abbr class="required" title="required">*</abbr></label>
+                                                                                <label for="firstName" class="">First name <abbr class="required" title="required">*</abbr></label>
                                                                                 <input id="firstName" type="text" class="input-text {{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName') }}" required autofocus>
 
                                                                                 @if ($errors->has('firstName'))
@@ -58,8 +58,8 @@
                                                                                 @endif
                                                                             </p>
                                                                             <p class="col-md-6 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field_detail" data-priority="10">
-                                                                                <label for="last_name" class="">Last name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="name" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" required autofocus>
+                                                                                <label for="lastName" class="">Last name <abbr class="required" title="required">*</abbr></label>
+                                                                                <input id="lastName" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" required autofocus>
 
                                                                                 @if ($errors->has('lastName'))
                                                                                     <span class="invalid-feedback">

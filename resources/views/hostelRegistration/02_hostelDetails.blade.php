@@ -141,7 +141,7 @@
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
                                                                             <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_total_number_of_blocks_field_detail" data-priority="20">
                                                                                 <label for="total_number_of_blocks" class="">Total number of blocks <abbr class="required" title="required">*</abbr></label>
-                                                                                <input type="number" class="input-text " name="number_of_blocks" id="total_number_of_blocks" placeholder="Example; 3" value="" autocomplete="1">
+                                                                                <input type="number" min=1 class="input-text " name="number_of_blocks" id="total_number_of_blocks" placeholder="Example; 3" value="" autocomplete="1">
                                                                                 @if ($errors->has('number_of_blocks'))
                                                                                     <span class="invalid-feedback">
                                                                                         <strong style="color: #ff0000;">{{ $errors->first('number_of_blocks') }}</strong>
@@ -229,7 +229,7 @@
                                                                                                             </p>
                                                                                                             <p class="form-row form-row-last validate-required col-md-6" id="number_of_rooms" data-priority="20">
                                                                                                                 <label for="number_of_rooms" class="">Number of rooms <abbr class="required" title="required">*</abbr></label>
-                                                                                                                <input type="number" class="input-text " name="number_of_rooms" id=number_of_rooms" placeholder="10" value="" >
+                                                                                                                <input type="number" min="1" class="input-text " name="number_of_rooms" id=number_of_rooms" placeholder="10" value="" >
                                                                                                             </p>
 
                                                                                                     </div>
@@ -250,27 +250,29 @@
                                                                                 <div class="col-sm-12">
                                                                                     <p>
                                                                                         <label class="custom-checkbox custom-control">
-                                                                                            <input type="checkbox" autocomplete="off" class="custom-control-input" name="roomType[]" value="1">
+                                                                                            <input type="checkbox" id="oneInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="One in a room with balcony and washroom">
                                                                                             <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                             <span class="custom-control-description">One in a room with balcony and washroom</span>
                                                                                         </label><br>
                                                                                     </p>
                                                                                     <p>
                                                                                         <label class="custom-checkbox custom-control">
-                                                                                            <input type="checkbox" autocomplete="off" class="custom-control-input" name="roomType[]" value="2">
+                                                                                            <input type="checkbox" id="twoInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="Two in a room with balcony and washroom">
                                                                                             <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                             <span class="custom-control-description">Two in a room with balcony and washroom</span>
                                                                                         </label><br>
                                                                                     </p>
                                                                                     <p>
                                                                                         <label class="custom-checkbox custom-control">
-                                                                                            <input type="checkbox" autocomplete="off" class="custom-control-input" name="roomType[]" value="3">
+                                                                                            <input type="checkbox" id="threeInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="Three in a room with balcony and washroom">
                                                                                             <span aria-hidden="true" class="custom-control-indicator"></span>
                                                                                             <span class="custom-control-description">Three in a room with balcony and washroom</span>
                                                                                         </label><br>
                                                                                     </p><!----><!---->
-                                                                                    <div class="woocommerce-billing-fields__field-wrapper" id="dynamic_field">
+                                                                                    <div class="woocommerce-billing-fields__field-wrapper">
+                                                                                        <div class="row" id="dynamic_field">
 
+                                                                                        </div>
                                                                                             {{--<p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
                                                                                                 <label class="custom-checkbox custom-control">
                                                                                                     <input type="checkbox" autocomplete="off" class="col-md-1 custom-control-input" value="other">
@@ -279,7 +281,7 @@
                                                                                                 </label>
                                                                                                 <input type="text" name="roomType[]" placeholder="Enter the room type" class="col-md-8 input-text" />
                                                                                             </p>--}}
-                                                                                            <button type="button" name="add" id="add" class="vk-btn vk-btn-m  vk-btn-default "><i class="fa fa-plus"></i></button>
+                                                                                            <button type="button" id="add" class="vk-btn vk-btn-m  vk-btn-default "><i class="fa fa-plus"></i></button>
 
                                                                                     </div>
 
@@ -332,6 +334,7 @@
     </section>
 
 @section('custom-script')
+
     // Same floor yes or no trigger
     $('#r11').on('click', function(){
     $(this).parent().find('a').trigger('click')
@@ -340,16 +343,24 @@
     $('#r12').on('click', function(){
     $(this).parent().find('a').trigger('click')
     });
+
+
+
     //Dynamically Add or Remove input fields in PHP with JQuery
     $(document).ready(function(){
     var i=1;
     $('#add').click(function(){
     i++;
-    $('#dynamic_field').prepend('<p class="form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field" id="row'+i+'">' +
-        '<label class="custom-checkbox custom-control">' +'<input type="checkbox" autocomplete="off" class="custom-control-input" value="other">'+
-            '<span aria-hidden="true" class="custom-control-indicator">'+'</span></label>'+''+
-        '<input type="text" name="roomType[]" placeholder="Enter the room type" class="col-md-8 input-text" />' +'<br>' + '' + ''  +
-        '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></p>');
+    $('#dynamic_field').append('<div id="row'+i+'">' +
+        '<p class="col-sm-6 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
+        '<label class="" for="'+i+'">'+'Room Type' +
+            '</label>'+''+
+        '<input type="text" name="roomType[roomType][]" placeholder="Enter the room type" class=" input-text" required/>' + '</p>' +
+        '<p class="col-sm-4 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">'  +
+        '<label class="" for="'+i+'">' +'Number of bed(s) in the room'+
+        '</label>'+''+
+        '<input type="number" min="1" name="roomType[beds][]" placeholder="Enter number of bed(s)" class="input-text" required/>' + '</p>' + '<p class="col-sm-2">'  +
+        '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></p></div>');
     });
 
 
@@ -358,7 +369,7 @@
     $('#row'+button_id+'').remove();
     });
 
-    $('#submit').click(function(){
+   {{-- $('#submit').click(function(){
     $.ajax({
     url:"name.php",
     method:"POST",
@@ -369,8 +380,29 @@
     $('#add_name')[0].reset();
     }
     });
-    });
+    });--}}
 
+
+
+        $('#oneInRoom').change(function(){
+            if($('#oneInRoom').is(':checked')) {
+                $(this).append('<input type="hidden" id="bed1" name="roomType[beds][]" value="1">');
+            }else {
+                $('#bed1').remove();
+            }
+        });$('#twoInRoom').change(function(){
+            if($('#twoInRoom').is(':checked')) {
+                $(this).append('<input type="hidden" id="bed2" name="roomType[beds][]" value="2">');
+            }else {
+                $('#bed2').remove();
+            }
+        });$('#threeInRoom').change(function(){
+            if($('#threeInRoom').is(':checked')) {
+                $(this).append('<input type="hidden" id="bed3" name="roomType[beds][]" value="3">');
+            }else {
+                $('#bed3').remove();
+            }
+        });
     });
 
 @endsection
