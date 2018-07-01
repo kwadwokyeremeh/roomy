@@ -80,7 +80,7 @@
                                             <div class="entry-content-wrapper">
                                                 <div class="entry-content">
                                                     <div class="woocommerce">
-                                                        <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST">
+                                                        <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                         <div class="row">
                                                             <div class="vk-checkout-billing-left">

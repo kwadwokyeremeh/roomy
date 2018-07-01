@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Hostel extends Model
 {
 
+    protected $fillable = [
+        'name','alias',
+        'number_of_blocks',
+        'street_address',
+        'city',
+        'region', 'country',
+        'latitude',
+        'longitude',
+        'published',
+        'hosteller_id',
+    ];
+
     /*
      *
      *  Get the hosteller who owns the hostel
@@ -84,9 +96,9 @@ class Hostel extends Model
     /*
      *  Get the Prices associated with the hostel
      * */
-    public function prices()
+    public function roomDescription()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Price');
+        return $this->hasMany('myRoommie\Modules\Hostel\RoomDescription');
     }
 
 
@@ -120,8 +132,8 @@ class Hostel extends Model
     /*
      * Get room types associated the hostel
      * */
-    public function roomTypes()
+    public function roomTypeMedia()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\RoomType');
+        return $this->hasMany('myRoommie\Modules\Hostel\RoomTypeMedia');
     }
 }

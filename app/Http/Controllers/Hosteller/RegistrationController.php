@@ -9,6 +9,7 @@ use myRoommie\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class RegistrationController extends Controller
 {
@@ -75,7 +76,10 @@ class RegistrationController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-         Auth::guard('hosteller')->login($hosteller);
+        $credentials = $request->only(['email','password']);
+
+
+        Auth::guard('hosteller')->attempt($credentials, $remember =false);
         return redirect()->intended(route('hostel.registration'));
     }
 

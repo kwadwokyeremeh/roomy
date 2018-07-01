@@ -72,7 +72,7 @@ public function wizardPost(Request $request, $step = null)
     } catch (StepNotFoundException $e) {
         abort(404);
     }
-
+dd($request->all());
     $this->validate($request, $step->rules($request));
     $step->process($request);
 

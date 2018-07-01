@@ -4,7 +4,7 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Price extends Model
+class RoomDescription extends Model
 {
     /*
      *  Get the hostel that provided the prices

@@ -4,7 +4,7 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RoomType extends Model
+class RoomTypeMedia extends Model
 {
     /*
      *  Get the hostel that provided the room types
@@ -13,4 +13,6 @@ class RoomType extends Model
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
+
+
 }

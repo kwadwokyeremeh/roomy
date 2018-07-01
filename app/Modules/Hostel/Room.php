@@ -55,9 +55,9 @@ class Room extends Model
     /*
      *  Get the price associated with the room
      * */
-    public function price()
+    public function roomDescription()
     {
-        return $this->hasOne('myRoommie\Modules\Hostel\Price');
+        return $this->hasOne('myRoommie\Modules\Hostel\RoomDescription');
     }
 
 

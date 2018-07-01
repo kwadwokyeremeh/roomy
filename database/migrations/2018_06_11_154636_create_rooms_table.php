@@ -22,10 +22,8 @@ class CreateRoomsTable extends Migration
             $table->integer('floor_id')->unsigned();
             $table->foreign('floor_id')->references('id')->on('floors')->onDelete('cascade');
             $table->string('name')->nullable();
-            $table->integer('number');
-            $table->string('type');
+            $table->string('number');
             $table->char('sexType',1)->nullable();
-            $table->integer('number_of_beds');
             $table->boolean('status')->default(false);
         });
     }
