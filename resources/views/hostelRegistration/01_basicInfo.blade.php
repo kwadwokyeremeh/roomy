@@ -116,17 +116,17 @@
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-7" id="email" data-priority="20">
                                                                                 <label for="email" class="">Email <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email.*') ? ' is-invalid' : '' }}" name="email[manager]" value="{{ old('email.manager') }}">
 
-                                                                                @if ($errors->has('email'))
+                                                                                @if ($errors->has('email.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.*') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-5" id="phone" data-priority="20">
                                                                                 <label for="phone" class="">Phone <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="phone" type="tel" class="input-text{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
+                                                                                <input id="phone" type="tel" class="input-text{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone[manager]" value="{{ old('phone.manager') }}">
 
                                                                                 @if ($errors->has('phone'))
                                                                                     <span class="invalid-feedback">
@@ -141,7 +141,7 @@
 
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
                                                                                 <label for="firstName" class="">First name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="firstName" type="text" class="input-text {{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName_2') }}" autofocus>
+                                                                                <input id="firstName" type="text" class="input-text {{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName') }}" autofocus>
 
                                                                                 @if ($errors->has('firstName'))
                                                                                     <span class="invalid-feedback">
@@ -161,21 +161,21 @@
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-7" id="email" data-priority="20">
                                                                                 <label for="email" class="">Email <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email.*') ? ' is-invalid' : '' }}" name="email[manager]" value="{{ old('email.manager') }}">
 
-                                                                                @if ($errors->has('email'))
+                                                                                @if ($errors->has('email.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.*') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-5" id="phone" data-priority="20">
                                                                                 <label for="phone" class="">Phone <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="phone" type="tel" class="input-text{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
+                                                                                <input id="phone" type="tel" class="input-text{{ $errors->has('phone.manager') ? ' is-invalid' : '' }}" name="phone[manager]" value="{{ old('phone.manager') }}">
 
                                                                                 @if ($errors->has('phone'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->get('phone') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
@@ -208,21 +208,21 @@
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-7" id="email" data-priority="20">
                                                                                 <label for="email_3" class="">Email <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="email_3" type="email" class="input-text {{ $errors->has('email_3') ? ' is-invalid' : '' }}" name="email_3" value="{{ old('email_3') }}">
+                                                                                <input id="email_3" type="email" class="input-text {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email[portal]" value="{{ old('email.portal') }}">
 
-                                                                                @if ($errors->has('email_3'))
+                                                                                @if ($errors->has('email'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email_3') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-5" id="phone" data-priority="20">
                                                                                 <label for="phone_3" class="">Phone <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="phone_3" type="tel" class="input-text{{ $errors->has('phone_3') ? ' is-invalid' : '' }}" name="phone_3" value="{{ old('phone_3') }}">
+                                                                                <input id="phone_3" type="tel" class="input-text{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone[portal]" value="{{ old('phone.portal') }}">
 
-                                                                                @if ($errors->has('phone_3'))
+                                                                                @if ($errors->has('phone'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone_3') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>

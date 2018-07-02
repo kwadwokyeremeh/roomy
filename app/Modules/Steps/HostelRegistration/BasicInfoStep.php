@@ -10,11 +10,13 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use myRoommie\Modules\HostelRegistration;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
 use myRoommie\Hosteller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation;
 
 
 class BasicInfoStep extends Step
@@ -26,14 +28,29 @@ class BasicInfoStep extends Step
 
     public function process(Request $request)
     {
-        if (!is_null($request['email'] && $request['email_3'])) {
-            //  create user
+        /**
+         * Get the error messages for the defined validation rules.
+         *
+         * @return array
+         */
+
+
+        $messages = [
+            'email.unique' => 'The email address already exist in our database',
+            'array' => 'The email address already exist in our database',
+            'required' => 'The :attribute field is required.',
+        ];
+
+
+        if (($request->get('email')['manager'] && $request->get('email')['portal'])!= null) {
+
+            //  register Hostel manager or owner and portal
             $hosteller = new Hosteller;
             $hosteller->create([
                 'firstName' => $request['firstName'],
                 'lastName' => $request['lastName'],
-                'email' => $request['email'],
-                'phone' => $request['phone'],
+                'email' => $request->get('email')['manager'],
+                'phone' => $request->get('phone')['manager'],
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role'],
                 /*'password' => Hash::make('password'),*/
@@ -41,8 +58,8 @@ class BasicInfoStep extends Step
             $hosteller->create([
                 'firstName' => $request['firstName_3'],
                 'lastName' => $request['lastName_3'],
-                'email' => $request['email_3'],
-                'phone' => $request['phone_3'],
+                'email' => $request->get('email')['portal'],
+                'phone' => $request->get('phone')['portal'],
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role_3'],
                 ]);
@@ -56,7 +73,7 @@ class BasicInfoStep extends Step
 
         }
 
-        elseif (!(is_null($request['email'])) && is_null($request['email_3']))
+        elseif ((($request->get('email')['manager']) != null) && is_null($request->get('email')['portal']))
         {
 
         $hosteller = new Hosteller;
@@ -64,8 +81,8 @@ class BasicInfoStep extends Step
             $hosteller->create([
             'firstName' => $request['firstName'],
             'lastName' => $request['lastName'],
-            'email' => $request['email'],
-            'phone' => $request['phone'],
+            'email' => $request->get('email')['manager'],
+            'phone' => $request->get('phone')['manager'],
             'password' => Hash::make(str_random(10)),
             'role' => $request['role'],
 
@@ -79,7 +96,7 @@ class BasicInfoStep extends Step
             ]);
 
         }
-        elseif (is_null($request['email']) && !is_null($request['email_3']))
+        elseif (is_null($request->get('email')['manager']) && ($request->get('email')['portal'] !=null))
         {
 
             $hostellers = new Hosteller;
@@ -87,8 +104,8 @@ class BasicInfoStep extends Step
             $hostellers->create([
                 'firstName' => $request['firstName_3'],
                 'lastName' => $request['lastName_3'],
-                'email' => $request['email_3'],
-                'phone' => $request['phone_3'],
+                'email' => $request->get('email')['portal'],
+                'phone' => $request->get('phone')['portal'],
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role_3'],
 
@@ -102,7 +119,7 @@ class BasicInfoStep extends Step
             ]);
 
         }
-        else {
+        elseif (is_null($request->get('email')['manager'] && $request->get('email')['portal'])) {
             // next if you want save one step progress to session use
             $registerHostel = new HostelRegistration;
             $registerHostel->create([
@@ -118,27 +135,23 @@ class BasicInfoStep extends Step
     public function rules(Request $request = null): array
     {
 
+
            return [
-            'firstName' => 'nullable|string|max:255',
-            'lastName' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255|unique:hostellers',
-            'phone' => 'nullable|max:10|unique:hostellers',
-            'role' => 'nullable',
-
-            /* Validate hostel portal if available*/
-
-            /*'firstName_3' => 'nullable|string|max:255',
-            'lastName_3' => 'nullable|string|max:255',
-            'email_3' => 'nullable|string|email|max:255|unique:hostellers',
-            'phone_3' => 'nullable|max:10|unique:hostellers',
-            'role_3' => 'nullable',*/
+            'firstName' => 'sometimes|string|max:255',
+            'lastName' => 'sometimes|string|max:255',
+            'role' => 'sometimes',
+            'firstName_3' => 'sometimes|string|max:255',
+            'lastName_3' => 'sometimes|string|max:255',
+            'email' => 'sometimes|array|email|unique:hostellers',
+            'phone' => 'sometimes|array|max:10|unique:hostellers',
+            'role_3' => 'sometimes',
            ];
 
 
     }
 
-    public function progress()
-    {
-        return view('hostelRegistration._partials.01progress');
-    }
+
+
+
+
 }

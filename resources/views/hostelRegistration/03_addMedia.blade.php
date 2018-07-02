@@ -87,32 +87,38 @@
                                                                 <div class="woocommerce-billing-fields">
 
                                                                     <h3>Add images(views) of your hostel</h3>
-                                                                    <div class="row">
-                                                                        <form action="multiupload.php" method="post" enctype="multipart/form-data">
-                                                                            <div class="col-md-9">
-                                                                                <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
-                                                                            </div>
-                                                                            <div class="col-md-3">
-                                                                                <input type="submit" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius" name='submit_image' value="Upload Images of hostel"/>
-                                                                            </div>
-                                                                        </form>
+                                                                    <div>
+                                                                        <p class="custom-checkbox custom-control">
+                                                                            <span class="custom-control-description">
+                                                                                The images must include the views of the hostel specifically, the hostel front view and the side views,
+                                                                                &nbsp;
+                                                                                Images must be at least 3
+                                                                                You can select multiple images all at once
+                                                                            </span>
+                                                                        </p>
+                                                                        <input type="file" class="input-text" id="images" name="images[]" onchange="preview_images();" multiple/>
+                                                                    <picture class="row" id="image_preview"></picture>
+                                                                        <br>
                                                                     </div>
-                                                                    <div class="row" id="image_preview"></div>
+
+
 
                                                                 </div>
                                                                 <div class="woocommerce-billing-fields">
 
                                                                     <h3>Images of room Type available in your hostel</h3>
                                                                     <h4>Add images(views) for one in a room</h4>
+                                                                    <p>
+                                                                        <label class="custom-checkbox custom-control">
+                                                                            <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
+                                                                        </label>
+                                                                    </p>
                                                                     <div class="row">
-                                                                        <form action="multiupload.php" method="post" enctype="multipart/form-data">
+
                                                                             <div class="col-md-9">
                                                                                 <input type="file" class="form-control" id="images1" name="images[]" onchange="preview_images1();" multiple/>
                                                                             </div>
-                                                                            <div class="col-md-3">
-                                                                                <input type="submit" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius" name='submit_image' value="Upload Images of the room"/>
-                                                                            </div>
-                                                                        </form>
+
                                                                     </div>
                                                                     <div class="row" id="image_preview1"></div>
 
@@ -121,15 +127,17 @@
 
 
                                                                     <h4>Add images(views) for two in a room</h4>
+                                                                    <p>
+                                                                        <label class="custom-checkbox custom-control">
+                                                                            <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
+                                                                        </label>
+                                                                    </p>
                                                                     <div class="row">
-                                                                        <form action="multiupload.php" method="post" enctype="multipart/form-data">
+
                                                                             <div class="col-md-9">
                                                                                 <input type="file" class="form-control" id="images3" name="images[]" onchange="preview_images3();" multiple/>
                                                                             </div>
-                                                                            <div class="col-md-3">
-                                                                                <input type="submit" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius" name='submit_image' value="Upload Images of the room"/>
-                                                                            </div>
-                                                                        </form>
+
                                                                     </div>
                                                                     <div class="row" id="image_preview3"></div>
 
@@ -137,15 +145,17 @@
                                                                 <div class="woocommerce-billing-fields">
 
                                                                     <h3>Add any other images of your hostel</h3>
+                                                                    <p>
+                                                                        <label class="custom-checkbox custom-control">
+                                                                            <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
+                                                                        </label>
+                                                                    </p>
                                                                     <div class="row">
-                                                                        <form action="multiupload.php" method="post" enctype="multipart/form-data">
+
                                                                             <div class="col-md-9">
                                                                                 <input type="file" class="form-control" id="images2" name="images[]" onchange="preview_images2();" multiple/>
                                                                             </div>
-                                                                            <div class="col-md-3">
-                                                                                <input type="submit" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius" name='submit_image' value="Upload any other images"/>
-                                                                            </div>
-                                                                        </form>
+
                                                                     </div>
                                                                     <div class="row" id="image_preview2"></div>
 

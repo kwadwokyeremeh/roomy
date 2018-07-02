@@ -250,19 +250,18 @@
                                                                                 <div class="col-sm-12">
                                                                                     @if (count($errors->all()))
                                                                                         <div class="">
-                                                                                            <h4>Error!</h4>
                                                                                             <ul class="errors"  style="color: #ff0000;">
-                                                                                                @if ($errors->has('roomType.*.roomType'))
+                                                                                                @if ($errors->has('roomType.roomType.*'))
                                                                                                     <li class="invalid-feedback">
                                                                                             <strong style="color: #ff0000;">{{ $errors->first('roomType.roomType.*') }}</strong></li>
                                                                                                 @endif
-                                                                                                    @if ($errors->has('roomType.*.beds'))
+                                                                                                    @if ($errors->has('roomType.beds.*'))
                                                                                                         <li class="invalid-feedback">
                                                                                             <strong style="color: #ff0000;">{{ $errors->first('roomType.beds.*') }}</strong></li>
                                                                                                     @endif
-                                                                                                    @if ($errors->has('roomType.*.price'))
+                                                                                                    @if ($errors->has('roomType.price.*'))
                                                                                                         <li class="invalid-feedback">
-                                                                                            <strong style="color: #ff0000;">{{ $errors->first('roomType.beds.*') }}</strong></li>
+                                                                                            <strong style="color: #ff0000;">{{ $errors->first('roomType.price.*') }}</strong></li>
                                                                                                     @endif
                                                                                                 @else
                                                                                                     @foreach($errors->all() as $message)
@@ -274,27 +273,27 @@
 
 
 
-                                                                                    {{--<p>
-                                                                                        <label class="custom-checkbox custom-control">
-                                                                                            <input type="checkbox" id="oneInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="One in a room with balcony and washroom">
-                                                                                            <span aria-hidden="true" class="custom-control-indicator"></span>
-                                                                                            <span class="custom-control-description">One in a room</span>
-                                                                                        </label><br>
-                                                                                    </p>
-                                                                                    <p>
-                                                                                        <label class="custom-checkbox custom-control">
-                                                                                            <input type="checkbox" id="twoInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="Two in a room with balcony and washroom">
-                                                                                            <span aria-hidden="true" class="custom-control-indicator"></span>
-                                                                                            <span class="custom-control-description">Two in a room</span>
-                                                                                        </label><br>
-                                                                                    </p>
-                                                                                    <p>
-                                                                                        <label class="custom-checkbox custom-control">
-                                                                                            <input type="checkbox" id="threeInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="Three in a room with balcony and washroom">
-                                                                                            <span aria-hidden="true" class="custom-control-indicator"></span>
-                                                                                            <span class="custom-control-description">Three in a room</span>
-                                                                                        </label><br>
-                                                                                    </p>--}}
+                                                                                        {{--<p>
+                                                                                            <label class="custom-checkbox custom-control">
+                                                                                                <input type="checkbox" id="oneInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="One in a room with balcony and washroom">
+                                                                                                <span aria-hidden="true" class="custom-control-indicator"></span>
+                                                                                                <span class="custom-control-description">One in a room</span>
+                                                                                            </label><br>
+                                                                                        </p>
+                                                                                        <p>
+                                                                                            <label class="custom-checkbox custom-control">
+                                                                                                <input type="checkbox" id="twoInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="Two in a room with balcony and washroom">
+                                                                                                <span aria-hidden="true" class="custom-control-indicator"></span>
+                                                                                                <span class="custom-control-description">Two in a room</span>
+                                                                                            </label><br>
+                                                                                        </p>
+                                                                                        <p>
+                                                                                            <label class="custom-checkbox custom-control">
+                                                                                                <input type="checkbox" id="threeInRoom" autocomplete="off" class="custom-control-input" name="roomType[roomType][]" value="Three in a room with balcony and washroom">
+                                                                                                <span aria-hidden="true" class="custom-control-indicator"></span>
+                                                                                                <span class="custom-control-description">Three in a room</span>
+                                                                                            </label><br>
+                                                                                        </p>--}}
                                                                                     <div class="woocommerce-billing-fields__field-wrapper">
 
                                                                                         <div class="row" id="dynamic_field">
@@ -302,15 +301,15 @@
                                                                                                 <p class="col-sm-5 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
                                                                                                     <label class="" for="1">Room Type
                                                                                                         </label>
-                                                                                                    <input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text {{ $errors->has('roomType.*.roomType') ? ' is-invalid' : '' }}" value="{{ old('roomType[roomType][]') }}" required/></p>
+                                                                                                    <input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text {{ $errors->has('roomType.roomType.0') ? ' is-invalid' : '' }}" value="{{ old('roomType.roomType.0') }}" required/></p>
                                                                                                 <p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
                                                                                                     <label class="" for="1">Price per bed
                                                                                                         </label>
-                                                                                                    <input type="text" name="roomType[price][]" placeholder="Price" class=" input-text {{ $errors->has('roomType.*.price') ? ' is-invalid' : '' }}" value="{{ old('roomType[price][]') }}" required/></p>
+                                                                                                    <input type="text" name="roomType[price][]" placeholder="Price" class=" input-text {{ $errors->has('roomType.price.0') ? ' is-invalid' : '' }}" value="{{ old('roomType.price.0') }}" required/></p>
                                                                                                 <p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
                                                                                                     <label class="" for="1">Number of bed(s) in the room
                                                                                                         </label>
-                                                                                                    <input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text {{ $errors->has('roomType.*.beds') ? ' is-invalid' : '' }}" value=" {{ old('roomType[beds][]') }}" required/></p>
+                                                                                                    <input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text {{ $errors->has('roomType.beds.0') ? ' is-invalid' : '' }}" value=" {{ old('roomType.beds.0') }}" required/></p>
                                                                                             </div>
                                                                                         </div>
                                                                                             {{--<p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
@@ -400,15 +399,15 @@
         '<p class="col-sm-5 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
         '<label class="" for="'+i+'">'+'Room Type' +
             '</label>'+''+
-        '<input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text {{ $errors->has('roomType.*.roomType') ? ' is-invalid' : '' }}" value="{{ old('roomType[roomType][]') }}" required/>' + '</p>' +
+        '<input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text " value="" required/>' + '</p>' +
         '<p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
         '<label class="" for="'+i+'">'+'Price per bed' +
             '</label>'+''+
-        '<input type="text" name="roomType[price][]" placeholder="Price" class=" input-text {{ $errors->has('roomType.*.price') ? ' is-invalid' : '' }}" value="{{ old('roomType[price][]') }}" required/>' + '</p>' +
+        '<input type="text" name="roomType[price][]" placeholder="Price" class=" input-text" value="" required/>' + '</p>' +
         '<p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">'  +
         '<label class="" for="'+i+'">' +'Number of bed(s) in the room'+
         '</label>'+''+
-        '<input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text {{ $errors->has('roomType.*.beds') ? ' is-invalid' : '' }}" value=" {{ old('roomType[beds][]') }}" required/>' + '</p>' + '<p class="col-sm-1">'  +
+        '<input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text" value="" required/>' + '</p>' + '<p class="col-sm-1">'  +
         '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></p></div>');
     });
 

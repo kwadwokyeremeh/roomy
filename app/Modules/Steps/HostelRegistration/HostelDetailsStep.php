@@ -88,9 +88,10 @@ class HostelDetailsStep extends Step
             'street_address' =>     'required|string|max:255',
             'city' =>               'required|string|max:255',
             'number_of_blocks'=>    'required',
-            'roomType.*.roomType'=> 'required|string|min:3',
-            'roomType.*.beds'=>     'required|integer|min:1',
-            'roomType.*.price'=>    'required|digits:8',
+            'roomType'  => 'array|required',
+            'roomType.roomType.*'=> 'required|string|min:3',
+            'roomType.beds.*'=>     'required|integer|min:1',
+            'roomType.price.*'=>    'required|numeric',
         ];
     }
 
