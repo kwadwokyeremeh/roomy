@@ -19,10 +19,7 @@ class CreateRoomTypeMediaTable extends Migration
             $table->increments('id');
             $table->integer('hostel_id')->unsigned();
             $table->string('room_type');
-            $table->string('image_1');
-            $table->string('image_2')->nullable();
-            $table->string('image_3')->nullable();
-            $table->string('image_4')->nullable();
+            $table->string('image');
             $table->foreign('hostel_id')
                 ->references('id')
                 ->on('hostels')

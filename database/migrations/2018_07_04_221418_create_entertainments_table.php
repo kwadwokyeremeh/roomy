@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateViewsTable extends Migration
+class CreateEntertainmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateViewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('views', function (Blueprint $table) {
+        Schema::create('entertainments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('entertainment');
             $table->integer('hostel_id')->unsigned();
-            $table->string('front');
-            $table->string('right');
-            $table->string('left');
-            $table->string('video')->nullable();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
+
         });
     }
 
@@ -31,6 +29,6 @@ class CreateViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('views');
+        Schema::dropIfExists('entertainments');
     }
 }

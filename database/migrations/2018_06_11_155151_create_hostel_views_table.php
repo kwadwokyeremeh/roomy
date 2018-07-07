@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomDescriptionsTable extends Migration
+class CreateHostelViewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateRoomDescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_descriptions', function (Blueprint $table) {
+        Schema::create('hostel_views', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hostel_id')->unsigned();
-            $table->string('room_type');
-            $table->integer('number_of_beds');
-            $table->decimal('price',8,2);
+            $table->string('front');
+            $table->string('right');
+            $table->string('left');
+            $table->string('video')->nullable();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
-
         });
     }
 
@@ -31,6 +31,6 @@ class CreateRoomDescriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_descriptions');
+        Schema::dropIfExists('hostel_views');
     }
 }

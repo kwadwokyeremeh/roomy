@@ -21,7 +21,7 @@
 
     @include('layouts._partials.mainNav')
     {{--<!--BENGIN CONTENT HEADER-->--}}
-    @include($step::$view, compact('step', 'errors'))
+    @include($step::$view, compact('step','data' ,'errors'))
     {{--<!--END CONTENT ABOUT-->--}}
 
     @include('layouts._partials.footer')

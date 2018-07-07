@@ -3,12 +3,15 @@
 namespace myRoommie\Http\Controllers;
 
 use Illuminate\Http\Request;
+use myRoommie\Modules\Hostel\Hostel;
 
 class GeneralHostelsController extends Controller
 {
     //
     public function index()
     {
-        return view('generalHostels');
+        $allHostels = Hostel::all();
+
+        return view('generalHostels',compact('allHostels'));
     }
 }

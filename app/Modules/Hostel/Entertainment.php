@@ -4,14 +4,16 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Policy extends Model
+class Entertainment extends Model
 {
     public $timestamps = false;
-    /*
-     *  Get the hostel that own the policies
-     * */
+
+    protected $fillable = [
+        'hostel_id','entertainment',
+    ];
+
     public function hostel()
     {
-        return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
+        $this->belongsTo(Hostel::class);
     }
 }

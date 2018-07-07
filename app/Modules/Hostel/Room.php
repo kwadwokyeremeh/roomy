@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
+    public $timestamps = false;
     /*
      *  Get the hostel that owns the room
      * */

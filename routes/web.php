@@ -12,6 +12,7 @@
 */
 
 
+
 /*************************
  * * Testing Routes
  ************************/
@@ -23,13 +24,6 @@ Route::get('/ll',function (){
  ************************/
 
 
-Auth::routes();
-
-Route::get('/user/{student}', 'HomeController@index')->name('student');
-
-
-
-
 /*************
  ** Master Route
  *************/
@@ -37,10 +31,19 @@ Route::get('/','HomePageController@index')->name('home');
 
 Route::prefix('knust')->group(function (){
 
-    Route::get('hostels','GeneralHostelsController@index');
-    Route::get('search','SearchResultsController@index');
+    Route::get('hostels','GeneralHostelsController@index')->name('allHostels');
+    Route::get('search','SearchResultsController@index')->name('search');
 
 });
+
+/*********************
+ ** User Routes
+ *********************/
+Auth::routes();
+
+Route::get('/user/{student}', 'HomeController@index')->name('student');
+
+
 
 
 
@@ -86,18 +89,11 @@ Route::prefix('hostelRegistration')->group(function (){
 
 });
 
-
-
 });
-
-
-
-
-
 
 
 /**************************************
  *  Hostels Route
  ***************************************/
 
-Route::get('/{hostelName}','HostelsController@showHostel')->name('hostel');
+Route::get('/{hostelName?}','IndividualHostelController@showHostel')->name('hostel');

@@ -13,7 +13,7 @@ class CheckHostellerStatus
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param   $status
+     * @param   Hosteller status
      * @return mixed
      */
     public function handle($request, Closure $next)

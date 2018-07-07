@@ -65,11 +65,11 @@ class BasicInfoStep extends Step
                 ]);
 
 
-            $registerHostel = new HostelRegistration;
+            /*$registerHostel = new HostelRegistration;
             $registerHostel-> firstOrCreate([
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
                 '1_basic_info' => true
-            ]);
+            ]);*/
 
         }
 
@@ -89,11 +89,11 @@ class BasicInfoStep extends Step
             /*'password' => Hash::make($request['password']),*/
 
         ]);
-            $registerHostel = new HostelRegistration;
+            /*$registerHostel = new HostelRegistration;
             $registerHostel->create([
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
                 '1_basic_info' => true
-            ]);
+            ]);*/
 
         }
         elseif (is_null($request->get('email')['manager']) && ($request->get('email')['portal'] !=null))
@@ -112,20 +112,21 @@ class BasicInfoStep extends Step
                 /*'password' => Hash::make($request['password']),*/
 
             ]);
-            $registerHostel = new HostelRegistration;
+            /*$registerHostel = new HostelRegistration;
             $registerHostel->create([
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
                 '1_basic_info' => true
-            ]);
+            ]);*/
 
         }
         elseif (is_null($request->get('email')['manager'] && $request->get('email')['portal'])) {
             // next if you want save one step progress to session use
-            $registerHostel = new HostelRegistration;
+           /* $registerHostel = new HostelRegistration;
             $registerHostel->create([
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
                 '1_basic_info' => true
-            ]);
+            ]);*/
+           return $this->saveProgress($request);
         }
             return $this->saveProgress($request);
 
@@ -142,8 +143,10 @@ class BasicInfoStep extends Step
             'role' => 'sometimes',
             'firstName_3' => 'sometimes|string|max:255',
             'lastName_3' => 'sometimes|string|max:255',
-            'email' => 'sometimes|array|email|unique:hostellers',
-            'phone' => 'sometimes|array|max:10|unique:hostellers',
+            'email' => 'array|required',
+            'email.*.manager' => 'array|email|unique:hostellers',
+            'email.*.portal' => 'array|email|unique:hostellers',
+            'phone' => 'required|array|max:10|unique:hostellers',
             'role_3' => 'sometimes',
            ];
 

@@ -12,8 +12,10 @@
                                     <div class="vk-item-slide">
                                         <img src="{{ asset('/images/01_05_transparents_1/banner21.jpg') }}" alt="" class="img-responsive">
                                         <div class="vk-slide-caption">
-                                            <h3 class="animated fadeInDown slide-delay-1">Swimming Pool</h3>
-                                            <h2 class="animated fadeInUp slide-delay-2">Sparta Plaza Hostel</h2>
+                                            @if($hostel->alias)
+                                            <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
+                                            @endif
+                                            <h2 class="animated fadeInUp slide-delay-2">{{$hostel->name}}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -21,8 +23,10 @@
                                     <div class="vk-item-slide">
                                         <img src="../images/01_05_transparents_1/banner20.jpg" alt="" class="img-responsive">
                                         <div class="vk-slide-caption">
-                                            <h3 class="animated fadeInDown slide-delay-1">Swimming Pool</h3>
-                                            <h2 class="animated fadeInUp slide-delay-2">Sparta Plaza Hostel</h2>
+                                            @if($hostel->alias)
+                                            <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
+                                            @endif
+                                            <h2 class="animated fadeInUp slide-delay-2">{{$hostel->name}}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -30,8 +34,10 @@
                                     <div class="vk-item-slide">
                                         <img src="../images/01_05_transparents_1/banner23.jpg" alt="" class="img-responsive">
                                         <div class="vk-slide-caption">
-                                            <h3 class="animated fadeInDown slide-delay-1">Swimming Pool</h3>
-                                            <h2 class="animated fadeInUp slide-delay-2">Sparta Plaza Hostel</h2>
+                                            @if($hostel->alias)
+                                            <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
+                                            @endif
+                                            <h2 class="animated fadeInUp slide-delay-2">{{$hostel->name}}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -45,7 +51,7 @@
                                 <div class="vk-transparents-welcometo-info">
                                     <div class="vk-dark-about-right-header">
                                         <h3>Welcome To</h3>
-                                        <h2>E-hostelry Plaza Hostel</h2>
+                                        <h2>{{$hostel->name}}</h2>
                                         <div class="clearfix"></div>
                                         <div class="vk-dark-about-border"></div>
                                     </div>
@@ -140,6 +146,7 @@
                                 </div>
 
                                 <div class="row">
+                                    @foreach($hostel->roomDescription as $roomType)
                                     <div class="col-md-4 col-sm-6">
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
@@ -147,18 +154,18 @@
                                                     <a href="#"><img src="../images/04_02_room_grid/img.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
-                                                    <h2><a href="#">One in a Room</a></h2>
+                                                    <h2><a href="#">{{$roomType->room_type}}</a></h2>
                                                     <ul>
                                                         <li>
-                                                            <p>Price : </p>
+                                                            <span>Price : </span>
                                                         </li>
                                                         <li>
-                                                            <p>&cent;4800/ <span>academic year</span></p>
+                                                            <p>&cent;{{$roomType->price}}/ <span>academic year</span></p>
                                                         </li>
                                                     </ul>
                                                     <ul>
                                                         <li>
-                                                            <p>Room Facilities : </p>
+                                                            <span>Room Facilities : </span>
                                                         </li>
                                                         <li>
                                                             <ul>
@@ -176,7 +183,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
+                                    @endforeach
+                                    {{--<div class="col-md-4 col-sm-6">
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
@@ -356,7 +364,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -560,14 +568,14 @@
                                     </div>
 
 
-                                    <!--<div class="vk-btn-more">
+                                    {{--<div class="vk-btn-more">
                                         <button type="button" class="btn-more">LOAD MORE <i class="fa fa-long-arrow-down" aria-hidden="true"></i></button>
-                                    </div>-->
+                                    </div>--}}
                                 </div>
                             </div>
                         </section>
-                        <!--ENd of additional gallery-->
-                        <!--BENGIN CONTENT HEADER-->
+                        {{--<!--ENd of additional gallery-->
+                        <!--BENGIN CONTENT HEADER-->--}}
                         <section class="site-content-area" id="location">
                             <div class="container-fluid">
                                 <div class="row">
@@ -596,27 +604,31 @@
                                                             </div>
                                                             <div class="vk-contact-us-info-text-right">
                                                                 <h4>LOCATION</h4>
-                                                                <p>45 Queen's Park Rd, Brighton, BN2 0GJ, UK</p>
+                                                                <p class="text-capitalize">{{$hostel->street_address}}, {{$hostel->city}}, {{$hostel->country}}</p>
                                                             </div>
                                                         </li>
+                                                        @if($hostel->hostel_email)
                                                         <li>
                                                             <div class="vk-contact-us-info-text-icon">
                                                                 <span class="ti-email"></span>
                                                             </div>
                                                             <div class="vk-contact-us-info-text-right">
                                                                 <h4>Email</h4>
-                                                                <p>contact@sparta.com</p>
+                                                                <p>{{$hostel->hostel_email}}</p>
                                                             </div>
                                                         </li>
+                                                        @endif
+                                                        @if($hostel->hostel_phone)
                                                         <li>
                                                             <div class="vk-contact-us-info-text-icon">
                                                                 <span class="ti-mobile"></span>
                                                             </div>
                                                             <div class="vk-contact-us-info-text-right">
                                                                 <h4>TEL</h4>
-                                                                <p>(+233) 123 456789</p>
+                                                                <p>{{$hostel->hostel_phone}}</p>
                                                             </div>
                                                         </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </div>

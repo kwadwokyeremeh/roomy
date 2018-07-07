@@ -2,8 +2,9 @@
 
 namespace myRoommie\Http\Controllers;
 
-use myRoommie\Modules\HostelRegistration;
+//use myRoommie\Modules\HostelRegistration;
 use Illuminate\Http\Request;
+
 use Smajti1\Laravel\Wizard;
 use myRoommie\Wizard\Steps\HostelRegistration\BasicInfoStep;
 use myRoommie\Wizard\Steps\HostelRegistration\HostelDetailsStep;
@@ -22,17 +23,21 @@ class HostelRegistrationController extends Controller
     protected $wizard;
 
 
+
     public function __construct()
     {
         $this->middleware('auth:hosteller')->except('logout','destroy');
 
         $this->wizard = new Wizard($this->steps, $sessionKeyName = 'user');
+
+
+
     }
 
 
 
     public $steps = [
-        'set-username-key' => BasicInfoStep::class,
+    'set-username-key'     => BasicInfoStep::class,
                               HostelDetailsStep::class,
                               AddMediaStep::class,
                               AmenitiesStep::class,
@@ -47,8 +52,11 @@ class HostelRegistrationController extends Controller
 
 
 
+
 public function wizard($step = null)
 {
+
+
     try {
         if (is_null($step)) {
             $step = $this->wizard->firstOrLastProcessed();
@@ -60,8 +68,16 @@ public function wizard($step = null)
     } catch (StepNotFoundException $e) {
         abort(404);
     }
+    if ($this->wizard->dataHas('02')) {
+    $this->wizard->dataGet('02');
+            $data = array_flatten(
+                        array_except(
+                            array_pluck($this->wizard->data(),'roomType.roomType'),[0,1]));
 
-    return view('hostelRegistration.master', compact('step'));
+
+    }
+
+    return view('hostelRegistration.master', compact('step','data'));
 }
 
 public function wizardPost(Request $request, $step = null)
@@ -72,9 +88,11 @@ public function wizardPost(Request $request, $step = null)
     } catch (StepNotFoundException $e) {
         abort(404);
     }
-dd($request->all());
+
+    $request->session()->regenerate();
     $this->validate($request, $step->rules($request));
     $step->process($request);
+
 
     return redirect()->route('hostel.registration', [$this->wizard->nextSlug()]);
 }

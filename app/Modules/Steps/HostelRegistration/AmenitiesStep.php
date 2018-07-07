@@ -7,8 +7,16 @@
  */
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
+use myRoommie\Modules\Hostel\Facility;
+use myRoommie\Modules\Hostel\Food;
+use myRoommie\Modules\Hostel\Service;
+use myRoommie\Modules\Hostel\Utility;
+use myRoommie\Modules\Hostel\Entertainment;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class AmenitiesStep extends Step
@@ -20,16 +28,128 @@ class AmenitiesStep extends Step
 
     public function process(Request $request)
     {
-        // for example, create user
+        $hostellerId = Auth::guard('hosteller')->user()->id;
+        if (Session::has('hosteller.hostel_id')){
+            $hostelId = session('hosteller.hostel_id');
+        }else{
+            $hostelId = DB::table('hostel_registrations')->where([
+                'hosteller_id'=> $hostellerId,
+                '1_basic_info'=>true,
+                '2_hostel_details'=>true,
+                '3_add_media'=>true,
+                '4_amenities'=>false,
+                '5_layout_n_pricing' =>false,
+                '6_policies' =>false,
+                '7_payment' =>false,
+                '8_confirmation' =>false,
+            ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
+        }
+
+
+        /*
+         * Facilities
+         * */
+        if ($request->has('general')){
+            $facility =new Facility;
+            $generals =$request['general'];
+            $arr =[];
+            foreach ($generals as $general){
+                array_push($arr,[
+                    'hostel_id' => $hostelId,
+                    'facility'  => $general,
+                ]);
+            }
+            $facility->insert($arr);
+        }
+
+
+        /*
+         * Services
+         *
+         * */
+        if ($request->has('services')){
+            $services1 = new Service;
+            $services =$request['services'];
+            $arr1 =[];
+            foreach ($services as $service){
+                array_push($arr1,[
+                    'hostel_id' => $hostelId,
+                    'service'     => $service,
+                ]);
+            }
+            $services1->insert($arr1);
+        }
+
+
+
+        /*
+         * Food and Drink
+         * */
+        if ($request->has('food')){
+            $foodsAndDrinks = new Food;
+            $foods =$request['food'];
+            $arr2 =[];
+            foreach ($foods as $food){
+                array_push($arr2,[
+                    'hostel_id' => $hostelId,
+                    'food'     => $food,
+                ]);
+            }
+            $foodsAndDrinks->insert($arr2);
+
+        }
+
+
+
+        /*
+         * Entertainment
+         * */
+        if ($request->has('entertainment')){
+            $entertainments =new Entertainment;
+            $entertainments1 =$request['entertainment'];
+            $arr3 =[];
+            foreach ($entertainments1 as $entertainment){
+                array_push($arr3,[
+                    'hostel_id' => $hostelId,
+                    'entertainment'     => $entertainment,
+                ]);
+            }
+            $entertainments->insert($arr3);
+        }
+
+
+
+        /*
+         * Utilities
+         * */
+        if ($request->has('utilities')){
+            $utilities = new Utility;
+            $utilities1 =$request['utilities'];
+            $arr4 =[];
+            foreach ($utilities1 as $utility){
+                array_push($arr4,[
+                    'hostel_id' => $hostelId,
+                    'utility'     => $utility,
+                ]);
+            }
+            $utilities->insert($arr4);
+        }
+
+
+
 
         // next if you want save one step progress to session use
+        DB::table('hostel_registrations')
+            ->where(['hosteller_id'=> $hostellerId,
+                        'hostel_id' =>$hostelId])
+            ->update(['4_amenities' => true]);
         $this->saveProgress($request);
     }
 
     public function rules(Request $request = null): array
     {
         return [
-            'username' => 'required|min:4|max:255',
+
         ];
     }
 

@@ -6,9 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
-
-    <title>@yield('Hostel Name'){{ config('app.name', 'myRoommie') }}</title>
+    <title>{{ config('app.name', 'myRoommie') }}</title>
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap-theme.min.css')}}">
 
@@ -28,7 +26,6 @@
     <link rel="stylesheet" type="text/css" href="{{url('css/semantic.css')}}">
     <link rel="stylesheet" href="{{url('css/paraxify.css')}}">
     <link rel="stylesheet" href="{{url('css/style.css')}}">
-
 </head>
 
 

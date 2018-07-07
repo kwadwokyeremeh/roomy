@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoomDescription extends Model
 {
+    protected $fillable =[
+        'hostel_id',
+        'room_type',
+        'number_of_beds',
+        'price',
+    ];
+     public $timestamps = false;
     /*
      *  Get the hostel that provided the prices
      * */

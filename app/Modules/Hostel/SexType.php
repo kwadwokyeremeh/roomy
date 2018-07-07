@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SexType extends Model
 {
+    public $timestamps = false;
 
     /*
      *  Get the room with the sex type

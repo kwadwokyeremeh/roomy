@@ -31,6 +31,7 @@ class HostelDetailsStep extends Step
         $hostel = new Hostel;
         $hostel ->name = $request->get('name');
         $hostel ->alias = $request->get('alias');
+        $hostel ->street_address = $request->get('street_address');
         $hostel ->number_of_blocks = $request->get('number_of_blocks');
         $hostel ->city = $request->get('city');
         $hostel ->hosteller_id = Auth::guard('hosteller')->user()->id;
@@ -38,6 +39,12 @@ class HostelDetailsStep extends Step
         $hostel ->country = 'Ghana';
         $hostel ->latitude = '';
         $hostel ->longitude = '';
+        if ($request->has('hostel_email')){
+            $hostel ->hostel_email = $request->get('hostel_email');
+        }
+        if ($request->has('hostel_phone')){
+            $hostel ->hostel_phone = $request->get('hostel_phone');
+        }
         $hostel->save();
 
         /*
@@ -66,14 +73,19 @@ class HostelDetailsStep extends Step
          * */
 
         $registerHostel = new HostelRegistration;
-        $registerHostel->update([
+        $registerHostel->create([
             'hosteller_id' => Auth::guard('hosteller')->user()->id,
+            'hostel_id' =>$hostel->id,
+            '1_basic_info' => true,
             '2_hostel_details' => true
         ]);
 
 
 
-
+        $request->session()->put('hosteller',['hostel_id'=>
+        $hostel->id,
+        ]);
+        $request->session()->regenerate();
 
         // next if you want save one step progress to session use
         $this->saveProgress($request);
@@ -88,10 +100,12 @@ class HostelDetailsStep extends Step
             'street_address' =>     'required|string|max:255',
             'city' =>               'required|string|max:255',
             'number_of_blocks'=>    'required',
-            'roomType'  => 'array|required',
+            'roomType'  =>          'array|required',
             'roomType.roomType.*'=> 'required|string|min:3',
             'roomType.beds.*'=>     'required|integer|min:1',
             'roomType.price.*'=>    'required|numeric',
+            'hostel_email'   =>     'nullable',
+            'hostel_phone'  =>      'nullable',
         ];
     }
 

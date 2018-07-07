@@ -5,6 +5,7 @@ namespace myRoommie;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use myRoommie\Notifications\HostellerResetPasswordNotification;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 
 class Hosteller extends Authenticatable

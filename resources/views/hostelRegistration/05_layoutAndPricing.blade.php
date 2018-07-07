@@ -42,7 +42,7 @@
                          </span>
                         </li>
                         <li class="confirmation">
-                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>5.Layout and Pricing</small></a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>5.Layout</small></a>
                             <span class="round-tabs five">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
@@ -76,10 +76,10 @@
 
                                     <div class="entry-thumbnail">
 
-                                        <div class="entry-content-text-wrapper clearfix">
-                                            <div class="entry-content-wrapper">
-                                                <div class="entry-content">
-                                                    <div class="woocommerce">
+                                        <div class="entry-content-text-wrappe clearfix">
+                                            <div class="entry-content-wrappr">
+                                                <div class="entry-conten">
+                                                    <div class="woocommerc">
 
                                                         <div class="row">
                                                             <div class="vk-checkout-billing-left">
@@ -87,9 +87,9 @@
                                                                     <div class="woocommerce-billing-fields">
                                                                 <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST">
                                                                             @csrf
-                                                                        <h3>Rooms and Prices</h3>
+                                                                        {{--<h3>Rooms and Prices</h3>--}}
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
-                                                                            <p class="col-md-6 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="one_in_a_room" data-priority="10">
+                                                                            {{--<p class="col-md-6 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="one_in_a_room" data-priority="10">
                                                                                 <label for="one_in_a_room" class="">One in a room <abbr class="required" title="required">*</abbr></label>
                                                                                 <input type="number" class="input-text" name="one_in_a_room" id="one_in_a_room" placeholder="Please enter the price of the room" value="" autocomplete="">
                                                                             </p>
@@ -104,7 +104,7 @@
                                                                             <p class="col-md-6 form-row form-row-last validate-required" id="four_in_a_room" data-priority="20">
                                                                                 <label for="four_in_a_room" class="">Four in a room <abbr class="required" title="required">*</abbr></label>
                                                                                 <input type="number" class="input-text " name="four_in_a_room" id="four_in_a_room" placeholder="Please enter the price of the room" value="" >
-                                                                            </p>
+                                                                            </p>--}}
                                                                             {{--Draw your hostel layout--}}
                                                                             <div class="">
                                                                                 <div class="panel-body">
@@ -233,7 +233,7 @@
                         '<a href="#" accesskey="' + counter + '" class="remove_floor_panel exit-btn pull-right"><span>&times;</span></a>' +
                         '<a href="#" accesskey="' + counter + '" class="edit_ctg_label pull-right"><span class="glyphicon glyphicon-edit"></span> Edit</a>' +
                         '<a href="#" accesskey="' + counter + '" class="pull-right" id="addButton3"> <span class="glyphicon glyphicon-plus"></span> Add Room</a>' +
-                        '<input type="hidden" name="floor['+ parentId+']['+floorName+'][room '+roomCounter+']"/>' +
+                        '<input type="hidden" name="floor['+ parentId+']['+floorName+'][room]"/>' +
                         '</h4></div>' +
             '<div id="collapse' + counter + '" class="panel-collapse collapse ' + expandedClass + '"role="tabpanel" aria-labelledby="heading' + counter + '">' +
                 '<div class="panel-body"><div id="TextBoxDiv' + counter + '"></div><a class="btn btn-xs btn-primary" accesskey="' + counter + '" id="addButton3" ><span class="glyphicon glyphicon-plus"></span> Add Room</a>' +
@@ -345,7 +345,17 @@
 
 
     });
-    });
+
+        var result = [];                               // <-- Main array
+        $(".block").each('click',function(){
+            var floor = [];                // <-- "sub"-array
+            $(this).find('#TextBoxDiv' + floorCounter).each('click',function(){
+                floor.push($(this).val());
+            });
+            result.push(floor);            // <-- Add "sub" array to results
+        });console.log(result);
+
+        });
 
 
     @endsection

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Utility extends Model
 {
+    public $timestamps = false;
+
+    protected $fillable =[
+        'hostel_id','utilities'
+    ];
     /*
      *  Get the hostel that provide that utilities
      * */

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Facility extends Model
 {
+    public $timestamps = false;
+
+    protected $fillable =[
+        'hostel_id','facilities',
+    ];
 
     /*
      *  Get the hostel that own the facilities

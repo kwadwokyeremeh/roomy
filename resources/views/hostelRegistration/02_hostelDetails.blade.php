@@ -41,7 +41,7 @@
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout and Pricing</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
@@ -106,6 +106,24 @@
                                                                                 @if ($errors->has('alias'))
                                                                                     <span class="invalid-feedback">
                                                                                         <strong style="color: #ff0000;">{{ $errors->first('alias') }}</strong>
+                                                                                    </span>
+                                                                                @endif</p>
+                                                                            <p class="col-md-7 form-row form-row-last validate-required" id="billing_hostel_email_field_detail" data-priority="20">
+                                                                                <label for="hostel_email" class="">Hostel Official Email <abbr class="required" title="required">*</abbr></label>
+                                                                                <input type="email" class="input-text {{ $errors->has('hostel_email') ? ' is-invalid' : '' }}" value="{{ old('hostel_email') }}"  name="hostel_email" id="hostel_email" placeholder="Enter your hostel email" autocomplete="given-name" autofocus>
+
+                                                                                @if ($errors->has('hostel_email'))
+                                                                                    <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('hostel_email') }}</strong>
+                                                                                    </span>
+                                                                                @endif</p>
+                                                                            <p class="col-md-5 form-row form-row-last validate-required" id="billing_hostel_phone_field_detail" data-priority="20">
+                                                                                <label for="hostel_phone" class="">Hostel Official Phone <abbr class="required" title="required">*</abbr></label>
+                                                                                <input type="tel" class="input-text {{ $errors->has('hostel_phone') ? ' is-invalid' : '' }}" value="{{ old('hostel_phone') }}"  name="hostel_phone" id="hostel_phone" placeholder="Enter your hostel phone" autocomplete="given-name" autofocus>
+
+                                                                                @if ($errors->has('hostel_phone'))
+                                                                                    <span class="invalid-feedback">
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('hostel_phone') }}</strong>
                                                                                     </span>
                                                                                 @endif</p>
                                                                         </div>

@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
+use myRoommie\Modules\HostelRegistration;
 
 class Hostel extends Model
 {
@@ -15,7 +16,8 @@ class Hostel extends Model
         'region', 'country',
         'latitude',
         'longitude',
-        'published',
+        'hostel_email',
+        'hostel_phone',
         'hosteller_id',
     ];
 
@@ -26,9 +28,13 @@ class Hostel extends Model
      * */
     public function hosteller()
     {
-        return $this->belongsTo('myRoommie\Hosteller');
+        return $this->belongsTo('\myRoommie\Modules\Hosteller');
     }
 
+    public function hostelRegistration()
+    {
+        return $this->hasOne(HostelRegistration::class);
+    }
 
     /*
      *  Get the blocks associated with the hostel
@@ -135,5 +141,20 @@ class Hostel extends Model
     public function roomTypeMedia()
     {
         return $this->hasMany('myRoommie\Modules\Hostel\RoomTypeMedia');
+    }
+
+    public function hostelViews()
+    {
+        return $this->hasMany(HostelView::class);
+    }
+
+    public function miscellaneous()
+    {
+        return $this->hasMany(Misc::class);
+    }
+
+    public function entertainment()
+    {
+        return $this->hasMany(Entertainment::class);
     }
 }

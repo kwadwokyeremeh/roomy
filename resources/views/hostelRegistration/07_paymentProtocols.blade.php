@@ -41,7 +41,7 @@
                          </span>
                         </li>
                         <li class="confirmation">
-                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>5.Layout and Pricing</small></a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>5.Layout</small></a>
                             <span class="round-tabs seven">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>

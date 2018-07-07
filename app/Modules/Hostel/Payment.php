@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-
+    public $timestamps = false;
     /*
      *  Get the hostel that provided the payment protocols
      * */

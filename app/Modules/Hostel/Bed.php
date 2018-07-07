@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bed extends Model
 {
+    public $timestamps = false;
     /*
      * Get the Hostel that owns the bed
      * */

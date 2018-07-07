@@ -2,6 +2,7 @@
 <script src="{{asset('/js/jquery1.min.js')}}"></script>
 <script src="{{asset('/plugin/dist/owl.carousel.min.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/js/jquery.waypoints.js')}}"></script>
 <script src="{{asset('/js/number-count/jquery.counterup.min.js')}}"></script>
 <script src="{{asset('/js/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('/js/jquery-ui.min.js')}}"></script>
@@ -9,8 +10,8 @@
 <script src="{{asset('/js/bootstrap-datepicker.tr.min.js')}}"></script>
 <script src="{{asset('/js/moment.min.js')}}"></script>
 <script src="{{asset('/js/wow.min.js')}}"></script>
-{{--<script src="{{asset('/js/bootstrap-datetimepicker.js')}}"  charset="UTF-8"></script>
-<script src="{{asset('/js/bootstrap-datetimepicker.fr.js')}}"  charset="UTF-8"></script>--}}
+<script src="{{asset('/js/bootstrap-datetimepicker.js')}}"  charset="UTF-8"></script>
+<script src="{{asset('/js/bootstrap-datetimepicker.fr.js')}}"  charset="UTF-8"></script>
 <script src="{{asset('/js/picturefill.min.js')}}"></script>
 <script src="{{asset('/js/lightgallery.js')}}"></script>
 <script src="{{asset('/js/lg-pager.js')}}"></script>

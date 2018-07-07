@@ -56,20 +56,24 @@
 
                         <div class="vk-booking-center-logo">
                             <div class="container">
-                                <form action="searchResults.blade.php" class="form-horizontal  booking-hotel-all">
+                                <form action="{{route('search')}}" class="form-horizontal  booking-hotel-all">
                                     @csrf
                                     <ul>
                                         <li>
                                             <h4>Hostel</h4>
                                             <div class="input-group">
+                                                <label for="hostelName">
                                                 <input name="hostelName" class="form-control" type="text">
+                                                </label>
                                                 <span class="input-group-addon btn"><span class="fa fa-building"></span></span>
                                             </div>
                                         </li>
                                         <li>
                                             <h4>Location</h4>
                                             <div class="input-group">
+                                                <label for="location">
                                                 <input name="location" class="form-control" type="text">
+                                                </label>
                                                 <span class="input-group-addon btn"><span class="fa fa-map-pin"></span></span>
                                             </div>
                                         </li>
@@ -77,20 +81,22 @@
                                             <h4>Price Filter</h4>
                                             <div class="wrap-select">
                                                 <div class="slider">
-                                                    <div id="slider-range-1" class="ui-slider-range">
-
-                                                    </div>
-
+                                                    <div id="slider-range-1" class="ui-slider-range"></div>
+                                                    <span style="margin-right: 0; padding-right: 0">
+                                                        <label class="label-filter-price" style="max-width: 60%; margin-top: 0px; height: 50px;">
+                                                            <input name="price" type="text" id="amount-1" style="border:0; max-width: 60%; color:#f6931f; font-weight:bold;">
+                                                        </label>
+                                                   </span>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
-                                            <h4>Amount</h4>
+                                            <h4>Type of Room</h4>
                                             <div class="wrap-select" style="margin-bottom: auto">
                                                 <div id="dda">
                                                     <span style="margin-right: 0; padding-right: 0">
                                                         <label class="label-filter-price" style="max-width: 60%; margin-top: 0px; height: 50px;">
-                                                            <input type="text" id="amount-1" style="border:0; max-width: 60%; color:#f6931f; font-weight:bold;">
+                                                            <input type="text" name="roomType" id="mount-1" style="border:0; max-width: 60%; color:#f6931f; font-weight:bold;">
                                                         </label>
                                                    </span>
 
@@ -128,77 +134,88 @@
                                             </div>
                                             <!--Hostel 1-->
 
-                                            <div class="row">
-                                                <div class="item">
-                                                    <div class="col-md-6 vk-dark-our-room-item-left  vk-clear-padding">
-                                                        <div class="vk-dark-our-room-item-img">
-                                                            <img src="../images/04_02_room_grid/img-1.jpg" alt="" class="img-responsive">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 vk-dark-our-room-item-right vk-clear-padding">
-                                                        <div class="vk-dark-our-room-item-content">
-                                                            <h3><a href="../individual_hostel">Hostel Name</a></h3>
-                                                            <ul>
-                                                                <li><p><i class="fa fa-diamond" aria-hidden="true"></i> Hostel slang <span> : Brunei</span></p></li>
-                                                                <li><p><i class="fa fa-address-card" aria-hidden="true"></i> Location <span> : 1 Hostel Address</span></p></li>
-                                                                <li>
-                                                                    <div class="container-fluid">
-                                                                        <div class="row">
-                                                                            <div class="col-xs-3"><p><i class="fa fa-arrows-alt" aria-hidden="true"></i><small>Room Type</small></p>
-                                                                                <ul>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                </ul></div>
-                                                                            <div class="col-xs-3"><p><i class="" aria-hidden="true"></i>&cent; Price</p>
-                                                                                <ul>
-                                                                                    <li><p class="text text-center"><span>&cent;1500</span></p></li>
-                                                                                    <li><p class="text text-center"><span>&cent;1500</span></p></li>
-                                                                                    <li><p class="text text-center"><span>&cent;1500</span></p></li>
-                                                                                    <li><p class="text text-center"><span>&cent;1500</span></p></li>
-                                                                                </ul></div>
-                                                                            <div class="col-xs-3"><p><i class="fa fa-male" aria-hidden="true"></i> Male</p>
-                                                                                <ul>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                </ul></div>
-                                                                            <div class="col-xs-3"><p><i class="fa fa-female" aria-hidden="true"></i> Female</p>
-                                                                                <ul>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                    <li><p class="text text-center"><span>1</span></p></li>
-                                                                                </ul></div>
+                                            @foreach($allHostels as $hostel)
 
-                                                                        </div>
-                                                                    </div>
-                                                            </ul>
-                                                            <div class="vk-dark-our-room-item-book">
-                                                                <div class="vk-dark-our-room-item-book-left">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <p>Rating : </p>
-                                                                        </li>
-                                                                        <li>
-                                                                            <p>8/ <span>10</span></p>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="vk-dark-our-room-item-book-right">
-                                                                    <a href="../booking"> Rent A Bed <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                                </div>
-                                                                <div class="clearfix"></div>
+                                                <div class="row">
+                                                    <div class="item">
+                                                        <div class="col-md-6 vk-dark-our-room-item-left  vk-clear-padding">
+                                                            <div class="vk-dark-our-room-item-img">
+                                                                <img src="../images/04_02_room_grid/img-1.jpg" alt="" class="img-responsive">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
+                                                        <div class="col-md-6 vk-dark-our-room-item-right vk-clear-padding">
+                                                            <div class="vk-dark-our-room-item-content">
+                                                                <h3><a href="{{url($hostel->id)}}">{{$hostel->name}}</a></h3>
+                                                                <ul>
+                                                                    @if($hostel->alias)
+                                                                    <li><p><i class="fa fa-diamond" aria-hidden="true"></i> Hostel slang <span> : {{$hostel->alias}}</span></p></li>
+                                                                    @endif
+                                                                    <li><p><i class="fa fa-address-card" aria-hidden="true"></i> Location <span> : {{$hostel->street_address}}</span></p></li>
+                                                                    <li>
+                                                                        <div class="container-fluid">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-5"><p><i class="fa fa-arrows-alt" aria-hidden="true"></i><small>Room Type</small></p>
+                                                                                    <ul>
+                                                                                        @foreach($hostel->roomDescription as $roomTypes)
+                                                                                            <li><p class="text text-left"><span>{{$roomTypes->room_type}}</span></p></li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <div class="col-xs-3"><p><i class="" aria-hidden="true"></i>&cent; Price</p>
+                                                                                    <ul>
+                                                                                        @foreach($hostel->roomDescription as $prices)
+                                                                                        <li><p class="text text-left"><span>&cent; {{$prices->price}}</span></p></li>
+                                                                                        @endforeach
+                                                                                        {{--<li><p class="text text-center"><span>&cent;1500</span></p></li>
+                                                                                        <li><p class="text text-center"><span>&cent;1500</span></p></li>
+                                                                                        <li><p class="text text-center"><span>&cent;1500</span></p></li>--}}
+                                                                                    </ul>
+                                                                                </div>
+                                                                                {{--<div class="col-xs-3"><p><i class="fa fa-male" aria-hidden="true"></i> Male</p>
+                                                                                    <ul>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <div class="col-xs-3"><p><i class="fa fa-female" aria-hidden="true"></i> Female</p>
+                                                                                    <ul>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                        <li><p class="text text-center"><span>1</span></p></li>
+                                                                                    </ul>
+                                                                                </div>--}}
 
-                                            <!--Hostel 1-->
+
+                                                                            </div>
+                                                                        </div>
+                                                                </ul>
+                                                                <div class="vk-dark-our-room-item-book">
+                                                                    <div class="vk-dark-our-room-item-book-left">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <p>Rating : </p>
+                                                                            </li>
+                                                                            <li>
+                                                                                <p>8/ <span>10</span></p>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="vk-dark-our-room-item-book-right">
+                                                                        <a href="{{url($hostel->id)}}"> Rent A Bed <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+
+                                            {{--<!--Hostel 1-->
                                             <!--Hostel 1-->
 
                                             <div class="row">
@@ -344,8 +361,7 @@
                                                 </div>
                                             </div>
 
-                                            <!--Hostel 1-->
-
+                                            <!--Hostel 1-->--}}
 
                                         </div>
                                     </div>

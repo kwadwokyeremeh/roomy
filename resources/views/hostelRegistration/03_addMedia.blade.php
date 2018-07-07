@@ -41,7 +41,7 @@
                          </span>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout and Pricing</a>
+                            <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout</a>
                             <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
@@ -96,8 +96,54 @@
                                                                                 You can select multiple images all at once
                                                                             </span>
                                                                         </p>
-                                                                        <input type="file" class="input-text" id="images" name="images[]" onchange="preview_images();" multiple/>
-                                                                    <picture class="row" id="image_preview"></picture>
+                                                                        <div class="row">
+
+                                                                            <div class="col-md-3">
+                                                                                Front View
+                                                                                {{--Previewing of hostel views images--}}
+                                                                                <div id="view1_preview">
+
+
+                                                                                </div>
+                                                                                <input type="file" accept="image/*" class="input-text" id="view1" name="images[views][front]" onchange="preview_views();"/>
+                                                                            </div>
+
+                                                                            <div class="col-md-3">
+                                                                                Side View
+                                                                                {{--Previewing of hostel views images--}}
+                                                                                <div class="row" id="view2_preview">
+
+
+                                                                                </div>
+                                                                                <input type="file" accept="image/*" class="input-text" id="view2" name="images[views][left]" onchange="preview_views();"/>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                Other Side View
+                                                                                {{--Previewing of hostel views images--}}
+                                                                                <div class="row" id="view3_preview">
+
+
+                                                                                </div>
+                                                                                <input type="file" accept="image/*" class="input-text" id="view3" name="images[views][right]" onchange="preview_views();"/>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <br>
+                                                                    </div>
+                                                                    <h3>Short video of your hostel</h3>
+                                                                    <div>
+                                                                        <p class="custom-checkbox custom-control">
+                                                                            <span class="custom-control-description">
+                                                                                Upload short video of your hostel if you have any
+                                                                            </span>
+                                                                        </p>
+                                                                        <input type="file" accept="video/*" class="input-text" id="video" name="video" onchange="video_preview();"/>
+                                                                   {{--Previewing of hostel views images--}}
+                                                                    <div class="row" id="video_preview">
+
+
+                                                                    </div>
                                                                         <br>
                                                                     </div>
 
@@ -107,57 +153,49 @@
                                                                 <div class="woocommerce-billing-fields">
 
                                                                     <h3>Images of room Type available in your hostel</h3>
-                                                                    <h4>Add images(views) for one in a room</h4>
+
+                                                                @foreach($data as $roomType)
+
+                                                                    <h3>Add images for {{$roomType}}</h3>
+
                                                                     <p>
                                                                         <label class="custom-checkbox custom-control">
-                                                                            <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
+                                                                            <span class="custom-control-description">Multiple images allowed</span>
                                                                         </label>
                                                                     </p>
+
                                                                     <div class="row">
 
                                                                             <div class="col-md-9">
-                                                                                <input type="file" class="form-control" id="images1" name="images[]" onchange="preview_images1();" multiple/>
+                                                                                <input type="file" class="input-text" accept="image/*" id="room" name="images[room][{{$roomType}}][]" onchange="preview_images();" multiple/>
                                                                             </div>
 
                                                                     </div>
-                                                                    <div class="row" id="image_preview1"></div>
+                                                                    <div class="row" id="room_preview"></div>
+                                                                @endforeach
+                                                                    <br>
 
                                                                 </div>
-                                                                <div class="woocommerce-billing-fields">
 
-
-                                                                    <h4>Add images(views) for two in a room</h4>
-                                                                    <p>
-                                                                        <label class="custom-checkbox custom-control">
-                                                                            <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
-                                                                        </label>
-                                                                    </p>
-                                                                    <div class="row">
-
-                                                                            <div class="col-md-9">
-                                                                                <input type="file" class="form-control" id="images3" name="images[]" onchange="preview_images3();" multiple/>
-                                                                            </div>
-
-                                                                    </div>
-                                                                    <div class="row" id="image_preview3"></div>
-
-                                                                </div>
                                                                 <div class="woocommerce-billing-fields">
 
                                                                     <h3>Add any other images of your hostel</h3>
                                                                     <p>
                                                                         <label class="custom-checkbox custom-control">
-                                                                            <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
+                                                                            <span class="custom-control-description">Please if you have any other images of your hostel, you can add it here. Multiple images allowed</span>
                                                                         </label>
+
                                                                     </p>
                                                                     <div class="row">
 
-                                                                            <div class="col-md-9">
-                                                                                <input type="file" class="form-control" id="images2" name="images[]" onchange="preview_images2();" multiple/>
-                                                                            </div>
+
+                                                                                <input type="file" class="input-text" accept="image/*" id="others" name="images[others][]" onchange="preview_others();" multiple/>
+
 
                                                                     </div>
-                                                                    <div class="row" id="image_preview2"></div>
+                                                                    <div class="row" id="other_images">
+
+                                                                    </div>
 
                                                                 </div>
 
@@ -186,28 +224,29 @@
     </section>
 
     @section('custom-script')
+
+        function preview_views()
+        {
+        var total_file=document.getElementById("views").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+        $('#views_preview').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+        }
+
+        function preview_others()
+        {
+        var total_file=document.getElementById("others").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+        $('#other_images').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+        }
+        }
         function preview_images()
         {
         var total_file=document.getElementById("images").files.length;
         for(var i=0;i<total_file;i++)
         {
-        $('#image_preview').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
-        }
-        }
-        function preview_images1()
-        {
-        var total_file=document.getElementById("images1").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-        $('#image_preview1').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
-        }
-        }
-        function preview_images2()
-        {
-        var total_file=document.getElementById("images2").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-        $('#image_preview2').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+        $('#room_preview'+i +'').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
         }
         }
         function preview_images3()
@@ -218,6 +257,15 @@
         $('#image_preview3').prepend("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
         }
         }
+
+            function video_preview()
+            {
+                var total_file=document.getElementById("video").files.length;
+                for(var i=0;i<total_file;i++)
+                {
+                    $('#video_preview').prepend("<iframe class='embed-responsive-4by3' src='"+URL.createObjectURL(event.target.files[i])+"'></iframe>");
+                }
+            }
 
     @endsection
 

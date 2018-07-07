@@ -3,12 +3,14 @@
 namespace myRoommie\Modules;
 
 use Illuminate\Database\Eloquent\Model;
+use myRoommie\Modules\Hostel\Hostel;
 
 
 class HostelRegistration extends Model
 {
     protected $fillable =[
         'hosteller_id',
+        'hostel_id',
         '1_basic_info',
         '2_hostel_details',
         '3_add_media',
@@ -19,8 +21,14 @@ class HostelRegistration extends Model
         '8_confirmation',
     ];
 
+
     public function hosteller()
     {
         return $this->belongsTo('myRoommie\Hosteller');
+    }
+
+    public function hostel()
+    {
+        return $this->belongsTo(Hostel::class);
     }
 }

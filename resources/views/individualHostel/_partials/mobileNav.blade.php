@@ -10,9 +10,9 @@
             <div class="col-md-4 vk-top-header-right">
                 <div class="vk-top-header-right">
                     <ul>
-                        <li><a href="../index.php"> ehostelry </a></li>
+                        <li><a href="{{route('home')}}"> myRoommie </a></li>
                         <li> </li>
-                        <li><a href="tel:0205806467"> Call Manager </a></li>
+                        <li><a href="tel:{{$hostel->hostel_phone}}7"> Call Manager </a></li>
                     </ul>
                 </div>
             </div>
@@ -32,34 +32,71 @@
 
             <li><a href="#">Pages</a>
                 <ul class="sub-menu1 animated fadeIn">
-                    <li><a href="../index.php">Home</a></li>
-                    <li><a href="../general_hostels.php">Hostels</a></li>
-                    <li><a href="../general_hostels.php">Homestels</a></li>
-                    <li><a href="">Halls</a></li>
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li><a href="{{route('allHostels')}}">Hostels</a></li>
+                    {{--<li><a href="{{route('home')}}">Homestels</a></li>
+                    <li><a href="">Halls</a></li>--}}
+                    <li><a href="">Blog</a></li>
                     <li><a href="">Help</a></li>
                 </ul>
             </li>
-            <li class="sub"><a href="#overview">Overview</a>
+            <li class="sub"><a href="{{url($hostel->id)}}#overview">Overview</a>
 
             </li>
 
-            <li class="sub"><a href="#room">Room Type</a>
+            <li class="sub"><a href="{{url($hostel->id)}}#room">Room Type</a>
             </li>
 
-            <li class="sub"><a href="#amenities">Amenities</a>
+            <li class="sub"><a href="{{url($hostel->id)}}#amenities">Amenities</a>
             </li>
-            <li class="sub"><a href="#location">Location</a>
+            <li class="sub"><a href="{{url($hostel->id)}}#location">Location</a>
 
             </li>
-            <li class="sub"><a href="individual_hostel/individual_hostel_R&C.php">Reviews and Comments</a>
+            <li class="sub"><a href="{{url($hostel->id)}}/comments">Reviews and Comments</a>
 
             </li>
-            <li class="sub"><a href="#">Register</a>
+            @if(Auth::guard('hosteller')->check())
 
-            </li>
-            <li class="sub"><a href="../signin.php">Sign in</a>
+                <li class="sub"><a href="{{route('dashboard.hostel')}}"><i class="fa fa-user" aria-hidden="true"></i>{{ Auth::guard('hosteller')->user()->firstName}}</a>
+                    <ul class="sub-menu1 animated fadeIn">
+                        <li>
+                            <form id="logout-form" action="{{ route('dashboard.hostel') }}" method="POST">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @else
+                @guest
 
-            </li>
+                    <li><a href="{{url('/register')}}">Register</a></li>
+                    <li><a href="{{url('/login')}}">Sign in</a></li>
+                    <li><a href="{{url('/hosteller/login')}}">Sign in as manager</a></li>
+
+                @else
+
+                    <li class="sub"><a href="{{route('student')}}"><i class="fa fa-user" aria-hidden="true"></i>{{ Auth::user()->firstName}}</a>
+                        <ul class="sub-menu1 animated fadeIn">
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endguest
+
+            @endif
 
         </ul>
 

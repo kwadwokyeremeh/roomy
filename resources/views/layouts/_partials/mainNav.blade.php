@@ -23,8 +23,12 @@
                                 </li>-->
                                 <li><a href="#">Help</a>
                                 </li>
+                                @if(Auth::guard('hosteller')->check())
+                                    {{--Display nothing--}}
+                                    @else
                                 <li><a href="{{url('hosteller/register')}}">Add your hostel</a>
                                 </li>
+                                @endif
                                 @if(Auth::guard('hosteller')->check())
 
                                     <li class="has-sub vk-iconbox-item-icon"><a href="{{route('dashboard.hostel')}}">{{ Auth::guard('hosteller')->user()->firstName}}</a><i class="fa fa-user" aria-hidden="true"></i>
