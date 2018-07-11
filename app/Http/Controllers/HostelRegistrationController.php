@@ -15,6 +15,7 @@ use myRoommie\Wizard\Steps\HostelRegistration\PoliciesStep;
 use myRoommie\Wizard\Steps\HostelRegistration\PaymentProtocolsStep;
 use myRoommie\Wizard\Steps\HostelRegistration\ConfirmationStep;
 use Smajti1\Laravel\Step;
+use Smajti1\Laravel\Exceptions\StepNotFoundException;
 
 
 class HostelRegistrationController extends Controller
@@ -72,7 +73,7 @@ public function wizard($step = null)
     $this->wizard->dataGet('02');
             $data = array_flatten(
                         array_except(
-                            array_pluck($this->wizard->data(),'roomType.roomType'),[0,1]));
+                            array_pluck($this->wizard->data(),'roomType.roomType'),[1,2]));
 
 
     }

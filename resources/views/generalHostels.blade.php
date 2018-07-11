@@ -140,7 +140,9 @@
                                                     <div class="item">
                                                         <div class="col-md-6 vk-dark-our-room-item-left  vk-clear-padding">
                                                             <div class="vk-dark-our-room-item-img">
-                                                                <img src="../images/04_02_room_grid/img-1.jpg" alt="" class="img-responsive">
+                                                                @foreach($hostel->hostelViews as $hostelView)
+                                                                <img src="{{asset('storage/'.$hostelView->front)}}" alt="" class="img-responsive">
+                                                                    @endforeach
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 vk-dark-our-room-item-right vk-clear-padding">

@@ -10,8 +10,6 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\View;
-use Intervention\Image\Facades\Image;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\HostelView;
 use myRoommie\Modules\Hostel\Misc;
@@ -26,9 +24,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-
 class AddMediaStep extends Step
 {
+
 
     public static $label = 'AddMedia';
     public static $slug = '03';
@@ -57,7 +55,7 @@ class AddMediaStep extends Step
         }
 
         $hostel = Hostel::find($hostelId);
-        Storage::makeDirectory($hostelId);
+        Storage::makeDirectory('public/hostels/'.$hostelId);
 
 
 
@@ -68,13 +66,19 @@ class AddMediaStep extends Step
 
             $hostelView = new HostelView;
             $hostelView->hostel_id =$hostelId;
-            $hostelView->front =$request->file(['images'])['views']['front']->store($hostelId.'/views');
-            $hostelView->right =$request->file(['images'])['views']['right']->store($hostelId.'/views');
-            $hostelView->left =$request->file(['images'])['views']['left']->store($hostelId.'/views');
+            $hostelView->front =$request->file(['images'])['views']['front']->store('hostels/'.$hostelId.'/views','public');
+            $hostelView->right =$request->file(['images'])['views']['right']->store('hostels/'.$hostelId.'/views','public');
+            $hostelView->left =$request->file(['images'])['views']['left']->store('hostels/'.$hostelId.'/views','public');
             if ($request->hasFile('video')){
-                $hostelView->video =$request->file(['video'])->store($hostelId);
+                $hostelView->video =$request->file(['video'])->store('hostels/'.$hostelId,'public');
             }
             $hostelView->save();
+
+        /*$mediaItem = HostelView::first()
+                    ->addMedia($request->file(['images'])['views']['front'])->toMediaCollection('front-thumb');
+        $mediaItem -> addMedia($request->file(['images'])['views']['front'])->toMediaCollection('slider-front');
+        $mediaItem -> addMedia($request->file(['images'])['views']['left'])->toMediaCollection('slider-left');
+        $mediaItem -> addMedia($request->file(['images'])['views']['right'])->toMediaCollection('slider-other');*/
 
 
             /*
@@ -89,12 +93,17 @@ class AddMediaStep extends Step
                 foreach ($roomType as $media){
                     array_push($arr,[
                         'hostel_id' => $hostelId,
+                        'room_type_id' =>$roomTypeId,
                         'room_type' => $key,
-                        'image'     => $media->store($hostelId.'/rooms'),
+                        'image'     => $media->store('hostels/'.$hostelId.'/rooms/'.$roomTypeId,'public'),
                     ]);
                 }
 
             }  $roomMedia->insert($arr);
+            /*foreach ($arr as $path){
+                RoomTypeMedia::first()->addMedia($path->image)->toMediaCollection('roomType');
+
+            }*/
 
 
         /*
@@ -107,11 +116,15 @@ class AddMediaStep extends Step
             for ($i = 0; $i < count($others); $i++) {
                 array_push($arr1, [
                     'title' => str_random(8),
-                    'image' => $others[$i]->store($hostelId.'/misc'),
+                    'image' => $others[$i]->store('hostels/'.$hostelId.'/misc','public'),
                     'hostel_id' => $hostelId,
                 ]);
             }
+
             $misc->insert($arr1);
+            /*foreach ($arr1 as $path1){
+             Misc::first()->addMedia($path1->image)->toMediaCollection('misc-thumb');
+        }*/
         }
 
         // next if you want save one step progress to session use
@@ -128,11 +141,11 @@ class AddMediaStep extends Step
     public function rules(Request $request = null): array
     {
         return [
-            'video' => 'mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
-            'images' => 'required|array',
-            'images.*' => 'mimes:jpeg,bmp,png',
-            'images.room.*' => 'mimes:jpeg,bmp,png',
-            'images.views.*' => 'mimes:jpeg,bmp,png',
+            /*'video' => 'sometimes|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
+            'images' => 'required|array|file|image',
+            'images.*' => 'mimes:jpeg,bmp,png,jpg',
+            'images.room.*' => 'mimes:jpeg,bmp,png,jpg',
+            'images.views.*' => 'mimes:jpeg,bmp,png,jpg',*/
         ];
     }
 

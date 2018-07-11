@@ -10,8 +10,10 @@
                             <div id="owl-slide-home" class="owl-carousel owl-theme">
                                 <div class="item">
                                     <div class="vk-item-slide">
-                                        <img src="{{ asset('/images/01_05_transparents_1/banner21.jpg') }}" alt="" class="img-responsive">
-                                        <div class="vk-slide-caption">
+                                        @foreach($hostel->hostelViews as $hostelView)
+                                            <img src="{{asset('storage/'.$hostelView->front)}}" alt="" class="img-responsive">
+                                        @endforeach
+                                            <div class="vk-slide-caption">
                                             @if($hostel->alias)
                                             <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
                                             @endif
@@ -21,8 +23,10 @@
                                 </div>
                                 <div class="item">
                                     <div class="vk-item-slide">
-                                        <img src="../images/01_05_transparents_1/banner20.jpg" alt="" class="img-responsive">
-                                        <div class="vk-slide-caption">
+                                        @foreach($hostel->hostelViews as $hostelView)
+                                            <img src="{{asset('storage/'.$hostelView->right)}}" alt="" class="img-responsive">
+                                        @endforeach
+                                            <div class="vk-slide-caption">
                                             @if($hostel->alias)
                                             <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
                                             @endif
@@ -32,7 +36,9 @@
                                 </div>
                                 <div class="item">
                                     <div class="vk-item-slide">
-                                        <img src="../images/01_05_transparents_1/banner23.jpg" alt="" class="img-responsive">
+                                        @foreach($hostel->hostelViews as $hostelView)
+                                            <img src="{{asset('storage/'.$hostelView->left)}}" alt="" class="img-responsive">
+                                        @endforeach
                                         <div class="vk-slide-caption">
                                             @if($hostel->alias)
                                             <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
@@ -151,7 +157,9 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/04_02_room_grid/img.jpg" alt="" class="img-responsive"></a>
+                                                    @foreach($roomType->roomTypeMedia as $roomTypeMedia)
+                                                    <a href="#"><img src="{{asset('storage/'.$roomTypeMedia}}" alt="" class="img-responsive"></a>
+                                                    @endforeach
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">{{$roomType->room_type}}</a></h2>
