@@ -154,9 +154,9 @@
 
                                                                     <h3>Images of room Type available in your hostel</h3>
 
-                                                                @foreach($data as $roomType)
+                                                                @foreach($data->roomDescription as $roomType)
 
-                                                                    <h3>Add images for {{$roomType}}</h3>
+                                                                    <h3>Add images for {{$roomType->room_type}}</h3>
 
                                                                     <p>
                                                                         <label class="custom-checkbox custom-control">
@@ -167,12 +167,13 @@
                                                                     <div class="row">
 
                                                                             <div class="col-md-9">
-                                                                                <input type="file" class="input-text" accept="image/*" id="room" name="images[room][{{$roomType}}][]" onchange="preview_images();" multiple/>
+                                                                                <input type="file" class="input-text" accept="image/*" id="room" name="images[room][{{$roomType->id}}][]" onchange="preview_images();" multiple/>
                                                                             </div>
 
                                                                     </div>
                                                                     <div class="row" id="room_preview"></div>
                                                                 @endforeach
+
                                                                     <br>
 
                                                                 </div>

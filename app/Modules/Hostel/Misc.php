@@ -16,6 +16,14 @@ class Misc extends Model implements HasMedia
 
     protected $table ='miscellaneous';
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
 
     protected $fillable =[
       'hostel_id','title','image',

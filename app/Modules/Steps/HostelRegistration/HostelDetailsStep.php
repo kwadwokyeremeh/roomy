@@ -7,12 +7,15 @@
  */
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
-use Illuminate\Support\Facades\Auth;
-use myRoommie\Modules\Hostel\Hostel;
-use myRoommie\Modules\Hostel\RoomDescription;
 use Smajti1\Laravel\Step;
-use myRoommie\Modules\HostelRegistration;
 use Illuminate\Http\Request;
+use myRoommie\Utilities\GoogleMaps;
+use myRoommie\Modules\Hostel\Hostel;
+use Illuminate\Support\Facades\Auth;
+use myRoommie\Modules\HostelRegistration;
+use myRoommie\Modules\Hostel\RoomDescription;
+
+
 
 class HostelDetailsStep extends Step
 {
@@ -24,6 +27,12 @@ class HostelDetailsStep extends Step
 
     public function process(Request $request)
     {
+
+        /*
+         Get the Latitude and Longitude returned from the Google Maps Address.
+       */
+        $coordinates =GoogleMaps::geocodeAddress( $request->get('name'),$request->get('street_address'), $request->get('city'), $request->get('region'),$request->get('country') );
+
         /*
          * Create new hostel
          * Begin insert hostel details
@@ -37,8 +46,8 @@ class HostelDetailsStep extends Step
         $hostel ->hosteller_id = Auth::guard('hosteller')->user()->id;
         $hostel ->region = 'Ashanti';
         $hostel ->country = 'Ghana';
-        $hostel ->latitude = '';
-        $hostel ->longitude = '';
+        $hostel ->latitude = $coordinates['lat'];
+        $hostel ->longitude = $coordinates['lng'];
         if ($request->has('hostel_email')){
             $hostel ->hostel_email = $request->get('hostel_email');
         }

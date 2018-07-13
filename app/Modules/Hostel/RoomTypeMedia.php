@@ -35,6 +35,15 @@ class RoomTypeMedia extends Model implements HasMedia
     /*
      *  Get the hostel that provided the room types
      * */
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
     public function hostel()
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');

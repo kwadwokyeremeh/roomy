@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
     public $timestamps = false;
     /*
      *  Get the hostel that owns the room

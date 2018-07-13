@@ -2541,11 +2541,11 @@ a {
     width: 100%;
     min-height: 585px; }
   .vk-sparta-dark-contact-us .vk-sparta-dark-contact-us-map .map {
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%); }
+    -webkit-filter: none;
+    -moz-filter: none;
+    -ms-filter: none;
+    -o-filter: none;
+    filter: none; }
   .vk-sparta-dark-contact-us .vk-sparta-dark-contact-us-info {
     padding-top: 55px;
     padding-bottom: 55px;
@@ -7404,11 +7404,11 @@ a {
       height: 260px; } }
 
 .vk-contact-us .map {
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: grayscale(100%); }
+  -webkit-filter:none;
+  -moz-filter: none;
+  -ms-filter: none;
+  -o-filter:none);
+  filter: none; }
 
 .vk-contact-us-map iframe {
   width: 100%;

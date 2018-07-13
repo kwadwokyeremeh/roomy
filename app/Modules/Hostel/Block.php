@@ -10,6 +10,15 @@ class Block extends Model
     /*
      *  Get the hostel that owns this block
      * */
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
     public function hostel()
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');

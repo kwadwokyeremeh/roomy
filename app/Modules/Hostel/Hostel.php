@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
+use myRoommie\Comment;
 use myRoommie\Modules\HostelRegistration;
 
 class Hostel extends Model
@@ -140,7 +141,7 @@ class Hostel extends Model
      * */
     public function roomTypeMedia()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\RoomTypeMedia');
+        return $this->hasManyThrough('myRoommie\Modules\Hostel\RoomTypeMedia',RoomDescription::class);
     }
 
     public function hostelViews()
@@ -157,4 +158,10 @@ class Hostel extends Model
     {
         return $this->hasMany(Entertainment::class);
     }
+
+    public function comments()
+    {
+       return $this->hasMany(Comment::class);
+    }
+
 }

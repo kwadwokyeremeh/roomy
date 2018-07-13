@@ -132,7 +132,7 @@
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
                                                                             <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_hostel_location_field_detail" data-priority="20">
                                                                                 <label for="street_address" class="">Street Address <abbr class="required" title="required">*</abbr></label>
-                                                                                <input type="text" class="input-text {{ $errors->has('street_address') ? ' is-invalid' : '' }}" value="{{ old('street_address') }} " name="street_address" id="street_address" placeholder="Enter your hostel address" autocomplete="given-location" required>
+                                                                                <input type="text" class="input-text {{ $errors->has('street_address') ? ' is-invalid' : '' }}" value="{{ old('street_address') }} " name="street_address" id="street_address" placeholder="Hostel address" required>
                                                                                 @if ($errors->has('street_address'))
                                                                                     <span class="invalid-feedback">
                                                                                         <strong style="color: #ff0000;">{{ $errors->first('street_address') }}</strong>
@@ -148,6 +148,8 @@
                                                                                     </span>
                                                                                 @endif
                                                                             </p>
+                                                                            <input type="hidden" name="region" value="Ashanti">
+                                                                            <input type="hidden" name="country" value="Ghana">
                                                                             {{--     Field for region and country
                                                                             <p class="form-row form-row-last validate-required" id="region_country" data-priority="20">
                                                                                 <label for="region_country" class="">Region/Country <abbr class="required" title="required">*</abbr></label>

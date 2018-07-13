@@ -14,6 +14,15 @@ class Service extends Model
     /*
      *  Get the hostel that provides that services
      * */
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
     public function hostel()
     {
         $this->belongsTo('myRoommie\Modules\Hostel\Hostel');

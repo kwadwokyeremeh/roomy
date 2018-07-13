@@ -35,5 +35,9 @@ class User extends Authenticatable
         return $this->hasOne('myRoommie\Modules\Hostel\Bed');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
 }

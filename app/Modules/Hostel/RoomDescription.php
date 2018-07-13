@@ -16,6 +16,15 @@ class RoomDescription extends Model
     /*
      *  Get the hostel that provided the prices
      * */
+
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
     public function hostel()
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');

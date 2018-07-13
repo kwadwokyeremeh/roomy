@@ -12,7 +12,7 @@ class IndividualHostelController extends Controller
      * */
     public function showHostel($hostelName)
     {
-        $hostel = Hostel::find($hostelName);
+        $hostel = Hostel::findOrFail($hostelName);
         return view('individualHostel.index',compact('hostel'));
     }
 }

@@ -17,18 +17,12 @@ class CreateRoomTypeMediaTable extends Migration
     {
         Schema::create('room_type_media', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hostel_id')->unsigned();
-            $table->integer('room_type_id')->unsigned();
-            $table->string('room_type');
+            /*$table->integer('hostel_id')->unsigned();*/
+            $table->integer('room_description_id')->unsigned();
+            /*$table->string('room_type');*/
             $table->string('image');
-            $table->foreign('hostel_id')
-                ->references('id')
-                ->on('hostels')
-                ->onDelete('cascade');
-            $table->foreign('room_type_id')
-                ->references('id')
-                ->on('room_descriptions')
-                ->onDelete('cascade');
+            /*$table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');*/
+            $table->foreign('room_description_id')->references('id')->on('room_descriptions')->onDelete('cascade');
 
         });
     }

@@ -157,9 +157,10 @@
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
                                                 <div class="vk-item-img">
-                                                    @foreach($roomType->roomTypeMedia as $roomTypeMedia)
-                                                    <a href="#"><img src="{{asset('storage/'.$roomTypeMedia}}" alt="" class="img-responsive"></a>
-                                                    @endforeach
+                                                    {{--@foreach($hostel->roomTypeMedia as $item)
+                                                        <a href="#"><img src="{{asset('storage/'.$item->image)}}" alt="" class="img-responsive"></a>
+                                                    @endforeach--}}
+                                                    <a href="#"><img src="{{asset('storage/'.$roomType->roomTypeMedia->first()->image)}}" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="#">{{$roomType->room_type}}</a></h2>
@@ -593,7 +594,7 @@
                                         <div class="col-md-7 vk-clear-padding">
                                             <div class="vk-contact-us-map">
                                                 <div id="map"></div>
-                                                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.3558605259554!2d-0.1305261839151272!3d50.824572079528714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4875859878db2cc7%3A0xff129250121f260d!2s45+Queen&#39;s+Park+Rd%2C+Brighton+BN2+0GJ%2C+UK!5e0!3m2!1sen!2s!4v1505207016897" height="585" style="border:0" allowfullscreen></iframe>
+                                                <iframe class="map" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCffNTwIH4gq4MXS3Yr003uFpcuENRnkUo&q={{$hostel->name}},{{$hostel->street_address}}+{{$hostel->city}}+{{$hostel->country}}&center={{$hostel->latitude}},{{$hostel->longitude}}" height="585" style="border:0" allowfullscreen></iframe>
                                             </div>
                                         </div>
                                         <div class="col-md-5 vk-clear-padding">
@@ -655,3 +656,26 @@
         </div>
 
     @endsection
+
+@section('custom-script')
+    {{--<script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of hostel
+            var hostel = {lat: {{$hostel->latitude}}, lng: {{$hostel->longitude}} };
+            // The map, centered at hostel
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 4, center: hostel});
+            // The marker, positioned at hostel
+            var marker = new google.maps.Marker({position: hostel, map: map});
+        }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCffNTwIH4gq4MXS3Yr003uFpcuENRnkUo&callback=initMap">
+    </script>--}}
+@endsection

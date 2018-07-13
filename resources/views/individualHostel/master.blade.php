@@ -30,6 +30,7 @@
         @include('layouts._partials.footer')
     </div>
     @include('individualHostel._partials.script')
+    @yield('custom-script')
 </div>
 </body>
 </html>

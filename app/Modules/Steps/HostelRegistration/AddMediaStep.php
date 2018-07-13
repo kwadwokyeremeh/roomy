@@ -92,10 +92,10 @@ class AddMediaStep extends Step
 
                 foreach ($roomType as $media){
                     array_push($arr,[
-                        'hostel_id' => $hostelId,
-                        'room_type_id' =>$roomTypeId,
-                        'room_type' => $key,
-                        'image'     => $media->store('hostels/'.$hostelId.'/rooms/'.$roomTypeId,'public'),
+                        /*'hostel_id' => $hostelId,*/
+                        'room_description_id' =>$key,
+                        /*'room_type' => $key,*/
+                        'image'     => $media->store('hostels/'.$hostelId.'/rooms/'.$key,'public'),
                     ]);
                 }
 

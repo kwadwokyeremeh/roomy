@@ -8,6 +8,15 @@ class Facility extends Model
 {
     public $timestamps = false;
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['hostel'];
+
+
+
     protected $fillable =[
         'hostel_id','facilities',
     ];
