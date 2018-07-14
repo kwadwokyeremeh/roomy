@@ -87,7 +87,7 @@ Route::prefix('hostelRegistration')->group(function (){
     /* Post routes*/
     Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit');
 
-});
+})->middleware('chrp');
 
 });
 
@@ -95,7 +95,9 @@ Route::prefix('hostelRegistration')->group(function (){
 /**************************************
  *  Hostels Route
  ***************************************/
+Route::middleware('published')->group(function (){
 
-Route::get('/{hostelName?}','IndividualHostelController@showHostel')->name('hostel');
-Route::get('/{hostelName}/comments','CommentController@index');
-Route::put('/{hostelName}/comments','CommentController@update')->name('commentOnHostel');
+    Route::get('/{hostelName?}','IndividualHostelController@showHostel')->name('hostel');
+    Route::get('/{hostelName}/comments','CommentController@index');
+    Route::put('/{hostelName}/comments','CommentController@update')->name('commentOnHostel');
+});
