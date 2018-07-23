@@ -110,7 +110,7 @@
                                                                                 <div class="panel-body">
                                                                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"></div>
                                                                                     <div class="col-xs-12 text-center" style="margin-top:15px;">
-                                                                                        <button class="btn btn-success" id="addBlock" value=""><span class="glyphicon glyphicon-plus"></span> Add Block</button>
+                                                                                        <button class="vk-btn vk-btn-m vk-btn-default" id="addBlock" value=""><span class="fa fa-plus-square"></span>&nbsp; Add Block</button>
                                                                                     </div>
                                                                                 </div><!-- /.panel-body -->
                                                                                 <div class="panel-footer"><div class="col-sm-offset-3 col-sm-6 text-center">
@@ -149,7 +149,6 @@
     </section>
 
 @section('custom-script')
-    <script>
     $(document).ready(
     function () {
     var counter = 1;
@@ -157,6 +156,10 @@
     var floorCounter = 1;
     var roomCounter = 1;
     var wrapper = $("#accordion");
+
+    {{--var token = {
+    csrf: "{{ csrf_token() }}"
+    };--}}
 
 
 
@@ -183,16 +186,16 @@
                     '<a class="' + collapsedClass + '" id="panel-lebel' + counter + '" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + counter + '" ' +
                     'aria-expanded="' + ariaExpanded + '" aria-controls="collapse' + counter + '"> ' + blockName + ' </a><div class="actions_div" style="position: relative; top: -26px;">' +
                         '<a href="#" accesskey="' + counter + '" class="remove_block_panel exit-btn pull-right"><span>&times;</span></a>' +
-                        '<a href="#" accesskey="' + counter + '" class="edit_ctg_label pull-right"><span class="glyphicon glyphicon-edit "></span> Edit</a>' +
-                        '<a href="#" accesskey="' + counter + '" class="pull-right" id="addButton2"> <span class="glyphicon glyphicon-plus"></span> Add Floor</a></div>' +
-                        '<input type="hidden" name="block['+blockName +']">' +
+                        '<a href="#" accesskey="' + counter + '" class="edit_ctg_label pull-right"><span class="fa fa-edit"></span> Edit</a>' +
+                        '<a href="#" accesskey="' + counter + '" class="pull-right" id="addButton2"> <span class="fa fa-plus"></span> Add Floor</a></div>' +
+                        '<input type="hidden" id="d'+counter+'" name="block[]" value="'+blockName+'">' +
                         '</h4></div>' +
             '<div id="collapse' + counter + '" class="panel-collapse collapse ' + expandedClass + '"role="tabpanel" aria-labelledby="heading' + counter + '">' +
-                '<div class="panel-body"><div id="TextBoxDiv'+counter + '">' +
+                '<div class="panel-body">' +
                         '<div id="block'+counter+'">' +
-                            '</div>'+
-                        '</div></div></div><div class="panel-footer"><div class="col-sm-offset-3 col-sm-6 text-center">' + blockName + '<a class="btn btn-xs btn-primary" accesskey="' + counter + '" id="addButton2" ><span class="glyphicon glyphicon-plus"></span> Add Floor</a>' +
-                    '<a class="btn btn-xs btn-success" accesskey="' + counter + '" id="ajax_submit_button" >Done</a></div></div></div></div>');
+                        '</div>'+
+                        '</div></div><div class="panel-footer row"><div class="col-sm-offset-3 col-sm-6 text-center" id="foot'+counter+'">' + blockName + '<a class="vk-btn vk-btn-xs vk-btn-default col-sm-3" accesskey="' + counter + '" id="addButton2" ><span class="fa fa-plus"></span> Add Floor</a>' +
+                    '<a class="vk-btn vk-btn-xs vk-btn-default col-sm-3" accesskey="' + counter + '" id="ajax_submit_button" >Done</a></div></div></div></div>');
     blockCounter++;
     counter++;
     }
@@ -208,6 +211,7 @@
 
     $(wrapper).on("click", "#addButton2", function (e) {
     e.preventDefault();
+    var blockId = $(this).attr('blockCounter');
     var parentId = $(this).attr('accesskey');
     var parentPanel = '#panel' + parentId;
     {{--var room = $(this).closest(parentId).children('.room');--}}
@@ -217,7 +221,7 @@
 
     if (floorName === '') {
     blockCounter--;
-    floorName = 'Block ' + parentId + ' Floor ' + floorCounter;
+    floorName = 'Floor ' + floorCounter;
 
     }
     if (floorName !== null) {
@@ -227,17 +231,17 @@
 
 
     $('#panel' + parentId).find("#block" + parentId).append('<div class="col-sm-12" style="margin-bottom: 0;"><div class="panel panel-default" id="panel' + counter + '">' +
-            '<div class="panel-heading" role="tab" id="heading' + counter + '"><h4 class="panel-title">' +
+            '<div class="panel-heading" role="tab" id="heading' + counter + '"><div id="'+floorName+'"></div><h4 class="panel-title">' +
                     '<a class="' + collapsedClass + '" id="panel-lebel' + counter + '" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + counter + '" ' +
                     'aria-expanded="' + ariaExpanded + '" aria-controls="collapse' + floorCounter + '"> ' + floorName + ' </a><div class="actions_div" style="position: relative; top: -26px;">' +
                         '<a href="#" accesskey="' + counter + '" class="remove_floor_panel exit-btn pull-right"><span>&times;</span></a>' +
-                        '<a href="#" accesskey="' + counter + '" class="edit_ctg_label pull-right"><span class="glyphicon glyphicon-edit"></span> Edit</a>' +
-                        '<a href="#" accesskey="' + counter + '" class="pull-right" id="addButton3"> <span class="glyphicon glyphicon-plus"></span> Add Room</a>' +
-                        '<input type="hidden" name="floor['+ parentId+']['+floorName+'][room]"/>' +
+                        '<a href="#" accesskey="' + counter + '" class="edit_ctg_label pull-right"><span class="fa fa-edit"></span> Edit</a>' +
+                        '<a href="#" accesskey="' + counter + '" class="pull-right" id="addButton3"><span class="fa fa-plus"></span> Add Room</a>' +
+                        '<input type="hidden" id="d'+counter+'" name="floor['+ parentId+'][]" value="'+floorName+'" />' +
                         '</h4></div>' +
-            '<div id="collapse' + counter + '" class="panel-collapse collapse ' + expandedClass + '"role="tabpanel" aria-labelledby="heading' + counter + '">' +
-                '<div class="panel-body"><div id="TextBoxDiv' + counter + '"></div><a class="btn btn-xs btn-primary" accesskey="' + counter + '" id="addButton3" ><span class="glyphicon glyphicon-plus"></span> Add Room</a>' +
-                    '<a class="btn btn-xs btn-success" accesskey="' + counter + '" id="ajax_submit_button" >Done</a></div></div></div></div></div>');
+            '<div id="collapse' + counter + '" class="panel-collapse collapse ' + expandedClass + '" role="tabpanel" aria-labelledby="heading' + counter + '">' +
+                '<div class="panel-body"><div id="TextBoxDiv' + counter + '"></div><a class="vk-btn vk-btn-xs vk-btn-default" accesskey="' + counter + '" id="addButton3" ><span class="fa fa-plus"></span> Add Room</a>' +
+                    '<a class="vk-btn vk-btn-xs vk-your-card-btn" accesskey="' + counter + '" id="ajax_submit_button" >Done</a></div></div></div></div></div>');
 
     x++;
     counter++;
@@ -245,6 +249,7 @@
     }
 
     });
+
 
     $(wrapper).on("click", ".remove_block_panel", function (e) {
     e.preventDefault();
@@ -254,6 +259,7 @@
     counter--;
     x--;
     });
+
     $(wrapper).on("click", ".remove_floor_panel", function (e) {
     e.preventDefault();
     var accesskey = $(this).attr('accesskey');
@@ -264,14 +270,17 @@
     });
 
 
-
     var y = 1;
     $(wrapper).on("click", "#addButton3", function (e) {
     e.preventDefault();
 
     var accesskey = $(this).attr('accesskey');
-        var blockId = '#panel'+accesskey;
-        var floorId = '#block'+accesskey;
+        /*var blockId = '#panel'+accesskey;
+        var floorId = '#block'+accesskey;*/
+
+
+        {{--var floorId = document.getElementById("TextBoxDiv' + accesskey + '").attributes["name"].value;--}}
+
         {{--var blockName = $(parent).closest(blockId);
         var floorName = $(parent).closest(blockName).children(floorId);--}}
 
@@ -286,18 +295,22 @@
         room['+ blockId +']['+ floorCounter+']['+roomCounter+']
         console.log(blockId);--}}
 
-
+    var floor = $('#heading' + accesskey ).children().get(0).id;
+    var block = $('#heading' + accesskey ).parent().parent().parent().get(0).id;
         y++;
     $('#panel' + accesskey).find('#TextBoxDiv' + accesskey).append('<p class="room square">' +
-        '<a href="#" class="remove_field exit-btn"><span>&times;</span></a>&nbsp;' +
-            '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][name]" id="room'+ roomCounter+'">'+
-            '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][type]" id="room'+ roomCounter+'">'+
+        '<a href="#" class="remove_room exit-btn"><span>&times;</span></a>&nbsp;' +
+
+            {{--'<input type="hidden" name="block['+parentId+']['+roomCounter+'][name]" id="room'+ roomCounter+'">'+--}}
+            '<input type="hidden" name="room['+block+']['+floor+']['+roomCounter+'][type]" id="room'+ roomCounter+'">'+
+            '<input type="hidden" name="room['+block+']['+floor+']['+roomCounter+'][sexType]" id="room'+ roomCounter+'">'+
+            {{--'<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][type]" id="room'+ roomCounter+'">'+
             '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][sexType]" id="room'+ roomCounter+'">'+
-            '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][status]" id="room'+ roomCounter+'">'+
-        '<span>Room '+roomCounter+'&nbsp;</span>' +
-        '<span>Room&nbsp;</span>' +
-        '<span>Room&nbsp;</span>' +
-        '<span>Room&nbsp;</span>' +
+            '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][status]" id="room'+ roomCounter+'">'+--}}
+        '<span style="font-size: 0.7em">Room '+roomCounter+'</span>' +
+        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
+        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
+        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
         '</p>');
 
 
@@ -325,12 +338,13 @@
             });
         });--}}
 
-    $(wrapper).on("click", ".remove_field", function (e) {
+    $(wrapper).on("click", ".remove_room", function (e) {
     e.preventDefault();
     $(this).parent('div').remove();
     y--;
     $(this).parent('p').remove();
     y--;
+    roomCounter--;
     });
 
     $(wrapper).on("click", ".edit_ctg_label", function (e) {
@@ -340,20 +354,23 @@
     return false;
     }
     if (catgName !== null) {
+
     $('#panel' + panelId).find("#panel-lebel" + panelId).html('').html(catgName);
+    $('#panel' + panelId).find("#foot" + panelId).html('').html(catgName);
+    $('#d'+panelId).val(catgName);
+
     }
-
-
     });
 
-        var result = [];                               // <-- Main array
+
+        {{--var result = [];                               // <-- Main array
         $(".block").each('click',function(){
             var floor = [];                // <-- "sub"-array
             $(this).find('#TextBoxDiv' + floorCounter).each('click',function(){
                 floor.push($(this).val());
             });
             result.push(floor);            // <-- Add "sub" array to results
-        });console.log(result);
+        });console.log(result);--}}
 
         });
 

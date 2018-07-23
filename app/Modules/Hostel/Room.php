@@ -67,7 +67,7 @@ class Room extends Model
      * */
     public function roomDescription()
     {
-        return $this->hasOne('myRoommie\Modules\Hostel\RoomDescription');
+        return $this->belongsTo('myRoommie\Modules\Hostel\RoomDescription');
     }
 
 

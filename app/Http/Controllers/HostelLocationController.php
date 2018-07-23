@@ -3,7 +3,7 @@
 namespace myRoommie\Http\Controllers;
 
 use Illuminate\Http\Request;
-use myRoommie\Utilities\GoogleMaps;
+use myRoommie\Repository\GoogleMaps;
 
 class HostelLocationController extends Controller
 {

@@ -17,9 +17,8 @@ class CreateBlocksTable extends Migration
             $table->increments('id');
             $table->integer('hostel_id')->unsigned();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->integer('number');
-            $table->integer('number_of_floors');
+            $table->string('name');
+
         });
     }
 

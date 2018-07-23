@@ -47,7 +47,7 @@ table {
 
 /*Base*/
 .vk-clear-padding {
-  padding: 0px; }
+  padding: 0; }
 
 a {
   text-decoration: none !important; }
@@ -13908,7 +13908,7 @@ a {
 #accordion .actions_div > a.exit-btn {
   color:#dd4b39;
 }
-#accordion .remove_field.exit-btn{
+#accordion .remove_room.exit-btn{
   color:#dd4b39;
   margin-left:7px;
   float: left;

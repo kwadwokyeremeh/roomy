@@ -83,7 +83,7 @@
                                                 <div class="slider">
                                                     <div id="slider-range-1" class="ui-slider-range"></div>
                                                     <span style="margin-right: 0; padding-right: 0">
-                                                        <label class="label-filter-price" style="max-width: 60%; margin-top: 0px; height: 50px;">
+                                                        <label class="label-filter-price" style=" margin-top: 0px; height: 50px;">
                                                             <input name="price" type="text" id="amount-1" style="border:0; max-width: 60%; color:#f6931f; font-weight:bold;">
                                                         </label>
                                                    </span>

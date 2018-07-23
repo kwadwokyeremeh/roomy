@@ -6,7 +6,7 @@
  * Time: 8:48 AM
  */
 
-namespace myRoommie\Utilities;
+namespace myRoommie\Repository;
 
 
 use GuzzleHttp\Client;

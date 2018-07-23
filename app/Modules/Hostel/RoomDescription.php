@@ -35,7 +35,7 @@ class RoomDescription extends Model
      * */
     public function room()
     {
-        return $this->belongsTo('myRoommie\Modules\Hostel\Room');
+        return $this->hasMany('myRoommie\Modules\Hostel\Room');
     }
 
     public function roomTypeMedia()

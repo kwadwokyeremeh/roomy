@@ -8,10 +8,10 @@ class Floor extends Model
 {
 
     public $timestamps = false;
-    /*
-     *  Get the hostel that owns this floor
-     * */
 
+    protected $fillable =[
+        'hostel_id','block_id','name','number'
+    ];
 
     /**
      * All of the relationships to be touched.
@@ -20,6 +20,9 @@ class Floor extends Model
      */
     protected $touches = ['hostel'];
 
+    /*
+         *  Get the hostel that owns this floor
+         * */
 
     public function hostel()
     {

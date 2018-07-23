@@ -399,7 +399,7 @@
     </section>
 
 @section('custom-script')
-
+    <script>
     {{--// Same floor yes or no trigger
     $('#r11').on('click', function(){
     $(this).parent().find('a').trigger('click')

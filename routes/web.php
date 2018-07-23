@@ -82,12 +82,12 @@ Route::get('password/reset/{token}','Hosteller\ResetPasswordController@showReset
 Route::prefix('hostelRegistration')->group(function (){
 
     /* Get routes*/
-    Route::get('/{step?}','HostelRegistrationController@wizard')->name('hostel.registration');
+    Route::get('/{step?}','HostelRegistrationController@wizard')->name('hostel.registration')->middleware('chrp');
 
     /* Post routes*/
-    Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit');
+    Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit')->middleware('chrp');
 
-})->middleware('chrp');
+});
 
 });
 

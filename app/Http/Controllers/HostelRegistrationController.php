@@ -5,21 +5,22 @@ namespace myRoommie\Http\Controllers;
 //use myRoommie\Modules\HostelRegistration;
 use Illuminate\Http\Request;
 
-use myRoommie\Modules\Hostel\Hostel;
-use Smajti1\Laravel\Wizard;
-use myRoommie\Wizard\Steps\HostelRegistration\BasicInfoStep;
-use myRoommie\Wizard\Steps\HostelRegistration\HostelDetailsStep;
-use myRoommie\Wizard\Steps\HostelRegistration\AddMediaStep;
-use myRoommie\Wizard\Steps\HostelRegistration\AmenitiesStep;
-use myRoommie\Wizard\Steps\HostelRegistration\LayoutAndPricingStep;
-use myRoommie\Wizard\Steps\HostelRegistration\PoliciesStep;
-use myRoommie\Wizard\Steps\HostelRegistration\PaymentProtocolsStep;
-use myRoommie\Wizard\Steps\HostelRegistration\ConfirmationStep;
 use Smajti1\Laravel\Step;
-use Smajti1\Laravel\Exceptions\StepNotFoundException;
-use Illuminate\Support\Facades\Session;
+use Smajti1\Laravel\Wizard;
 use Illuminate\Support\Facades\DB;
+use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Smajti1\Laravel\Exceptions\StepNotFoundException;
+use myRoommie\Wizard\Steps\HostelRegistration\Instruction;
+use myRoommie\Wizard\Steps\HostelRegistration\AddMediaStep;
+use myRoommie\Wizard\Steps\HostelRegistration\PoliciesStep;
+use myRoommie\Wizard\Steps\HostelRegistration\AmenitiesStep;
+use myRoommie\Wizard\Steps\HostelRegistration\BasicInfoStep;
+use myRoommie\Wizard\Steps\HostelRegistration\ConfirmationStep;
+use myRoommie\Wizard\Steps\HostelRegistration\HostelDetailsStep;
+use myRoommie\Wizard\Steps\HostelRegistration\LayoutAndPricingStep;
+use myRoommie\Wizard\Steps\HostelRegistration\PaymentProtocolsStep;
 
 
 class HostelRegistrationController extends Controller
@@ -42,7 +43,8 @@ class HostelRegistrationController extends Controller
 
 
     public $steps = [
-    'set-username-key'     => BasicInfoStep::class,
+    'set-username-key'     => Instruction::class,
+                              BasicInfoStep::class,
                               HostelDetailsStep::class,
                               AddMediaStep::class,
                               AmenitiesStep::class,
@@ -119,6 +121,8 @@ public function wizardPost(Request $request, $step = null)
     } catch (StepNotFoundException $e) {
         abort(404);
     }
+
+ dd($request->get('room'));
 
     $request->session()->regenerate();
     $this->validate($request, $step->rules($request));

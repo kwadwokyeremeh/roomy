@@ -9,7 +9,7 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
-use myRoommie\Utilities\GoogleMaps;
+use myRoommie\Repository\GoogleMaps;
 use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Support\Facades\Auth;
 use myRoommie\Modules\HostelRegistration;

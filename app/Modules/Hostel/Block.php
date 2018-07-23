@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Block extends Model
 {
     public $timestamps = false;
-    /*
-     *  Get the hostel that owns this block
-     * */
 
+
+    protected $fillable =[
+        'hostel_id','number','name'
+    ];
     /**
      * All of the relationships to be touched.
      *
@@ -18,7 +19,9 @@ class Block extends Model
      */
     protected $touches = ['hostel'];
 
-
+    /*
+         *  Get the hostel that owns this block
+         * */
     public function hostel()
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
