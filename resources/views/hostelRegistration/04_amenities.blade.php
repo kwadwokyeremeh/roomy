@@ -378,7 +378,7 @@
 
 
 @section('custom-script')
-
+    <script>
     {{--//Dynamically Add or Remove input fields in PHP with JQuery--}}
     $(document).ready(function(){
     var i=1;
@@ -465,5 +465,5 @@
     });
     });
 
-
+</script>
 @endsection

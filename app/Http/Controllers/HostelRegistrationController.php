@@ -5,6 +5,8 @@ namespace myRoommie\Http\Controllers;
 //use myRoommie\Modules\HostelRegistration;
 use Illuminate\Http\Request;
 
+use myRoommie\Modules\Hostel\Block;
+use myRoommie\Modules\HostelRegistration;
 use Smajti1\Laravel\Step;
 use Smajti1\Laravel\Wizard;
 use Illuminate\Support\Facades\DB;
@@ -79,17 +81,30 @@ public function wizard($step = null)
     /*
      * Retrieve the hostel Id
      * */
-    if ($this->wizard->dataHas('02')) {
-    /*$this->wizard->dataGet('02');
-            $data = array_flatten(
-                        array_except(
-                            array_pluck($this->wizard->data(),'roomType.roomType'),[1,2]));*/
+    $hostellerId = Auth::guard('hosteller')->user()->id;
+    $register2 =HostelRegistration::find($hostellerId)->where(['1_basic_info'=>true, '2_hostel_details'=>true, '3_add_media'=>false]);
+    $register5 = HostelRegistration::find($hostellerId)->where(['4_amenities'=>true,'5_layout_n_pricing' =>false]);
 
-        $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::has('hosteller.hostel_id')){
-            $hostelId = session('hosteller.hostel_id');
-        }else{
-            $hostelId = DB::table('hostel_registrations')->where([
+
+   /* if ($register2 !==true && $register5==true){
+
+        $hostelId = DB::table('hostel_registrations')->where([
+            'hosteller_id'=> $hostellerId,
+            '1_basic_info'=>true,
+            '2_hostel_details'=>true,
+            '3_add_media'=>true,
+            '4_amenities'=>true,
+            '5_layout_n_pricing' =>false,
+            '6_policies' =>false,
+            '7_payment' =>false,
+            '8_confirmation' =>false,
+        ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
+
+
+    }elseif ($register2 == true && $register5 !==true) {
+
+
+        $hostelId = DB::table('hostel_registrations')->where([
                 'hosteller_id'=> $hostellerId,
                 '1_basic_info'=>true,
                 '2_hostel_details'=>true,
@@ -100,9 +115,40 @@ public function wizard($step = null)
                 '7_payment' =>false,
                 '8_confirmation' =>false,
             ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
-        }
-        $data = Hostel::find($hostelId);
+
+    }else{
+        return view('hostelRegistration.master', compact('step','data'));
+}*/
+    if (Session::exists('hosteller.hostel_id')){
+        $hostelId = session('hosteller.hostel_id');
+
+    }elseif ($register5==true){
+        $hostelId = DB::table('hostel_registrations')->where([
+            'hosteller_id'=> $hostellerId,
+            '1_basic_info'=>true,
+            '2_hostel_details'=>true,
+            '3_add_media'=>true,
+            '4_amenities'=>true,
+            '5_layout_n_pricing' =>false,
+            '6_policies' =>false,
+            '7_payment' =>false,
+            '8_confirmation' =>false,
+        ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
     }
+    else{
+        $hostelId = DB::table('hostel_registrations')->where([
+            'hosteller_id'=> $hostellerId,
+            '1_basic_info'=>true,
+            '2_hostel_details'=>true,
+            '3_add_media'=>false,
+            '4_amenities'=>false,
+            '5_layout_n_pricing' =>false,
+            '6_policies' =>false,
+            '7_payment' =>false,
+            '8_confirmation' =>false,
+        ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
+    }
+    $data = Hostel::find($hostelId);
 
     return view('hostelRegistration.master', compact('step','data'));
 }
@@ -121,8 +167,6 @@ public function wizardPost(Request $request, $step = null)
     } catch (StepNotFoundException $e) {
         abort(404);
     }
-
- dd($request->get('room'));
 
     $request->session()->regenerate();
     $this->validate($request, $step->rules($request));

@@ -21,6 +21,7 @@ class HostelRegistration extends Model
         '8_confirmation',
     ];
 
+    protected $primaryKey ='hosteller_id';
 
     public function hosteller()
     {

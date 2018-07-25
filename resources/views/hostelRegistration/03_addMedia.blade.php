@@ -225,7 +225,7 @@
     </section>
 
     @section('custom-script')
-
+        <script>
         function preview_views()
         {
         var total_file=document.getElementById("views").files.length;
@@ -267,6 +267,6 @@
                     $('#video_preview').prepend("<iframe class='embed-responsive-4by3' src='"+URL.createObjectURL(event.target.files[i])+"'></iframe>");
                 }
             }
-
+    </script>
     @endsection
 

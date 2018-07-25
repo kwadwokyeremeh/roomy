@@ -8,7 +8,7 @@ use myRoommie\Modules\Hostel\Hostel;
 class Comment extends Model
 {
     protected $fillable =[
-        'body','hostel_id','user_id'
+        'body','hostel_id','user_id','message'
     ];
     //comment->$hostel
     public function hostel()

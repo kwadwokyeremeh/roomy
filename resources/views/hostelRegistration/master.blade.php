@@ -29,7 +29,7 @@
 
 @include('hostelRegistration._partials.script')
 {{----}}
-<script>
+
 
     @yield('custom-script')
     {{--Hostel Details--}}
@@ -41,6 +41,6 @@
     /*Add Amenities*/
     @include('hostelRegistration._partials.amenities')
     /*Add Amenities*/--}}
-</script>
+
 </body>
 </html>

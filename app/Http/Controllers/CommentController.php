@@ -16,7 +16,8 @@ class CommentController extends Controller
     public function index($hostelName)
     {
         $hostel =Hostel::findOrFail($hostelName);
-        return view('individualHostel.comments',compact('hostel'));
+       $comments = $hostel->comments()->latest()->get();
+        return view('individualHostel.comments',compact('comments','hostel'));
     }
 
     /**
@@ -72,6 +73,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment, Hostel $hostel)
     {
+
         /*$comments = [
             $request->body,
             $request->hostel_id
@@ -79,7 +81,7 @@ class CommentController extends Controller
         $this->validate($request,['message' => 'required|min:3']);
         Comment::create([
            'message' => request('message'),
-           'hostel_id' => request('id'),
+           'hostel_id' => request('hostel_id'),
            'user_id' => auth()->id(),
         ]);
         return back();

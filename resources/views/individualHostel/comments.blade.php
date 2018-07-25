@@ -1,4 +1,4 @@
-@extends('individualHostel.master)
+@extends('individualHostel.master')
 
 @section('main-content')
 
@@ -22,10 +22,11 @@
                     <div class="col-md-9">
                         <div class="vk-posts-details-body-left">
                             <div class="vk-event-details-left-comment">
-                                @if($hostel->comments)
-                                <h4>{{count($hostel->comments)}} comments</h4>
+                                @if($comments)
+                                <h4>{{count($comments)}} comments</h4>
                                 <ul>
-                                    @foreach($hostel->comments as $comment)
+                                    @foreach($comments as $comment)
+
                                     <li>
                                         <div class="vk-event-details-comments-img">
                                             <img src="../images/06_03_event_detail/comment/img.jpg" alt="" class="img-responsive">
@@ -37,7 +38,7 @@
                                             </div>
                                             <div class="vk-event-details-des">
                                                 <p>
-                                                    {{$comment->body}}
+                                                    {{$comment->message}}
 
                                                 </p>
                                             </div>
@@ -132,7 +133,7 @@
                             <div class="vk-event-details-left-add-comment">
                                 <h4> Add Your Comments</h4>
                                 <div class="row">
-                                    <form action="{{route('commentOnHostel')}}" method="POST">{{method_field('PUT')}}
+                                    <form action="{{url($hostel->id.'/comments')}}" method="POST">{{method_field('PUT')}}
                                         @csrf
                                         {{--<div class="form-group">
                                             <div class="col-md-6">
@@ -146,16 +147,17 @@
                                         </div>--}}
                                         <div class="form-group">
                                             <div class="col-md-12">
+                                                <input type="hidden" name="hostel_id" value="{{$hostel->id}}">
                                                 <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
 
-                                        @if(auth('user')->check())
+                                        @if(auth()->check())
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <div class="vk-event-details-submit">
-                                                    <button type="submit" class="vk-btn vk-btn-submit">ADD COMMENT</button>
+                                                    <button type="submit" class="vk-btn vk-btn-submit">COMMENT</button>
                                                     <div class="clearfix"></div>
                                                 </div>
                                                 <div class="clearfix"></div>

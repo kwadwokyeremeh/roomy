@@ -478,5 +478,5 @@
             }
         });--}}
     });
-
+</script>
 @endsection

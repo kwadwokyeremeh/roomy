@@ -9,6 +9,8 @@
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 
+use myRoommie\Http\Requests\LayoutRequest;
+use myRoommie\Repository\Helper;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +31,7 @@ class LayoutAndPricingStep extends Step
     public function process(Request $request)
     {
         $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::has('hosteller.hostel_id')){
+        if (Session::exists('hosteller.hostel_id')){
             $hostelId = session('hosteller.hostel_id');
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
@@ -49,6 +51,7 @@ class LayoutAndPricingStep extends Step
         /*
          *  Create new block
          * */
+        $apartment = new Block;
         $blocks = $request['block'];
         $arr1 =[];
         foreach ($blocks as $block) {
@@ -57,15 +60,19 @@ class LayoutAndPricingStep extends Step
                 'name'      =>$block,
             ]);
         }
-        new Block(insert($arr1));
+        $apartment->insert($arr1);
 
         /*
          *  Retrieve the ID's of the just
          * created blocks
          * */
-        $hostel =(new Hostel)::findOrFail($hostelId);
+        $hostel = new Hostel;
         $createdBlock=[];
-           array_push($createdBlock,$hostel->blocks->id);
+        $b =$hostel->findOrFail($hostelId)->blocks()->get();
+        foreach ($b as $item) {
+            array_push($createdBlock,$item->id);
+            }
+
         /*
          * Create all the floor associated with each block
          * of a hostel
@@ -94,7 +101,8 @@ class LayoutAndPricingStep extends Step
                 ]);
             }
         }
-        new Floor(insert($arr2));
+        $floorPlan = new Floor;
+        $floorPlan->insert($arr2);
 
 
         /*
@@ -103,7 +111,12 @@ class LayoutAndPricingStep extends Step
          * */
 
         $createdFloors =[];
-        array_push($createdFloors,$hostel->floors->id);
+        $f =$hostel->find($hostelId)->floors()->get();
+
+        foreach($f as $item){
+            array_push($createdFloors,$item->id);
+        }
+
 
         /*
          *  Create all the room associated with the
@@ -115,12 +128,24 @@ class LayoutAndPricingStep extends Step
          * Split the array
          * */
 
-        $unsortedRooms = $request['room'];
+        /*$unsortedRooms = $request['room'];
+        $flk =$request['room.']
         [$bk,$bValues] = array_divide($unsortedRooms);
+        $sortedRoomsWithBlocks = array_combine($createdBlock,$bValues);
 
+        $helper =new Helper;
+        $rooms = $helper->replaceKey($sortedRoomsWithBlocks,$createdFloors,);
+        foreach ($sortedRoomsWithBlocks as $sortedRoomsWithBlock )
+        {
+            foreach ($sortedRoomsWithBlock as $k => $v) {
+                $sortedRoomsWithBlock[$k] = array_set($sortedRoomsWithBlock,$k,$createdFloors);
+                unset($sortedRoomsWithBlock[$k]);
+            }
+
+        }
         [$fk1,$fValues]= array_divide($bValues);
 
-        [$rk1,$rValues] = array_divide($fValues);
+        [$rk1,$rValues] = array_divide($fValues);*/
 
         /*
          * Recombine the array with its respective
@@ -129,29 +154,45 @@ class LayoutAndPricingStep extends Step
          * floor id
          *
          * */
-        $rooms = array_combine(
-            $createdBlock,
-                array_combine(
-                    $createdFloors,$rValues));
 
+        /*$rooms =
+                array_combine($createdFloors,$rValues);*/
 
-        $arr3 = [];
-        foreach ($rooms as $cbk => $blockV) {
+        /*foreach ($rooms as $cbk => $blockV) {
             foreach ($blockV as $cfk => $floorV) {
                 foreach ($floorV as $rk => $room) {
                     array_push($arr3,[
                         'hostel_id'           =>$hostelId,
                         'block_id'            =>$cbk,
                         'floor_id'            =>$cfk,
-                        'room_description_id' =>$room['room_description'],
+                        'room_description_id' =>$room['roomType'],
                         'name'                =>$room['name'],
                         'number'              =>$rk,
-                        'sexType'             =>$room['sexType'],
+                        'sexType'             =>$room['gender'],
                     ]);
                 }
             }
+        }*/
+
+        $unsortedRooms = $request['room'];
+        [$fk1,$rValues] = array_divide($unsortedRooms);
+        $rooms = array_combine($createdFloors,$rValues);
+        $arr3 = [];
+
+        foreach ($rooms as $cfk => $floorV) {
+                foreach ($floorV as $rk => $room) {
+                    array_push($arr3,[
+                        'hostel_id'           =>$hostelId,
+                        'floor_id'            =>$cfk,
+                        'room_description_id' =>$room['roomType'],
+                        'name'                =>$room['name'],
+                        'number'              =>$rk,
+                        'sexType'             =>$room['gender'],
+                    ]);
+                }
         }
-        new Room(insert($arr3));
+        $abode = new Room;
+        $abode -> insert($arr3);
         /*
          * End of room array
          * */
@@ -177,7 +218,10 @@ class LayoutAndPricingStep extends Step
     public function rules(Request $request = null): array
     {
         return [
-
+                'block'         =>  'array|required',
+                'floor'         =>  'array|required',
+                'room'          =>  'array|required',
+            'room.*.roomType'   =>  'required'
         ];
     }
 

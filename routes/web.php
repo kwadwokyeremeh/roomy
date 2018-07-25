@@ -41,7 +41,7 @@ Route::prefix('knust')->group(function (){
  *********************/
 Auth::routes();
 
-Route::get('/user/{student}', 'HomeController@index')->name('student');
+Route::get('/user/', 'HomeController@index')->name('student');
 
 
 

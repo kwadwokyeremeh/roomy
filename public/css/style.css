@@ -13861,12 +13861,12 @@ a {
 .square {
   background-color: cyan;
   padding: 2.5px;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   margin: 2.5px;
   color: black;
-  font-weight: bold;
-  font-size: 1em;
+  font-weight: normal;
+  font-size: 0.8em;
   text-align: left;
 }
 

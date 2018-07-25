@@ -12345,7 +12345,9 @@ img.ui.bordered.image {
 /*--------------------
         Size
 ---------------------*/
-
+.ui.tin.input {
+  font-size: 0.45em;
+}
 .ui.mini.input {
   font-size: 0.78571429em;
 }

@@ -149,6 +149,7 @@
     </section>
 
 @section('custom-script')
+    <script>
     $(document).ready(
     function () {
     var counter = 1;
@@ -298,32 +299,36 @@
     var floor = $('#heading' + accesskey ).children().get(0).id;
     var block = $('#heading' + accesskey ).parent().parent().parent().get(0).id;
         y++;
-    $('#panel' + accesskey).find('#TextBoxDiv' + accesskey).append('<p class="room square">' +
+    $('#panel' + accesskey).find('#TextBoxDiv' + accesskey).append('<div class="room square">' +
         '<a href="#" class="remove_room exit-btn"><span>&times;</span></a>&nbsp;' +
 
-            {{--'<input type="hidden" name="block['+parentId+']['+roomCounter+'][name]" id="room'+ roomCounter+'">'+--}}
-            '<input type="hidden" name="room['+block+']['+floor+']['+roomCounter+'][type]" id="room'+ roomCounter+'">'+
-            '<input type="hidden" name="room['+block+']['+floor+']['+roomCounter+'][sexType]" id="room'+ roomCounter+'">'+
-            {{--'<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][type]" id="room'+ roomCounter+'">'+
-            '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][sexType]" id="room'+ roomCounter+'">'+
-            '<input type="hidden" name="room['+blockId+']['+floorId+']['+roomCounter+'][status]" id="room'+ roomCounter+'">'+--}}
-        '<span style="font-size: 0.7em">Room '+roomCounter+'</span>' +
-        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
-        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
-        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
-        '</p>');
+        '<div class="ui">' +
+            '<div class="ui small input">'+
+                '<input type="text" placeholder="Room '+roomCounter+'" name="room['+floor+']['+roomCounter+'][name]" size="7">'+
+        {{--'<input type="text" placeholder="Room '+roomCounter+'" name="room['+block+']['+floor+']['+roomCounter+'][name]" size="7">'+--}}
+            '</div>'+
+
+        '<select class="ui search selection dropdown" id="search-select" name="room['+floor+']['+roomCounter+'][roomType]" required>'+
+            {{--'<select class="ui search selection dropdown" id="search-select" name="room['+block+']['+floor+']['+roomCounter+'][roomType]" required>'+--}}
+            '<option value="">Room Type</option>'+
+            @foreach($data->roomDescription as $roomType)
+            '<option value="{{$roomType->id}}">{{$roomType->room_type}}</option>'+
+            @endforeach
+        '</select>'+
+        '<select class="ui search selection dropdown" id="search-select" name="room['+floor+']['+roomCounter+'][gender]">'+
+                {{--'<select class="ui search selection dropdown" id="search-select" name="room['+block+']['+floor+']['+roomCounter+'][gender]">'+--}}
+            '<option value="">Gender</option>'+
+            '<option value="F">Female</option>'+
+            '<option value="M">Male</option>'+
+        '</select>'+
 
 
-        {{--var jsonObj = [];
-        $('p.room').each(function(){
-            var roomName = [];
-            $(this).find('#room'+ roomCounter).each(function() {
-                roomName.push({
-                    name: $(this).attr("name"), room: $().val()
-                });
-            });
-            jsonObj.push(roomName)
-        });--}}
+
+        '</div>'+
+        '</div>');
+
+
+
         roomCounter++;
     });
 
@@ -342,10 +347,16 @@
     e.preventDefault();
     $(this).parent('div').remove();
     y--;
-    $(this).parent('p').remove();
+    $(this).parent('div').remove();
     y--;
     roomCounter--;
     });
+
+        $('.dropdown')
+            .dropdown({
+                action: 'activate'
+            })
+        ;
 
     $(wrapper).on("click", ".edit_ctg_label", function (e) {
     var panelId = $(this).attr('accesskey');
@@ -363,6 +374,7 @@
     });
 
 
+
         {{--var result = [];                               // <-- Main array
         $(".block").each('click',function(){
             var floor = [];                // <-- "sub"-array
@@ -375,4 +387,90 @@
         });
 
 
+
+    </script>
     @endsection
+
+
+       {{-- '<div class="col-md-3">' +
+    '          <div class="box box-default box-solid">' +
+    '            <div class="box-header with-border">' +
+    '              <h3 class="box-title">Expandable</h3>' +
+    '              <div class="box-tools pull-right">' +
+    '                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>' +
+    '                </button>' +
+    '              </div>\n' +
+    '              <!-- /.box-tools -->' +
+    '            </div>\n' +
+    '            <!-- /.box-header -->' +
+    '            <div class="box-body">' +
+    '              The body of the box' +
+    '            </div>' +
+    '            <!-- /.box-body -->' +
+    '          </div>' +
+    '          <!-- /.box -->' +
+    '        </div>'+--}}
+
+    {{--var jsonObj = [];
+        $('p.room').each(function(){
+            var roomName = [];
+            $(this).find('#room'+ roomCounter).each(function() {
+                roomName.push({
+                    name: $(this).attr("name"), room: $().val()
+                });
+            });
+            jsonObj.push(roomName)
+        });--}}
+
+    {{--'<div class="ui vertical small menu">' +
+        '  <a class="item">Link 1</a>' +
+        '  <a class="item">Link 2</a>' +
+        '  <div class="header item">All Sections</div>' +
+        '  <div class="ui item">' +
+        '    <div class="ui fluid selection dropdown">' +
+        '      <div class="text">More</div>' +
+        '      <i class="dropdown icon"></i>' +
+        '      <div class="menu">' +
+        '        <div class="item">Choice 1</div>' +
+        '        <div class="item">Choice 2</div>' +
+        '        <div class="item">Choice 3</div>' +
+        '      </div>' +
+        '    </div>' +
+        '  </div>' +
+        '</div>'+
+
+            '<div class="form-group row">' +
+                '<div class="col-sm-3">' +
+                    '<input type="text" placeholder=".col-sm-3" class="form-control">' +
+                '</div>' +
+
+
+
+            '<input type="text" name="room['+block+']['+floor+']['+roomCounter+'][name]" value="" id="room'+ roomCounter+'">'+
+            '<input type="" name="room['+block+']['+floor+']['+roomCounter+'][type]" value="" id="room'+ roomCounter+'">'+
+            '<input type="" name="room['+block+']['+floor+']['+roomCounter+'][sexType]" value="" id="room'+ roomCounter+'">'+
+
+                '<label class="col-form-label col-sm-1"><span></span></label>' +
+                    '<div class="col-sm-3">' +
+                        '<select class="form-control form-control-sm" name="" required>' +
+                            '<option value="Please select">Room Type</option>' +
+                            @foreach($data->roomDescription as $roomType)
+                            '<option value="{{$roomType->id}}">{{$roomType->room_type}}</option>' +
+                            @endforeach
+                        '</select><!----><!---->' +
+                    '</div>' +
+                '<label class="col-form-label col-sm-1"><span></span></label>' +
+                    '<div class="col-sm-3">' +
+                        '<select class="form-control form-control-sm" name="room['+block+']['+floor+']['+roomCounter+'][sexType]">' +
+                            '<option value="Please select">Gender</option>' +
+                            '<option value="F">Female</option>' +
+                            '<option value="M">Male</option>' +
+
+                        '</select><!----><!---->' +
+                    '</div>' +
+            '</div>'+--}}
+
+    {{--'<span style="font-size: 0.7em">Room '+roomCounter+'</span>' +
+        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
+        '<span style="font-size: 0.5em">Room&nbsp;</span>' +
+        '<span style="font-size: 0.5em">Room&nbsp;</span>' +--}}
