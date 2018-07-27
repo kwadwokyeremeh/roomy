@@ -147,7 +147,7 @@ class AddMediaStep extends Step
             'images.views.right' => 'mimes:jpeg,bmp,png,jpg',
             'images.room.*.*' => 'mimes:jpeg,bmp,png,jpg',
             'images.others.*' => 'mimes:jpeg,bmp,png,jpg',
-            'video' => 'nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
+            'video' => 'present|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
         ];
     }
 

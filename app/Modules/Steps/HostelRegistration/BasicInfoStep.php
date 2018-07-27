@@ -133,15 +133,17 @@ class BasicInfoStep extends Step
 
 
            return [
-            'firstName' => 'sometimes|string|max:255',
-            'lastName' => 'sometimes|string|max:255',
+            'firstName' => 'present|string|min:3|max:255',
+            'lastName' => 'present|string|min:3|max:255',
             'role' => 'sometimes',
-            'firstName_3' => 'sometimes|string|max:255',
-            'lastName_3' => 'sometimes|string|max:255',
+            'firstName_3' => 'present|string|min:3|max:255',
+            'lastName_3' => 'present|string|min:3|max:255',
             'email' => 'array|required',
-            'email.manager' => 'email|unique:hostellers',
-            'email.portal' => 'email|unique:hostellers',
-            'phone' => 'required|array|max:10|unique:hostellers',
+            'email.manager' => 'uniqueManagerEmail:{$request->email.manager}',
+            'email.portal' => 'uniqueManagerEmail:{$request->email.portal}',
+            'phone' => 'present|array',
+            'phone.manager' => 'uniqueManagerPhone:{$request->phone.manager}',
+            'phone.portal' => 'uniqueManagerPhone:{$request->phone.portal}',
             'role_3' => 'sometimes',
            ];
 
@@ -151,9 +153,12 @@ class BasicInfoStep extends Step
     public function messages()
     {
         return [
-            'email.unique' => 'The email address already exist in our database',
+            'uniqueManagerEmail' => 'The email address already exist in our database',
+            'uniqueManagerPhone' => 'The phone number already exist in our database',
             'array' => 'The email address already exist in our database',
             'phone.required' => 'The :attribute field is required.',
+            'firstName_3' =>'The portal first name field must be provided',
+            'lastName_3' =>'The portal last name field must be provided'
         ];
     }
 
