@@ -107,6 +107,16 @@
                                                                             </p>--}}
                                                                             {{--Draw your hostel layout--}}
                                                                             <div class="">
+                                                                                @if ($errors->any())
+                                                                                    <div class="alert alert-danger">
+                                                                                        <ul>
+                                                                                            @foreach ($errors->all() as $error)
+                                                                                                <li>{{ $error }}</li>
+                                                                                            @endforeach
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                @endif
+
                                                                                 <div class="panel-body">
                                                                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"></div>
                                                                                     <div class="col-xs-12 text-center" style="margin-top:15px;">
@@ -308,7 +318,7 @@
         {{--'<input type="text" placeholder="Room '+roomCounter+'" name="room['+block+']['+floor+']['+roomCounter+'][name]" size="7">'+--}}
             '</div>'+
 
-        '<select class="ui search selection dropdown" id="search-select" name="room['+floor+']['+roomCounter+'][roomType]" required>'+
+        '<select class="ui search selection dropdown" id="search-select" name="room['+floor+']['+roomCounter+'][roomType]" >'+
             {{--'<select class="ui search selection dropdown" id="search-select" name="room['+block+']['+floor+']['+roomCounter+'][roomType]" required>'+--}}
             '<option value="">Room Type</option>'+
             @foreach($data->roomDescription as $roomType)

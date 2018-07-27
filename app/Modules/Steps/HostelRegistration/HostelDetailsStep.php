@@ -91,9 +91,7 @@ class HostelDetailsStep extends Step
 
 
 
-        $request->session()->put('hosteller',['hostel_id'=>
-        $hostel->id,
-        ]);
+        $request->session()->put('hosteller',['hostel_id'=> $hostel->id,]);
         $request->session()->regenerate();
 
         // next if you want save one step progress to session use
@@ -118,8 +116,17 @@ class HostelDetailsStep extends Step
         ];
     }
 
-    public function progress()
+    public function messages()
     {
-        return view('hostelRegistration._partials.02progress');
+        return [
+            'name.required' =>'A hostel name is required',
+        ];
     }
+    public function customAttributes()
+    {
+        return [
+
+        ];
+    }
+
 }

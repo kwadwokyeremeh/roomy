@@ -36,5 +36,17 @@ class Instruction extends Step
             //
         ];
     }
+    public function messages()
+    {
+        return [
+            //
+        ];
+    }
 
+    public function customAttributes()
+    {
+        return [
+
+        ];
+    }
 }

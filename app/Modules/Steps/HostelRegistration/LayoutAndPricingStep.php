@@ -218,11 +218,29 @@ class LayoutAndPricingStep extends Step
     public function rules(Request $request = null): array
     {
         return [
-                'block'         =>  'array|required',
-                'floor'         =>  'array|required',
-                'room'          =>  'array|required',
-            'room.*.roomType'   =>  'required'
+                'block'         =>  'required|array',
+                'floor'         =>  'required|array',
+                'room'          =>  'required|array',
+            'room.*.*.roomType'   =>  'required',
+            'room.*.gender'   =>  'nullable',
+            'room.*.name'   =>  'nullable',
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'block.required' => 'At least one block is required',
+            'floor.required' => 'At least one floor is required',
+            'room.required' => 'At least one room is required',
+            'room.*.*.roomType.required'=>'Please select the type of room for :attribute'
+        ];
+    }
+
+    public function customAttributes()
+    {
+        return [
+
+        ];
+    }
 }

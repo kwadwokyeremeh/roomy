@@ -48,12 +48,21 @@ class ConfirmationStep extends Step
     public function rules(Request $request = null): array
     {
         return [
-            'username' => 'required|min:4|max:255',
+
         ];
     }
 
-    public function progress()
+    public function messages()
     {
-        return view('hostelRegistration._partials.08progress');
+        return [
+
+        ];
+    }
+
+    public function customAttributes()
+    {
+        return [
+
+        ];
     }
 }

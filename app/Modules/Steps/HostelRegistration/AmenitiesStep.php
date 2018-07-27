@@ -149,12 +149,25 @@ class AmenitiesStep extends Step
     public function rules(Request $request = null): array
     {
         return [
+            'general.*'     =>['nullable', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+            'services.*'    =>['nullable', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+            'food.*'        =>['nullable', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+            'entertainment.*'=>['nullable', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+            'utilities.*'   =>['nullable', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
 
         ];
     }
 
-    public function progress()
+    public function customAttributes()
     {
-        return view('hostelRegistration._partials.04progress');
+        return [
+
+        ];
     }
 }

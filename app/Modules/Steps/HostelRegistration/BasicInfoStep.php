@@ -35,11 +35,6 @@ class BasicInfoStep extends Step
          */
 
 
-        $messages = [
-            'email.unique' => 'The email address already exist in our database',
-            'array' => 'The email address already exist in our database',
-            'required' => 'The :attribute field is required.',
-        ];
 
 
         if (($request->get('email')['manager'] && $request->get('email')['portal'])!= null) {
@@ -144,8 +139,8 @@ class BasicInfoStep extends Step
             'firstName_3' => 'sometimes|string|max:255',
             'lastName_3' => 'sometimes|string|max:255',
             'email' => 'array|required',
-            'email.*.manager' => 'array|email|unique:hostellers',
-            'email.*.portal' => 'array|email|unique:hostellers',
+            'email.manager' => 'email|unique:hostellers',
+            'email.portal' => 'email|unique:hostellers',
             'phone' => 'required|array|max:10|unique:hostellers',
             'role_3' => 'sometimes',
            ];
@@ -153,7 +148,21 @@ class BasicInfoStep extends Step
 
     }
 
+    public function messages()
+    {
+        return [
+            'email.unique' => 'The email address already exist in our database',
+            'array' => 'The email address already exist in our database',
+            'phone.required' => 'The :attribute field is required.',
+        ];
+    }
 
+    public function customAttributes()
+    {
+        return [
+
+        ];
+    }
 
 
 

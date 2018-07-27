@@ -141,11 +141,13 @@ class AddMediaStep extends Step
     public function rules(Request $request = null): array
     {
         return [
-            /*'video' => 'sometimes|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
             'images' => 'required|array|file|image',
-            'images.*' => 'mimes:jpeg,bmp,png,jpg',
-            'images.room.*' => 'mimes:jpeg,bmp,png,jpg',
-            'images.views.*' => 'mimes:jpeg,bmp,png,jpg',*/
+            'images.views.front' => 'mimes:jpeg,bmp,png,jpg',
+            'images.views.left' => 'mimes:jpeg,bmp,png,jpg',
+            'images.views.right' => 'mimes:jpeg,bmp,png,jpg',
+            'images.room.*.*' => 'mimes:jpeg,bmp,png,jpg',
+            'images.others.*' => 'mimes:jpeg,bmp,png,jpg',
+            'video' => 'nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
         ];
     }
 
@@ -169,5 +171,19 @@ $path = $other->store($hostelId.'/misc');
     Storage::putFile($other, new File($hostelId.'/misc'), 'public');
 }*/
 
+    public function messages()
+    {
+        return [
+            'images.views.front' =>'A front view of your hostel is required',
+            'images.views.left' =>'A left view of your hostel is required',
+            'images.views.right' =>'A right view of your hostel is required',
+        ];
+    }
 
+    public function customAttributes()
+    {
+        return [
+
+        ];
+    }
 }

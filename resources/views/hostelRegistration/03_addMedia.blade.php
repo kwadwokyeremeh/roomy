@@ -105,7 +105,7 @@
 
 
                                                                                 </div>
-                                                                                <input type="file" accept="image/*" class="input-text" id="view1" name="images[views][front]" onchange="preview_views();"/>
+                                                                                <input type="file" accept="image/*" class="input-text" id="view1" name="images[views][front]" onchange="preview_views();" required/>
                                                                             </div>
 
                                                                             <div class="col-md-3">
@@ -115,7 +115,7 @@
 
 
                                                                                 </div>
-                                                                                <input type="file" accept="image/*" class="input-text" id="view2" name="images[views][left]" onchange="preview_views();"/>
+                                                                                <input type="file" accept="image/*" class="input-text" id="view2" name="images[views][left]" onchange="preview_views();" required/>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 Other Side View
@@ -124,7 +124,7 @@
 
 
                                                                                 </div>
-                                                                                <input type="file" accept="image/*" class="input-text" id="view3" name="images[views][right]" onchange="preview_views();"/>
+                                                                                <input type="file" accept="image/*" class="input-text" id="view3" name="images[views][right]" onchange="preview_views();" required/>
                                                                             </div>
                                                                         </div>
 
