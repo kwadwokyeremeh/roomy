@@ -156,9 +156,9 @@
                                                                                     </div>
 
                                                                             </div>
-                                                                            @if ($errors->has('general[]'))
+                                                                            @if ($errors->has('general.*'))
                                                                                 <span class="invalid-feedback">
-                                                                                        <strong style="color: #ff0000;">{{ $errors->first('general[]') }}</strong>
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('general.*') }}</strong>
                                                                                     </span>
                                                                             @endif
                                                                         </div>
@@ -217,9 +217,9 @@
                                                                                     </div>
 
                                                                             </div>
-                                                                            @if ($errors->has('services[]'))
+                                                                            @if ($errors->has('services.*'))
                                                                                 <span class="invalid-feedback">
-                                                                                        <strong style="color: #ff0000;">{{ $errors->first('services[]') }}</strong>
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('services.*') }}</strong>
                                                                                     </span>
                                                                             @endif
                                                                         </div>
@@ -265,9 +265,9 @@
                                                                                     </div>
 
                                                                             </div>
-                                                                            @if ($errors->has('food[]'))
+                                                                            @if ($errors->has('food.*'))
                                                                                 <span class="invalid-feedback">
-                                                                                        <strong style="color: #ff0000;">{{ $errors->first('food[]') }}</strong>
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('food.*') }}</strong>
                                                                                     </span>
                                                                             @endif
                                                                         </div>
@@ -300,9 +300,9 @@
                                                                                     </div>
 
                                                                             </div>
-                                                                            @if ($errors->has('entertainment[]'))
+                                                                            @if ($errors->has('entertainment.*'))
                                                                                 <span class="invalid-feedback">
-                                                                                        <strong style="color: #ff0000;">{{ $errors->first('entertainment[]') }}</strong>
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('entertainment.*') }}</strong>
                                                                                     </span>
                                                                             @endif
                                                                         </div>
@@ -342,9 +342,9 @@
                                                                                     </div>
 
                                                                             </div>
-                                                                            @if ($errors->has('utilities[]'))
+                                                                            @if ($errors->has('utilities.*'))
                                                                                 <span class="invalid-feedback">
-                                                                                        <strong style="color: #ff0000;">{{ $errors->first('utilities[]') }}</strong>
+                                                                                        <strong style="color: #ff0000;">{{ $errors->first('utilities.*') }}</strong>
                                                                                     </span>
                                                                             @endif
                                                                         </div>

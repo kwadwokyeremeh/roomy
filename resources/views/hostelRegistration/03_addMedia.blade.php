@@ -167,7 +167,7 @@
                                                                     <div class="row">
 
                                                                             <div class="col-md-9">
-                                                                                <input type="file" class="input-text" accept="image/*" id="room" name="images[room][{{$roomType->id}}][]" onchange="preview_images();" multiple/>
+                                                                                <input type="file" class="input-text" accept="image/*" id="room" name="images[room][{{$roomType->id}}][]" onchange="preview_images();" multiple required/>
                                                                             </div>
 
                                                                     </div>
@@ -201,7 +201,15 @@
                                                                 </div>
 
                                                             </div>
-
+                                                            @if ($errors->any())
+                                                                <div class="alert alert-danger">
+                                                                    <ul>
+                                                                        @foreach ($errors->all() as $error)
+                                                                            <li>{{ $error }}</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            @endif
 
 
                                                             @include('hostelRegistration._partials.wizardControl')

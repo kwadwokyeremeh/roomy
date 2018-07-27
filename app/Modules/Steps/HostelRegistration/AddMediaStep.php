@@ -141,13 +141,12 @@ class AddMediaStep extends Step
     public function rules(Request $request = null): array
     {
         return [
-            'images' => 'required|array|file|image',
-            'images.views.front' => 'mimes:jpeg,bmp,png,jpg',
-            'images.views.left' => 'mimes:jpeg,bmp,png,jpg',
-            'images.views.right' => 'mimes:jpeg,bmp,png,jpg',
-            'images.room.*.*' => 'mimes:jpeg,bmp,png,jpg',
-            'images.others.*' => 'mimes:jpeg,bmp,png,jpg',
-            'video' => 'present|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
+            'images.views.front' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            'images.views.left' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            'images.views.right' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            'images.room.*.*' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            'images.others.*' => 'image|mimes:jpeg,bmp,png,jpg',
+            'video' => 'video|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
         ];
     }
 
