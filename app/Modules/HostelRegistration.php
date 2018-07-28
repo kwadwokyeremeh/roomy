@@ -11,14 +11,14 @@ class HostelRegistration extends Model
     protected $fillable =[
         'hosteller_id',
         'hostel_id',
-        '1_basic_info',
-        '2_hostel_details',
-        '3_add_media',
-        '4_amenities',
-        '5_layout_n_pricing',
-        '6_policies',
-        '7_payment',
-        '8_confirmation',
+        'basic_info',
+        'hostel_details',
+        'add_media',
+        'amenities',
+        'layout_n_pricing',
+        'policies',
+        'payment',
+        'confirmation',
     ];
 
     protected $primaryKey ='hosteller_id';

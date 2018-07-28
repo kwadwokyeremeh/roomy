@@ -24,19 +24,19 @@ class ConfirmationStep extends Step
     public function process(Request $request)
     {
         $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::has('hosteller.hostel_id')){
+        if (Session::has('hosteller.hostel_id')) {
             $hostelId = session('hosteller.hostel_id');
-        }else{
+        } else {
             $hostelId = DB::table('hostel_registrations')->where([
-                'hosteller_id'=> $hostellerId,
-                '1_basic_info'=>true,
-                '2_hostel_details'=>true,
-                '3_add_media'=>true,
-                '4_amenities'=>true,
-                '5_layout_n_pricing' =>true,
-                '6_policies' =>true,
-                '7_payment' =>true,
-                '8_confirmation' =>false,
+                'hosteller_id' => $hostellerId,
+                'basic_info' => true,
+                'hostel_details' => true,
+                'add_media' => true,
+                'amenities' => true,
+                'layout_n_pricing' => true,
+                'policies' => true,
+                'payment' => true,
+                'confirmation' => false,
             ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
         }
         // for example, create user

@@ -34,14 +34,14 @@ class AmenitiesStep extends Step
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
                 'hosteller_id'=> $hostellerId,
-                '1_basic_info'=>true,
-                '2_hostel_details'=>true,
-                '3_add_media'=>true,
-                '4_amenities'=>false,
-                '5_layout_n_pricing' =>false,
-                '6_policies' =>false,
-                '7_payment' =>false,
-                '8_confirmation' =>false,
+                'basic_info'=>true,
+                'hostel_details'=>true,
+                'add_media'=>true,
+                'amenities'=>false,
+                'layout_n_pricing' =>false,
+                'policies' =>false,
+                'payment' =>false,
+                'confirmation' =>false,
             ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
         }
 
@@ -142,7 +142,7 @@ class AmenitiesStep extends Step
         DB::table('hostel_registrations')
             ->where(['hosteller_id'=> $hostellerId,
                         'hostel_id' =>$hostelId])
-            ->update(['4_amenities' => true]);
+            ->update(['amenities' => true]);
         $this->saveProgress($request);
     }
 

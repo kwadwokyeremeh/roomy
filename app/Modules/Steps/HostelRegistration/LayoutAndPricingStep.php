@@ -36,23 +36,39 @@ class LayoutAndPricingStep extends Step
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
                 'hosteller_id'=> $hostellerId,
-                '1_basic_info'=>true,
-                '2_hostel_details'=>true,
-                '3_add_media'=>true,
-                '4_amenities'=>true,
-                '5_layout_n_pricing' =>false,
-                '6_policies' =>false,
-                '7_payment' =>false,
-                '8_confirmation' =>false,
+                'basic_info'=>true,
+                'hostel_details'=>true,
+                'add_media'=>true,
+                'amenities'=>true,
+                'layout_n_pricing' =>false,
+                'policies' =>false,
+                'payment' =>false,
+                'confirmation' =>false,
             ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
         }
+
+
+        /*
+         *  Check for data consistency
+         *
+         *
+         * */
+        $blocks = $request['block'];
+        $unsortedFloors = $request['floor'];
+        $unsortedRooms = $request['room'];
+        [$fk,$floorValues]=array_divide($unsortedFloors);
+        [$fk1,$rValues] = array_divide($unsortedRooms);
+
+        if ( (count($blocks)==count($fk)) && (count($fk)==count($fk1)) )
+        {
+
 
 
         /*
          *  Create new block
          * */
         $apartment = new Block;
-        $blocks = $request['block'];
+
         $arr1 =[];
         foreach ($blocks as $block) {
             array_push($arr1,[
@@ -81,12 +97,12 @@ class LayoutAndPricingStep extends Step
         /*
          * Request for the floors
          * */
-        $unsortedFloors = $request['floor'];
+
         /*
          * Separate the keys from the requested array
          * and merge it with the Block ID's retrieved
          * */
-        [$fk,$floorValues]=array_divide($unsortedFloors);
+
         $floors =array_combine($createdBlock,$floorValues);
 
 
@@ -174,46 +190,58 @@ class LayoutAndPricingStep extends Step
             }
         }*/
 
-        $unsortedRooms = $request['room'];
-        [$fk1,$rValues] = array_divide($unsortedRooms);
-        $rooms = array_combine($createdFloors,$rValues);
-        $arr3 = [];
 
-        foreach ($rooms as $cfk => $floorV) {
+
+
+            $rooms = array_combine($createdFloors, $rValues);
+            $arr3 = [];
+
+            foreach ($rooms as $cfk => $floorV) {
                 foreach ($floorV as $rk => $room) {
-                    array_push($arr3,[
-                        'hostel_id'           =>$hostelId,
-                        'floor_id'            =>$cfk,
-                        'room_description_id' =>$room['roomType'],
-                        'name'                =>$room['name'],
-                        'number'              =>$rk,
-                        'sexType'             =>$room['gender'],
+                    array_push($arr3, [
+                        'hostel_id' => $hostelId,
+                        'floor_id' => $cfk,
+                        'room_description_id' => $room['roomType'],
+                        'name' => $room['name'],
+                        'number' => $rk,
+                        'sexType' => $room['gender'],
                     ]);
                 }
+            }
+            $abode = new Room;
+            $abode->insert($arr3);
+
+            /*
+                    * End of room array
+                    * */
+
+            /*
+             * Create all the beds associated
+             * with the hostel
+             * */
+
+
+
+            /*
+             * End of bed array
+             * */
+            // next if you want save one step progress to session use
+            DB::table('hostel_registrations')
+                ->where(['hosteller_id'=> $hostellerId,
+                    'hostel_id' =>$hostelId])
+                ->update(['layout_n_pricing' => true]);
+            $this->saveProgress($request);
+
+        }else{
+
+            return redirect()->back()->withErrors(['The data provided is inconsistent']);
         }
-        $abode = new Room;
-        $abode -> insert($arr3);
-        /*
-         * End of room array
-         * */
 
-        /*
-         * Create all the beds associated
-         * with the hostel
-         * */
-
-
-
-        /*
-         * End of bed array
-         * */
-        // next if you want save one step progress to session use
-        DB::table('hostel_registrations')
-            ->where(['hosteller_id'=> $hostellerId,
-                'hostel_id' =>$hostelId])
-            ->update(['5_layout_n_pricing' => true]);
-        $this->saveProgress($request);
+        return redirect()->back()->withErrors(['The data provided is inconsistent']);
     }
+
+
+
 
     public function rules(Request $request = null): array
     {
@@ -222,8 +250,8 @@ class LayoutAndPricingStep extends Step
                 'floor'         =>  'required|array',
                 'room'          =>  'required|array',
             'room.*.*.roomType'   =>  'required',
-            'room.*.gender'   =>  'nullable',
-            'room.*.name'   =>  'nullable',
+            'room.*.*.gender'   =>  'nullable|string|max:1',
+            'room.*.*.name'   =>  'nullable|string|max:255',
         ];
     }
 

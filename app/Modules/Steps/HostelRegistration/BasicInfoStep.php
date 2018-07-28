@@ -133,17 +133,17 @@ class BasicInfoStep extends Step
 
 
            return [
-            'firstName' => 'present|string|min:3|max:255',
-            'lastName' => 'present|string|min:3|max:255',
+            'firstName' => 'string|min:3|max:255|nullable',
+            'lastName' => 'string|min:3|max:255|nullable',
             'role' => 'sometimes',
-            'firstName_3' => 'present|string|min:3|max:255',
-            'lastName_3' => 'present|string|min:3|max:255',
+            'firstName_3' => 'string|min:3|max:255|nullable',
+            'lastName_3' => 'string|min:3|max:255|nullable',
             'email' => 'array|required',
             'email.manager' => 'uniqueManagerEmail:{$request->email.manager}',
             'email.portal' => 'uniqueManagerEmail:{$request->email.portal}',
             'phone' => 'present|array',
-            'phone.manager' => 'uniqueManagerPhone:{$request->phone.manager}',
-            'phone.portal' => 'uniqueManagerPhone:{$request->phone.portal}',
+            'phone.manager' => 'digits:10|uniqueManagerPhone:{$request->phone.manager}',
+            'phone.portal' => 'digits:10|uniqueManagerPhone:{$request->phone.portal}',
             'role_3' => 'sometimes',
            ];
 

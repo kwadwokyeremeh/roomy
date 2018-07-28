@@ -85,7 +85,7 @@ Route::prefix('hostelRegistration')->group(function (){
     Route::get('/{step?}','HostelRegistrationController@wizard')->name('hostel.registration')->middleware('chrp');
 
     /* Post routes*/
-    Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit')->middleware('chrp');
+    Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit');
 
 });
 

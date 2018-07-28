@@ -43,14 +43,14 @@ class AddMediaStep extends Step
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
                 'hosteller_id'=> $hostellerId,
-                '1_basic_info'=>true,
-                '2_hostel_details'=>true,
-                '3_add_media'=>false,
-                '4_amenities'=>false,
-                '5_layout_n_pricing' =>false,
-                '6_policies' =>false,
-                '7_payment' =>false,
-                '8_confirmation' =>false,
+                'basic_info'=>true,
+                'hostel_details'=>true,
+                'add_media'=>false,
+                'amenities'=>false,
+                'layout_n_pricing' =>false,
+                'policies' =>false,
+                'payment' =>false,
+                'confirmation' =>false,
             ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
         }
 
@@ -134,7 +134,7 @@ class AddMediaStep extends Step
         DB::table('hostel_registrations')
             ->where(['hosteller_id'=> $hostellerId,
                      'hostel_id' =>$hostelId])
-            ->update(['3_add_media' => true]);
+            ->update(['add_media' => true]);
         $this->saveProgress($request);
     }
 
@@ -146,7 +146,7 @@ class AddMediaStep extends Step
             'images.views.right' => 'required|image|mimes:jpeg,bmp,png,jpg',
             'images.room.*.*' => 'required|image|mimes:jpeg,bmp,png,jpg',
             'images.others.*' => 'image|mimes:jpeg,bmp,png,jpg',
-            'video' => 'video|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
+            'video' => 'mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/webm',
         ];
     }
 

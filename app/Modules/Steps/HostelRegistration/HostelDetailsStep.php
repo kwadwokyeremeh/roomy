@@ -111,8 +111,8 @@ class HostelDetailsStep extends Step
             'roomType.roomType.*'=> 'required|string|min:3',
             'roomType.beds.*'=>     'required|integer|min:1',
             'roomType.price.*'=>    'required|numeric',
-            'hostel_email'   =>     'email',
-            'hostel_phone'  =>      'phone',
+            'hostel_email'   =>     'email|nullable',
+            'hostel_phone'  =>      'digits:10|nullable',
         ];
     }
 
