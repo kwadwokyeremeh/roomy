@@ -2,6 +2,7 @@
 
 namespace myRoommie\Providers;
 
+use function foo\func;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +33,17 @@ class AppServiceProvider extends ServiceProvider
                 ->count();
 
             return $count === 0;
+        });
+        Validator::extend('inconsistentData',function ($attribute, $value, $parameters, $validator){
+            $blocks = \request(['block']);
+            $unsortedFloors = \request(['floor']);
+            $unsortedRooms = \request(['room']);
+            [$fk,$floorValues]=array_divide($unsortedFloors);
+            [$fk1,$rValues] = array_divide($unsortedRooms);
+            if((count($blocks)==count($fk)) && (count($fk)==count($fk1))){
+                return 'The provided data is consistent';
+            }
+                return 'The provided data is inconsistent.';
         });
     }
 

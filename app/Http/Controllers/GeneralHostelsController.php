@@ -16,6 +16,7 @@ class GeneralHostelsController extends Controller
     public function index()
     {
         $allHostels = Hostel::where('published','=',0)
+        ->with(['roomTypeMedia','roomDescription'])
         ->orderBy('name')
             /*where('status','=',1)*/
             ->paginate(15);

@@ -2,8 +2,10 @@
 
 namespace myRoommie\Modules;
 
-use Illuminate\Database\Eloquent\Model;
+use myRoommie\Hosteller;
 use myRoommie\Modules\Hostel\Hostel;
+use Illuminate\Database\Eloquent\Model;
+
 
 
 class HostelRegistration extends Model
@@ -25,7 +27,7 @@ class HostelRegistration extends Model
 
     public function hosteller()
     {
-        return $this->belongsTo('myRoommie\Hosteller');
+        return $this->belongsTo(Hosteller::class);
     }
 
     public function hostel()

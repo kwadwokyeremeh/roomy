@@ -82,8 +82,9 @@ Route::get('password/reset/{token}','Hosteller\ResetPasswordController@showReset
 Route::prefix('hostelRegistration')->group(function (){
 
     /* Get routes*/
-    Route::get('/{step?}','HostelRegistrationController@wizard')->name('hostel.registration')->middleware('chrp');
 
+    Route::get('/{step?}','HostelRegistrationController@wizard')->name('hostel.registration')->middleware('chrp');
+    Route::get('/05','HostelRegistrationController@wizard')->name('hostel.registration.layout');
     /* Post routes*/
     Route::post('/{step}','HostelRegistrationController@wizardPost')->name('hostel.registration.submit');
 

@@ -8,7 +8,8 @@
 
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
-
+use Dotenv\Validator;
+use myRoommie\Http\Controllers\Controller;
 use myRoommie\Http\Requests\LayoutRequest;
 use myRoommie\Repository\Helper;
 use Smajti1\Laravel\Step;
@@ -20,48 +21,52 @@ use myRoommie\Modules\Hostel\Block;
 use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Smajti1\Laravel\Wizard;
 
 class LayoutAndPricingStep extends Step
 {
+
 
     public static $label = 'LayoutAndPricing';
     public static $slug = '05';
     public static $view = 'hostelRegistration.05_layoutAndPricing';
 
+
+
     public function process(Request $request)
     {
-        $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::exists('hosteller.hostel_id')){
-            $hostelId = session('hosteller.hostel_id');
-        }else{
-            $hostelId = DB::table('hostel_registrations')->where([
-                'hosteller_id'=> $hostellerId,
-                'basic_info'=>true,
-                'hostel_details'=>true,
-                'add_media'=>true,
-                'amenities'=>true,
-                'layout_n_pricing' =>false,
-                'policies' =>false,
-                'payment' =>false,
-                'confirmation' =>false,
-            ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
-        }
-
-
         /*
          *  Check for data consistency
          *
          *
          * */
+
         $blocks = $request['block'];
         $unsortedFloors = $request['floor'];
         $unsortedRooms = $request['room'];
         [$fk,$floorValues]=array_divide($unsortedFloors);
         [$fk1,$rValues] = array_divide($unsortedRooms);
 
-        if ( (count($blocks)==count($fk)) && (count($fk)==count($fk1)) )
-        {
+        dd($blocks,$fk,$fk1,$request->all(),$floorValues,$request['floor.*.*']);
+        /*if ( (count($blocks)===count($fk)) && (count($fk)===count($fk1)) )
+        {*/
 
+            $hostellerId = Auth::guard('hosteller')->user()->id;
+            if (Session::exists('hosteller.hostel_id')){
+                $hostelId = session('hosteller.hostel_id');
+            }else{
+                $hostelId = DB::table('hostel_registrations')->where([
+                    'hosteller_id'=> $hostellerId,
+                    'basic_info'=>true,
+                    'hostel_details'=>true,
+                    'add_media'=>true,
+                    'amenities'=>true,
+                    'layout_n_pricing' =>false,
+                    'policies' =>false,
+                    'payment' =>false,
+                    'confirmation' =>false,
+                ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
+            }
 
 
         /*
@@ -232,23 +237,31 @@ class LayoutAndPricingStep extends Step
                 ->update(['layout_n_pricing' => true]);
             $this->saveProgress($request);
 
-        }else{
+        /*}else{
+            redirect()->intended(route('hostel.registration', '05'))->withErrors(['message'=>'The data provided is inconsistent']);
+    }*/
 
-            return redirect()->back()->withErrors(['The data provided is inconsistent']);
-        }
 
-        return redirect()->back()->withErrors(['The data provided is inconsistent']);
-    }
+}
 
 
 
 
     public function rules(Request $request = null): array
     {
+
         return [
                 'block'         =>  'required|array',
                 'floor'         =>  'required|array',
-                'room'          =>  'required|array',
+                'room'          =>  ['required','array',
+                    /*function ($attribute, $value=[((count(['block'])==count(['floor'])) && (count(['floor.*'])==count(['room.*'])))], $fail){
+
+                    if($value ){
+                        return $fail('The provided data is inconsistent.');
+                    }
+
+                }*/
+        ],
             'room.*.*.roomType'   =>  'required',
             'room.*.*.gender'   =>  'nullable|string|max:1',
             'room.*.*.name'   =>  'nullable|string|max:255',

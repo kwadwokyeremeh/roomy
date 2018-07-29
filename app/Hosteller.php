@@ -21,7 +21,6 @@ class Hosteller extends Authenticatable
      */
     protected $fillable = [
         'firstName','lastName', 'email','phone', 'password','role',
-        'hostel_id','status'
     ];
 
     /**

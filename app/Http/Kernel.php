@@ -31,7 +31,7 @@ class Kernel extends HttpKernel
             \myRoommie\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \myRoommie\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -62,5 +62,7 @@ class Kernel extends HttpKernel
         'hvs' => \myRoommie\Http\Middleware\CheckHostellerStatus::class,
         'published' => \myRoommie\Http\Middleware\CheckForPublishedHostels::class,
         'chrp' => \myRoommie\Http\Middleware\CompleteHostelRegistrationProcess::class,
+        'chrp5' =>\myRoommie\Http\Middleware\CheckHRStep5::class,
+        'chrp6' =>\myRoommie\Http\Middleware\CheckHRStep6::class,
     ];
 }

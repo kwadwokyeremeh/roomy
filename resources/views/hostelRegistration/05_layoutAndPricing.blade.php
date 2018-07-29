@@ -106,16 +106,17 @@
                                                                                 <input type="number" class="input-text " name="four_in_a_room" id="four_in_a_room" placeholder="Please enter the price of the room" value="" >
                                                                             </p>--}}
                                                                             {{--Draw your hostel layout--}}
-                                                                            <div class="">
-                                                                                @if ($errors->any())
-                                                                                    <div class="alert alert-danger">
-                                                                                        <ul>
-                                                                                            @foreach ($errors->all() as $error)
-                                                                                                <li>{{ $error }}</li>
+                                                                            @if($errors->any())
+                                                                                <div class="vk-notification-boxes">
+                                                                                    <div class="vk-notification-boxes-body">
+                                                                                        <ul class="vk-alert vk-alert-warning ">
+                                                                                            @foreach($errors->all() as $error)
+                                                                                                <li><span><i class="fa fa-times-circle" aria-hidden="true"></i></span> {{$error}} {{--<a href="#">Click here</a>--}}</li>
                                                                                             @endforeach
                                                                                         </ul>
                                                                                     </div>
-                                                                                @endif
+                                                                                </div>
+                                                                            @endif
 
                                                                                 <div class="panel-body">
                                                                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"></div>
@@ -127,7 +128,7 @@
                                                                                         Instructions
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
+
                                                                             <!-- /.box-footer -->
                                                                         </div>
                                                                     @include('hostelRegistration._partials.wizardControl')
@@ -318,7 +319,7 @@
         {{--'<input type="text" placeholder="Room '+roomCounter+'" name="room['+block+']['+floor+']['+roomCounter+'][name]" size="7">'+--}}
             '</div>'+
 
-        '<select class="ui search selection dropdown" id="search-select" name="room['+floor+']['+roomCounter+'][roomType]" >'+
+        '<select class="ui search selection dropdown" id="search-select" name="room['+floor+']['+roomCounter+'][roomType]" required>'+
             {{--'<select class="ui search selection dropdown" id="search-select" name="room['+block+']['+floor+']['+roomCounter+'][roomType]" required>'+--}}
             '<option value="">Room Type</option>'+
             @foreach($data->roomDescription as $roomType)

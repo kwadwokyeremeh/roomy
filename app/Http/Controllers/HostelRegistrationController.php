@@ -6,6 +6,7 @@ namespace myRoommie\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Closure;
+use myRoommie\Hosteller;
 use myRoommie\Modules\Hostel\Block;
 use myRoommie\Modules\HostelRegistration;
 use Smajti1\Laravel\Step;
@@ -35,8 +36,10 @@ class HostelRegistrationController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:hosteller')->except('logout','destroy');
+        $this->middleware(['auth:hosteller'])->except('logout','destroy');
         /*$this->middleware('chrp');*/
+
+
 
         $this->wizard = new Wizard($this->steps, $sessionKeyName = 'user');
 
@@ -64,7 +67,7 @@ public $steps = [
 
 
 
-public function wizard($step = null)
+public function wizard($step = null,Hosteller $id)
 {
 
 
@@ -123,13 +126,14 @@ public function wizard($step = null)
     }else{
         return view('hostelRegistration.master', compact('step','data'));
 }*/
+
     if ($this->wizard->dataHas('02')|| $this->wizard->dataHas('04'))  {
 
 
        if (Session::exists('hosteller.hostel_id')) {
            $hostelId = session('hosteller.hostel_id');
 
-       } elseif ((HostelRegistration::find($hostellerId)->where(['amenities' => true, 'layout_n_pricing' => false])) == true) {
+       } elseif ((HostelRegistration::where(['hosteller_id' => $hostellerId,'amenities' => true, 'layout_n_pricing' => false])) == true) {
            $hostelId = DB::table('hostel_registrations')->where([
                'hosteller_id' => $hostellerId,
                'basic_info' => true,
@@ -141,6 +145,7 @@ public function wizard($step = null)
                'payment' => false,
                'confirmation' => false,
            ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
+
        } else {
            $hostelId = DB::table('hostel_registrations')->where([
                'hosteller_id' => $hostellerId,
@@ -186,6 +191,24 @@ public function wizardPost(Request $request, $step = null)
     return redirect()->route('hostel.registration', [$this->wizard->nextSlug()]);
 }
 
+
+    /*public function layout($step='05')
+    {
+        try {
+            if (is_null($step)) {
+                $step = $this->wizard->firstOrLastProcessed();
+            }
+            else {
+                $step = $this->wizard->getBySlug($step);
+            }
+
+        } catch (StepNotFoundException $e) {
+            abort(404);
+        }
+
+        return view('hostelRegistration.05_layoutAndPricing',compact('step'));
+
+    }*/
 
 
 }

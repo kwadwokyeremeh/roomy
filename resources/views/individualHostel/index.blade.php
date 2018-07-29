@@ -92,7 +92,7 @@
                                                         <img src="../images/01_09_header-full-width/count-number/icon-3.png" alt="" class="img-responsive">
                                                     </div>
                                                     <div class="vk-sparta-count-item-number">
-                                                        <span class="counter">{{--{{count($hostel->rooms)}}--}}</span>
+                                                        <span class="counter">{{$roomsAvailable}}</span>
                                                     </div>
                                                     <h3>Rooms Available</h3>
                                                 </div>
@@ -103,7 +103,7 @@
                                                         <i class="fa fa-5x fa-bed" aria-hidden="true"></i>
                                                     </div>
                                                     <div class="vk-sparta-count-item-number">
-                                                        <span class="counter">{{--{{array_sum($hostel->)}}--}}</span>
+                                                        <span class="counter">{{$bedsAvailable}}</span>
                                                     </div>
                                                     <h3>Beds Available</h3>
                                                 </div>
@@ -115,7 +115,7 @@
                                                     </div>
 
                                                     <div class="vk-sparta-count-item-number">
-                                                        <span class="counter">187</span>
+                                                        <span class="counter">{{$maleBeds}}</span>
                                                     </div>
                                                     <h3>Male Beds Available</h3>
 
@@ -128,7 +128,7 @@
                                                     </div>
 
                                                     <div class="vk-sparta-count-item-number">
-                                                        <span class="counter">132</span>
+                                                        <span class="counter">{{$femaleBeds}}</span>
                                                     </div>
                                                     <h3>Female Beds Available</h3>
 

@@ -17,6 +17,7 @@ class CommentController extends Controller
     {
         $hostel =Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
+            ->with('comments')
             ->firstOrFail();
        $comments = $hostel->comments()->latest()->get();
         return view('individualHostel.comments',compact('comments','hostel'));

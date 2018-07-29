@@ -7,6 +7,7 @@
  */
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
+use myRoommie\Modules\HostelRegistration;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,10 @@ class PoliciesStep extends Step
         // for example, create user
 
         // next if you want save one step progress to session use
-        $this->saveProgress($request);
+        if (HostelRegistration::where(['hosteller_id'=>$hostellerId,'layout_n_pricing'=>false])){
+            redirect()->back();
+        }
+        /*$this->saveProgress($request);*/
     }
 
     public function rules(Request $request = null): array

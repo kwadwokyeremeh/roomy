@@ -19,6 +19,7 @@ class BookingController extends Controller
     {
         $hostel =Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
+            ->with(['blocks','floors','rooms','beds'])
             ->firstOrFail();
         return view('individualHostel.booking.index',compact('hostel'));
     }
@@ -28,6 +29,7 @@ class BookingController extends Controller
     {
         $hostel =Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
+            ->with(['blocks','floors','rooms','beds'])
             ->firstOrFail();
         $roonType = RoomDescription::where('room_token',$room_token)
             ->firstOrFail();

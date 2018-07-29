@@ -14,8 +14,18 @@ class IndividualHostelController extends Controller
     {
         $hostel = Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
+            ->with(['rooms',
+                'services',
+                'food','utilities',
+                'policies','roomTypeMedia',
+                'miscellaneous','hostelViews',
+                'roomDescription','entertainment',])
             ->firstOrFail();
+        $roomsAvailable =count($hostel->rooms->where('status','=',0));
+        $bedsAvailable  =count($hostel->beds->where('status','=',0));
+        $maleBeds   =count($hostel->beds);
+        $femaleBeds  =count($hostel->beds);
 
-        return view('individualHostel.index',compact('hostel'));
+        return view('individualHostel.index',compact('hostel','roomsAvailable','bedsAvailable','maleBeds','femaleBeds'));
     }
 }
