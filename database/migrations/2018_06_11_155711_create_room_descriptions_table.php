@@ -19,6 +19,7 @@ class CreateRoomDescriptionsTable extends Migration
             $table->string('room_type');
             $table->integer('number_of_beds');
             $table->decimal('price',8,2);
+            $table->string('room_token');
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
 
         });

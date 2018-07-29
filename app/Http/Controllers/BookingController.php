@@ -5,6 +5,7 @@ namespace myRoommie\Http\Controllers;
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Booking;
+use myRoommie\Modules\Hostel\RoomDescription;
 
 
 class BookingController extends Controller
@@ -22,6 +23,17 @@ class BookingController extends Controller
         return view('individualHostel.booking.index',compact('hostel'));
     }
 
+
+    public function roomTypeReservation($hostelName,$room_token)
+    {
+        $hostel =Hostel::where('id', $hostelName)
+            ->orWhere('slug', $hostelName)
+            ->firstOrFail();
+        $roonType = RoomDescription::where('room_token',$room_token)
+            ->firstOrFail();
+        return dd($room_token);
+
+    }
     /**
      * Show the form for creating a new resource.
      *

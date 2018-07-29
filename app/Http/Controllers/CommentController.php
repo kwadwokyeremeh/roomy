@@ -46,7 +46,7 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Modules\Hostel\Comment  $comment
      * @return \Illuminate\Http\Response
      */
     public function show(Comment $comment)
@@ -57,7 +57,7 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Modules\Hostel\Comment  $comment
      * @return \Illuminate\Http\Response
      */
     public function edit(Comment $comment)
@@ -69,7 +69,7 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Modules\Hostel\Comment  $comment
      * @param  \myRoommie\Modules\Hostel\Hostel  $hostel
      * @param $id
      * @return \Illuminate\Http\Response
@@ -99,7 +99,7 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Modules\Hostel\Comment  $comment
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comment $comment)

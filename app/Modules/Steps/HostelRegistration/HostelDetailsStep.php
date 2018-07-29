@@ -7,12 +7,14 @@
  */
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
+
 use Illuminate\Support\Str;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
 use myRoommie\Repository\GoogleMaps;
 use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use myRoommie\Modules\HostelRegistration;
 use myRoommie\Modules\Hostel\RoomDescription;
 
@@ -90,6 +92,7 @@ class HostelDetailsStep extends Step
                 'room_type'     => $roomTypes[$i],
                 'number_of_beds'=> $beds[$i],
                 'price'         => $prices[$i],
+                'room_token'    => str_random(36),
 
             ]);
         }

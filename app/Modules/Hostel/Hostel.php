@@ -3,7 +3,6 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
-use myRoommie\Comment;
 use myRoommie\Modules\HostelRegistration;
 
 class Hostel extends Model
