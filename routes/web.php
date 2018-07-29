@@ -100,4 +100,5 @@ Route::middleware('published')->group(function (){
     Route::get('/{hostelName?}','IndividualHostelController@showHostel')->name('hostel');
     Route::get('/{hostelName}/comments','CommentController@index');
     Route::put('/{hostelName}/comments','CommentController@update')->name('commentOnHostel');
+    Route::get('/{hostelName}/booking','BookingController@index')->name('booking');
 });

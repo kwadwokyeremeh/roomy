@@ -2,15 +2,16 @@
 
 namespace myRoommie\Http\Controllers;
 
-use myRoommie\Modules\Hostel\Comment;
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Hostel;
+use myRoommie\Modules\Hostel\Booking;
 
-class CommentController extends Controller
+
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @param Hostel $hostelName
+     * @param  Hostel $hostelName
      * @return \Illuminate\Http\Response
      */
     public function index($hostelName)
@@ -18,8 +19,7 @@ class CommentController extends Controller
         $hostel =Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
             ->firstOrFail();
-       $comments = $hostel->comments()->latest()->get();
-        return view('individualHostel.comments',compact('comments','hostel'));
+        return view('individualHostel.booking.index',compact('hostel'));
     }
 
     /**
@@ -46,10 +46,10 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Booking $booking)
     {
         //
     }
@@ -57,10 +57,10 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Booking $booking)
     {
         //
     }
@@ -69,40 +69,21 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \myRoommie\Comment  $comment
-     * @param  \myRoommie\Modules\Hostel\Hostel  $hostel
-     * @param $id
+     * @param  \myRoommie\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Booking $booking)
     {
-
-        /*$comments = [
-            $request->body,
-            $request->hostel_id
-        ];*/
-
-        $this->validate($request,['message' => 'required|min:3']);
-
-        $hostelId =Hostel::where('id', $id)
-            ->orWhere('slug', $id)
-            ->firstOrFail();
-
-        Comment::create([
-           'message' => request('message'),
-           'hostel_id' =>$hostelId->id /*request('hostel_id')*/,
-           'user_id' => auth()->id(),
-        ]);
-        return back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \myRoommie\Comment  $comment
+     * @param  \myRoommie\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Booking $booking)
     {
         //
     }

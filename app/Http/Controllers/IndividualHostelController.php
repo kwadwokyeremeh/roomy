@@ -12,7 +12,10 @@ class IndividualHostelController extends Controller
      * */
     public function showHostel($hostelName)
     {
-        $hostel = Hostel::findOrFail($hostelName);
+        $hostel = Hostel::where('id', $hostelName)
+            ->orWhere('slug', $hostelName)
+            ->firstOrFail();
+
         return view('individualHostel.index',compact('hostel'));
     }
 }

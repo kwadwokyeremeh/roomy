@@ -1,9 +1,9 @@
 <?php
 
-namespace myRoommie;
+namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
-use myRoommie\Modules\Hostel\Hostel;
+use myRoommie\User;
 
 class Comment extends Model
 {

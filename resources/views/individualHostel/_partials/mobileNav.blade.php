@@ -40,19 +40,19 @@
                     <li><a href="">Help</a></li>
                 </ul>
             </li>
-            <li class="sub"><a href="{{url($hostel->id)}}#overview">Overview</a>
+            <li class="sub"><a href="{{url($hostel->slug)}}#overview">Overview</a>
 
             </li>
 
-            <li class="sub"><a href="{{url($hostel->id)}}#room">Room Type</a>
+            <li class="sub"><a href="{{url($hostel->slug)}}#room">Room Type</a>
             </li>
 
-            <li class="sub"><a href="{{url($hostel->id)}}#amenities">Amenities</a>
+            <li class="sub"><a href="{{url($hostel->slug)}}#amenities">Amenities</a>
             </li>
-            <li class="sub"><a href="{{url($hostel->id)}}#location">Location</a>
+            <li class="sub"><a href="{{url($hostel->slug)}}#location">Location</a>
 
             </li>
-            <li class="sub"><a href="{{url($hostel->id)}}/comments">Reviews and Comments</a>
+            <li class="sub"><a href="{{url($hostel->slug)}}/comments">Reviews and Comments</a>
 
             </li>
             @if(Auth::guard('hosteller')->check())

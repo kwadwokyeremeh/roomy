@@ -11,24 +11,24 @@
                                 <div class="inner-navigation">
                                     <ul class="vk-navbar-nav vk-navbar-left nav-bar">
 
-                                        <li><a href="{{url($hostel->id)}}">{{$hostel->name}}</a>
+                                        <li><a href="{{url($hostel->slug)}}">{{$hostel->name}}</a>
 
                                         </li>
 
                                     </ul>
                                     <ul class="vk-navbar-nav vk-navbar-right">
 
-                                        <li><a href="{{url($hostel->id)}}#overview">Overview</a>
+                                        <li><a href="{{url($hostel->slug)}}#overview">Overview</a>
 
                                         </li>
-                                        <li><a href="{{url($hostel->id)}}#room">Room Type</a>
+                                        <li><a href="{{url($hostel->slug)}}#room">Room Type</a>
 
                                         </li>
-                                        <li><a href="{{url($hostel->id)}}#amenities">Amenities</a>
+                                        <li><a href="{{url($hostel->slug)}}#amenities">Amenities</a>
                                         </li>
-                                        <li><a href="{{url($hostel->id)}}#location">Location</a>
+                                        <li><a href="{{url($hostel->slug)}}#location">Location</a>
                                         </li>
-                                        <li><a href="{{url($hostel->id)}}/comments">Reviews and Comments</a>
+                                        <li><a href="{{url($hostel->slug)}}/comments">Reviews and Comments</a>
                                         </li>
 
                                         <li class="vk-icon-search"><i class="fa fa-search" aria-hidden="true"></i></li>

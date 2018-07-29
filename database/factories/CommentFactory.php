@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(myRoommie\Comment::class, function (Faker $faker) {
+$factory->define(myRoommie\Modules\Hostel\Comment::class, function (Faker $faker) {
     return [
         //
     ];

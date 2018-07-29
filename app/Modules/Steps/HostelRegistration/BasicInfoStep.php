@@ -142,8 +142,8 @@ class BasicInfoStep extends Step
             'email.manager' => 'uniqueManagerEmail:{$request->email.manager}',
             'email.portal' => 'uniqueManagerEmail:{$request->email.portal}',
             'phone' => 'present|array',
-            'phone.manager' => 'digits:10|uniqueManagerPhone:{$request->phone.manager}',
-            'phone.portal' => 'digits:10|uniqueManagerPhone:{$request->phone.portal}',
+            'phone.manager' => 'uniqueManagerPhone:{$request->phone.manager}|nullable|digits:10',
+            'phone.portal' => 'uniqueManagerPhone:{$request->phone.portal}|nullable|digits:10',
             'role_3' => 'sometimes',
            ];
 

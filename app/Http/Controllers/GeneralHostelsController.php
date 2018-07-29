@@ -15,7 +15,10 @@ class GeneralHostelsController extends Controller
 
     public function index()
     {
-        $allHostels = Hostel::all();
+        $allHostels = Hostel::where('published','=',0)
+        ->orderBy('name')
+            /*where('status','=',1)*/
+            ->paginate(15);
 
         return view('generalHostels',compact('allHostels'));
     }

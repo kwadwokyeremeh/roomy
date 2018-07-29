@@ -175,7 +175,7 @@
 
                                                                                 @if ($errors->has('phone.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->get('phone.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.*') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>

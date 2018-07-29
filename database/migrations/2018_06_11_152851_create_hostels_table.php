@@ -19,6 +19,7 @@ class CreateHostelsTable extends Migration
             $table->string('hostel_email')->nullable();
             $table->string('hostel_phone')->nullable();
             $table->string('alias')->nullable();
+            $table->string('slug')->unique();
             $table->integer('number_of_blocks');
             $table->string('street_address');
             $table->string('city');

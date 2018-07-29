@@ -92,7 +92,7 @@
                                                         <img src="../images/01_09_header-full-width/count-number/icon-3.png" alt="" class="img-responsive">
                                                     </div>
                                                     <div class="vk-sparta-count-item-number">
-                                                        <span class="counter">342</span>
+                                                        <span class="counter">{{count($hostel->rooms)}}</span>
                                                     </div>
                                                     <h3>Rooms Available</h3>
                                                 </div>
@@ -103,7 +103,7 @@
                                                         <i class="fa fa-5x fa-bed" aria-hidden="true"></i>
                                                     </div>
                                                     <div class="vk-sparta-count-item-number">
-                                                        <span class="counter">433</span>
+                                                        <span class="counter">{{array_sum($hostel->)}}</span>
                                                     </div>
                                                     <h3>Beds Available</h3>
                                                 </div>
@@ -163,7 +163,7 @@
                                                     <a href="#"><img src="{{asset('storage/'.$roomType->roomTypeMedia->first()->image)}}" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
-                                                    <h2><a href="#">{{$roomType->room_type}}</a></h2>
+                                                    <h2><a href="{{url($hostel->slug.'/booking/'.$roomType->id)}}">{{$roomType->room_type}}</a></h2>
                                                     <ul>
                                                         <li>
                                                             <span>Price : </span>
@@ -184,7 +184,7 @@
                                                             </ul>
                                                         </li>
                                                         <li class="vk-item-text" >
-                                                            <p><span><a href="#">Rent a bed</a></span></p>
+                                                            <p><span><a href="{{url($hostel->slug.'/booking/'.$roomType->id)}}">Rent a bed</a></span></p>
                                                         </li>
 
                                                     </ul>

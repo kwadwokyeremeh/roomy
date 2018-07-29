@@ -34,6 +34,7 @@ class AddMediaStep extends Step
 
     public function process(Request $request)
     {
+
         /*
          * Retrieve the hostel id from the session
          * */

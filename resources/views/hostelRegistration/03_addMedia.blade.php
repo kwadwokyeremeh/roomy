@@ -1,3 +1,4 @@
+
     <section class="site-content-area">
         <div class="vk-gallery-grid-full-banner">
             <div class="vk-about-banner">
@@ -276,5 +277,6 @@
                 }
             }
     </script>
+
     @endsection
 

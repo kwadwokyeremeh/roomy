@@ -21,6 +21,48 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="vk-posts-details-body-left">
+                            <!--Add a comment-->
+
+                            <div class="vk-event-details-left-add-comment">
+                                <h4> Add Your Comments</h4>
+                                <div class="row">
+                                    <form action="{{url($hostel->slug.'/comments')}}" method="POST">{{method_field('PUT')}}
+                                        @csrf
+                                        {{--<div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="text" id="yourName" placeholder="Your name ..." class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="email" id="youremail" placeholder="Your email ..." class="form-control">
+                                            </div>
+                                        </div>--}}
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        @if(auth()->check())
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="vk-event-details-submit">
+                                                        <button type="submit" class="vk-btn vk-btn-submit">COMMENT</button>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </form>
+                                    @if(auth()->guest())
+                                        <b> You have login before your can comment or give a testimony</b>
+                                    @endif
+                                </div>
+                            </div>
+                            <!--Add a comment-->
                             <div class="vk-event-details-left-comment">
                                 @if($comments)
                                 <h4>{{count($comments)}} comments</h4>
@@ -128,49 +170,7 @@
                                 </ul>
                                 @endif
                             </div>
-                            <!--Add a comment-->
 
-                            <div class="vk-event-details-left-add-comment">
-                                <h4> Add Your Comments</h4>
-                                <div class="row">
-                                    <form action="{{url($hostel->id.'/comments')}}" method="POST">{{method_field('PUT')}}
-                                        @csrf
-                                        {{--<div class="form-group">
-                                            <div class="col-md-6">
-                                                <input type="text" id="yourName" placeholder="Your name ..." class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-6">
-                                                <input type="email" id="youremail" placeholder="Your email ..." class="form-control">
-                                            </div>
-                                        </div>--}}
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <input type="hidden" name="hostel_id" value="{{$hostel->id}}">
-                                                <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-
-                                        @if(auth()->check())
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div class="vk-event-details-submit">
-                                                    <button type="submit" class="vk-btn vk-btn-submit">COMMENT</button>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                        @endif
-                                    </form>
-                                    @if(auth()->guest())
-                                        <b> You have login before your can comment or give a testimony</b>
-                                    @endif
-                                </div>
-                            </div>
-                            <!--Add a comment-->
                         </div>
                     </div>
                 </div>

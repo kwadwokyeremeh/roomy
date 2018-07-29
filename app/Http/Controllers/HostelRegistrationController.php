@@ -154,7 +154,9 @@ public function wizard($step = null)
                'confirmation' => false,
            ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
        }
+
        $data = Hostel::find($hostelId);
+
 
    }
 

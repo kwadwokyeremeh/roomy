@@ -147,7 +147,7 @@
                                                         </div>
                                                         <div class="col-md-6 vk-dark-our-room-item-right vk-clear-padding">
                                                             <div class="vk-dark-our-room-item-content">
-                                                                <h3><a href="{{url($hostel->id)}}">{{$hostel->name}}</a></h3>
+                                                                <h3><a href="{{url($hostel->slug)}}">{{$hostel->name}}</a></h3>
                                                                 <ul>
                                                                     @if($hostel->alias)
                                                                     <li><p><i class="fa fa-diamond" aria-hidden="true"></i> Hostel slang <span> : {{$hostel->alias}}</span></p></li>
@@ -206,7 +206,7 @@
                                                                         </ul>
                                                                     </div>
                                                                     <div class="vk-dark-our-room-item-book-right">
-                                                                        <a href="{{url($hostel->id)}}"> Rent A Bed <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                                                        <a href="{{url($hostel->slug.'/booking')}}"> Rent A Bed <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                                                                     </div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
@@ -374,7 +374,7 @@
                         <!--List of hostels-->
                     </div>
                     <!--Pagination-->
-                    <div class="vk-select-room-pagination">
+                    {{--<div class="vk-select-room-pagination">
                         <ul>
                             <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> PREV</a></li>
                             <li><a href="#">1</a></li>
@@ -382,8 +382,58 @@
                             <li><a href="#">3</a></li>
                             <li><a href="#">NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                         </ul>
-                    </div>
+                    </div>--}}
+
                     <!--Pagination-->
+                    <!--Pagination-->
+                    @if ($allHostels->hasPages())
+                    <div class="vk-select-room-pagination">
+                        <ul role="navigation">
+                            {{-- Previous Page Link --}}
+                            @if ($allHostels->onFirstPage())
+                                {{--<li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                                    <span class="page-link" aria-hidden="true"><i class="fa fa-angle-left" aria-hidden="true"></i> PREV</span>
+                                </li>--}}
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $allHostels->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')"><i class="fa fa-angle-left" aria-hidden="true"></i> PREV</a>
+                                </li>
+                            @endif
+
+                            {{-- Pagination Elements --}}
+                            @foreach ($allHostels as $element)
+                                {{-- "Three Dots" Separator --}}
+                                @if (is_string($element))
+                                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+                                @endif
+
+                                {{-- Array Of Links --}}
+                                @if (is_array($element))
+                                    @foreach ($element as $page => $url)
+                                        @if ($page == $allHostels->currentPage())
+                                            <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
+                                        @else
+                                            <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+
+                            {{-- Next Page Link --}}
+                            @if ($allHostels->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $allHostels->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                </li>
+                            @else
+                                {{--<li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                                    <span class="page-link" aria-hidden="true">NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                </li>--}}
+                            @endif
+                        </ul>
+                    </div>
+                @endif
+
+                <!--Pagination-->
                     <div class="vk-divider vk-divider-dashed"><p class="vk-divider-2px-double"></p></div>
                 </div>
             </div>

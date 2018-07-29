@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'myRoommie') }}</title>
+    <title>{{ $hostel->name| 'myRoommie' }}</title>
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap-theme.min.css')}}">
 
