@@ -14,12 +14,12 @@ class IndividualHostelController extends Controller
     {
         $hostel = Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
-            ->with(['rooms',
+            ->with([
                 'services',
                 'food','utilities',
                 'policies','roomTypeMedia',
                 'miscellaneous','hostelViews',
-                'roomDescription','entertainment',])
+                'roomDescription','entertainment','rooms'])
             ->firstOrFail();
         $roomsAvailable =count($hostel->rooms->where('status','=',0));
         $bedsAvailable  =count($hostel->beds->where('status','=',0));
