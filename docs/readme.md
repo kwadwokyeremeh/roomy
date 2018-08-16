@@ -21,3 +21,8 @@
     hosteller has completed its hostel registration process
     
     'chrp' => \myRoommie\Http\Middleware\CompleteHostelRegistrationProcess::class
+
+###### Reservations
+    reservation period ; This is date-time set by a hosteller. The reservation period is the date-time range a hostel reservations can be placed.
+    reservation duration: This is the time range for which a reserved bed can last. Or the expiration date for a reserved room. (Minutes calcation is perfered)
+    booking duration: This This is the date-time range a tenant is allowed to occupy a room. Or reserved a ticket to a bed. Mostly academic year.

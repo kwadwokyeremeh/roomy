@@ -17,7 +17,7 @@
  * * Testing Routes
  ************************/
 Route::get('/ll',function (){
-    return view('dashboard.student.index');
+     phpinfo();
 });
 /*************************
  * * Testing Routes
@@ -94,13 +94,17 @@ Route::prefix('hostelRegistration')->group(function (){
 
 
 /**************************************
- *  Hostels Route
+ *  Hostels Routes
  ***************************************/
 Route::middleware('published')->group(function (){
 
     Route::get('/{hostelName?}','IndividualHostelController@showHostel')->name('hostel');
+
+    // Hostel comments
     Route::get('/{hostelName}/comments','CommentController@index');
     Route::put('/{hostelName}/comments','CommentController@update')->name('commentOnHostel');
+
+    // Hostel booking
     Route::get('/{hostelName}/booking','BookingController@index')->name('booking');
     Route::get('/{hostelName}/{room_token}','BookingController@roomTypeReservation');
 });

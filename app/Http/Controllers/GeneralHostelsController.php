@@ -2,7 +2,9 @@
 
 namespace myRoommie\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use myRoommie\Modules\Hostel\Hostel;
 
 class GeneralHostelsController extends Controller
@@ -16,10 +18,16 @@ class GeneralHostelsController extends Controller
     public function index()
     {
         $allHostels = Hostel::where('published','=',0)
-        ->with(['roomTypeMedia','roomDescription'])
+        ->with(['hostelViews','roomDescription'])
         ->orderBy('name')
             /*where('status','=',1)*/
             ->paginate(15);
+
+
+
+
+
+
 
         return view('generalHostels',compact('allHostels'));
     }

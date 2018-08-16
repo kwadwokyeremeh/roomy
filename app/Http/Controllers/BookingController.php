@@ -31,9 +31,14 @@ class BookingController extends Controller
             ->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds'])
             ->firstOrFail();
-        $roonType = RoomDescription::where('room_token',$room_token)
+        $roomType = RoomDescription::where('room_token',$room_token)
             ->firstOrFail();
-        return dd($room_token);
+
+        $blocks = $hostel->blocks;
+        $floors = $hostel->floors;
+        $rooms = $hostel->rooms;
+        $beds = $hostel->beds;
+        return compact('hostel','roomType','blocks','floors','rooms','beds');
 
     }
     /**
