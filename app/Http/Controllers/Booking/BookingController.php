@@ -1,10 +1,11 @@
 <?php
 
-namespace myRoommie\Http\Controllers;
+namespace myRoommie\Http\Controllers\Booking;
 
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Booking;
+use myRoommie\Http\Controllers\Controller;
 use myRoommie\Modules\Hostel\RoomDescription;
 
 

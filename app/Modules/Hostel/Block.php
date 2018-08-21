@@ -43,9 +43,13 @@ class Block extends Model
      * */
     public function rooms()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Room');
+        return $this->hasManyThrough(Room::class, Floor::class);
      }
-
+/*
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }*/
 
      /*
       *

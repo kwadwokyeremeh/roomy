@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-<html>
-<?php include ('_partials/hmdashboard_head.php');?>
-<!-- daterange picker -->
-<link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
-<body class="hold-transition skin-yellow-light sidebar-mini">
-<div class="wrapper">
-
-    <!-- Main Header -->
-   <?php include ('_partials/hmdashboard_header.php');?>
-    <!-- Left side column. contains the logo and sidebar -->
-    <?php include "_partials/hmdashboard_sidebar.php";?>
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <?php include "_partials/hm_mainNav.php";?>
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
+@extends('dashboard.hostelmanager.layout.master')
+            @section('page-header')
                 Reservation Settings
-                <small>Set your room reservation date range</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
-        </section>
+                @endsection
+                @section('optional-desc')
+                    Set your room reservation date range
+                @endsection
 
-        <!-- Main content -->
-        <section class="content container-fluid">
+@section('main-content')
 
            <p>Set the duration for which a bed can be reserved</p>
             <div class="box box-primary">
@@ -55,38 +34,10 @@
                     <p>Date format should be like a month from reservation date</p>
                 </div>
             </div>
-
-
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-
-    <!-- Main Footer -->
-    <?php include "_partials/hmdashboard_footer.php";?>
-
-    <!-- Control Sidebar -->
-    <?php include "_partials/hmdashboard_rightSidepane.php";?>
-    <!-- /.control-sidebar -->
-
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<script src="../dist/js/pages/dashboard2.js"></script>
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
-<!-- date-range-picker -->
-<script src="../bower_components/moment/min/moment.min.js"></script>
-<script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+@endsection
+@section('custom-script')
+<script src="{{asset('/bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{asset('/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
 <script>
     //Date range picker
@@ -112,5 +63,4 @@
             }
     )
 </script>
-</body>
-</html>
+@endsection

@@ -17,4 +17,9 @@ class HostellerController extends Controller
     {
         return view('dashboard.hostelmanager.index');
     }
+
+    public function reservationDate()
+    {
+        return view('dashboard.hostelmanager.reservation_settings');
+    }
 }

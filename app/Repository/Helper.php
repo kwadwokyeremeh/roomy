@@ -13,6 +13,22 @@ class Helper
 {
 
     /**
+     * The user's gender attributes.
+     *
+     * @var array
+     */
+    public $gender;
+
+    /**
+     * Get the gender for the user.
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+    /**
      * Replace keys of given array by values of $keys
      * $keys format is [$oldKey=>$newKey]
      *

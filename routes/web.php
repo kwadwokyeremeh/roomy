@@ -44,7 +44,12 @@ Auth::routes();
 Route::get('/user/', 'HomeController@index')->name('student');
 
 
-
+/**************************
+ * *
+ * * User Socialite
+ * **********************/
+    Route::get('/login/{provider}','Auth\UserSocialAccountController@redirectToProvider');
+    Route::get('/login/{provider}/callback','Auth\UserSocialAccountController@handleProviderCallback');
 
 
 /*****************
@@ -59,11 +64,20 @@ Route::prefix('hosteller')->group(function (){
     Route::post('/', 'Hosteller\LoginController@destroy')->name('hosteller.logout');
 
 
+    /**************************
+     * *
+     * * User Socialite
+     * **********************/
+    Route::get('/login/{provider}','Hosteller\HostellerSocialAccountController@redirectToProvider');
+    Route::get('/login/{provider}/callback','Hosteller\HostellerSocialAccountController@handleProviderCallback');
+
+
     /*********************************
      *  Hosteller's Dashboard
      *********************************/
 
     Route::get('/', 'Hosteller\HostellerController@index')->name('dashboard.hostel')->middleware('hvs');
+    Route::get('/reservationDate', 'Hosteller\HostellerController@reservationDate')->middleware('hvs');
 
 
 
@@ -105,6 +119,10 @@ Route::middleware('published')->group(function (){
     Route::put('/{hostelName}/comments','CommentController@update')->name('commentOnHostel');
 
     // Hostel booking
-    Route::get('/{hostelName}/booking','BookingController@index')->name('booking');
-    Route::get('/{hostelName}/{room_token}','BookingController@roomTypeReservation');
+    Route::get('/{hostelName}/booking','Booking\ReservationController@index')->name('reservation');
+    Route::get('/{hostelName}/booking/payment','Booking\ReservationController@makePayment');
+    Route::get('/{hostelName}/booking/selectRoom','Booking\ReservationController@selectRoom');
+    Route::get('/{hostelName}/booking/confirmation','Booking\ReservationController@confirmation');
+    Route::get('/{hostelName}/{room_token}','Booking\ReservationController@roomTypeReservation');
+    Route::post('/{hostelName}/{room_token}','Booking\ReservationController@saveProgress')->name('reserveRoom');
 });

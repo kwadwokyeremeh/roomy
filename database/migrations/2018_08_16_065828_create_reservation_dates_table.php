@@ -16,7 +16,7 @@ class CreateReservationDatesTable extends Migration
         Schema::create('reservation_dates', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('hostel_id');
-            $table->year('academic_year');
+            //$table->year('academic_year');
             $table->dateTime('reservation_duration');
             $table->dateTime('reservation_start_date');
             $table->dateTime('reservation_end_date');

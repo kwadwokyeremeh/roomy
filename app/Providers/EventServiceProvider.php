@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'myRoommie\Events\Event' => [
             'myRoommie\Listeners\EventListener',
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // add your listeners (aka providers) here
+            'SocialiteProviders\\LinkedIn\\LinkedInExtendSocialite@handle',
+        ],
     ];
 
     /**

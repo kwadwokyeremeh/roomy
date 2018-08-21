@@ -163,7 +163,7 @@
                                                     <a href="#"><img src="{{asset('storage/'.$roomType->roomTypeMedia->first()->image)}}" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
-                                                    <h2><a href="{{url($hostel->slug.'/'.$roomType->room_token)}}">{{$roomType->room_type}}</a></h2>
+                                                    <h2><a href="{{$hostel->slug.'/'.$roomType->room_token}}">{{$roomType->room_type}}</a></h2>
                                                     <ul>
                                                         <li>
                                                             <span>Price : </span>

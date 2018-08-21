@@ -11,6 +11,16 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
+Broadcast::channel('myRoommie.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+
+
+
+Broadcast::channel('hostel.comments.{id}', function ($user, $id) {
+    return [
+        'id'    =>  $user->id,
+        'firstName' => $user->firstName
+];
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentMethodTable extends Migration
+class CreateHostellerSocialAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePaymentMethodTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_method', function (Blueprint $table) {
+        Schema::create('hosteller_social_accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('payment_type');
-            $table->string('shorthand');
-            $table->string('payment_handler')->nullable();
+            $table->bigInteger('hosteller_id');
+            $table->string('provider_name')->nullable();
+            $table->string('provider_id')->unique()->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePaymentMethodTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_method');
+        Schema::dropIfExists('hosteller_social_accounts');
     }
 }

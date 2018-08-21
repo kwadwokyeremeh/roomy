@@ -2,6 +2,7 @@
 
 namespace myRoommie\Http\Controllers;
 
+use function MongoDB\BSON\toJSON;
 use myRoommie\Modules\Hostel\Comment;
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Hostel;
@@ -19,7 +20,11 @@ class CommentController extends Controller
             ->orWhere('slug', $hostelName)
             ->with('comments')
             ->firstOrFail();
-       $comments = $hostel->comments()->latest()->get();
+
+        //response()->json($comments = $hostel->comments()->with('user')->latest()->get());
+        $comments = $hostel->comments()->with('user')->latest()->get();
+
+
         return view('individualHostel.comments',compact('comments','hostel'));
     }
 
@@ -95,6 +100,7 @@ class CommentController extends Controller
            'user_id' => auth()->id(),
         ]);
         return back();
+        //return $comment->toJson();
     }
 
     /**

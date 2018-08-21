@@ -152,13 +152,15 @@ return [
          *
          */
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        //\SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         myRoommie\Providers\AppServiceProvider::class,
         myRoommie\Providers\AuthServiceProvider::class,
-        // myRoommie\Providers\BroadcastServiceProvider::class,
+        myRoommie\Providers\BroadcastServiceProvider::class,
         myRoommie\Providers\EventServiceProvider::class,
         myRoommie\Providers\RouteServiceProvider::class,
 
@@ -212,6 +214,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

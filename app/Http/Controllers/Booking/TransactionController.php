@@ -1,11 +1,12 @@
 <?php
 
-namespace myRoommie\Http\Controllers;
+namespace myRoommie\Http\Controllers\Booking;
 
-use myRoommie\Modules\Booking\Reservation;
+use myRoommie\Modules\Transaction;
 use Illuminate\Http\Request;
+use myRoommie\Http\Controllers\Controller;
 
-class ReservationController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
+     * @param  \myRoommie\Modules\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservation $reservation)
+    public function show(Transaction $transaction)
     {
         //
     }
@@ -52,10 +53,10 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
+     * @param  \myRoommie\Modules\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservation $reservation)
+    public function edit(Transaction $transaction)
     {
         //
     }
@@ -64,10 +65,10 @@ class ReservationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
+     * @param  \myRoommie\Modules\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, Transaction $transaction)
     {
         //
     }
@@ -75,10 +76,10 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
+     * @param  \myRoommie\Modules\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(Transaction $transaction)
     {
         //
     }

@@ -16,7 +16,7 @@
             </div>
         </div>
         <!--Comments and reviews body-->
-        <div class="vk-posts-details-body">
+        <div class="vk-posts-details-body" id="comments">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
@@ -64,6 +64,9 @@
                             </div>
                             <!--Add a comment-->
                             <div class="vk-event-details-left-comment">
+                                <div class="alert alert-info">
+                                    @{{ count }} people reading
+                                </div>
                                 @if($comments)
                                 <h4>{{count($comments)}} comments</h4>
                                 <ul>
@@ -75,7 +78,7 @@
                                         </div>
                                         <div class="vk-event-details-comments-text">
                                             <div class="vk-events-details-author">
-                                                <span class="authour-name">{{$comment->user->firstName}}</span>
+                                                <span class="author-name">{{$comment->user->firstName}}</span>
                                                 <span class="author-time">{{$comment->updated_at->diffForHumans()}} </span>
                                             </div>
                                             <div class="vk-event-details-des">
@@ -180,3 +183,24 @@
     <!--END of Reviews and Comments-->
 
     @endsection
+
+@section('custom-script')
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let app =new Vue({
+            el: '#comments',
+            data: {
+               viewers: [],
+               counter: 0
+            },
+            mounted() {
+                this.listen()
+            },
+            methods: {
+                listen(){
+                    Echo.join('comments'{{ $hostel->id }} ).here((user) => {this.count = user.length;}).joining((user) => {this.count++;}).leaving((user) => {this.count--;})
+                }
+            }
+        })
+    </script>
+@endsection

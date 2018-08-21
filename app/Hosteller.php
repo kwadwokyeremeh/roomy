@@ -20,7 +20,7 @@ class Hosteller extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstName','lastName', 'email','phone', 'password','role',
+        'firstName','lastName', 'email','phone', 'password','role', 'avatar'
     ];
 
     /**
@@ -55,5 +55,10 @@ class Hosteller extends Authenticatable
            return $this-> hasMany('myRoommie\Modules\HostelRegistration');
 
 
+    }
+
+    public function accounts()
+    {
+        return $this->hasMany(HostellerSocialAccount::class);
     }
 }

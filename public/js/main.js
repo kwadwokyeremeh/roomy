@@ -604,4 +604,7 @@ jQuery(document).ready(function ($) {
             $('.spinner').show();
         });
     });
+
 });
+
+

@@ -1,9 +1,10 @@
 <?php
 
-namespace myRoommie\Http\Controllers;
+namespace myRoommie\Http\Controllers\Hosteller\Dashboard;
 
 use myRoommie\Modules\Hostel\ReservationDate;
 use Illuminate\Http\Request;
+use myRoommie\Http\Controllers\Controller;
 
 class ReservationDateController extends Controller
 {

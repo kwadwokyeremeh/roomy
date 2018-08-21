@@ -9,7 +9,7 @@
                         <h3>
                             <a href="#">Register your hostel</a>
                             <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                            <a href="#">Layout and Pricing</a>
+                            <a href="#">Layout</a>
                         </h3>
                     </div>
                 </div>

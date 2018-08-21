@@ -15,9 +15,10 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('hostel_id');
-            $table->unsignedInteger('room_id');
-            $table->unsignedInteger('payment_method_id');
+            $table->unsignedInteger('reservation_id')->nullable()->default(null);
+            $table->unsignedInteger('hostel_id')->nullable()->default(null);
+            $table->unsignedInteger('room_id')->nullable()->default(null);
+            $table->unsignedInteger('payment_method_id')->nullable()->default(null);
             $table->decimal('tax_paid',8,2)->nullable();
             $table->decimal('services_fee',8,2);
             $table->decimal('price',8,2);
@@ -26,15 +27,15 @@ class CreateBookingsTable extends Migration
             $table->decimal('amount_refunded',8,2)->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable()->default(null);
             $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('hostel_id')->references('id')->on('hostels');
-            $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('room_id')->references('id')->on('rooms')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

@@ -27,9 +27,9 @@ class CreateReservationsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('null');
-            $table->foreign('payment_method_id')->references('id')->on('payment_method')->onDelete('null');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('null');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

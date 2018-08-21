@@ -143,24 +143,55 @@ class Hostel extends Model
         return $this->hasManyThrough('myRoommie\Modules\Hostel\RoomTypeMedia',RoomDescription::class);
     }
 
+    /*
+     * Get views associated with the hostel
+     * */
     public function hostelViews()
     {
         return $this->hasMany(HostelView::class);
     }
 
+    /*
+     * Get miscellaneous associated with the hostel
+     * */
     public function miscellaneous()
     {
         return $this->hasMany(Misc::class);
     }
 
+    /*
+     * Get entertainment associated with the hostel
+     * */
     public function entertainment()
     {
         return $this->hasMany(Entertainment::class);
     }
 
+    /*
+     * Get comments associated the hostel
+     * */
     public function comments()
     {
        return $this->hasMany(Comment::class);
     }
+
+
+    /*
+     * Get the reservation date associated the hostel
+     * */
+    public function reservationDate()
+    {
+        return $this->hasOne(ReservationDate::class);
+    }
+
+
+    public function findHostel($hostelName)
+    {
+       return $this->where('id',$hostelName)
+            ->orWhere('slug',$hostelName)
+            ->firstOrFail();
+        //return $hostel;
+    }
+
 
 }
