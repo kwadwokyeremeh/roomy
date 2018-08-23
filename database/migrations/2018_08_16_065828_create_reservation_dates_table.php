@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateReservationDatesTable extends Migration
 {
     /**
@@ -17,12 +18,14 @@ class CreateReservationDatesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('hostel_id');
             //$table->year('academic_year');
-            $table->dateTime('reservation_duration');
+            $table->tinyInteger('reservation_duration');
             $table->dateTime('reservation_start_date');
             $table->dateTime('reservation_end_date');
             $table->dateTime('booking_start_date');
             $table->dateTime('booking_end_date');
             $table->timestamps();
+
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
     }
 

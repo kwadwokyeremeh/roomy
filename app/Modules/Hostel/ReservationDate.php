@@ -14,4 +14,12 @@ class ReservationDate extends Model
         'booking_start_date',
         'booking_end_date',
     ];
+
+
+    public function hostel()
+    {
+        $this->belongsTo(Hostel::class);
+    }
 }
+
+

@@ -13929,11 +13929,9 @@ div.clear
   clear: both;
 }
 
-div.product-chooser{
 
-}
 
-div.product-chooser.disabled div.product-chooser-item
+div.product-chooser div.product-chooser-item.disabled
 {
   zoom: 1;
   filter: alpha(opacity=60);
@@ -13979,7 +13977,7 @@ div.product-chooser div.product-chooser-item input{
   position: absolute;
   left: 0;
   top: 0;
-  visibility:hidden;
+  visibility: hidden;
 }
 
 .no-room-gutter{

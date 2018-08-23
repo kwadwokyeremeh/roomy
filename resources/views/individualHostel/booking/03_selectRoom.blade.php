@@ -49,47 +49,74 @@
                     </ul>
                 </div>
 
+                @if($errors->any())
+                    <div class="vk-notification-boxes">
+                        <div class="vk-notification-boxes-body">
+                            <ul class="vk-alert vk-alert-warning ">
+                                @foreach($errors->all() as $error)
+                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i></span> {{$error}} {{--<a href="#">Click here</a>--}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
                 <form class="row" method="POST" action="" id="roomsAvailable">
                     @csrf
                     <div class="vk-select-room-info">
                         <div class="col-md-9">
                             <div class="vk-shortcode-accordion-body">
-                                <fieldset class="container" id="selectedRoom">
-                                    @foreach($blocks as $block)
-                                    <div class="row">
-                                        <h2>{{$block->name}}</h2>
-                                        <div class="vk-accordion-default col-md-9">
-                                            @foreach($block->floors as $floor)
-                                            <h4 class="vk-accordion-toggle-default">{{$floor->name}}</h4>
-                                            <div class="vk-accordion-content-default">
-                                                    {{--List Rooms--}}
-                                                <div class="row product-chooser no-gutters">
-                                                    @foreach($floor->rooms as $room)
-                                                    <div class=" col-xs-4 col-sm-3 col-md-2 col-lg-2 no-room-gutter">
-                                                        <div class=" product-chooser-item no-room-gutter">
-                                                            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 no-room-gutter">
-                                                                <span class="title">{{$room->number}}</span>
-                                                                <span class="title">{{$room->roomDescription->room_type}}</span>
-                                                                <span class="description">Lorem ipsum dolor sit amet.</span>
-                                                                <label for="selectedRoom">
-                                                                <input type="radio" name="selectedRoom" value="{{$room->id}}" v-model="picked" />
-                                                                </label>
+
+                                    <div class="container" role="radiogroup">
+                                        @foreach($blocks as $block)
+                                            <div class="row">
+                                                <h2>{{$block->name}}</h2>
+                                                <div class="vk-accordion-default col-md-9">
+                                                    @foreach($block->floors as $floor)
+                                                        <h4 class="vk-accordion-toggle-default">{{$floor->name}}</h4>
+                                                        <div class="vk-accordion-content-default">
+
+                                                            {{--List Rooms--}}
+                                                            <div class="row product-chooser no-gutters">
+                                                                {{--<input type="radio"  data-smth="floor_{{$floor->id}}">--}}
+                                                                @foreach($floor->rooms as $room)
+                                                                    <div class=" col-xs-4 col-sm-3 col-md-2 col-lg-2 no-room-gutter">
+                                        @if(\Illuminate\Support\Facades\Auth::user()->sex == $room->sex_type )
+                                                                        <div class="product-chooser-item  no-room-gutter">
+                                                                            @elseif($room->sex_type =='')
+                                                                        <div class="product-chooser-item  no-room-gutter">
+                                                                            @else
+                                                                        <div class="product-chooser-item disabled no-room-gutter">
+                                                                        @endif
+                                                                            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 no-room-gutter">
+                                                                                @if($room->name)
+                                                                                <span class="title">{{$room->name}}</span>
+                                                                                @else
+                                                                                <span class="title">{{$room->number}}</span>
+                                                                                @endif
+                                                                                <span class="title">{{$room->roomDescription->room_type}}</span>
+                                                                                <span class="description">Price: {{$room->roomDescription->price}}</span>
+                                                                                    @if($room->sex_type)
+                                                                                        <span class="description">{{$room->sex_type}}</span>
+                                                                                    @endif
+                                                                                <label for="selectedRoom">
+                                                                                    <input type="radio" name="selectedRoom" value="{{$room->id}}" required/>
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="clear"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
-                                                            <div class="clear"></div>
                                                         </div>
-                                                    </div>
                                                     @endforeach
                                                 </div>
+
                                             </div>
-                                            @endforeach
-                                        </div>
+
+                                        @endforeach
+
 
                                     </div>
-                                    <div class="clearfix"></div>
-                                    @endforeach
-
-
-                                </fieldset>
 
                             </div>
                         </div>
@@ -135,7 +162,7 @@
                                                     {{--<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="previous" value="Previous" data-value="Previous">
                                                --}} </div>
                                                 <div class="col-xs-6">
-                                                    <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="next" value="Next" data-value="Next">
+                                                    <input type="submit" class="button alt" id="next" value="Next" data-value="Next">
                                                 </div>
 
                                             </div>
@@ -169,14 +196,36 @@
 @section('custom-script')
     {{--<script src="{{asset('js/vue.js')}}"></script>--}}
     <script>
-        $(function(){
-            $('div.product-chooser').not('.disabled').find('div.product-chooser-item').on('click', function(){
-                $(this).parent().parent().find('div.product-chooser-item').removeClass('selected');
-                $(this).addClass('selected');
-                $(this).find('input[type="radio"]').prop("checked", true);
+        $(function() {
+            $('.product-chooser').find('div.product-chooser-item').on('click', function () {
+                $('.product-chooser').find('div.product-chooser-item').removeClass('selected').find('input[type="radio"]').prop("checked", false);
+                if ($(this).is('.disabled')){
+
+                }else {
+                    $(this).addClass('selected');
+                    $(this).find('input[type="radio"]').prop("checked", true);
+                }
+
+
 
             });
         });
+        /*$('input[type="radio"]').on('change', function() {
+            $('.child').prop("checked", false); // Reset all child checkbox
+            // Check if it's a parent or child being checked
+            if ($(this).hasClass('parent')) {
+                $('.child').prop('required', false); // Set all children to not required
+                $(this).next('ul').find('.child').prop('required', true); // Set the children of the selected parent to required
+            } else if ($(this).hasClass('child')) {
+                $(this).prop("checked", true); // Check the selected child
+                $(this).parent().parent().prev('.parent').prop('checked', true); // Check the selected parent
+            }
+        });*/
+
+
+
+
+
 
 
     </script>

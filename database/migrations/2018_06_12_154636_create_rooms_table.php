@@ -21,7 +21,7 @@ class CreateRoomsTable extends Migration
             $table->unsignedInteger('room_description_id');
             $table->string('name')->nullable();
             $table->string('number');
-            $table->char('sexType',1)->nullable();
+            $table->char('sex_type',1)->nullable();
             $table->boolean('status')->default(false);
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
             $table->foreign('block_id')->references('id')->on('blocks')->onDelete('cascade');

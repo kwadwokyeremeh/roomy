@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
+use myRoommie\Modules\Booking\Reservation;
 
 class Room extends Model
 {
@@ -52,6 +53,28 @@ class Room extends Model
         return $this->hasMany('myRoommie\Modules\Hostel\Bed');
     }
 
+    /*
+     *  Get the reservations in that room
+     *  Get the reservations associated with the room
+     * */
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+
+    /*
+     *  Get the reservations in that room
+     *  Get the reservations associated with the room
+     *  The booking and reservation is the same but for the sake of security,
+     *  redundancy is important
+     *
+     * */
+    public function bookings()
+    {
+        $this->hasMany(Booking::class);
+    }
+
 
     /*
      * Get the Sex type associated with the room
@@ -70,5 +93,33 @@ class Room extends Model
         return $this->belongsTo('myRoommie\Modules\Hostel\RoomDescription');
     }
 
+    /**
+     * Get the genderlity of a room.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getSexTypeAttribute($value)
+    {
+        if ($value=='M'){
+            $value='Male';
+        }elseif ($value=='F'){
+            $value ='Female';
+        }else{
+            $value='';
+        }
+        return $value;
 
+    }
+
+
+    public function isBooked()
+    {
+
+    }
+
+    public function isReservationAllowed()
+    {
+
+    }
 }

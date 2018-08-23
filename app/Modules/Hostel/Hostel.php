@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
+use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Modules\HostelRegistration;
 
 class Hostel extends Model
@@ -182,6 +183,14 @@ class Hostel extends Model
     public function reservationDate()
     {
         return $this->hasOne(ReservationDate::class);
+    }
+
+    /*
+     * Get the reservations associated with the hostel
+     * */
+    public function reservations()
+    {
+        $this->hasManyThrough(Reservation::class,Room::class);
     }
 
 

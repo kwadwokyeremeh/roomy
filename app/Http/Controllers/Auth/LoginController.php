@@ -2,6 +2,7 @@
 
 namespace myRoommie\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use myRoommie\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 

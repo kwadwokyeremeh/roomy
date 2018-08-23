@@ -3,16 +3,20 @@
 namespace myRoommie\Http\Controllers\Booking;
 
 
-use function GuzzleHttp\headers_from_lines;
 use myRoommie\Modules\Booking\Reservation;
 use Illuminate\Http\Request;
-use myRoommie\Modules\Hostel\Block;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Http\Controllers\Controller;
 use myRoommie\Modules\Hostel\RoomDescription;
+use myRoommie\Http\Middleware\IsReservationAllowed;
 
 class ReservationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth',IsReservationAllowed::class]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -97,6 +101,7 @@ class ReservationController extends Controller
 
     public function roomTypeReservation($hostelName,$room_token)
     {
+
         $hostel =Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds','roomDescription'])
@@ -120,27 +125,33 @@ class ReservationController extends Controller
     }
 
     /*
+     * @param \Illuminate\Http\Request
      * @param  Hostel $hostelName $room_token
      * @return \Illuminate\Http\Response
      *
      * */
-    public function saveProgress($hostelName, $room_token)
+    public function saveProgress($hostelName, $room_token, Request $request)
     {
+        $this->validate($request,[
+            'selectedRoom' => 'numeric|required'
+        ],
+            ['required' => 'Please select a room']);
+
         \request()->session()->regenerate();
         $hostel =Hostel::where('id', $hostelName)
             ->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds','roomDescription'])
             ->firstOrFail();
+
+
+
         $roomType = RoomDescription::where('room_token',$room_token)
             ->firstOrFail();
         return view('individualHostel.booking.04_payment',compact('hostel','room_token'));
     }
 
 
-
-
-
-    public function selectRoom($hostelName)
+    /*public function selectRoom($hostelName)
     {
         $hostel = Hostel::where('id',$hostelName)
             ->orWhere('slug',$hostelName)
@@ -162,5 +173,5 @@ class ReservationController extends Controller
             ->orWhere('slug',$hostelName)
             ->firstOrFail();
         return view('individualHostel.booking.05_confirmation',compact('hostel'));
-    }
+    }*/
 }
