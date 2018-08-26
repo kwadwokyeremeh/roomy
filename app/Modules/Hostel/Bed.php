@@ -4,6 +4,30 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * myRoommie\Modules\Hostel\Bed
+ *
+ * @property int $id
+ * @property int $hostel_id
+ * @property int $block_id
+ * @property int $floor_id
+ * @property int $room_id
+ * @property int|null $user_id
+ * @property int $status
+ * @property-read \myRoommie\Modules\Hostel\Block $block
+ * @property-read \myRoommie\Modules\Hostel\Floor $floor
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \myRoommie\Modules\Hostel\Room $room
+ * @property-read \myRoommie\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereBlockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereFloorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Bed whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Bed extends Model
 {
     public $timestamps = false;

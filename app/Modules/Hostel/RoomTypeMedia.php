@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+/**
+ * myRoommie\Modules\Hostel\RoomTypeMedia
+ *
+ * @property int $id
+ * @property int $room_description_id
+ * @property string $image
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @property-read \myRoommie\Modules\Hostel\RoomDescription $roomDescription
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomTypeMedia whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomTypeMedia whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomTypeMedia whereRoomDescriptionId($value)
+ * @mixin \Eloquent
+ */
 class RoomTypeMedia extends Model implements HasMedia
 {
 /*

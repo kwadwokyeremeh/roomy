@@ -7,6 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+/**
+ * myRoommie\Modules\Hostel\Misc
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $image
+ * @property int $hostel_id
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Misc whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Misc whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Misc whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Misc whereTitle($value)
+ * @mixin \Eloquent
+ */
 class Misc extends Model implements HasMedia
 {
     /*

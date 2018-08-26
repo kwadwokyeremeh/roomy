@@ -5,6 +5,36 @@ namespace myRoommie\Modules\Hostel;
 use Illuminate\Database\Eloquent\Model;
 use myRoommie\Modules\Booking\Reservation;
 
+/**
+ * myRoommie\Modules\Hostel\Room
+ *
+ * @property int $id
+ * @property int $hostel_id
+ * @property int|null $block_id
+ * @property int $floor_id
+ * @property int $room_description_id
+ * @property string|null $name
+ * @property string $number
+ * @property string $sex_type
+ * @property int $status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Bed[] $beds
+ * @property-read \myRoommie\Modules\Hostel\Block|null $block
+ * @property-read \myRoommie\Modules\Hostel\Floor $floor
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Reservation[] $reservations
+ * @property-read \myRoommie\Modules\Hostel\RoomDescription $roomDescription
+ * @property-read \myRoommie\Modules\Hostel\SexType $sexType
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereBlockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereFloorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereRoomDescriptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereSexType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereStatus($value)
+ * @mixin \Eloquent
+ */
 class Room extends Model
 {
 

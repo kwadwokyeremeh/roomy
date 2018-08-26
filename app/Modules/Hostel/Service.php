@@ -4,6 +4,17 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * myRoommie\Modules\Hostel\Service
+ *
+ * @property int $id
+ * @property string $service
+ * @property int $hostel_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Service whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Service whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Service whereService($value)
+ * @mixin \Eloquent
+ */
 class Service extends Model
 {
     public $timestamps = false;

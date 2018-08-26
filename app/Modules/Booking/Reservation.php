@@ -8,6 +8,42 @@ use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Room;
 use myRoommie\User;
 
+/**
+ * myRoommie\Modules\Booking\Reservation
+ *
+ * @property int $id
+ * @property string $token
+ * @property int $hostel_id
+ * @property int $room_id
+ * @property string $start_date
+ * @property string $end_date
+ * @property float $amount_to_be_paid
+ * @property int $payment_method_id
+ * @property int $user_id
+ * @property int $status
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Booking\Reservation onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereAmountToBePaid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation wherePaymentMethodId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\Reservation whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Booking\Reservation withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Booking\Reservation withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Reservation extends Model
 {
     use SoftDeletes;

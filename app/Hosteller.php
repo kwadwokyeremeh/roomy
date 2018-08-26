@@ -8,6 +8,36 @@ use myRoommie\Notifications\HostellerResetPasswordNotification;
 use Illuminate\Auth\Passwords\CanResetPassword;
 
 
+/**
+ * myRoommie\Hosteller
+ *
+ * @property int $id
+ * @property string $firstName
+ * @property string $lastName
+ * @property string $email
+ * @property string $phone
+ * @property string $role
+ * @property string $password
+ * @property int $status
+ * @property string|null $remember_token
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\HostellerSocialAccount[] $accounts
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Hostel[] $hostel
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Hosteller extends Authenticatable
 {
     use Notifiable;

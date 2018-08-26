@@ -9,6 +9,25 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+/**
+ * myRoommie\Modules\Hostel\HostelView
+ *
+ * @property int $id
+ * @property int $hostel_id
+ * @property string $front
+ * @property string $right
+ * @property string $left
+ * @property string|null $video
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostelView whereFront($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostelView whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostelView whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostelView whereLeft($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostelView whereRight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostelView whereVideo($value)
+ * @mixin \Eloquent
+ */
 class HostelView extends Model implements HasMedia
 {
     /*

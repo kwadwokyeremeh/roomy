@@ -4,6 +4,23 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * myRoommie\Modules\Hostel\Floor
+ *
+ * @property int $id
+ * @property int $hostel_id
+ * @property int $block_id
+ * @property string|null $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Bed[] $beds
+ * @property-read \myRoommie\Modules\Hostel\Block $block
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Room[] $rooms
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Floor whereBlockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Floor whereHostelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Floor whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Floor whereName($value)
+ * @mixin \Eloquent
+ */
 class Floor extends Model
 {
 
