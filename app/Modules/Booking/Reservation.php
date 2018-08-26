@@ -58,6 +58,28 @@ class Reservation extends Model
         $this->belongsTo(PaymentMethod::class);
     }
 
+    /*
+     *  Check whether the selected room is full
+     *
+     * @param $room
+     * @return bool $isRoomFull
+     * */
 
+    public function isRoomFull($room)
+    {
+        $reservedBeds = $this->where('room_id',$room)->get();
+        $roomDetails = Room::where('id',$room)->first();
+        $rs = $roomDetails->roomDescription->number_of_beds;
+
+        if (count($reservedBeds)<$rs){
+            $isRoomFull = false;
+        }elseif (count($reservedBeds)==$rs){
+            $isRoomFull = true;
+        }else{
+            $isRoomFull =true;
+        }
+
+        return $isRoomFull;
+    }
 
 }

@@ -7,6 +7,7 @@ use myRoommie\Modules\Hostel\Hostel;
 
 class IndividualHostelController extends Controller
 {
+    protected $hostel;
     /*
      * Show the individual hostel page
      * */
@@ -28,4 +29,5 @@ class IndividualHostelController extends Controller
 
         return view('individualHostel.index',compact('hostel','roomsAvailable','bedsAvailable','maleBeds','femaleBeds'));
     }
+
 }

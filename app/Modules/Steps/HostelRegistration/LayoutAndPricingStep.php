@@ -8,7 +8,6 @@
 
 namespace myRoommie\Wizard\Steps\HostelRegistration;
 
-use Dotenv\Validator;
 use myRoommie\Http\Controllers\Controller;
 use myRoommie\Http\Requests\LayoutRequest;
 use myRoommie\Repository\Helper;
@@ -22,6 +21,7 @@ use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Smajti1\Laravel\Wizard;
+use Validator;
 
 class LayoutAndPricingStep extends Step
 {

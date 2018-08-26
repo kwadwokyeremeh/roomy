@@ -50,12 +50,13 @@
 
 
 
-                    <form class="row">
+                    <form class="row" method="post" action="">
+                        @csrf @method('PUT')
                         <div class="vk-make-a-reservation-info">
                             <div class="col-md-8">
                                 <div class="vk-make-a-reservation-left">
                                     <h3>Your Informations</h3>
-                                    <div class="row">
+                                    {{--<div class="row">
                                         <div>
                                             <div class="form-group">
                                                 <div class="col-md-6">
@@ -100,7 +101,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <h3>OR</h3>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -123,15 +124,17 @@
                                     <h3>Your Reservation</h3>
                                     <div class="vk-make-a-room">
                                         <div class="vk-make-a-room1">
-                                            <h3>Room 1 : Class Room <span>($200/night)</span></h3>
+                                            <h3>You have selected {{ 'Room '. $roomSelected->number }} on {{$roomSelected->floor->name}}  <span>(&cent;{{$roomSelected->roomDescription->price}}/academic year)</span></h3>
+
+
                                             <ul>
-                                                <li>Adult: 2</li>
-                                                <li>Children: 1</li>
-                                                <li>night(s): 2</li>
+                                                <li>Room Type: {{$roomSelected->roomDescription->room_type}}</li>
+                                                <li>Number of Beds in the room: {{$roomSelected->roomDescription->number_of_beds}}</li>
+                                                <li>After payment your reservation would be valid for one academic year</li>
                                             </ul>
-                                            <h4>$400.00</h4>
+                                            <h4>Price : &cent;{{$roomSelected->roomDescription->price}}</h4>
                                         </div>
-                                        <div class="vk-make-a-room2">
+                                        {{--<div class="vk-make-a-room2">
                                             <h3>Room 2 : Double Room <span>($200/night)</span></h3>
                                             <ul>
                                                 <li>Adult: 2</li>
@@ -139,18 +142,22 @@
                                                 <li>night(s): 2</li>
                                             </ul>
                                             <h4>$400.00</h4>
-                                        </div>
+                                        </div>--}}
                                     </div>
                                     <div class="vk-make-a-total">
                                         <table class="shop_table shop_table_responsive">
                                             <tbody>
                                             <tr class="order-total">
                                                 <th>Total</th>
-                                                <td data-title="Tổng cộng">$800.00 </td>
+                                                <td data-title="Tổng cộng">&cent;{{$roomSelected->roomDescription->price}} </td>
                                             </tr>
                                             <tr class="tax-total">
-                                                <th>Tax 10%</th>
-                                                <td data-title="Thuế">$80.00</td>
+                                                <th>VAT {{env('GHANA_TAX')}}%</th>
+                                                <td data-title="Thuế">&cent;{{$roomSelected->roomDescription->price * env('GHANA_TAX')}}</td>
+                                            </tr>
+                                            <tr class="tax-total">
+                                                <th>Commission {{env('MYROOMMIE_COMMISSION')}}%</th>
+                                                <td data-title="Thuế">&cent;{{$roomSelected->roomDescription->price * env('MYROOMMIE_COMMISSION')}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -160,13 +167,18 @@
                                             <tbody>
                                             <tr class="order-total">
                                                 <th>Grand Total</th>
-                                                <td data-title="Grand-total">$880.00 </td>
+                                                <td data-title="Grand-total">&cent; {{array_sum([
+                                                $roomSelected->roomDescription->price,
+                                                $roomSelected->roomDescription->price * env('GHANA_TAX'),
+                                                $roomSelected->roomDescription->price * env('MYROOMMIE_COMMISSION')
+
+                                                ])}} </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="vk-make-a-btn">
-                                        <h4><a href="#">Edit Booking</a></h4>
+                                        <h4><a href="{{request()->getRequestUri()}}">Edit Booking</a></h4>
                                     </div>
                                 </div>
                             </div>
@@ -185,10 +197,10 @@
 
 
                                                     <div class="col-xs-6">
-                                                        <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="previous" value="Previous" data-value="Previous">
+                                                        <input type="submit" class="button alt" id="previous" value="Previous" data-value="{{request()->getRequestUri()}}" href="{{request()->getRequestUri()}}">
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="next" value="Next" data-value="Next">
+                                                        <input type="submit" class="button alt" id="next" value="Next" data-value="Next">
                                                     </div>
 
                                                 </div>

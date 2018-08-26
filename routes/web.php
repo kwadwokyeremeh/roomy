@@ -120,9 +120,7 @@ Route::middleware('published')->group(function (){
 
     // Hostel booking
     Route::get('/{hostelName}/booking','Booking\ReservationController@index');
-    //Route::get('/{hostelName}/booking/payment','Booking\ReservationController@makePayment');
-    //Route::get('/{hostelName}/booking/selectRoom','Booking\ReservationController@selectRoom');
-    //Route::get('/{hostelName}/booking/confirmation','Booking\ReservationController@confirmation');
     Route::get('/{hostelName}/{room_token}','Booking\ReservationController@roomTypeReservation')->name('reservation');
     Route::post('/{hostelName}/{room_token}','Booking\ReservationController@saveProgress')->name('reserveRoom');
+    Route::put('/{hostelName}/{room_token}','Booking\ReservationController@makePayment')->name('reserveRoom');
 });

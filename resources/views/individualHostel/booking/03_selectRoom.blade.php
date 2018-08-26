@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 @endif
-                <form class="row" method="POST" action="" id="roomsAvailable">
+                <form class="row" method="post" action="" id="roomsAvailable">
                     @csrf
                     <div class="vk-select-room-info">
                         <div class="col-md-9">
@@ -80,10 +80,10 @@
                                                                 {{--<input type="radio"  data-smth="floor_{{$floor->id}}">--}}
                                                                 @foreach($floor->rooms as $room)
                                                                     <div class=" col-xs-4 col-sm-3 col-md-2 col-lg-2 no-room-gutter">
-                                        @if(\Illuminate\Support\Facades\Auth::user()->sex == $room->sex_type )
+                                        @if((\Illuminate\Support\Facades\Auth::user()->sex == $room->sex_type) && $reservation->isRoomFull($room->id) == false )
                                                                         <div class="product-chooser-item  no-room-gutter">
-                                                                            @elseif($room->sex_type =='')
-                                                                        <div class="product-chooser-item  no-room-gutter">
+                                                                            @elseif($room->sex_type == '' && $reservation->isRoomFull($room->id) == false)
+                                                                        <div class="product-chooser-item no-room-gutter">
                                                                             @else
                                                                         <div class="product-chooser-item disabled no-room-gutter">
                                                                         @endif

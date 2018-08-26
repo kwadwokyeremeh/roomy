@@ -66,6 +66,12 @@
 <script src="{{asset('js/jquery.waypoints.js')}}"></script>
 <script src="{{asset('js/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('js/semantic.js')}}"></script>
+@push('custom-script')
+    <script src="{{asset('js/number-count/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('js/countdown.js')}}"></script>
+    @endpush
+
 <script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>
+js

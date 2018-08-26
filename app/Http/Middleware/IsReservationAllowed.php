@@ -45,6 +45,6 @@ class IsReservationAllowed
 
         }
 
-        return redirect(route('home'))->withErrors('Reservations for this hostel is closed');
+        return abort(423)->withErrors('Reservations for this hostel is closed');
     }
 }
