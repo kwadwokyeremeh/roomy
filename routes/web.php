@@ -16,9 +16,9 @@
 /*************************
  * * Testing Routes
  ************************/
-Route::get('/ll',function (){
+/*Route::get('/ll',function (){
      phpinfo();
-});
+});*/
 /*************************
  * * Testing Routes
  ************************/
@@ -72,14 +72,6 @@ Route::prefix('hosteller')->group(function (){
     Route::get('/login/{provider}/callback','Hosteller\HostellerSocialAccountController@handleProviderCallback');
 
 
-    /*********************************
-     *  Hosteller's Dashboard
-     *********************************/
-
-    Route::get('/', 'Hosteller\HostellerController@index')->name('dashboard.hostel')->middleware('hvs');
-    Route::get('/reservationDate', 'Hosteller\HostellerController@reservationDate')->middleware('hvs');
-
-
 
 /***********************************
      * Hostellers Password reset routes
@@ -104,6 +96,43 @@ Route::prefix('hostelRegistration')->group(function (){
 
 });
 
+
+
+    /*********************************
+     *  Hosteller's Dashboard
+     *********************************/
+
+    Route::get('/', 'Hosteller\HostellerController@lockscreen')->name('dashboard.hostel')->middleware('hvs');
+    Route::get('/{hostelName}', 'Hosteller\HostellerController@index')->middleware('hvs');
+    Route::get('{hostelName}/reservationDate', 'Hosteller\HostellerController@reservationDate')->middleware('hvs');
+    Route::get('{hostelName}/editContent', 'Hosteller\HostellerController@editContent')->middleware('hvs');
+    Route::get('{hostelName}/color', 'Hosteller\HostellerController@color')->middleware('hvs');
+    Route::get('{hostelName}/roomSettings', 'Hosteller\HostellerController@roomSettings')->middleware('hvs');
+    Route::get('{hostelName}/paymentSettings', 'Hosteller\HostellerController@paymentSettings')->middleware('hvs');
+    Route::get('{hostelName}/occupants', 'Hosteller\HostellerController@occupants')->middleware('hvs');
+    Route::get('{hostelName}/allotABed', 'Hosteller\HostellerController@allotABed')->middleware('hvs');
+    Route::get('{hostelName}/vacateAnOccupant', 'Hosteller\HostellerController@vacateAnOccupant')->middleware('hvs');
+    Route::get('{hostelName}/changeOccupantRoom', 'Hosteller\HostellerController@changeOccupantRoom')->middleware('hvs');
+    Route::get('{hostelName}/paidList', 'Hosteller\HostellerController@paidList')->middleware('hvs');
+    Route::get('{hostelName}/reservedBedList', 'Hosteller\HostellerController@reservedBedList')->middleware('hvs');
+    Route::get('{hostelName}/r&c', 'Hosteller\HostellerController@reviewsAndComments')->middleware('hvs');
+    Route::get('{hostelName}/inbox', 'Hosteller\HostellerController@inbox')->middleware('hvs');
+    Route::get('{hostelName}/compose', 'Hosteller\HostellerController@compose')->middleware('hvs');
+    Route::get('{hostelName}/read', 'Hosteller\HostellerController@read')->middleware('hvs');
+    Route::get('{hostelName}/owner', 'Hosteller\HostellerController@owner')->middleware('hvs');
+    Route::get('{hostelName}/manager', 'Hosteller\HostellerController@manager')->middleware('hvs');
+    Route::get('{hostelName}/portal', 'Hosteller\HostellerController@portal')->middleware('hvs');
+    Route::get('{hostelName}/docs', 'Hosteller\HostellerController@docs')->middleware('hvs');
+    Route::get('{hostelName}/faqs', 'Hosteller\HostellerController@faqs')->middleware('hvs');
+    Route::get('{hostelName}/notice', 'Hosteller\HostellerController@notice')->middleware('hvs');
+    Route::get('{hostelName}/uploads', 'Hosteller\HostellerController@uploads')->middleware('hvs');
+    Route::get('{hostelName}/roomCancellationPolicy', 'Hosteller\HostellerController@roomCancellationPolicy')->middleware('hvs');
+    Route::get('{hostelName}/policy', 'Hosteller\HostellerController@policy')->middleware('hvs');
+    Route::get('{hostelName}/termsOfService', 'Hosteller\HostellerController@termOfService')->middleware('hvs');
+    Route::get('{hostelName}/archives', 'Hosteller\HostellerController@archives')->middleware('hvs');
+    Route::get('{hostelName}/addHostel', 'Hosteller\HostellerController@addHostel')->middleware('hvs');
+
+
 });
 
 
@@ -119,7 +148,7 @@ Route::middleware('published')->group(function (){
     Route::put('/{hostelName}/comments','CommentController@update')->name('commentOnHostel');
 
     // Hostel booking
-    Route::get('/{hostelName}/booking','Booking\ReservationController@index');
+    //Route::get('/{hostelName}/booking','Booking\ReservationController@roomTypeReservation');
     Route::get('/{hostelName}/{room_token}','Booking\ReservationController@roomTypeReservation')->name('reservation');
     Route::post('/{hostelName}/{room_token}','Booking\ReservationController@saveProgress')->name('reserveRoom');
     Route::put('/{hostelName}/{room_token}','Booking\ReservationController@makePayment')->name('reserveRoom');

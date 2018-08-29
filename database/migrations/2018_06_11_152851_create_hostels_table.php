@@ -20,7 +20,6 @@ class CreateHostelsTable extends Migration
             $table->string('hostel_phone')->nullable();
             $table->string('alias')->nullable();
             $table->string('slug')->unique();
-            $table->integer('number_of_blocks');
             $table->string('street_address');
             $table->string('city');
             $table->string('region')->nullable();
@@ -28,8 +27,6 @@ class CreateHostelsTable extends Migration
             $table->float('latitude',20,17)->nullable();
             $table->float('longitude',20,17)->nullable();
             $table->boolean('published')->default(false);
-            $table->integer('hosteller_id')->unsigned();
-            $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
             $table->timestamps();
         });
     }

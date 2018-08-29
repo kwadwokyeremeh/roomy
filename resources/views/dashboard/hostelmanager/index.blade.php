@@ -1,4 +1,9 @@
 @extends('dashboard.hostelmanager.layout.master')
+
+@section('page-header')
+    Summary
+    @endsection
+
 @section('main-content')
 
 
@@ -294,3 +299,4 @@
             <!-- /.box -->
 
     @endsection
+

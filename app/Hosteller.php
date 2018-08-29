@@ -4,6 +4,7 @@ namespace myRoommie;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use myRoommie\Modules\Hostel\HostellerHostel;
 use myRoommie\Notifications\HostellerResetPasswordNotification;
 use Illuminate\Auth\Passwords\CanResetPassword;
 
@@ -37,6 +38,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $full_name
  */
 class Hosteller extends Authenticatable
 {
@@ -77,7 +79,10 @@ class Hosteller extends Authenticatable
 
     public function hostel()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Hostel');
+        return $this->belongsToMany('myRoommie\Modules\Hostel\Hostel','hosteller_hostel','hosteller_id','hostel_id')
+            ->using(HostellerHostel::class)
+            ->withPivot('hosteller_id','hostel_id')
+            ->as('management');
     }
 
     public function hostelRegistration()
@@ -90,5 +95,14 @@ class Hosteller extends Authenticatable
     public function accounts()
     {
         return $this->hasMany(HostellerSocialAccount::class);
+    }
+
+
+    /*
+     * Get the hosteller full name
+     * */
+    public function getFullNameAttribute()
+    {
+        return "{$this->firstName} {$this->lastName}";
     }
 }

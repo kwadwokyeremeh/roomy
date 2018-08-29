@@ -55,7 +55,7 @@
                         <div class="vk-make-a-reservation-info">
                             <div class="col-md-8">
                                 <div class="vk-make-a-reservation-left">
-                                    <h3>Your Informations</h3>
+                                    <h3>Please select a payment method</h3>
                                     {{--<div class="row">
                                         <div>
                                             <div class="form-group">

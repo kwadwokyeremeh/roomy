@@ -6,10 +6,10 @@
         <!-- Sidebar hostel panel (optional) hostel image and name-->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <h4>Hostel Name</h4>
+                <h4>{{$hostel->name}}</h4>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">DASHBOARD</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Summary</span></a></li>
+            <li class="active"><a href="{{'/hosteller/'.$hostel->slug.'/'}}"><i class="fa fa-link"></i> <span>Summary</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Hostel Page</span>
                     <span class="pull-right-container">
@@ -38,8 +38,8 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Edit Content</a></li>
-                    <li><a href="{{'/hosteller/'}}">Color Picker</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/editContent'}}">Edit Content</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/color'}}">Color Picker</a></li>
                 </ul>
             </li><li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Hostel Settings</span>
@@ -48,12 +48,12 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Room Settings</a></li>
-                    <li><a href="{{'/hosteller/'}}">Payment Settings</a></li>
-                    <li><a href="{{'/hosteller/reservationDate'}}">Reservation Settings</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/roomSettings'}}">Room Settings</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/paymentSettings'}}">Payment Settings</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/reservationDate'}}">Reservation Settings</a></li>
                 </ul>
             </li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Occupants</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/occupants'}}"><i class="fa fa-link"></i> <span>Occupants</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Room Allotment</span>
                     <span class="pull-right-container">
@@ -61,9 +61,9 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Allot a bed</a></li>
-                    <li><a href="{{'/hosteller/'}}">Vacate an occupant</a></li>
-                    <li><a href="{{'/hosteller/'}}">Change occupant room</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/allotABed'}}">Allot a bed</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/vacateAnOccupant'}}">Vacate an occupant</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/changeOccupantRoom'}}">Change occupant room</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -73,13 +73,13 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Paid list</a></li>
-                    <li><a href="{{'/hosteller/'}}">Reserved bed list</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/paidList'}}">Paid list</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/reservedBedList'}}">Reserved bed list</a></li>
                 </ul>
             </li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Reviews and Comments</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/r&c'}}"><i class="fa fa-link"></i> <span>Reviews and Comments</span></a></li>
             <li class="treeview active">
-                <a href="{{'/hosteller/'}}">
+                <a href="#">
                     <i class="fa fa-envelope"></i> <span>Mailbox</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -87,18 +87,18 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active">
-                        <a href="{{'/hosteller/'}}">Inbox
+                        <a href="{{'/hosteller/'.$hostel->slug.'/inbox'}}">Inbox
                             <span class="pull-right-container">
                   <span class="label label-primary pull-right">13</span>
                 </span>
                         </a>
                     </li>
-                    <li><a href="{{'/hosteller/'}}">Compose</a></li>
-                    <li><a href="{{'/hosteller/'}}">Read</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/compose'}}">Compose</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/read'}}">Read</a></li>
                 </ul>
             </li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Notice</span></a></li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Uploads</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/notice'}}"><i class="fa fa-link"></i> <span>Notice</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/uploads'}}"><i class="fa fa-link"></i> <span>Uploads</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>User Settings</span>
                     <span class="pull-right-container">
@@ -106,8 +106,8 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Hostel Manager</a></li>
-                    <li><a href="{{'/hosteller/'}}">Hostel Portal</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/manager'}}">Hostel Manager</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/portal'}}">Hostel Portal</a></li>
 
                 </ul>
             </li>
@@ -118,8 +118,8 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Documentation</a></li>
-                    <li><a href="{{'/hosteller/'}}">FAQs</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/docs'}}">Documentation</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/faqs'}}">FAQs</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -129,14 +129,14 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{'/hosteller/'}}">Room Cancellation Policy</a></li>
-                    <li><a href="{{'/hosteller/'}}">Hostel Policies</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/roomCancellationPolicy'}}">Room Cancellation Policy</a></li>
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/policy'}}">Hostel Policies</a></li>
                 </ul>
             </li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Terms of Services</span></a></li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Archives</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/termsOfService'}}"><i class="fa fa-link"></i> <span>Terms of Services</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/archives'}}"><i class="fa fa-link"></i> <span>Archives</span></a></li>
             <li class="header">Extra</li>
-            <li><a href="{{'/hosteller/'}}"><i class="fa fa-link"></i> <span>Add hostel</span></a></li>
+            <li><a href="{{'/hosteller/'.$hostel->slug.'/addHostel'}}"><i class="fa fa-link"></i> <span>Add hostel</span></a></li>
 
         </ul>
         <!-- /.sidebar-menu -->

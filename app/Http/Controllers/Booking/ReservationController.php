@@ -114,8 +114,13 @@ class ReservationController extends Controller
             ->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds','roomDescription'])
             ->firstOrFail();
-        $roomType = RoomDescription::where('room_token',$room_token)
-            ->firstOrFail();
+        if ($room_token=='booking'){
+            $roomType = [];
+        }else{
+            $roomType = RoomDescription::where('room_token',$room_token)
+                ->firstOrFail();
+        }
+
 
         $blocks = $hostel->blocks;
         $floors = $hostel->floors;
@@ -177,20 +182,25 @@ class ReservationController extends Controller
     }
 
 
-    /*public function selectRoom($hostelName)
-    {
-        $hostel = Hostel::where('id',$hostelName)
-            ->orWhere('slug',$hostelName)
-            ->firstOrFail();
-        return view('individualHostel.booking.03_selectRoom',compact('hostel'));
-    }
-
+    /*
+     *
+     *
+     * */
     public function makePayment($hostelName)
     {
         $hostel = Hostel::where('id',$hostelName)
             ->orWhere('slug',$hostelName)
             ->firstOrFail();
         return view('individualHostel.booking.04_payment',compact('hostel'));
+    }
+
+
+    /*public function selectRoom($hostelName)
+    {
+        $hostel = Hostel::where('id',$hostelName)
+            ->orWhere('slug',$hostelName)
+            ->firstOrFail();
+        return view('individualHostel.booking.03_selectRoom',compact('hostel'));
     }
 
     public function confirmation($hostelName)

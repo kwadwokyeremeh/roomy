@@ -45,6 +45,17 @@
                                                                 </label>
                                                             </div>
                                                         </div>
+                                                        {{--@if($errors->any())
+                                                            <div class="vk-notification-boxes">
+                                                                <div class="vk-notification-boxes-body">
+                                                                    <ul class="vk-alert vk-alert-warning ">
+                                                                        @foreach($errors->all() as $error)
+                                                                            <li><span><i class="fa fa-times-circle" aria-hidden="true"></i></span> {{$error}} --}}{{--<a href="#">Click here</a>--}}{{--</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        @endif--}}
                                                         <div class="vk-checkout-login">
                                                             <div class="row">
                                                                 <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('hosteller.login') }}">

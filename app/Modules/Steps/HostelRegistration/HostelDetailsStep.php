@@ -36,20 +36,7 @@ class HostelDetailsStep extends Step
        */
         $coordinates =GoogleMaps::geocodeAddress( $request->get('name'),$request->get('street_address'), $request->get('city'), $request->get('region'),$request->get('country') );
 
-        /*
-         * Convert the hostel name or alias into a unique URL address
-         * */
-        if (!is_null($request->get('alias'))) {
-            $uSlug = $request['alias'];
-        }else{
-            $uSlug =$request['name'];
-        }
-        $slug =mb_strtolower($uSlug);
-        if (str_contains($slug,'hostel')){
-            $tSlug =str_slug(trim($slug,'hostel'),'');
-        }else{
-            $tSlug =str_slug($slug,'');
-        }
+
 
 
         /*
@@ -59,11 +46,11 @@ class HostelDetailsStep extends Step
         $hostel = new Hostel;
         $hostel ->name = $request->get('name');
         $hostel ->alias = $request->get('alias');
-        $hostel ->slug = $tSlug;
+        $hostel ->slug = $this->slugHostel($request);
         $hostel ->street_address = $request->get('street_address');
-        $hostel ->number_of_blocks = $request->get('number_of_blocks');
+        //$hostel ->number_of_blocks = $request->get('number_of_blocks');
         $hostel ->city = $request->get('city');
-        $hostel ->hosteller_id = Auth::guard('hosteller')->user()->id;
+        //$hostel ->hosteller_id = Auth::guard('hosteller')->user()->id;
         $hostel ->region = 'Ashanti';
         $hostel ->country = 'Ghana';
         $hostel ->latitude = $coordinates['lat'];
@@ -150,4 +137,23 @@ class HostelDetailsStep extends Step
         ];
     }
 
+    public function slugHostel(Request $request)
+    {
+        /*
+        * Convert the hostel name or alias into a unique URL address
+        * */
+        if (!is_null($request->get('alias'))) {
+            $uSlug = $request['alias'];
+        }else{
+            $uSlug =$request['name'];
+        }
+        $slug =mb_strtolower($uSlug);
+        if (str_contains($slug,'hostel')){
+            $tSlug =str_slug(str_replace('hostel','',$slug),'');
+        }else{
+            $tSlug =str_slug($slug,'');
+        }
+
+        return $tSlug;
+    }
 }

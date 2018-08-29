@@ -1,133 +1,83 @@
-<!DOCTYPE html>
-<html>
-<?php include ('../_partials/hmdashboard_head.php');?>
-<!-- iCheck -->
-<link rel="stylesheet" href="../../plugins/iCheck/flat/blue.css">
-<!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
-<body class="hold-transition skin-yellow-light sidebar-mini">
-<div class="wrapper">
+@extends('dashboard.hostelmanager.layout.master')
+@section('custom-css')
+    <link rel="stylesheet" href="{{asset('plugins/iCheck/flat/blue.css')}}">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
-    <!-- Main Header -->
-   <?php include ('../_partials/hmdashboard_header.php');?>
-    <!-- Left side column. contains the logo and sidebar -->
-    <?php include "../_partials/hmdashboard_sidebar.php";?>
+@endsection
+@section('page-header')
+    Reviews and Comments
+@endsection
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <?php include "../_partials/hm_mainNav.php";?>
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Page Header
-                <small>Optional description</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
-        </section>
+@section('optional-desc')
 
-        <!-- Main content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Mailbox
-                    <small>13 new messages</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Mailbox</li>
-                </ol>
-            </section>
+@endsection
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom">Back to Inbox</a>
+@section('main-content')
+    <div class="row">
+        <div class="col-md-3">
+            <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom">Back to Inbox</a>
 
-                        <div class="box box-solid">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Folders</h3>
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Folders</h3>
 
-                                <div class="box-tools">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body no-padding">
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="mailbox.html"><i class="fa fa-inbox"></i> Inbox
-                                            <span class="label label-primary pull-right">12</span></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                                    <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                                    <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /. box -->
-                        <div class="box box-solid">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Labels</h3>
-
-                                <div class="box-tools">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body no-padding">
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-md-9">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Compose New Message</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="To:">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Subject:">
-                                </div>
-                                <div class="form-group">
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="mailbox.html"><i class="fa fa-inbox"></i> Inbox
+                                <span class="label label-primary pull-right">12</span></a></li>
+                        <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                        <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+                        <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Labels</h3>
+
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Compose New Message</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="To:">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Subject:">
+                    </div>
+                    <div class="form-group">
                     <textarea id="compose-textarea" class="form-control" style="height: 300px">
                       <h1><u>Heading Of Message</u></h1>
                       <h4>Subheading</h4>
@@ -153,68 +103,42 @@ desired effect
                       <p>Thank you,</p>
                       <p>John Doe</p>
                     </textarea>
-                                </div>
-                                <div class="form-group">
-                                    <div class="btn btn-default btn-file">
-                                        <i class="fa fa-paperclip"></i> Attachment
-                                        <input type="file" name="attachment">
-                                    </div>
-                                    <p class="help-block">Max. 32MB</p>
-                                </div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-                                <div class="pull-right">
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
-                                </div>
-                                <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
-                            </div>
-                            <!-- /.box-footer -->
-                        </div>
-                        <!-- /. box -->
                     </div>
-                    <!-- /.col -->
+                    <div class="form-group">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"></i> Attachment
+                            <input type="file" name="attachment">
+                        </div>
+                        <p class="help-block">Max. 32MB</p>
+                    </div>
                 </div>
-                <!-- /.row -->
-            </section>
-            <!-- /.content -->
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                    </div>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /. box -->
         </div>
-        <!-- /.content -->
+        <!-- /.col -->
     </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Main Footer -->
-    <?php include "../_partials/hmdashboard_footer.php";?>
+@endsection
 
-    <!-- Control Sidebar -->
-    <?php include "../_partials/hmdashboard_rightSidepane.php";?>
-    <!-- /.control-sidebar -->
+@section('custom-script')
 
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<script src="../../dist/js/pages/dashboard2.js"></script>
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Page Script -->
-<script>
-    $(function () {
-        //Add text editor
-        $("#compose-textarea").wysihtml5();
-    });
-</script>
-</body>
-</html>
+    <script src="{{asset('plugins/iCheck/icheck.min.js')}}"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+    <!-- Page Script -->
+    <script>
+        $(function () {
+            //Add text editor
+            $("#compose-textarea").wysihtml5();
+        });
+    </script>
+@endsection

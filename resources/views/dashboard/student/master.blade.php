@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-@include ('dashboard.student._partials.st_head')'
+@include ('dashboard.student._partials.st_head')
 
 <body class="hold-transition skin-red-light sidebar-mini">
 <div class="wrapper">

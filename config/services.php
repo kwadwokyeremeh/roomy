@@ -34,6 +34,12 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'interpayafrica' => [
+        'model' => myRoommie\User::class,
+        'app_id' => env('INTERPAY_AFRICA_APP_ID'),
+        'app_key' => env('INTERPAY_AFRICA_APP_KEY'),
+        'merchant_account' => env('INTERPAY_AFRICA_MERCHANT'),
+    ],
 
     'facebook' => [
         'client_id'     =>env('FACEBOOK_ID'),

@@ -17,6 +17,11 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <li class="user">
+
+                    <a href="{{'/'.$hostel->slug}}" title="Visit Site" ><i class="fa fa-home"></i></a>
+                    {{--<span class="hidden-xs user">Visit Site</span>--}}
+                </li>
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
@@ -33,7 +38,7 @@
                                     <a href="#">
                                         <div class="pull-left">
                                             <!-- User Image -->
-                                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                                         </div>
                                         <!-- Message title and timestamp -->
                                         <h4>
@@ -118,17 +123,17 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">{{ auth()->guard('hosteller')->user()->firstName }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                             <p>
-                               {{ auth()->guard('hosteller')->user()->firstName }}
+                               {{ auth()->guard('hosteller')->user()->fullName }}
                                 <small>Member since {{ auth()->guard('hosteller')->user()->created_at->toDayDateTimeString() }}</small>
                             </p>
                         </li>

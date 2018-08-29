@@ -7,6 +7,7 @@ use myRoommie\Hosteller;
 use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Modules\HostelRegistration;
 
+
 /**
  * myRoommie\Modules\Hostel\Hostel
  *
@@ -15,8 +16,7 @@ use myRoommie\Modules\HostelRegistration;
  * @property string|null $hostel_email
  * @property string|null $hostel_phone
  * @property string|null $alias
- * @property string|null $slug
- * @property int $number_of_blocks
+ * @property string $slug
  * @property string $street_address
  * @property string $city
  * @property string|null $region
@@ -24,7 +24,6 @@ use myRoommie\Modules\HostelRegistration;
  * @property float|null $latitude
  * @property float|null $longitude
  * @property int $published
- * @property int $hosteller_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Bed[] $beds
@@ -36,7 +35,7 @@ use myRoommie\Modules\HostelRegistration;
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Food[] $food
  * @property-read \myRoommie\Modules\HostelRegistration $hostelRegistration
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\HostelView[] $hostelViews
- * @property-read \myRoommie\Hosteller $hosteller
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Hosteller[] $hosteller
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Misc[] $miscellaneous
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Payment[] $payment
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Policy[] $policies
@@ -52,12 +51,10 @@ use myRoommie\Modules\HostelRegistration;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereHostelEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereHostelPhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereHostellerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereNumberOfBlocks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereSlug($value)
@@ -70,7 +67,7 @@ class Hostel extends Model
 
     protected $fillable = [
         'name','alias',
-        'number_of_blocks',
+        //'number_of_blocks',
         'street_address',
         'city',
         'region', 'country',
@@ -78,7 +75,7 @@ class Hostel extends Model
         'longitude',
         'hostel_email',
         'hostel_phone',
-        'hosteller_id',
+        //'hosteller_id',
     ];
 
     /*
@@ -88,7 +85,9 @@ class Hostel extends Model
      * */
     public function hosteller()
     {
-        return $this->belongsTo(Hosteller::class);
+        return $this->belongsToMany(Hosteller::class,'hosteller_hostel','hostel_id','hosteller_id')
+            ->using(HostellerHostel::class)->as('management')
+            ->withPivot('hosteller_id','hostel_id');
     }
 
     public function hostelRegistration()
@@ -260,5 +259,24 @@ class Hostel extends Model
         //return $hostel;
     }
 
+    public function slugHostel($request)
+    {
+        /*
+        * Convert the hostel name or alias into a unique URL address
+        * */
+        if (!is_null($request->get('alias'))) {
+            $uSlug = $request['alias'];
+        }else{
+            $uSlug =$request['name'];
+        }
+        $slug =mb_strtolower($uSlug);
+        if (str_contains($slug,'hostel')){
+            $tSlug =str_slug(str_replace('hostel','',$slug),'');
+        }else{
+            $tSlug =str_slug($slug,'');
+        }
+
+        return $tSlug;
+    }
 
 }
