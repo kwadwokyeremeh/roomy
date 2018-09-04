@@ -48,7 +48,18 @@
                         </li>
                     </ul>
                 </div>
+                @if(auth('hosteller')->check())
+                    <div class="vk-notification-boxes">
+                        <div class="vk-notification-boxes-body">
+                            <ul class="vk-alert vk-alert-danger ">
 
+                                <li><span><i class="fa fa-warning" aria-hidden="true"></i></span>Dear {{auth('hosteller')->user()->fullName}}, you can not reserve a bed. {{--<a href="#">Click here</a>--}}</li>
+                                <li><span><i class="fa fa-warning" aria-hidden="true"></i></span>You can only view this page since you a hostel {{auth('hosteller')->user()->role}} {{--<a href="#">Click here</a>--}}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
                 @if($errors->any())
                     <div class="vk-notification-boxes">
                         <div class="vk-notification-boxes-body">
@@ -61,7 +72,9 @@
                     </div>
                 @endif
                 <form class="row" method="post" action="" id="roomsAvailable">
+                @auth('web')
                     @csrf
+                @endauth
                     <div class="vk-select-room-info">
                         <div class="col-md-9">
                             <div class="vk-shortcode-accordion-body">
@@ -80,9 +93,9 @@
                                                                 {{--<input type="radio"  data-smth="floor_{{$floor->id}}">--}}
                                                                 @foreach($floor->rooms as $room)
                                                                     <div class=" col-xs-4 col-sm-3 col-md-2 col-lg-2 no-room-gutter">
-                                        @if((\Illuminate\Support\Facades\Auth::user()->sex == $room->sex_type) && $reservation->isRoomFull($room->id) == false )
+                                        @if((\Illuminate\Support\Facades\Auth::user()->sex == $room->sex_type) && ($reservation->isRoomFull($room->id)) == false )
                                                                         <div class="product-chooser-item  no-room-gutter">
-                                                                            @elseif($room->sex_type == '' && $reservation->isRoomFull($room->id) == false)
+                                                                            @elseif($room->sex_type == '' && ($reservation->isRoomFull($room->id)) == false)
                                                                         <div class="product-chooser-item no-room-gutter">
                                                                             @else
                                                                         <div class="product-chooser-item disabled no-room-gutter">
@@ -145,6 +158,7 @@
 
                         </div>
                     </div>
+                            @auth('web')
                     <div class="vk-shop-checkout-body">
                         <div class="vk-checkout-order-paypal">
                             <div class="row">
@@ -160,7 +174,7 @@
 
                                                 <div class="col-xs-6">
                                                     {{--<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="previous" value="Previous" data-value="Previous">
-                                               --}} </div>
+                                            --}} </div>
                                                 <div class="col-xs-6">
                                                     <input type="submit" class="button alt" id="next" value="Next" data-value="Next">
                                                 </div>
@@ -173,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-
+                            @endauth
 
 
                 </form>
@@ -195,6 +209,8 @@
 
 @section('custom-script')
     {{--<script src="{{asset('js/vue.js')}}"></script>--}}
+
+    @auth('web')
     <script>
         $(function() {
             $('.product-chooser').find('div.product-chooser-item').on('click', function () {
@@ -210,7 +226,7 @@
 
             });
         });
-        /*$('input[type="radio"]').on('change', function() {
+        {{--/*$('input[type="radio"]').on('change', function() {
             $('.child').prop("checked", false); // Reset all child checkbox
             // Check if it's a parent or child being checked
             if ($(this).hasClass('parent')) {
@@ -220,7 +236,7 @@
                 $(this).prop("checked", true); // Check the selected child
                 $(this).parent().parent().prev('.parent').prop('checked', true); // Check the selected parent
             }
-        });*/
+        });*/--}}
 
 
 
@@ -229,4 +245,5 @@
 
 
     </script>
+    @endauth
 @endsection

@@ -23,13 +23,13 @@ class RedirectIfAuthenticated
         switch ($guard) {
             case 'hosteller':
                 if (Auth::guard($guard)->check()) {
-                    return redirect(route('dashboard.hostel'));
+                    return redirect()->intended(route('dashboard.hostel'));
 
                 }
                 break;
             default:
                 if (Auth::guard($guard)->check()) {
-                    return redirect(route('student'));
+                    return redirect()->intended(route('student'));
                 }
                 break;
         }

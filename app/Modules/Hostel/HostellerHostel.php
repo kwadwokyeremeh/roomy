@@ -7,6 +7,12 @@ use myRoommie\Hosteller;
 
 class HostellerHostel extends Pivot
 {
+    protected $fillable =[
+        'hostel_id','hosteller_id'
+    ];
+
+
+
     /*
      * Not Necessary
      *

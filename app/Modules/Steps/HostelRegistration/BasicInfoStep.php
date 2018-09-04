@@ -59,7 +59,10 @@ class BasicInfoStep extends Step
                 'role' => $request['role_3'],
                 ]);
 
-
+            $request->session()->put(['hostellersId'=> []]);
+            foreach ($hosteller as $hostellerId) {
+                $request->session()->put(['hostellersId' => $hostellerId->id,]);
+            }
             /*$registerHostel = new HostelRegistration;
             $registerHostel-> firstOrCreate([
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
@@ -84,6 +87,10 @@ class BasicInfoStep extends Step
             /*'password' => Hash::make($request['password']),*/
 
         ]);
+            $request->session()->put(['hostellersId'=> []]);
+            foreach ($hosteller as $hostellerId) {
+                $request->session()->put(['hostellersId' => $hostellerId->id,]);
+            }
             /*$registerHostel = new HostelRegistration;
             $registerHostel->create([
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
@@ -112,6 +119,10 @@ class BasicInfoStep extends Step
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
                 '1_basic_info' => true
             ]);*/
+            $request->session()->put(['hostellersId'=> []]);
+            foreach ($hostellers as $hostellerId) {
+                $request->session()->put(['hostellersId' => $hostellerId->id,]);
+            }
 
         }
         elseif (is_null($request->get('email')['manager'] && $request->get('email')['portal'])) {

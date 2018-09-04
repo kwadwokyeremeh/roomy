@@ -17,7 +17,8 @@ class CreatePaymentMethodsTable extends Migration
             $table->increments('id');
             $table->string('payment_type');
             $table->string('shorthand');
-            $table->string('payment_handler')->nullable();
+            $table->string('payment_handler',255)->nullable();
+            $table->json('callback')->default('{ }');
             $table->timestamps();
         });
     }

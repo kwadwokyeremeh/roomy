@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'guest' => \myRoommie\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'hvs' => \myRoommie\Http\Middleware\CheckHostellerStatus::class,
         'published' => \myRoommie\Http\Middleware\CheckForPublishedHostels::class,
         'chrp' => \myRoommie\Http\Middleware\CompleteHostelRegistrationProcess::class,

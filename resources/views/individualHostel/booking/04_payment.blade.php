@@ -47,17 +47,177 @@
                         </li>
                     </ul>
                 </div>
+                @if($messages)
+                    <div class="vk-notification-boxes">
+                        <div class="vk-notification-boxes-body">
+                            <ul class="vk-alert vk-alert-success ">
+                                @foreach($messages as $message)
+                                    <li><span><i class="fa fa-check" aria-hidden="true"></i></span> {{$message}} {{--<a href="#">Click here</a>--}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
 
+                @if($errors->any())
+                    <div class="vk-notification-boxes">
+                        <div class="vk-notification-boxes-body">
+                            <ul class="vk-alert vk-alert-warning ">
+                                @foreach($errors->all() as $error)
+                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i></span> {{$error}} {{--<a href="#">Click here</a>--}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
 
+                    <div class="row">
 
-                    <form class="row" method="post" action="">
-                        @csrf @method('PUT')
                         <div class="vk-make-a-reservation-info">
                             <div class="col-md-8">
                                 <div class="vk-make-a-reservation-left">
                                     <h3>Please select a payment method</h3>
-                                    {{--<div class="row">
-                                        <div>
+
+                                    <div class="vk-shortcode-accordion-body">
+                                        <div class="container">
+                                            {{--<h2>Default Accordion</h2>--}}
+                                            <div class="row">
+                                                <div class="vk-accordion-default col-md-8">
+                                                    <h4 class="vk-accordion-toggle-default"><input type="radio" name="bank">Pay directly through the bank</h4>
+                                                    <div class="vk-accordion-content-default">
+                                                        <p>
+                                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                                                            sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                                                            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                                                            commodo vitae, ornare sit amet, wisi. Aenean fermentum.
+                                                        </p>
+                                                    </div>
+
+                                                    <h4 class="vk-accordion-toggle-default"><input type="radio" name="debit">Debit Card</h4>
+                                                    <div class="vk-accordion-content-default">
+                                                        <p>
+                                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                                                            sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                                                            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                                                            commodo vitae, ornare sit amet, wisi. Aenean fermentum.
+                                                        </p>
+                                                    </div>
+
+                                                    <h4 class="vk-accordion-toggle-default"><input type="radio" name="airteltigo">AirtelTigo Cash</h4>
+                                                    <div class="vk-accordion-content-default">
+                                                        <p>
+                                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                                                            sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                                                            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                                                            commodo vitae, ornare sit amet, wisi. Aenean fermentum.
+                                                        </p>
+                                                    </div><h4 class="vk-accordion-toggle-default"><input type="radio" name="mtnmomo">MTN mobile money</h4>
+                                                    <div class="vk-accordion-content-default">
+                                                        <p>
+                                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                                                            sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                                                            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                                                            commodo vitae, ornare sit amet, wisi. Aenean fermentum.
+                                                        </p>
+                                                    </div><h4 class="vk-accordion-toggle-default"><input type="radio" name="vodacash">Vodafone Cash</h4>
+                                                    <div class="vk-accordion-content-default">
+                                                        <p>
+                                                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                                                            sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                                                            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                                                            commodo vitae, ornare sit amet, wisi. Aenean fermentum.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <form>
+                                            <div class="vk-checkout-ship-address">
+                                                <h4 class="text text-left">
+                                                    <input class="woocommerce-form__input woocommerce-form__input-checkbox btn-checkbox-ship-address" name="address" type="radio" id="ship-address" value="forever">
+                                                    <span>Pay through the bank</span>
+                                                </h4>
+
+                                                <div class="woocommerce-billing-fields__field-wrapper checkout-ship-address-checkbox">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="text" id="firstName" placeholder="First name *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="text" id="lastName" placeholder="Last name *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="email" id="email" placeholder="Email *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="vk-checkout-ship-address">
+                                                <h4 class="text text-left">
+                                                    <input class="btn-checkbox-ship-address" name="address" type="radio" id="ship-address" value="forever">
+                                                    <span>Debit Card</span>
+                                                </h4>
+
+                                                <div class="woocommerce-billing-fields__field-wrapper checkout-ship-address-checkbox">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="text" id="firstName" placeholder="First name *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="text" id="lastName" placeholder="Last name *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="email" id="email" placeholder="Email *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="vk-checkout-ship-address">
+                                                <h4 class="text text-left">
+                                                    <input class=" btn-checkbox-ship-address" name="address" type="radio" id="ship-address" value="forever">
+                                                    <span>MTN mobile money</span>
+                                                </h4>
+
+                                                <div class="woocommerce-billing-fields__field-wrapper checkout-ship-address-checkbox">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="text" id="firstName" placeholder="First name *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="text" id="lastName" placeholder="Last name *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <input type="email" id="email" placeholder="Email *" class="form-control" required>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
                                             <div class="form-group">
                                                 <div class="col-md-6">
                                                     <input type="text" id="firstName" placeholder="First name *" class="form-control" required>
@@ -100,8 +260,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>--}}
+                                        </form>
+                                    </div>
+
+
+
                                     <h3>OR</h3>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -211,7 +374,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
 
 
@@ -227,5 +390,21 @@
 
 @section('custom-script')
 
+    <script>
+        $(function() {
+            $('.vk-accordion-default').find('.vk-accordion-toggle-default').on('click', function () {
+                $('.vk-accordion-default').find('.vk-accordion-toggle-default').removeClass('selected').find('input[type="radio"]').prop("checked", false);
+                if ($(this).is('.disabled')){
+
+                }else {
+                    $(this).addClass('selected');
+                    $(this).find('input[type="radio"]').prop("checked", true);
+                }
+
+
+
+            });
+        });
+    </script>
 
 @endsection

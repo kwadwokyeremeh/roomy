@@ -14012,3 +14012,11 @@ div.product-chooser div.product-chooser-item input{
   -webkit-transform: rotate(-45deg) translateX(28px) translateY(25px);
   -ms-transform: rotate(-45deg) translateX(28px) translateY(25px);
   transform: rotate(-45deg) translateX(28px) translateY(25px); }
+
+
+div.vk-accordion-default .vk-accordion-toggle-default input{
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+}

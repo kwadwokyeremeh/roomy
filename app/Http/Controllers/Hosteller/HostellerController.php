@@ -2,6 +2,7 @@
 
 namespace myRoommie\Http\Controllers\Hosteller;
 
+use Gate;
 use Illuminate\Http\Request;
 use myRoommie\Hosteller;
 use myRoommie\Http\Controllers\Controller;
@@ -18,6 +19,10 @@ class HostellerController extends Controller
     public function lockscreen()
     {
         $hosteller = Hosteller::findOrFail(auth('hosteller')->id());
+        if(count($hosteller->hostel) == 1){
+            $hostel =$hosteller->hostel()->firstOrFail();
+            return view('dashboard.hostelmanager.index',compact('hostel'));
+        }
 
         return view('dashboard.hostelmanager.layout.lockscreen',compact('hosteller'));
     }
@@ -35,30 +40,49 @@ class HostellerController extends Controller
 
     public function reservationDate($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)
+            ->with('reservationDate')->firstOrFail();
+            //->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
+
         return view('dashboard.hostelmanager.reservation_settings',compact('hostel'));
     }
     public function editContent($hostelName)
     {
+
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.edit_content',compact('hostel'));
     }
 
     public function color($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.color_picker',compact('hostel'));
     }
 
     public function roomSettings($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.room_settings',compact('hostel'));
     }
 
     public function paymentSettings($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.payment_settings',compact('hostel'));
     }
 
@@ -71,6 +95,9 @@ class HostellerController extends Controller
     public function allotABed($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.allot_a_bed',compact('hostel'));
     }
 
@@ -78,12 +105,19 @@ class HostellerController extends Controller
     public function vacateAnOccupant($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.vacate_occupant',compact('hostel'));
     }
 
   public function changeOccupantRoom($hostelName)
     {
+
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.change_occupant_room',compact('hostel'));
     }
 
@@ -91,6 +125,9 @@ class HostellerController extends Controller
     public function paidList($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.paid_list',compact('hostel'));
     }
 
@@ -105,6 +142,9 @@ class HostellerController extends Controller
     public function reviewsAndComments($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.r&c',compact('hostel'));
     }
 
@@ -112,6 +152,9 @@ class HostellerController extends Controller
     public function owner($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal') || Gate::allows('isManager')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.hostelmanager',compact('hostel'));
     }
 
@@ -119,6 +162,9 @@ class HostellerController extends Controller
     public function manager($hostelName)
     {
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.hostelmanager',compact('hostel'));
     }
 
@@ -196,7 +242,11 @@ class HostellerController extends Controller
 
     public function addHostel($hostelName)
     {
+
         $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        if (Gate::allows('isPortal')){
+            return view('errors.401',compact('hostel'));
+        }
         return view('dashboard.hostelmanager.add_hostel',compact('hostel'));
     }
 

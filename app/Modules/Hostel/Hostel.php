@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use myRoommie\Hosteller;
 use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Modules\HostelRegistration;
@@ -248,23 +249,18 @@ class Hostel extends Model
      * */
     public function reservations()
     {
+        //$this->hasMany(Reservation::class);
         $this->hasManyThrough(Reservation::class,Room::class);
     }
 
 
-    public function findHostel($hostelName)
-    {
-       return $this->whereSlug($hostelName)
-            ->firstOrFail();
-        //return $hostel;
-    }
 
     public function slugHostel($request)
     {
         /*
         * Convert the hostel name or alias into a unique URL address
         * */
-        if (!is_null($request->get('alias'))) {
+        if (!is_null($request['alias'])) {
             $uSlug = $request['alias'];
         }else{
             $uSlug =$request['name'];
@@ -277,6 +273,38 @@ class Hostel extends Model
         }
 
         return $tSlug;
+    }
+
+    /*
+   * Retrieve hostel default reservation date
+     *
+     * @return Carbon date
+   * */
+    public function retrieveDuration()
+    {
+
+        if (isset($this->reservationDate->reservation_duration)==true){
+            $number = $this->reservationDate->reservation_duration;
+            $duration = Carbon::now()->addDays($number);
+        }else{
+            $duration = Carbon::now()->addDays(3);
+        }
+
+        return $duration;
+    }
+
+    public function retrieveReservationDateRange()
+    {
+        if (isset($this->reservationDate->reservation_start_date)==true){
+            $startDate = strtotime($this->reservationDate->reservation_start_date);
+            $endDate = strtotime($this->reservationDate->reservation_end_date);
+        }else{
+
+            $startDate = strtotime('14 February'.Carbon::now()->year);
+            $endDate =strtotime('16 October'.Carbon::now()->year);
+        }
+
+        return ['startDate'=>$startDate,'endDate'=>$endDate];
     }
 
 }

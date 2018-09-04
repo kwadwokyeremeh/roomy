@@ -3,6 +3,9 @@
 namespace myRoommie\Http\Controllers\Booking;
 
 
+
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use myRoommie\Modules\Booking\Reservation;
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Room;
@@ -14,10 +17,14 @@ use Validator;
 
 class ReservationController extends Controller
 {
+    protected $reservation;
 
-    public function __construct()
+
+    public function __construct(Reservation $reservation)
     {
-        $this->middleware(['auth',IsReservationAllowed::class]);
+        $this->reservation =$reservation;
+        $this->middleware(['auth:web,hosteller',IsReservationAllowed::class]);
+
 
     }
 
@@ -95,8 +102,8 @@ class ReservationController extends Controller
      */
     public function index($hostelName, Reservation $reservation)
     {
-        $hostel =Hostel::where('id', $hostelName)
-            ->orWhere('slug', $hostelName)
+        $hostel =Hostel::whereSlug($hostelName)
+            //->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds','roomDescription'])
             ->firstOrFail();
         $blocks = $hostel->blocks;
@@ -110,17 +117,16 @@ class ReservationController extends Controller
     public function roomTypeReservation($hostelName,$room_token, Reservation $reservation)
     {
 
-        $hostel =Hostel::where('id', $hostelName)
-            ->orWhere('slug', $hostelName)
+        $hostel =Hostel::whereSlug($hostelName)
+            //->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds','roomDescription'])
             ->firstOrFail();
         if ($room_token=='booking'){
             $roomType = [];
         }else{
-            $roomType = RoomDescription::where('room_token',$room_token)
-                ->firstOrFail();
-        }
+            $roomType = $hostel->roomDescription()->whereRoomToken($room_token)->firstOrFail();
 
+        }
 
         $blocks = $hostel->blocks;
         $floors = $hostel->floors;
@@ -140,7 +146,7 @@ class ReservationController extends Controller
      * @return \Illuminate\Http\Response
      *
      * */
-    public function saveProgress($hostelName, $room_token, Request $request)
+    public function saveProgress($hostelName, $room_token, Request $request, Reservation $reservation)
     {
 
         $this->validate($request,[
@@ -154,9 +160,14 @@ class ReservationController extends Controller
             ['required' => 'Please select a room']);
 
         $v->after(function ($v){
-                if ($this->isRoomFull(\request(['selectedRoom'])) == true){
+                if ($this->reservation->isRoomFull(\request(['selectedRoom'])) == true){
                     $v->errors()->add('selectedRoom', 'Sorry the selected room is full');
                     }
+                elseif ($this->reservation->userHasReservation()==true){
+                    //Check if the user has paid for the reserved bed
+                    //If yes, notify the user that he/she can't reserved another bed the year
+                    $v->errors()->add('message', 'Sorry you\'ve already made a reservation ');
+                }
         });
 
         if ($v->fails()) {
@@ -165,22 +176,59 @@ class ReservationController extends Controller
                         ->withInput();
         }
 
-
+        /*
+         *  Persist the data
+         *  @param \Illuminate\Http\Request $request
+         * */
+        $user =auth('web')->user();
         $request->session()->put('selectedRoom',$request['selectedRoom']);
+
+        $hostel =Hostel::whereSlug($hostelName)
+            //->orWhere('slug', $hostelName)
+            ->with(['blocks','floors','rooms','beds','roomDescription','reservationDate'])
+            ->firstOrFail();
+        $roomSelected =$hostel->rooms()->where('id',$request['selectedRoom'])->firstOrFail();
+        $duration = $hostel->retrieveDuration();
+        $price =$roomSelected->roomDescription->price;
+        $data =[
+            'token'             =>mb_strtoupper(uniqid()),
+            'start_date'        =>now()->toDateTimeString(),
+            'end_date'          =>$duration->toDateTimeString(),
+            'amount_to_be_paid' =>$price,
+            'status'            =>false,
+            'hostel_id'         =>$hostel->id,
+            'room_id'           =>$roomSelected->id,
+            'user_id'           =>$user->id,
+
+        ];
+        if ($reservation->isRoomFull(\request(['selectedRoom'])) == true){
+            return redirect($request->getRequestUri())
+                ->withErrors($v)
+                ->withInput();
+        }else{
+            //DB::transaction(function (){});
+            $reservation->create($data);
+
+
+        }
+
+
+
         \request()->session()->regenerate();
-        $hostel =Hostel::where('id', $hostelName)
-            ->orWhere('slug', $hostelName)
-            ->with(['blocks','floors','rooms','beds','roomDescription'])
+        /*
+         * Retrieve hostel default reservation date
+         * */
+
+
+
+        $roomType = $hostel->roomDescription()->where('room_token',$room_token)
             ->firstOrFail();
-        $roomSelected =Room::where('id',$request['selectedRoom'])->firstOrFail();
-
-
-
-        $roomType = RoomDescription::where('room_token',$room_token)
-            ->firstOrFail();
-        return view('individualHostel.booking.04_payment',compact('hostel','room_token','roomSelected'));
+        return view('individualHostel.booking.04_payment',compact('hostel','room_token','roomSelected'))
+            ->with(['messages'=>
+                ['Your reservation has been successful, please proceed to make payment',
+                    'Your reservation would expire in '. $duration->diffForHumans(). ' if you fail to make payment before then'
+                ]]);
     }
-
 
     /*
      *
@@ -188,8 +236,9 @@ class ReservationController extends Controller
      * */
     public function makePayment($hostelName)
     {
-        $hostel = Hostel::where('id',$hostelName)
-            ->orWhere('slug',$hostelName)
+
+        $hostel = Hostel::whereSlug($hostelName)
+            //->orWhere('slug',$hostelName)
             ->firstOrFail();
         return view('individualHostel.booking.04_payment',compact('hostel'));
     }
@@ -211,20 +260,5 @@ class ReservationController extends Controller
         return view('individualHostel.booking.05_confirmation',compact('hostel'));
     }*/
 
-    public function isRoomFull($room)
-    {
-        $reservedBeds = Reservation::where('room_id',$room)->get();
-        $roomDetails = Room::where('id',$room)->first();
-        $rs = $roomDetails->roomDescription->number_of_beds;
 
-        if (count($reservedBeds)<$rs){
-            $isRoomFull = false;
-        }elseif (count($reservedBeds)==$rs){
-            $isRoomFull = true;
-        }else{
-            $isRoomFull =true;
-        }
-
-        return $isRoomFull;
-    }
 }

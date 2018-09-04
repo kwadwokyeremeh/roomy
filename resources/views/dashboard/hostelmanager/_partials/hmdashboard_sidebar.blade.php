@@ -31,6 +31,7 @@
             <li class="header">DASHBOARD</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{'/hosteller/'.$hostel->slug.'/'}}"><i class="fa fa-link"></i> <span>Summary</span></a></li>
+            @cannot('isPortal')
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Hostel Page</span>
                     <span class="pull-right-container">
@@ -41,7 +42,9 @@
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/editContent'}}">Edit Content</a></li>
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/color'}}">Color Picker</a></li>
                 </ul>
-            </li><li class="treeview">
+            </li>
+
+                <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Hostel Settings</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -53,7 +56,9 @@
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/reservationDate'}}">Reservation Settings</a></li>
                 </ul>
             </li>
+            @endcannot
             <li><a href="{{'/hosteller/'.$hostel->slug.'/occupants'}}"><i class="fa fa-link"></i> <span>Occupants</span></a></li>
+            @cannot('isPortal')
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Room Allotment</span>
                     <span class="pull-right-container">
@@ -66,6 +71,7 @@
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/changeOccupantRoom'}}">Change occupant room</a></li>
                 </ul>
             </li>
+
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Payment</span>
                     <span class="pull-right-container">
@@ -78,7 +84,8 @@
                 </ul>
             </li>
             <li><a href="{{'/hosteller/'.$hostel->slug.'/r&c'}}"><i class="fa fa-link"></i> <span>Reviews and Comments</span></a></li>
-            <li class="treeview active">
+            @endcannot
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope"></i> <span>Mailbox</span>
                     <span class="pull-right-container">
@@ -106,7 +113,13 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
+                    @can('isOwner')
+                    <li><a href="{{'/hosteller/'.$hostel->slug.'/owner'}}">Hostel Owner</a></li>
+                    @endcan
+                      @cannot('isPortal')
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/manager'}}">Hostel Manager</a></li>
+                    @endcannot
+
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/portal'}}">Hostel Portal</a></li>
 
                 </ul>
@@ -134,10 +147,12 @@
                 </ul>
             </li>
             <li><a href="{{'/hosteller/'.$hostel->slug.'/termsOfService'}}"><i class="fa fa-link"></i> <span>Terms of Services</span></a></li>
+            @cannot('isPortal')
             <li><a href="{{'/hosteller/'.$hostel->slug.'/archives'}}"><i class="fa fa-link"></i> <span>Archives</span></a></li>
+
             <li class="header">Extra</li>
             <li><a href="{{'/hosteller/'.$hostel->slug.'/addHostel'}}"><i class="fa fa-link"></i> <span>Add hostel</span></a></li>
-
+            @endcannot
         </ul>
         <!-- /.sidebar-menu -->
     </section>

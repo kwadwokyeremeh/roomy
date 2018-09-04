@@ -16,13 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $booking_end_date
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property int $reservation_dates
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereBookingEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereBookingStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereHostelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereReservationDates($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereReservationDuration($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereReservationEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereReservationStartDate($value)

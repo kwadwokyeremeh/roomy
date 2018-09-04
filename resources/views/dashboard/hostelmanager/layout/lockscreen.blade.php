@@ -53,7 +53,9 @@
         <!-- /.lockscreen credentials -->
 
     </div>
-
+    <div class="help-block text-center">
+        Please select the hostel you want to want with today
+    </div>
     @foreach($hosteller->hostel as $hostel)
         <div class="help-block text-center">
             <a href="hosteller/{{$hostel->slug}}"><h2>{{$hostel->name}}</h2></a>

@@ -16,9 +16,9 @@
 /*************************
  * * Testing Routes
  ************************/
-/*Route::get('/ll',function (){
-     phpinfo();
-});*/
+Route::get('ll', function (){
+   return view('auth.verify');
+});
 /*************************
  * * Testing Routes
  ************************/
@@ -39,9 +39,9 @@ Route::prefix('knust')->group(function (){
 /*********************
  ** User Routes
  *********************/
-Auth::routes();
+Auth::routes(['verify'=> true]);
 
-Route::get('/user/', 'HomeController@index')->name('student');
+Route::get('/user/', 'HomeController@index')->middleware('verified')->name('student');
 
 
 /**************************

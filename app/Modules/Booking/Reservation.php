@@ -57,7 +57,7 @@ class Reservation extends Model
         'amount_to_be_paid',
         'hostel_id',
         'room_id',
-        'payment_method_id',
+        'status',
         'user_id'
     ];
 
@@ -103,19 +103,42 @@ class Reservation extends Model
 
     public function isRoomFull($room)
     {
-        $reservedBeds = $this->where('room_id',$room)->get();
-        $roomDetails = Room::where('id',$room)->first();
+        $reservedBeds = $this->where('room_id',$room)->count();
+        $roomDetails = Room::whereId($room)->first();
         $rs = $roomDetails->roomDescription->number_of_beds;
 
-        if (count($reservedBeds)<$rs){
+        // return true when room is full
+        if ($reservedBeds<$rs){
             $isRoomFull = false;
-        }elseif (count($reservedBeds)==$rs){
+        }elseif ($reservedBeds==$rs){
             $isRoomFull = true;
         }else{
             $isRoomFull =true;
         }
 
         return $isRoomFull;
+    }
+
+
+
+    public function userHasReservation()
+    {
+        $hr =$this->where('user_id',auth('web')->id())->count();
+        if ($hr==1){
+            $hasReservation = true;
+        }else{
+            $hasReservation = false;
+        }
+        return $hasReservation;
+    }
+
+
+    public function userHasMadePayment()
+    {
+        if ($this->userHasReservation()== true){
+            //Check if the user has paid for the reservation
+            // notify the user and redirect user to his/her portal
+        }
     }
 
 }

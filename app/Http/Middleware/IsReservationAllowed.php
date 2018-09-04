@@ -24,22 +24,13 @@ class IsReservationAllowed
 
     public function handle($request, Closure $next)
     {
-        $hostel =Hostel::where('slug',$request->hostelName)
+        $hostel =Hostel::whereSlug($request->hostelName)
             ->with('reservationDate')->first();
-        $reservationDate =$hostel->reservationDate;
 
 
-        if (isset($reservationDate->reservation_start_date)==true){
-            $startDate = strtotime($reservationDate->reservation_start_date);
-            $endDate = strtotime($reservationDate->reservation_end_date);
-        }else{
+        $a =$hostel->retrieveReservationDateRange();
 
-            $startDate = strtotime('14 February'.Carbon::now()->year);
-            $endDate =strtotime('16 October'.Carbon::now()->year);
-        }
-
-
-        if (strtotime(now()) > $startDate && strtotime(now()) < $endDate){
+        if (strtotime(now()) > $a['startDate'] && strtotime(now()) < $a['endDate']){
 
             return $next($request);
 

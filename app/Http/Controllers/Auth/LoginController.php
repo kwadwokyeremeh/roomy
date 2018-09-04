@@ -40,6 +40,7 @@ class LoginController extends Controller
     public function destroy()
     {
         auth('web')->logout();
+        auth()->logoutOtherDevices();
         return redirect('/');
     }
 }

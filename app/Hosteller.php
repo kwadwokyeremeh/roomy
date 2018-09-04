@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use myRoommie\Modules\Hostel\HostellerHostel;
 use myRoommie\Notifications\HostellerResetPasswordNotification;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 
 /**
@@ -40,9 +42,11 @@ use Illuminate\Auth\Passwords\CanResetPassword;
  * @mixin \Eloquent
  * @property-read mixed $full_name
  */
-class Hosteller extends Authenticatable
+
+
+class Hosteller extends Authenticatable implements MustVerifyEmailContract
 {
-    use Notifiable;
+    use MustVerifyEmail, Notifiable;
 
     protected $guard = 'hosteller';
 

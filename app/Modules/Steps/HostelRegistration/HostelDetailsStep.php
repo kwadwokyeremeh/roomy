@@ -9,6 +9,7 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 
 use Illuminate\Support\Str;
+use myRoommie\Modules\Hostel\HostellerHostel;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
 use myRoommie\Repository\GoogleMaps;
@@ -62,6 +63,33 @@ class HostelDetailsStep extends Step
             $hostel ->hostel_phone = $request->get('hostel_phone');
         }
         $hostel->save();
+
+
+        /*
+         * Associated the created hostellers with the the just
+         * created hostel
+         *
+         * */
+        $assocHosteller = new HostellerHostel;
+        $auth =[
+            'hosteller_id' => \auth('hosteller')->id(),
+            'hostel_id'     => $hostel->id,
+        ];
+        $assocHosteller->insert($auth);
+
+        if (session()->has('hostellersId')){
+
+            $hostellers =session()->get('hostellersId');
+            $host = [];
+            for ($i =0; $i < count($hostellers); $i++){
+                array_push($host,[
+                    'hosteller_id'=>$hostellers[$i],
+                    'hostel_id'     => $hostel->id,
+                ]);
+            }
+            $assocHosteller->insert($host);
+        }
+
 
         /*
          * Insert the prices associated with the room types
