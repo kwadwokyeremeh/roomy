@@ -1,6 +1,7 @@
 <script src="{{asset('/js/jquery.min.js')}}"></script>
 <script src="{{asset('/js/jquery1.min.js')}}"></script>
 <script src="{{asset('/plugin/dist/owl.carousel.min.js')}}"></script>
+@yield('custom-script1')
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('/js/jquery.waypoints.js')}}"></script>
 <script src="{{asset('/js/number-count/jquery.counterup.min.js')}}"></script>

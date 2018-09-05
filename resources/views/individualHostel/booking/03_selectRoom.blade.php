@@ -1,4 +1,7 @@
 @extends('individualHostel.master')
+@section('custom-css1')
+    <link rel="stylesheet" href="{{asset('dist/js/bootstrap.min.js')}}">
+    @endsection
 @section('main-content')
 
 <div class="vk-select-room">
@@ -60,13 +63,87 @@
                         </div>
                     </div>
                     @endif
-                @if($errors->any())
+
+                @if($errors->has('modal'))
+                <!-- Button trigger modal -->
+                    {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Launch demo modal
+                    </button>--}}
+
+                    {{--<div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Modal Header</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Some text in the modal.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>--}}
+
+                    <!-- Modal -->
+                    <div class="clear clearfix modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    @php
+                                        $user =$reservation->whereUserId(auth('web')->id())->first();
+
+
+                                    echo '<h5 class="modal-title" id="ModalCenterTitle">You have already reserved a bed at '.$user->hostel->name.'</h5>'
+                                    @endphp
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you want to undo your previous reservation and proceed with the current one?</p>
+                                    <span>Click <b>Yes</b> to unreserve bed unreserve bed and continue with the current one</span><br>
+                                    <span>Click <b>No</b> to continue with your previous reservation</span><br>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{request()->getRequestUri().'/unreserve'}}" method="get">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary pull-right"> Yes</button>
+                                    </form>
+                                    <form action="{{request()->getRequestUri().'/previousReservation'}}" method="get">
+                                        @csrf
+                                        <button type="submit" class="btn btn-secondary"> No</button>
+                                    </form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                {{--@if($errors->has('modal'))--}}
+                    <div class="clear clearfix"></div>
+
+                @elseif($errors->any())
                     <div class="vk-notification-boxes">
                         <div class="vk-notification-boxes-body">
                             <ul class="vk-alert vk-alert-warning ">
                                 @foreach($errors->all() as $error)
                                     <li><span><i class="fa fa-times-circle" aria-hidden="true"></i></span> {{$error}} {{--<a href="#">Click here</a>--}}</li>
                                 @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+                @if(session('unreserve'))
+                    <div class="vk-notification-boxes">
+                        <div class="vk-notification-boxes-body">
+                            <ul class="vk-alert vk-alert-success ">
+
+                                    <li><span><i class="fa fa-check" aria-hidden="true"></i></span> {{session()->get('unreserve')}} {{--<a href="#">Click here</a>--}}</li>
+
                             </ul>
                         </div>
                     </div>
@@ -95,7 +172,7 @@
                                                                     <div class=" col-xs-4 col-sm-3 col-md-2 col-lg-2 no-room-gutter">
                                         @if((\Illuminate\Support\Facades\Auth::user()->sex == $room->sex_type) && ($reservation->isRoomFull($room->id)) == false )
                                                                         <div class="product-chooser-item  no-room-gutter">
-                                                                            @elseif($room->sex_type == '' && ($reservation->isRoomFull($room->id)) == false)
+                                                                            @elseif($room->sex_type == 'No Gender' && ($reservation->isRoomFull($room->id)) == false)
                                                                         <div class="product-chooser-item no-room-gutter">
                                                                             @else
                                                                         <div class="product-chooser-item disabled no-room-gutter">
@@ -208,10 +285,19 @@
 @endsection
 
 @section('custom-script')
+    {{--<script src="{{asset('dist/js/bootstrap.min.js')}}"></script>--}}
     {{--<script src="{{asset('js/vue.js')}}"></script>--}}
 
     @auth('web')
     <script>
+
+        @if(session()->has('errors'))
+        $(window).load(function(){
+            $('#myModal').modal('show');
+        });
+
+        @endif
+
         $(function() {
             $('.product-chooser').find('div.product-chooser-item').on('click', function () {
                 $('.product-chooser').find('div.product-chooser-item').removeClass('selected').find('input[type="radio"]').prop("checked", false);
@@ -237,11 +323,6 @@
                 $(this).parent().parent().prev('.parent').prop('checked', true); // Check the selected parent
             }
         });*/--}}
-
-
-
-
-
 
 
     </script>

@@ -38,11 +38,14 @@ use myRoommie\Modules\Booking\Reservation;
 class Room extends Model
 {
 
+    protected $fillable =['sex_type'];
     /**
      * All of the relationships to be touched.
      *
      * @var array
      */
+
+
     protected $touches = ['hostel'];
 
 
@@ -136,12 +139,31 @@ class Room extends Model
         }elseif ($value=='F'){
             $value ='Female';
         }else{
-            $value='';
+            $value='No Gender';
         }
         return $value;
 
     }
 
+
+    /**
+     * Set the genderlity of a room.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setSexTypeAttribute($value)
+    {
+        if ($value == 'Male'){
+            $v = 'M';
+        }elseif ($value == 'Female'){
+            $v = 'F';
+        }else{
+            $v = null;
+        }
+
+        $this->attributes['sex_type'] = $v;
+    }
 
     public function isBooked()
     {

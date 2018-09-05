@@ -9,8 +9,9 @@
 
 
     <title>@yield('title'){{ config('app.name', 'myRoommie') }}</title>
+    @yield('custom-css1')
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/bootstrap-theme.min.css')}}">
+    {{--<link rel="stylesheet" href="{{url('css/bootstrap-theme.min.css')}}">--}}
 
     <link href="{{url('fonts/raleway/raleway.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{url('fonts/font-awesome/css/font-awesome.css')}}">
@@ -27,6 +28,7 @@
     <link href="{{url('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="{{url('css/semantic.css')}}">
     <link rel="stylesheet" href="{{url('css/paraxify.css')}}">
+    @yield('custom-css')
     <link rel="stylesheet" href="{{url('css/style.css')}}">
 
 </head>

@@ -249,8 +249,8 @@ class Hostel extends Model
      * */
     public function reservations()
     {
-        //$this->hasMany(Reservation::class);
-        $this->hasManyThrough(Reservation::class,Room::class);
+        //return $this->hasMany(Reservation::class);
+        return $this->hasManyThrough(Reservation::class,Room::class);
     }
 
 
@@ -305,6 +305,11 @@ class Hostel extends Model
         }
 
         return ['startDate'=>$startDate,'endDate'=>$endDate];
+    }
+
+    public static function findHostel($hostelName)
+    {
+        return self::whereSlug($hostelName)->firstOrFail();
     }
 
 }

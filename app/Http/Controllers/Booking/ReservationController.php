@@ -148,6 +148,19 @@ class ReservationController extends Controller
      * */
     public function saveProgress($hostelName, $room_token, Request $request, Reservation $reservation)
     {
+        $hostel =Hostel::whereSlug($hostelName)
+            //->orWhere('slug', $hostelName)
+            ->with(['blocks','floors','rooms','beds','roomDescription','reservationDate'])
+            ->firstOrFail();
+        /*
+         *  Checking if the route uri is booking or room token
+         * */
+        if ($room_token=='booking'){
+            $roomType = [];
+        }else{
+            $roomType = $hostel->roomDescription()->whereRoomToken($room_token)->firstOrFail();
+
+        }
 
         $this->validate($request,[
             'selectedRoom' => ['numeric','required',
@@ -165,29 +178,44 @@ class ReservationController extends Controller
                     }
                 elseif ($this->reservation->userHasReservation()==true){
                     //Check if the user has paid for the reserved bed
-                    //If yes, notify the user that he/she can't reserved another bed the year
-                    $v->errors()->add('message', 'Sorry you\'ve already made a reservation ');
+                    if ($this->reservation->userHasMadePayment()== true){
+                        //If yes, notify the user that he/she can't reserved another bed the year
+                        $v->errors()->add('message','Sorry you can\'t reserved another bed till next academic year');
+                    }else{
+
+                        $v->errors()->add('modal', 'You have already made a reservation');
+                    }
+
+
+
                 }
         });
 
         if ($v->fails()) {
+
             return redirect($request->getRequestUri())
                         ->withErrors($v)
+
                         ->withInput();
         }
 
+
+
         /*
-         *  Persist the data
+         *  Persist the data to the database
          *  @param \Illuminate\Http\Request $request
          * */
         $user =auth('web')->user();
         $request->session()->put('selectedRoom',$request['selectedRoom']);
-
-        $hostel =Hostel::whereSlug($hostelName)
-            //->orWhere('slug', $hostelName)
-            ->with(['blocks','floors','rooms','beds','roomDescription','reservationDate'])
-            ->firstOrFail();
         $roomSelected =$hostel->rooms()->where('id',$request['selectedRoom'])->firstOrFail();
+        /*
+         *  Check if the selected room is having a gender associated with it
+         * */
+        if ($roomSelected->sex_type == 'No Gender'){
+            $roomSelected->update(['sex_type'=>auth('web')->user()->sex]);
+        }
+
+
         $duration = $hostel->retrieveDuration();
         $price =$roomSelected->roomDescription->price;
         $data =[
@@ -221,13 +249,17 @@ class ReservationController extends Controller
 
 
 
-        $roomType = $hostel->roomDescription()->where('room_token',$room_token)
-            ->firstOrFail();
+
+        session()->flash('message');
         return view('individualHostel.booking.04_payment',compact('hostel','room_token','roomSelected'))
             ->with(['messages'=>
                 ['Your reservation has been successful, please proceed to make payment',
                     'Your reservation would expire in '. $duration->diffForHumans(). ' if you fail to make payment before then'
                 ]]);
+
+
+
+
     }
 
     /*
@@ -259,6 +291,52 @@ class ReservationController extends Controller
             ->firstOrFail();
         return view('individualHostel.booking.05_confirmation',compact('hostel'));
     }*/
+
+
+
+    /*
+     * Un-reserve a user reservation
+     * Same as edit a reservation
+     * */
+    public function unReserveBed($hostelName, Reservation $reservation)
+    {
+
+    $hostel = Hostel::findHostel($hostelName);
+    $unReserveBed = $this->reservation->whereUserId(auth('web')->id())->firstOrFail();
+    //Count if the number of occupants in the room is zero, unset the room gender
+        $room =$unReserveBed['room_id'];
+        $unReserveBed->forceDelete();
+        $count = $this->reservation->whereRoomId($room)->count();
+        if ($count == 0){
+            $hostel->rooms()->whereId($room)->update(['sex_type'=>null]);
+        }
+
+
+    session()->flash('unreserve','You bed have been successfully unreserved, Select a room to proceed');
+    return redirect()->back();
+        //view('individualHostel.booking.03_selectRoom',compact('hostel','reservation'));
+
+    }
+
+
+    /*
+     * Redirect user to his/her previous reservation process
+     * */
+    protected $userReservation;
+    public function previousReservation($hostelName,$room_token,Reservation $reservation)
+    {
+
+        $userReservation =$this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
+        $hostel =Hostel::whereId($userReservation['hostel_id'])->firstOrFail();
+
+        $roomSelected =$hostel->rooms()->where('id',$userReservation['room_id'])->firstOrFail();
+        session()->flash('message');
+        return view('individualHostel.booking.04_payment',compact('hostel','roomSelected'))
+            ->with(['messages'=>['Your reservation has been successful, please proceed to make payment',
+                'Your reservation would expire in '.(Carbon::parse(($userReservation['end_date']))->diffForHumans()) . ' if you fail to make payment before then'
+            ]]);
+
+    }
 
 
 }

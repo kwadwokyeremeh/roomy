@@ -47,7 +47,7 @@
                         </li>
                     </ul>
                 </div>
-                @if($messages)
+                @if(session()->has('message'))
                     <div class="vk-notification-boxes">
                         <div class="vk-notification-boxes-body">
                             <ul class="vk-alert vk-alert-success ">
@@ -341,7 +341,7 @@
                                         </table>
                                     </div>
                                     <div class="vk-make-a-btn">
-                                        <h4><a href="{{request()->getRequestUri()}}">Edit Booking</a></h4>
+                                        <h4><a href="{{'/'.$hostel->slug.'/'.$roomSelected->roomDescription->room_token}}">Edit Booking</a></h4>
                                     </div>
                                 </div>
                             </div>

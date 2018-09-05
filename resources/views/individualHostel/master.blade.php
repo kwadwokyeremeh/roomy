@@ -2,7 +2,9 @@
 <html>
 @include('individualHostel._partials.head')
 <body>
+@if(session()->has('errors'))
 
+    @else
 <!--load page-->
 <div class="load-page">
     <div class="spinner">
@@ -13,7 +15,7 @@
         <div class="rect5"></div>
     </div>
 </div>
-
+@endif
 <div class="vk-sparta-transparents-1">
     <!-- Mobile nav -->
 @include('individualHostel._partials.mobileNav')

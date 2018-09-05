@@ -4,6 +4,7 @@ namespace myRoommie\Modules\Booking;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use myRoommie\Modules\Hostel\Booking;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Room;
 use myRoommie\User;
@@ -68,7 +69,7 @@ class Reservation extends Model
 
     public function room()
     {
-        $this->belongsTo(Room::class);
+        return $this->belongsTo(Room::class);
     }
 
     /*
@@ -77,7 +78,7 @@ class Reservation extends Model
      * */
     public function hostel()
     {
-        $this->belongsTo(Hostel::class);
+        return $this->belongsTo(Hostel::class);
     }
 
     /*
@@ -86,7 +87,7 @@ class Reservation extends Model
      * */
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function paymentMethod()
@@ -121,10 +122,13 @@ class Reservation extends Model
 
 
 
+    /*
+     * Check if the current user has a reservation
+     * */
     public function userHasReservation()
     {
         $hr =$this->where('user_id',auth('web')->id())->count();
-        if ($hr==1){
+        if ($hr>=1){
             $hasReservation = true;
         }else{
             $hasReservation = false;
@@ -133,12 +137,25 @@ class Reservation extends Model
     }
 
 
+    /*
+     * Check if the current user has made payment
+     * */
     public function userHasMadePayment()
     {
         if ($this->userHasReservation()== true){
             //Check if the user has paid for the reservation
-            // notify the user and redirect user to his/her portal
+            $ub =Booking::whereUserId(auth()->id())->count();
+            if ($ub>=1){
+                // notify the user and redirect user to his/her portal
+                $booked=true;
+            }else{
+                $booked = false;
+            }
+            return $booked;
+
         }
     }
+
+
 
 }

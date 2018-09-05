@@ -16,9 +16,9 @@
 /*************************
  * * Testing Routes
  ************************/
-Route::get('ll', function (){
-   return view('auth.verify');
-});
+//Route::get('ll', function (){
+  // return view('auth.verify');
+//});
 /*************************
  * * Testing Routes
  ************************/
@@ -152,4 +152,6 @@ Route::middleware('published')->group(function (){
     Route::get('/{hostelName}/{room_token}','Booking\ReservationController@roomTypeReservation')->name('reservation');
     Route::post('/{hostelName}/{room_token}','Booking\ReservationController@saveProgress')->name('reserveRoom');
     Route::put('/{hostelName}/{room_token}','Booking\ReservationController@makePayment')->name('reserveRoom');
+    Route::get('/{hostelName}/{room_token}/unreserve','Booking\ReservationController@unReserveBed')->name('unReserveBed');
+    Route::get('/{hostelName}/{room_token}/previousReservation','Booking\ReservationController@previousReservation')->name('previousReservation');
 });
