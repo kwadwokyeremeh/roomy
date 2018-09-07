@@ -239,7 +239,7 @@ class LayoutAndPricingStep extends Step
                 $this->saveProgress($request);
 
                 }else{
-                    return false;//redirect()->intended(route('hostel.registration', '05'))->withErrors(['message'=>'The data provided is inconsistent']);
+                    return false; //redirect()->back()->withErrors(['message'=>'The data provided is inconsistent']);
             }
 
 
