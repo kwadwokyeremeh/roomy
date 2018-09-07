@@ -208,13 +208,11 @@ class ReservationController extends Controller
         $user =auth('web')->user();
         $request->session()->put('selectedRoom',$request['selectedRoom']);
         $roomSelected =$hostel->rooms()->where('id',$request['selectedRoom'])->firstOrFail();
-        /*
-         *  Check if the selected room is having a gender associated with it
-         * */
-        if ($roomSelected->sex_type == 'No Gender'){
-            $roomSelected->update(['sex_type'=>auth('web')->user()->sex]);
-        }
 
+
+        /*
+                 * Retrieve hostel default reservation date
+                 * */
 
         $duration = $hostel->retrieveDuration();
         $price =$roomSelected->roomDescription->price;
@@ -229,25 +227,31 @@ class ReservationController extends Controller
             'user_id'           =>$user->id,
 
         ];
-        if ($reservation->isRoomFull(\request(['selectedRoom'])) == true){
+        /*
+         *  Check if the selected room is having a gender associated with it
+         * */
+        if ($roomSelected->sex_type == 'No Gender'){
+            $roomSelected->update(['sex_type'=>auth('web')->user()->sex]);
+            $reservation->create($data);
+        }
+        elseif ($roomSelected->sex_type == auth('web')->user()->sex){
+            $reservation->create($data);
+        }
+        else{
+
+            return redirect()->back()->withErrors(['errors'=>'Sorry the selected room is for the opposite sex']);
+        }
+
+        /*if ($reservation->isRoomFull(\request(['selectedRoom'])) == true){
             return redirect($request->getRequestUri())
                 ->withErrors($v)
                 ->withInput();
         }else{
             //DB::transaction(function (){});
-            $reservation->create($data);
-
-
-        }
-
+        }*/
 
 
         \request()->session()->regenerate();
-        /*
-         * Retrieve hostel default reservation date
-         * */
-
-
 
 
         session()->flash('message');

@@ -54,7 +54,7 @@ class HostelRegistration extends Model
         'confirmation',
     ];
 
-    protected $primaryKey ='hosteller_id';
+
 
     public function hosteller()
     {

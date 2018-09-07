@@ -113,11 +113,11 @@
                                 <div class="modal-footer">
                                     <form action="{{request()->getRequestUri().'/unreserve'}}" method="get">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary pull-right"> Yes</button>
+                                        <button type="submit" class="vk-btn vk-btn-m vk-btn-default pull-right"> Yes</button>
                                     </form>
                                     <form action="{{request()->getRequestUri().'/previousReservation'}}" method="get">
                                         @csrf
-                                        <button type="submit" class="btn btn-secondary"> No</button>
+                                        <button type="submit" class="vk-btn vk-btn-m vk-btn-transparent"> No</button>
                                     </form>
                                     </div>
                             </div>

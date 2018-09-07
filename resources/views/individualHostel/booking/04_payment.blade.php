@@ -139,7 +139,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    {{--<div class="row">
                                         <form>
                                             <div class="vk-checkout-ship-address">
                                                 <h4 class="text text-left">
@@ -261,12 +261,12 @@
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div>--}}
 
 
 
-                                    <h3>OR</h3>
-                                    <div class="row">
+                                    {{--<h3>OR</h3>--}}
+                                    {{--<div class="row">
                                         <div class="col-md-6">
                                             <div class="vk-make-a-re-left-img">
                                                 <a href="#"><img src="images/05_03_make_a_reservation/paypal.jpg" alt="" class="img-responsive"></a>
@@ -277,7 +277,7 @@
                                                 <h4><a href="#"> Pay Now</a></h4>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

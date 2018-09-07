@@ -9,6 +9,7 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use myRoommie\Modules\Hostel\HostellerHostel;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
@@ -117,13 +118,16 @@ class HostelDetailsStep extends Step
          * Update the hostel registration records
          * */
 
-        $registerHostel = new HostelRegistration;
-        $registerHostel->create([
+
+
+        (new HostelRegistration)::firstOrCreate([
             'hosteller_id' => Auth::guard('hosteller')->user()->id,
             'hostel_id' =>$hostel->id,
-            '1_basic_info' => true,
-            '2_hostel_details' => true
+            'basic_info' => true,
+            'hostel_details' => true
         ]);
+
+
 
 
 

@@ -34,6 +34,7 @@ class HostelRegistrationController extends Controller
 
 
 
+
     public function __construct()
     {
         $this->middleware(['auth:hosteller'])->except('logout','destroy');
@@ -45,12 +46,13 @@ class HostelRegistrationController extends Controller
 
 
 
+
     }
 
 
 
 public $steps = [
-    'set-username-key'     => Instruction::class,
+    'myRoommie'            => Instruction::class,
                               BasicInfoStep::class,
                               HostelDetailsStep::class,
                               AddMediaStep::class,
@@ -184,12 +186,17 @@ public function wizardPost(Request $request, $step = null)
     }
 
     $request->session()->regenerate();
-    $this->validate($request, $step->rules($request),$step->messages(),$step->customAttributes());
+    $validator = $this->validate($request, $step->rules($request),$step->messages(),$step->customAttributes());
+
     $step->process($request);
+    if ($step->process($request)==true){
+        return redirect()->route('hostel.registration', [$this->wizard->nextSlug()]);
+    }
+    return redirect()->back()
+        ->withErrors(['message'=>'The data provided is inconsistent']); //route('hostel.registration',[$this->wizard->lastProcessedIndex()]);
+    }
 
 
-    return redirect()->route('hostel.registration', [$this->wizard->nextSlug()]);
-}
 
 
     /*public function layout($step='05')
@@ -210,5 +217,40 @@ public function wizardPost(Request $request, $step = null)
 
     }*/
 
+
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator  $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($this->wizard->getBySlug(05) ==true) {
+                /*
+        *  Check for data consistency
+        *
+        *
+        * */
+
+                $blocks = request()->get('block');
+                $unsortedFloors = request()->get('floor');
+                $unsortedRooms = request()->get('room');
+                [$fk,$floorValues]=array_divide($unsortedFloors);
+                [$fk1,$rValues] = array_divide($unsortedRooms);
+
+                //dd($blocks,$fk,$fk1,$request->all(),$floorValues,$request['floor.*.*']);
+                if ( (count($blocks)===count($fk)) && (count($fk)===count($fk1)) )
+                {
+                    return;
+                }else{
+                    $validator->errors()->add('field', 'The data provided is inconsistent');
+                }
+
+            }
+        });
+    }
 
 }
