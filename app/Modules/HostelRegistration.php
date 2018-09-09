@@ -38,6 +38,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\HostelRegistration wherePolicies($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\HostelRegistration whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $id
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\HostelRegistration whereId($value)
  */
 class HostelRegistration extends Model
 {

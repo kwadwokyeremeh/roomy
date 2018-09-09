@@ -21,7 +21,7 @@ class CreateHostellersTable extends Migration
             $table->string('phone')->unique();
             $table->string('role');
             $table->string('password');
-            $table->string('avatar')->nullable();
+            $table->string('avatar',255)->nullable();
             $table->boolean('status')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

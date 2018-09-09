@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Service whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Service whereService($value)
  * @mixin \Eloquent
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
  */
 class Service extends Model
 {
@@ -36,6 +37,6 @@ class Service extends Model
 
     public function hostel()
     {
-        $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
+        return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
 }

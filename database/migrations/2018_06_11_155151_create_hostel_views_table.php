@@ -16,10 +16,10 @@ class CreateHostelViewsTable extends Migration
         Schema::create('hostel_views', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hostel_id')->unsigned();
-            $table->string('front');
-            $table->string('right');
-            $table->string('left');
-            $table->string('video')->nullable();
+            $table->string('front',255);
+            $table->string('right',255);
+            $table->string('left',255);
+            $table->string('video',255)->nullable();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
     }

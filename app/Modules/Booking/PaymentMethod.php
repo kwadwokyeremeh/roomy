@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\PaymentMethod whereShorthand($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\PaymentMethod whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $callback
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Booking\PaymentMethod whereCallback($value)
  */
 class PaymentMethod extends Model
 {

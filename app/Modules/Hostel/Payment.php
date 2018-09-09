@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Payment whereTigo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Payment whereVodafone($value)
  * @mixin \Eloquent
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
  */
 class Payment extends Model
 {
@@ -47,6 +48,6 @@ class Payment extends Model
 
     public function hostel()
     {
-        $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
+        return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
 }

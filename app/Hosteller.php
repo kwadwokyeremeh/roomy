@@ -41,6 +41,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read mixed $full_name
+ * @property string|null $email_verified_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereEmailVerifiedAt($value)
  */
 
 

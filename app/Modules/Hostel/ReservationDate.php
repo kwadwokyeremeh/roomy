@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereReservationStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\ReservationDate whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
  */
 class ReservationDate extends Model
 {
@@ -41,7 +42,7 @@ class ReservationDate extends Model
 
     public function hostel()
     {
-        $this->belongsTo(Hostel::class);
+        return $this->belongsTo(Hostel::class);
     }
 }
 

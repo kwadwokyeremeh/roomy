@@ -71,7 +71,7 @@ class RoomTypeMedia extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('roomType')
+        return $this->addMediaConversion('roomType')
             ->width(370)
             ->height(270)
             ->sharpen(10);

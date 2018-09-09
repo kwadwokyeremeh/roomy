@@ -15,7 +15,7 @@ class CreateFacilitiesTable extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->increments('id')->unsigned()->index();
-            $table->string('facility');
+            $table->string('facility',255);
             $table->integer('hostel_id')->unsigned();
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });

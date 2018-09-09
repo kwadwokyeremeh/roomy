@@ -40,6 +40,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\User whereSex($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $email_verified_at
+ * @property-read mixed $full_name
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\User whereEmailVerifiedAt($value)
+ * @property-read \myRoommie\Modules\Booking\Reservation $reservation
  */
 
 class User extends Authenticatable implements MustVerifyEmailContract
@@ -88,7 +92,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * */
     public function reservation()
     {
-        $this->hasOne(Reservation::class);
+        return $this->hasOne(Reservation::class);
     }
 
 

@@ -34,6 +34,7 @@ use myRoommie\Modules\Booking\Reservation;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereSexType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereStatus($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Booking[] $bookings
  */
 class Room extends Model
 {
@@ -105,7 +106,7 @@ class Room extends Model
      * */
     public function bookings()
     {
-        $this->hasMany(Booking::class);
+        return $this->hasMany(Booking::class);
     }
 
 

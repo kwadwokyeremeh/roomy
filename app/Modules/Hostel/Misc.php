@@ -53,7 +53,7 @@ class Misc extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('misc-thumb')
+        return $this->addMediaConversion('misc-thumb')
             ->width(639)
             ->height(500)
             ->sharpen(10);

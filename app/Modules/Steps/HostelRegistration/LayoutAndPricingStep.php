@@ -75,7 +75,7 @@ class LayoutAndPricingStep extends Step
          *  Create new block
          * */
 
-                //$apartment = new Block;
+
                 if (count($blocks)==1){
                     Block::firstOrCreate([
                         'hostel_id' =>$hostelId,
@@ -101,10 +101,6 @@ class LayoutAndPricingStep extends Step
 
 
                 $b = Hostel::findOrFail($hostelId)->blocks()->pluck('id')->toArray();
-                    /*$createdBlock=[];
-                foreach ($b as $item) {
-                    array_push($createdBlock,$item->id);
-                }*/
 
                 /*
                  * Create all the floor associated with each block
@@ -134,7 +130,7 @@ class LayoutAndPricingStep extends Step
                         ]);
                     }
                     $brr2 = array_unique($arr2,SORT_REGULAR);//collect($arr2)->unique()->toArray();
-                    //dd($arr2,$brr2,array_unique($arr2,SORT_REGULAR));
+
                     (new Floor)::insert($brr2);
                 }
                 else{
@@ -150,8 +146,6 @@ class LayoutAndPricingStep extends Step
                         }unset($floorName);
                     }unset($floor);
                     $brr2 = array_unique($arr2,SORT_REGULAR);//collect(array_unique($arr2))->unique()->toArray();
-                     //implode(',',array_unique($arr2));
-                    //dd($arr2,$brr2,array_unique($arr2,SORT_REGULAR));
                     (new Floor)::insert($brr2);
 
                 }
@@ -162,14 +156,8 @@ class LayoutAndPricingStep extends Step
                  *  Retrieve the ID's of the just
                  * created floors
                  * */
-
-                //$createdFloors =[];
                 $f =Hostel::findOrFail($hostelId)->floors()->pluck('id')->toArray();
 /*
-                foreach($f as $item){
-                    array_push($createdFloors,$item->id);
-                }*/
-
 
                 /*
                  *  Create all the room associated with the
@@ -265,19 +253,20 @@ class LayoutAndPricingStep extends Step
                  * */
 
 // next if you want save one step progress to session use
-                    /*if ($abode->insert($arr3)== true){
+
                         DB::table('hostel_registrations')
                             ->where(['hosteller_id'=> $hostellerId,
                                 'hostel_id' =>$hostelId])
                             ->update(['layout_n_pricing' => true]);
 
-                    }*/
+
 
                     $this->saveProgress($request);
                 return true;
 
                 }
-                    return false; //redirect()->back()->withErrors(['message'=>'The data provided is inconsistent']);
+                    return false;
+                //return redirect()->back()->withErrors(['message'=>'The data provided is inconsistent']);
 
 
 }

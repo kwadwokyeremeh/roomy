@@ -44,6 +44,10 @@ use myRoommie\User;
  * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Booking\Reservation withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Booking\Reservation withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
+ * @property-read \myRoommie\Modules\Hostel\Room $room
+ * @property-read \myRoommie\User $user
+ * @property-read \myRoommie\Modules\Booking\PaymentMethod|null $paymentMethod
  */
 class Reservation extends Model
 {
@@ -92,7 +96,7 @@ class Reservation extends Model
 
     public function paymentMethod()
     {
-        $this->belongsTo(PaymentMethod::class);
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     /*
