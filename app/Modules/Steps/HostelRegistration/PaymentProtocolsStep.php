@@ -23,7 +23,7 @@ class PaymentProtocolsStep extends Step
     public function process(Request $request)
     {
         $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::has('hosteller.hostel_id')){
+        if ($request->session()->has('hosteller.hostel_id')==true){
             $hostelId = session('hosteller.hostel_id');
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
@@ -42,6 +42,7 @@ class PaymentProtocolsStep extends Step
 
         // next if you want save one step progress to session use
         $this->saveProgress($request);
+        return true;
     }
 
     public function rules(Request $request = null): array

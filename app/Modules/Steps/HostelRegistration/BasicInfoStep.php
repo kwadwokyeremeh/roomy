@@ -132,9 +132,11 @@ class BasicInfoStep extends Step
                 'hosteller_id' => Auth::guard('hosteller')->user()->id,
                 '1_basic_info' => true
             ]);*/
-           return $this->saveProgress($request);
+           $this->saveProgress($request);
+
+           return true;
         }
-            return $this->saveProgress($request);
+            return true;//$this->saveProgress($request);
 
     }
 

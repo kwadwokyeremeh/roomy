@@ -52,7 +52,7 @@ class HostelRegistrationController extends Controller
 
 
 public $steps = [
-    'myRoommie'            => Instruction::class,
+    'set-username-key'     => Instruction::class,
                               BasicInfoStep::class,
                               HostelDetailsStep::class,
                               AddMediaStep::class,
@@ -129,10 +129,10 @@ public function wizard($step = null,Hosteller $id)
         return view('hostelRegistration.master', compact('step','data'));
 }*/
 
-    if ($this->wizard->dataHas('02')|| $this->wizard->dataHas('04'))  {
+    //if ($this->wizard->dataHas('02')|| $this->wizard->dataHas('04'))  {
 
 
-       if (Session::exists('hosteller.hostel_id')) {
+       if (request()->session()->has('hosteller.hostel_id')==true) {
            $hostelId = session('hosteller.hostel_id');
 
        } elseif ((HostelRegistration::where(['hosteller_id' => $hostellerId,'amenities' => true, 'layout_n_pricing' => false])) == true) {
@@ -165,7 +165,7 @@ public function wizard($step = null,Hosteller $id)
        $data = Hostel::find($hostelId);
 
 
-   }
+   //}
 
     return view('hostelRegistration.master', compact('step','data'));
 }
@@ -188,8 +188,8 @@ public function wizardPost(Request $request, $step = null)
     $request->session()->regenerate();
     $validator = $this->validate($request, $step->rules($request),$step->messages(),$step->customAttributes());
 
-    $step->process($request);
-    if ($step->process($request)==true){
+    $a = $step->process($request);
+    if ($a == true){
         return redirect()->route('hostel.registration', [$this->wizard->nextSlug()]);
     }
     return redirect()->back()

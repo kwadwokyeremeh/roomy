@@ -39,7 +39,7 @@ class AddMediaStep extends Step
          * Retrieve the hostel id from the session
          * */
         $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::has('hosteller.hostel_id')){
+        if ($request->session()->has('hosteller.hostel_id')==true){
             $hostelId = session('hosteller.hostel_id');
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
@@ -137,6 +137,7 @@ class AddMediaStep extends Step
                      'hostel_id' =>$hostelId])
             ->update(['add_media' => true]);
         $this->saveProgress($request);
+        return true;
     }
 
     public function rules(Request $request = null): array

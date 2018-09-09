@@ -25,8 +25,9 @@ class Block extends Model
 
 
     protected $fillable =[
-        'hostel_id','number','name'
-    ];
+                     'hostel_id',
+                    'name'
+                        ];
     /**
      * All of the relationships to be touched.
      *

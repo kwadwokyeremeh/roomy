@@ -26,7 +26,7 @@ class PoliciesStep extends Step
     public function process(Request $request)
     {
         $hostellerId = Auth::guard('hosteller')->user()->id;
-        if (Session::has('hosteller.hostel_id')){
+        if ($request->session()->has('hosteller.hostel_id')==true){
             $hostelId = session('hosteller.hostel_id');
         }else{
             $hostelId = DB::table('hostel_registrations')->where([
@@ -47,7 +47,8 @@ class PoliciesStep extends Step
         if (HostelRegistration::where(['hosteller_id'=>$hostellerId,'layout_n_pricing'=>false])){
             redirect()->back();
         }
-        /*$this->saveProgress($request);*/
+        $this->saveProgress($request);
+        return true;
     }
 
     public function rules(Request $request = null): array

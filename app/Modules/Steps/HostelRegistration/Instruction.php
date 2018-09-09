@@ -28,6 +28,7 @@ class Instruction extends Step
 
         // next if you want save one step progress to session use
         $this->saveProgress($request);
+        return true;
     }
 
     public function rules(Request $request = null): array
