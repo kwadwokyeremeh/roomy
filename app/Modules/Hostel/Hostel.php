@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use myRoommie\Hosteller;
 use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Modules\HostelRegistration;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 
 /**
@@ -66,6 +68,7 @@ use myRoommie\Modules\HostelRegistration;
  */
 class Hostel extends Model
 {
+
 
     protected $fillable = [
         'name','alias',
@@ -294,6 +297,11 @@ class Hostel extends Model
         return $duration;
     }
 
+    /*
+   * Retrieve hostel default reservation date range
+     *
+     * @return array Carbon date
+   * */
     public function retrieveReservationDateRange()
     {
         if (isset($this->reservationDate->reservation_start_date)==true){
@@ -308,9 +316,38 @@ class Hostel extends Model
         return ['startDate'=>$startDate,'endDate'=>$endDate];
     }
 
+
+
     public static function findHostel($hostelName)
     {
         return self::whereSlug($hostelName)->firstOrFail();
+    }
+
+
+    /**
+     * Get the name of the hostel.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the hostel.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setNameAttribute($value)
+    {
+
+        $this->attributes['name'] = mb_strtolower($value);
     }
 
 }

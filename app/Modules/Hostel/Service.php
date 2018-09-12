@@ -39,4 +39,32 @@ class Service extends Model
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
+
+
+    /**
+     * Get the name of the service.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getServiceAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the service.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setServiceAttribute($value)
+    {
+
+        $this->attributes['service'] = mb_strtolower($value);
+    }
+
 }

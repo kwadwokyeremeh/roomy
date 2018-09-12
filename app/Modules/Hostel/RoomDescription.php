@@ -62,4 +62,32 @@ class RoomDescription extends Model
     {
         return $this->hasMany(RoomTypeMedia::class);
     }
+
+
+    /**
+     * Get the name of the room type.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getRoomTypeAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the room type.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setRoomTypeAttribute($value)
+    {
+
+        $this->attributes['room_type'] = mb_strtolower($value);
+    }
+
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Closure;
 use myRoommie\Hosteller;
+use myRoommie\Http\Middleware\CompleteHostelRegistrationProcess;
 use myRoommie\Modules\Hostel\Block;
 use myRoommie\Modules\HostelRegistration;
 use Smajti1\Laravel\Step;
@@ -37,7 +38,7 @@ class HostelRegistrationController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:hosteller'])->except('logout','destroy');
+        $this->middleware(['auth:hosteller',CompleteHostelRegistrationProcess::class])->except('logout','destroy');
         /*$this->middleware('chrp');*/
 
 

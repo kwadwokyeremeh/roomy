@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
+use \myRoommie\Modules\Booking\Booking;
 use myRoommie\Modules\Booking\Reservation;
 
 /**
@@ -23,7 +24,6 @@ use myRoommie\Modules\Booking\Reservation;
  * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Reservation[] $reservations
  * @property-read \myRoommie\Modules\Hostel\RoomDescription $roomDescription
- * @property-read \myRoommie\Modules\Hostel\SexType $sexType
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereBlockId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereFloorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereHostelId($value)
@@ -34,7 +34,7 @@ use myRoommie\Modules\Booking\Reservation;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereSexType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereStatus($value)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Hostel\Booking[] $bookings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Booking[] $bookings
  */
 class Room extends Model
 {
@@ -109,14 +109,6 @@ class Room extends Model
         return $this->hasMany(Booking::class);
     }
 
-
-    /*
-     * Get the Sex type associated with the room
-     * */
-    public function sexType()
-    {
-        return $this->hasOne('myRoommie\Modules\Hostel\SexType');
-    }
 
 
     /*

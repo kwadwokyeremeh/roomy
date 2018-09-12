@@ -20,12 +20,12 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->unsignedInteger('hostel_id');
             $table->unsignedInteger('room_id');
             $table->unsignedInteger('receiver_id');
             $table->unsignedInteger('payee_id');
-            $table->unsignedInteger('booking_id');
+            $table->unsignedBigInteger('booking_id')->unsigned();
             $table->decimal('service_fee',8,2);
             $table->decimal('myroommie_service_fee');
             $table->decimal('amount',8,2);

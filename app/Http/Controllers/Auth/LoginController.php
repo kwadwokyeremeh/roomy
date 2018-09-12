@@ -40,7 +40,8 @@ class LoginController extends Controller
     public function destroy()
     {
         auth('web')->logout();
-        auth()->logoutOtherDevices();
+        request()->session()->invalidate();
+        //auth()->logoutOtherDevices();
         return redirect('/');
     }
 }

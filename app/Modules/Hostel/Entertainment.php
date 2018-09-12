@@ -36,4 +36,31 @@ class Entertainment extends Model
     {
         $this->belongsTo(Hostel::class);
     }
+
+    /**
+     * Get the name of the entertainment.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getEntertainmentAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the entertainment.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setEntertainmentAttribute($value)
+    {
+
+        $this->attributes['entertainment'] = mb_strtolower($value);
+    }
+
 }

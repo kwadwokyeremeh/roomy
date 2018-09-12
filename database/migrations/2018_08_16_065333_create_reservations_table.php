@@ -14,8 +14,8 @@ class CreateReservationsTable extends Migration
     public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('token');
+            $table->bigIncrements('id');
+            $table->uuid('token');
             $table->unsignedInteger('hostel_id');
             $table->unsignedInteger('room_id');
             $table->dateTime('start_date');
@@ -30,6 +30,7 @@ class CreateReservationsTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             //$table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

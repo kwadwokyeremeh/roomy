@@ -4,7 +4,6 @@ namespace myRoommie\Modules\Booking;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use myRoommie\Modules\Hostel\Booking;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Room;
 use myRoommie\User;

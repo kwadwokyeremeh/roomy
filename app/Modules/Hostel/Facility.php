@@ -30,7 +30,7 @@ class Facility extends Model
 
 
     protected $fillable =[
-        'hostel_id','facilities',
+        'hostel_id','facility',
     ];
 
     /*
@@ -40,4 +40,31 @@ class Facility extends Model
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
+
+    /**
+     * Get the name of the facility.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getFacilityAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the facility.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setFacilityAttribute($value)
+    {
+
+        $this->attributes['facility'] = mb_strtolower($value);
+    }
+
 }

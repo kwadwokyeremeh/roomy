@@ -3,11 +3,8 @@
 namespace myRoommie\Http\Middleware;
 
 use Closure;
-use Smajti1\Laravel\Wizard;
-use myRoommie\Http\Controllers\HostelRegistrationController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
-use myRoommie\Hosteller;
 use myRoommie\Modules\HostelRegistration;
 
 class CompleteHostelRegistrationProcess
@@ -28,61 +25,92 @@ class CompleteHostelRegistrationProcess
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  Wizard
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
 
-        $hostel_registration =HostelRegistration::where(['hosteller_id'=>Auth::guard('hosteller')->id()])->first();
-        $step = \Smajti1\Laravel\Step::$slug;
+        $hostel_registration =HostelRegistration::where(['hosteller_id'=>Auth::guard('hosteller')->id()])->latest()->first();
+        $step = $request->getRequestUri();
+
         switch ($step){
-            case '08':
-                if ($hostel_registration->confirmation ==false){
-                    return redirect()->intended(route('hostel.registration'));
+            case $step =='/hosteller/hostelRegistration/08':
+                if (! isset($hostel_registration->confirmation)){
+                    return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation ==false && $hostel_registration->payment == true  && $hostel_registration->policies == true   && $hostel_registration->layout_n_pricing == true && $hostel_registration->amenities == true && $hostel_registration->add_media == true){
+                    return $next($request);
+                }else{
+                    return redirect()->intended(route('hostel.registration','07'));
                 }
                 break;
-            case '07':
-                if ($hostel_registration->payment ==false){
+            case $step == '/hosteller/hostelRegistration/07':
+                if (! isset($hostel_registration->confirmation)){
+                    return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation ==false && $hostel_registration->payment == false  && $hostel_registration->policies == true   && $hostel_registration->layout_n_pricing == true && $hostel_registration->amenities == true && $hostel_registration->add_media == true){
+                    return $next($request);
+                }else{
                     return redirect()->intended(route('hostel.registration','06'));
                 }
                 break;
-            case '06':
-                if ($hostel_registration->policies ==false){
+            case $step == '/hosteller/hostelRegistration/06':
+                if (! isset($hostel_registration->confirmation)){
+                    return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation ==false && $hostel_registration->payment == false && $hostel_registration->policies == false   && $hostel_registration->layout_n_pricing == true && $hostel_registration->amenities == true && $hostel_registration->add_media == true){
+                    return $next($request);
+                }else{
                     return redirect()->intended(route('hostel.registration','05'));
                 }
                 break;
-            case '05' :
-                if ($hostel_registration->layout_n_pricing == false ){
+            case $step == '/hosteller/hostelRegistration/05' :
+                if (! isset($hostel_registration->confirmation)){
+                    return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation == false  && $hostel_registration->payment==false  && $hostel_registration->policies ==false   && $hostel_registration->layout_n_pricing ==false && $hostel_registration->amenities == true && $hostel_registration->add_media == true){
+                    return $next($request);
+                }else{
                     return redirect()->intended(route('hostel.registration','04'));
                 }
                 break;
-            case '04':
-                if ($hostel_registration->amenities == false){
+            case $step == '/hosteller/hostelRegistration/04':
+                if (! isset($hostel_registration->confirmation)){
+                    return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation == false && $hostel_registration->payment==false  && $hostel_registration->policies ==false   && $hostel_registration->layout_n_pricing ==false && $hostel_registration->amenities ==false && $hostel_registration->add_media ==true){
+                   return $next($request);
+                }else{
                     return redirect()->intended(route('hostel.registration','03'));
                 }
                 break;
-            case '03':
-                if ($hostel_registration->add_media == false){
+            case $step == '/hosteller/hostelRegistration/03':
+                if (! isset($hostel_registration->confirmation)){
+                    return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation == false && $hostel_registration->payment==false  && $hostel_registration->policies ==false   && $hostel_registration->layout_n_pricing ==false && $hostel_registration->amenities ==false && $hostel_registration->add_media ==false && $hostel_registration->hostel_details == true){
+                    return $next($request);
+                }else{
                     return redirect()->intended(route('hostel.registration','02'));
                 }
                 break;
-            case '02':
-                if ($hostel_registration->hostel_details == false){
-                    return redirect()->intended(route('hostel.registration'));
+            case $step == '/hosteller/hostelRegistration/02':
+
+                if (! isset( $hostel_registration->hostel_details)){
+                    return $next($request);
+                }else{
+                    return redirect()->intended(route('hostel.registration','00'));
                 }
+                break;
+            case $step == '/hosteller/hostelRegistration/01':
+                return $next($request);
+                break;
+            case $step == '/hosteller/hostelRegistration/00':
+                return $next($request);
+                break;
                 default;
         }
 
-
-
-        /*
-
-
-
-
-        */
-
-        return $next($request);
+        return abort(404);
     }
 }

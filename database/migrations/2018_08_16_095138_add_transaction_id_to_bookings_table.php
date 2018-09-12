@@ -14,7 +14,7 @@ class AddTransactionIdToBookingsTable extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->unsignedInteger('transaction_id');
+            $table->unsignedBigInteger('transaction_id');
             $table->foreign('transaction_id')->references('id')->on('transactions');
         });
     }

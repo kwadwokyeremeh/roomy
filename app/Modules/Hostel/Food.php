@@ -39,4 +39,31 @@ class Food extends Model
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
+
+    /**
+     * Get the name of the Food.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getFoodAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the Food.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setFoodAttribute($value)
+    {
+
+        $this->attributes['food'] = mb_strtolower($value);
+    }
+
 }

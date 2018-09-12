@@ -76,4 +76,31 @@ class Block extends Model
     {
         return $this->hasMany('myRoommie\Modules\Hostel\Bed');
      }
+
+    /**
+     * Get the name of the block.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the block.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setNameAttribute($value)
+    {
+
+        $this->attributes['name'] = mb_strtolower($value);
+    }
+
 }

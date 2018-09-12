@@ -8,6 +8,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 
 /**
@@ -44,11 +47,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
  * @property-read mixed $full_name
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\User whereEmailVerifiedAt($value)
  * @property-read \myRoommie\Modules\Booking\Reservation $reservation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
  */
 
-class User extends Authenticatable implements MustVerifyEmailContract
+class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
 {
-    use MustVerifyEmail, Notifiable;
+    use MustVerifyEmail, Notifiable, HasMediaTrait;
 
 
     /**
@@ -120,4 +124,25 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         return "{$this->firstName} {$this->lastName}";
     }
+
+
+    /*
+     *  This method applies media conversion to the uploaded multimedia files
+     * */
+
+    public function registerMediaCollections()
+    {
+        $this
+            ->addMediaCollection('user')
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media =null) {
+                $this->addMediaConversion('user-thumb')
+                    ->width(160)
+                    ->height(160)
+                    ->sharpen(10);
+
+
+            });
+    }
+
 }

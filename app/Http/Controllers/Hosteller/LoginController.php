@@ -74,7 +74,8 @@ class LoginController extends Controller
     public function destroy()
     {
         auth()->guard('hosteller')->logout();
-        \auth()->logoutOtherDevices();
+        request()->session()->invalidate();
+        //\auth('hosteller')->logoutOtherDevices();
         return redirect()->home();
     }
 

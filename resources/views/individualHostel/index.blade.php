@@ -1,3 +1,4 @@
+
 @extends('individualHostel.master')
 
     @section('main-content')
@@ -151,8 +152,9 @@
                                     <div class="vk-rooms-grid-border"></div>
                                 </div>
 
+                                @foreach($hostel->roomDescription->chunk(3) as $chunk)
                                 <div class="row">
-                                    @foreach($hostel->roomDescription as $roomType)
+                                    @foreach($chunk as $roomType)
                                     <div class="col-md-4 col-sm-6">
                                         <div class="item">
                                             <div class="vk-sparta-item-content">
@@ -375,6 +377,7 @@
                                         </div>
                                     </div>--}}
                                 </div>
+                                    @endforeach
                             </div>
                         </div>
                         <!--Amenities and Facilities-->

@@ -21,7 +21,7 @@ class Utility extends Model
     public $timestamps = false;
 
     protected $fillable =[
-        'hostel_id','utilities'
+        'hostel_id','uutility'
     ];
     /*
      *  Get the hostel that provide that utilities
@@ -39,4 +39,31 @@ class Utility extends Model
     {
         return $this->belongsTo('myRoommie\Modules\Hostel\Hostel');
     }
+
+    /**
+     * Get the name of the utility.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getUtilityAttribute($value)
+    {
+
+        return ucwords($value);
+
+    }
+
+
+    /**
+     * Set the name of the utility.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setUtilityAttribute($value)
+    {
+
+        $this->attributes['utility'] = mb_strtolower($value);
+    }
+
 }

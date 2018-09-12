@@ -24,7 +24,7 @@ class CheckHostellerStatus
 
         if ((Auth::guard('hosteller')->user()->status == false)){
 
-            return redirect()->intended(route('hostel.registration'));
+            return redirect()->intended(route('hostel.registration','08'));
         }
         return $next($request);
     }

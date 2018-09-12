@@ -63,7 +63,7 @@ class Kernel extends HttpKernel
         'hvs' => \myRoommie\Http\Middleware\CheckHostellerStatus::class,
         'published' => \myRoommie\Http\Middleware\CheckForPublishedHostels::class,
         'chrp' => \myRoommie\Http\Middleware\CompleteHostelRegistrationProcess::class,
-        'chrp5' =>\myRoommie\Http\Middleware\CheckHRStep5::class,
-        'chrp6' =>\myRoommie\Http\Middleware\CheckHRStep6::class,
+        //'chrp5' =>\myRoommie\Http\Middleware\CheckHRStep5::class,
+        //'chrp6' =>\myRoommie\Http\Middleware\CheckHRStep6::class,
     ];
 }

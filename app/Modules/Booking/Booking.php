@@ -1,11 +1,11 @@
 <?php
 
-namespace myRoommie\Modules\Hostel;
+namespace myRoommie\Modules\Booking;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * myRoommie\Modules\Hostel\Booking
+ * myRoommie\Modules\Booking\Booking
  *
  * @property int $id
  * @property int|null $reservation_id

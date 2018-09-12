@@ -177,11 +177,11 @@
                                                                             @else
                                                                         <div class="product-chooser-item disabled no-room-gutter">
                                                                         @endif
-                                                                            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 no-room-gutter">
+                                                                            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 no-room-gutter" title="{{($room->name)?($room->name):('Room '.$room->number)}} {{$room->roomDescription->room_type}} {{$room->sex_type}}">
                                                                                 @if($room->name)
-                                                                                <span class="title">{{$room->name}}</span>
+                                                                                <span class="title" title="{{$room->name}}">{{$room->name}}</span>
                                                                                 @else
-                                                                                <span class="title">{{$room->number}}</span>
+                                                                                <span class="title" title="Room {{$room->number}}">Room {{$room->number}}</span>
                                                                                 @endif
                                                                                 <span class="title">{{$room->roomDescription->room_type}}</span>
                                                                                 <span class="description">Price: {{$room->roomDescription->price}}</span>
