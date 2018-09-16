@@ -34,7 +34,7 @@ deletePreview = function (ele, i) {
     } catch (e) {
         console.log(e.message);
     }
-}
+};
 
 $("#file").on('change', function() {
     "use strict";

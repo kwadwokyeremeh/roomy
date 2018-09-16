@@ -4,7 +4,11 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use myRoommie\Hosteller;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\File;
+use Spatie\MediaLibrary\Models\Media;
 use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Modules\HostelRegistration;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -65,10 +69,12 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Reservation[] $reservations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
  */
-class Hostel extends Model
+class Hostel extends Model implements HasMedia
 {
 
+    use HasMediaTrait;
 
     protected $fillable = [
         'name','alias',
@@ -279,6 +285,16 @@ class Hostel extends Model
         return $tSlug;
     }
 
+
+    public function uniqueSlug()
+    {
+
+       $count = DB::table('hostels')->where('slug',$this->slugHostel(request()))
+           ->count();
+
+       return $count === 0;
+
+    }
     /*
    * Retrieve hostel default reservation date
      *
@@ -349,5 +365,82 @@ class Hostel extends Model
 
         $this->attributes['name'] = mb_strtolower($value);
     }
+
+
+    /*
+     *  This method applies media conversion to the uploaded multimedia files
+     * */
+
+    public function registerMediaCollections()
+    {
+        $this
+            ->addMediaCollection('frontViews')
+            ->registerMediaConversions(function (Media $media =null) {
+                $this->addMediaConversion('front-thumb')
+                    ->width(370)
+                    ->height(270)
+                    ->sharpen(10);
+
+                $this->addMediaConversion('slider-front')
+                    ->width(1920)
+                    ->height(940)
+                    ->sharpen(10);
+
+
+            });
+
+        $this
+            ->addMediaCollection('leftViews')
+            ->registerMediaConversions(function (Media $media =null) {
+                $this->addMediaConversion('slider-left')
+                    ->width(1920)
+                    ->height(940)
+                    ->sharpen(10);
+            });
+
+
+        $this
+            ->addMediaCollection('rightViews')
+            ->registerMediaConversions(function (Media $media =null) {
+                $this->addMediaConversion('slider-right')
+                    ->width(1920)
+                    ->height(940)
+                    ->sharpen(10);
+
+            });
+
+        /*
+     *  This is responsible for handling all miscellaneous images associated with a hostel
+     * */
+        $this
+            ->addMediaCollection('misc')
+            ->registerMediaConversions(function (Media $media = null) {
+                $this->addMediaConversion('misc-thumb')
+                    ->width(639)
+                    ->height(500)
+                    ->sharpen(10);
+
+
+            });
+
+
+        /*
+ * This is responsible for handling all the images for
+ * the type of room associated with a hostel
+ * */
+
+        $this
+            ->addMediaCollection('roomType')
+            ->registerMediaConversions(function (Media $media = null) {
+                $this->addMediaConversion('room_type')
+                    ->width(370)
+                    ->height(270)
+                    ->sharpen(10);
+
+            });
+
+
+    }
+
 
 }

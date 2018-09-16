@@ -56,7 +56,7 @@ class AddMediaStep extends Step
         }
 
         $hostel = Hostel::find($hostelId);
-        Storage::makeDirectory('public/hostels/'.$hostelId);
+        Storage::makeDirectory('hostels/'.$hostelId);
 
 
 
@@ -66,20 +66,19 @@ class AddMediaStep extends Step
          * */
 
             $hostelView = new HostelView;
-            $hostelView->hostel_id =$hostelId;
-            $hostelView->front =$request->file(['images'])['views']['front']->store('hostels/'.$hostelId.'/views','public');
-            $hostelView->right =$request->file(['images'])['views']['right']->store('hostels/'.$hostelId.'/views','public');
-            $hostelView->left =$request->file(['images'])['views']['left']->store('hostels/'.$hostelId.'/views','public');
+            $hostelView->hostel_id = $hostelId;
+            $hostelView->front = $request->file(['images'])['views']['front']->store('hostels/'.$hostelId.'/views','public');
+            $hostelView->right = $request->file(['images'])['views']['right']->store('hostels/'.$hostelId.'/views','public');
+            $hostelView->left = $request->file(['images'])['views']['left']->store('hostels/'.$hostelId.'/views','public');
             if ($request->hasFile('video')){
-                $hostelView->video =$request->file(['video'])->store('hostels/'.$hostelId,'public');
+                $hostelView->video = $request->file(['video'])->store('hostels/'.$hostelId,'public');
             }
             $hostelView->save();
 
-        /*$mediaItem = HostelView::first()
-                    ->addMedia($request->file(['images'])['views']['front'])->toMediaCollection('front-thumb');
-        $mediaItem -> addMedia($request->file(['images'])['views']['front'])->toMediaCollection('slider-front');
-        $mediaItem -> addMedia($request->file(['images'])['views']['left'])->toMediaCollection('slider-left');
-        $mediaItem -> addMedia($request->file(['images'])['views']['right'])->toMediaCollection('slider-other');*/
+
+        $hostel->addMedia('storage/'.$hostelView->front)->preservingOriginal()->toMediaCollection('frontViews');
+        $hostel-> addMedia('storage/'.$hostelView->left)->preservingOriginal()->toMediaCollection('sideViews');
+        $hostel-> addMedia('storage/'.$hostelView->right)->preservingOriginal()->toMediaCollection('rightViews');
 
 
             /*
@@ -100,11 +99,13 @@ class AddMediaStep extends Step
                     ]);
                 }
 
-            }  $roomMedia->insert($arr);
-            /*foreach ($arr as $path){
-                RoomTypeMedia::first()->addMedia($path->image)->toMediaCollection('roomType');
 
-            }*/
+            }
+            $roomMedia->insert($arr);
+
+            foreach ($arr as $path){
+                    $hostel->addMedia('storage/' . $path['image'])->preservingOriginal()->toMediaCollection('roomType');
+            }
 
 
         /*
@@ -123,9 +124,13 @@ class AddMediaStep extends Step
             }
 
             $misc->insert($arr1);
-            /*foreach ($arr1 as $path1){
-             Misc::first()->addMedia($path1->image)->toMediaCollection('misc-thumb');
-        }*/
+            foreach ($arr1 as $path1){
+
+                    $hostel->addMedia('storage/'.$path1['image'])->preservingOriginal()->toMediaCollection('misc');
+
+        }
+
+
         }
 
         // next if you want save one step progress to session use

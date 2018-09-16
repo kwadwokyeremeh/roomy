@@ -9,7 +9,7 @@ $(document).ready(function () {
     });
     window.onload = function () {
 
-    }
+    };
     function onDateChange(date){
         //document.getElementById('container2').innerHTML = date;
     }

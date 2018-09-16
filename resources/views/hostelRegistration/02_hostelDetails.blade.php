@@ -159,7 +159,7 @@
 
                                                                         <h3>Information about your hostel</h3>
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
-                                                                            <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_total_number_of_blocks_field_detail" data-priority="20">
+                                                                            {{--<p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_total_number_of_blocks_field_detail" data-priority="20">
                                                                                 <label for="total_number_of_blocks" class="">Total number of blocks <abbr class="required" title="required">*</abbr></label>
                                                                                 <input type="number" min=1 class="input-text {{ $errors->has('number_of_blocks') ? ' is-invalid' : '' }}" value="{{ old('number_of_blocks') }}" name="number_of_blocks" id="total_number_of_blocks" placeholder="Example; 3" autocomplete="1">
                                                                                 @if ($errors->has('number_of_blocks'))
@@ -167,7 +167,7 @@
                                                                                         <strong style="color: #ff0000;">{{ $errors->first('number_of_blocks') }}</strong>
                                                                                     </span>
                                                                                 @endif
-                                                                            </p>
+                                                                            </p>--}}
                                                                             {{--<p class="form-row form-row-last validate-required" id="billing_total_number_of_rooms_field_detail" data-priority="20">
                                                                                 <label for="last_name" class="">Total number of rooms <abbr class="required" title="required">*</abbr></label>
                                                                                 <input type="number" class="input-text " name="total_number_of_rooms" id="total_number_of_rooms" placeholder="" value="" >

@@ -79,8 +79,9 @@ class RegistrationController extends Controller
         $credentials = $request->only(['email','password']);
 
 
-        auth()->guard('hosteller')->attempt($credentials, $remember =false);
-        return redirect()->intended(route('hostel.registration','00'));
+        Auth::guard('hosteller')->attempt($credentials, $remember =false);
+
+        return redirect()->route('hostel.registration','00');
     }
 
 

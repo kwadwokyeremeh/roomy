@@ -94,44 +94,7 @@ public function wizard($step = null,Hosteller $id)
     $hostellerId = Auth::guard('hosteller')->user()->id;
 
 
-
-   /* if ($register2 !==true && $register5==true){
- $register2 =HostelRegistration::find($hostellerId)->where(['1_basic_info'=>true, '2_hostel_details'=>true, '3_add_media'=>false]);
-    $register5 = HostelRegistration::find($hostellerId)->where(['4_amenities'=>true,'5_layout_n_pricing' =>false]);
-        $hostelId = DB::table('hostel_registrations')->where([
-            'hosteller_id'=> $hostellerId,
-            '1_basic_info'=>true,
-            '2_hostel_details'=>true,
-            '3_add_media'=>true,
-            '4_amenities'=>true,
-            '5_layout_n_pricing' =>false,
-            '6_policies' =>false,
-            '7_payment' =>false,
-            '8_confirmation' =>false,
-        ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
-
-
-    }elseif ($register2 == true && $register5 !==true) {
-
-
-        $hostelId = DB::table('hostel_registrations')->where([
-                'hosteller_id'=> $hostellerId,
-                '1_basic_info'=>true,
-                '2_hostel_details'=>true,
-                '3_add_media'=>false,
-                '4_amenities'=>false,
-                '5_layout_n_pricing' =>false,
-                '6_policies' =>false,
-                '7_payment' =>false,
-                '8_confirmation' =>false,
-            ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
-
-    }else{
-        return view('hostelRegistration.master', compact('step','data'));
-}*/
-
-    //if ($this->wizard->dataHas('02')|| $this->wizard->dataHas('04'))  {
-
+    if ((request()->getRequestUri() ==='/hosteller/hostelRegistration/03') || (request()->getRequestUri() === '/hosteller/hostelRegistration/05')){
 
        if (request()->session()->has('hosteller.hostel_id')==true) {
            $hostelId = session('hosteller.hostel_id');
@@ -166,7 +129,7 @@ public function wizard($step = null,Hosteller $id)
        $data = Hostel::find($hostelId);
 
 
-   //}
+   }
 
     return view('hostelRegistration.master', compact('step','data'));
 }
@@ -197,26 +160,6 @@ public function wizardPost(Request $request, $step = null)
         ->withErrors(['message'=>'The data provided is inconsistent']); //route('hostel.registration',[$this->wizard->lastProcessedIndex()]);
     }
 
-
-
-
-    /*public function layout($step='05')
-    {
-        try {
-            if (is_null($step)) {
-                $step = $this->wizard->firstOrLastProcessed();
-            }
-            else {
-                $step = $this->wizard->getBySlug($step);
-            }
-
-        } catch (StepNotFoundException $e) {
-            abort(404);
-        }
-
-        return view('hostelRegistration.05_layoutAndPricing',compact('step'));
-
-    }*/
 
 
 

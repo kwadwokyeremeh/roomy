@@ -2,10 +2,9 @@
 
 namespace myRoommie\Modules\Hostel;
 
-use Spatie\MediaLibrary\Models\Media;
+
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
 
 /**
  * myRoommie\Modules\Hostel\Misc
@@ -22,12 +21,12 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Misc whereTitle($value)
  * @mixin \Eloquent
  */
-class Misc extends Model implements HasMedia
+class Misc extends Model
 {
     /*
      *  This model is responsible for handling all miscellaneous images associated with a hostel
      * */
-    use HasMediaTrait;
+
 
     protected $table ='miscellaneous';
 
@@ -46,18 +45,10 @@ class Misc extends Model implements HasMedia
 
     public $timestamps = false;
 
+
     public function hostel()
     {
         return $this->belongsTo(Hostel::class);
     }
 
-    public function registerMediaConversions(Media $media = null)
-    {
-        return $this->addMediaConversion('misc-thumb')
-            ->width(639)
-            ->height(500)
-            ->sharpen(10);
-
-
-    }
 }

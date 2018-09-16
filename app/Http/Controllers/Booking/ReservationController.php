@@ -18,11 +18,13 @@ use Validator;
 class ReservationController extends Controller
 {
     protected $reservation;
+    protected $data;
 
 
     public function __construct(Reservation $reservation)
     {
         $this->reservation =$reservation;
+
         $this->middleware(['auth:web,hosteller',IsReservationAllowed::class]);
 
 
@@ -128,6 +130,7 @@ class ReservationController extends Controller
 
         }
 
+
         $blocks = $hostel->blocks;
         $floors = $hostel->floors;
         $rooms = $hostel->rooms;
@@ -207,7 +210,7 @@ class ReservationController extends Controller
          * */
         $user =auth('web')->user();
         $request->session()->put('selectedRoom',$request['selectedRoom']);
-        $roomSelected =$hostel->rooms()->where('id',$request['selectedRoom'])->firstOrFail();
+        $roomSelected =$hostel->rooms()->where('id',$request['selectedRoom'])->lockForUpdate()->firstOrFail();
 
 
         /*
@@ -216,7 +219,7 @@ class ReservationController extends Controller
 
         $duration = $hostel->retrieveDuration();
         $price =$roomSelected->roomDescription->price;
-        $data =[
+        $this->data =[
             'token'             =>mb_strtoupper(uniqid()),
             'start_date'        =>now()->toDateTimeString(),
             'end_date'          =>$duration->toDateTimeString(),
@@ -232,10 +235,17 @@ class ReservationController extends Controller
          * */
         if ($roomSelected->sex_type == 'No Gender'){
             $roomSelected->update(['sex_type'=>auth('web')->user()->sex]);
-            $reservation->create($data);
+
+            DB::transaction(function (){
+                $this->reservation->firstOrCreate($this->data);
+            });
         }
         elseif ($roomSelected->sex_type == auth('web')->user()->sex){
-            $reservation->create($data);
+
+            DB::transaction(function (){
+                $this->reservation->firstOrCreate($this->data);
+            });
+
         }
         else{
 
@@ -280,22 +290,6 @@ class ReservationController extends Controller
     }
 
 
-    /*public function selectRoom($hostelName)
-    {
-        $hostel = Hostel::where('id',$hostelName)
-            ->orWhere('slug',$hostelName)
-            ->firstOrFail();
-        return view('individualHostel.booking.03_selectRoom',compact('hostel'));
-    }
-
-    public function confirmation($hostelName)
-    {
-        $hostel = Hostel::where('id',$hostelName)
-            ->orWhere('slug',$hostelName)
-            ->firstOrFail();
-        return view('individualHostel.booking.05_confirmation',compact('hostel'));
-    }*/
-
 
 
     /*
@@ -306,7 +300,7 @@ class ReservationController extends Controller
     {
 
     $hostel = Hostel::findHostel($hostelName);
-    $unReserveBed = $this->reservation->whereUserId(auth('web')->id())->firstOrFail();
+    $unReserveBed = $this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
     //Count if the number of occupants in the room is zero, unset the room gender
         $room =$unReserveBed['room_id'];
         $unReserveBed->forceDelete();

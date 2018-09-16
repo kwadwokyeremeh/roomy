@@ -6,7 +6,7 @@ return [
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.
      */
-    'disk_name' => 'public',
+    'disk_name' => 'media',
 
     /*
      * The maximum file size of an item in bytes.
@@ -18,7 +18,7 @@ return [
      * This queue will be used to generate derived and responsive images.
      * Leave empty to use the default queue.
      */
-    'queue_name' => '',
+    'queue_name' => env('QUEUE_DRIVER', 'redis'),
 
     /*
      * The class names of the models that should be used.

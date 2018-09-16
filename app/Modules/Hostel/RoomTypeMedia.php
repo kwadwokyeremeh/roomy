@@ -2,10 +2,8 @@
 
 namespace myRoommie\Modules\Hostel;
 
-use Spatie\MediaLibrary\Models\Media;
+
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * myRoommie\Modules\Hostel\RoomTypeMedia
@@ -14,20 +12,19 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @property int $room_description_id
  * @property string $image
  * @property-read \myRoommie\Modules\Hostel\Hostel $hostel
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
  * @property-read \myRoommie\Modules\Hostel\RoomDescription $roomDescription
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomTypeMedia whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomTypeMedia whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomTypeMedia whereRoomDescriptionId($value)
  * @mixin \Eloquent
  */
-class RoomTypeMedia extends Model implements HasMedia
+class RoomTypeMedia extends Model
 {
 /*
  * This model is responsible for handling all the images for
  * the type of room associated with a hostel
  * */
-    use HasMediaTrait;
+
 
     /**
      * The table associated with the model.
@@ -69,14 +66,6 @@ class RoomTypeMedia extends Model implements HasMedia
         return $this->belongsTo(RoomDescription::class);
     }
 
-    public function registerMediaConversions(Media $media = null)
-    {
-        return $this->addMediaConversion('roomType')
-            ->width(370)
-            ->height(270)
-            ->sharpen(10);
-
-    }
 
 
 }

@@ -2,14 +2,16 @@
 
 namespace myRoommie\Providers;
 
-use function foo\func;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 
+
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
@@ -34,6 +36,18 @@ class AppServiceProvider extends ServiceProvider
 
             return $count === 0;
         });
+
+        Validator::extend('uniqueHostelName', function ($attribute, $value, $parameters, $validator) {
+            $count = DB::table('hostels')->where('name', mb_strtolower($value))
+                /*->where('lastName', $parameters[0])*/
+                ->count();
+
+            return $count === 0;
+        });
+
+        Validator::extend('uniqueSlug','myRoommie\Modules\Hostel\Hostel@uniqueSlug');
+
+
         Validator::extend('inconsistentData',function ($attribute, $value, $parameters, $validator){
             $blocks = \request(['block']);
             $unsortedFloors = \request(['floor']);

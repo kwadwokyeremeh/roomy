@@ -155,3 +155,15 @@ Route::middleware('published')->group(function (){
     Route::get('/{hostelName}/{room_token}/unreserve','Booking\ReservationController@unReserveBed')->name('unReserveBed');
     Route::get('/{hostelName}/{room_token}/previousReservation','Booking\ReservationController@previousReservation')->name('previousReservation');
 });
+
+
+
+
+
+/*
+ * These routes should always be last
+ * */
+Route::get('/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}','ErrorController@error');
+Route::domain('{error?}.'.env('APP_URL'))->group(function (){
+    Route::get('/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}','ErrorController@error');
+}) ;

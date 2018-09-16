@@ -185,6 +185,7 @@
                                                                                     <span class="description">Price: {{$room->roomDescription->price}}</span><br>
                                                                                             <span class="description">{{$room->sex_type}}</span>
                                                                                     <span class="description">{{($room->reservations->count()==$room->roomDescription->number_of_beds) ? 'Room Full' : $room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>
+                                                                                    {{--<span class="description">{{$room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>--}}
                                                                                     <label for="selectedRoom">
                                                                                         <input type="radio" name="selectedRoom" value="{{$room->id}}" required/>
                                                                                     </label>

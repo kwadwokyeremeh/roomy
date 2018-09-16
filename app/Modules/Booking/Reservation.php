@@ -105,16 +105,16 @@ class Reservation extends Model
      * @return bool $isRoomFull
      * */
 
-    public function isRoomFull($room)
+    public function isRoomFull($room) : bool
     {
-        $reservedBeds = $this->where('room_id',$room)->count();
-        $roomDetails = Room::whereId($room)->first();
+        $reservedBeds = $this->whereRoomId($room)->lockForUpdate()->count();
+        $roomDetails = Room::whereId($room)->lockForUpdate()->first();
         $rs = $roomDetails->roomDescription->number_of_beds;
 
         // return true when room is full
-        if ($reservedBeds<$rs){
+        if ($reservedBeds < $rs){
             $isRoomFull = false;
-        }elseif ($reservedBeds==$rs){
+        }elseif ($reservedBeds>=$rs){
             $isRoomFull = true;
         }else{
             $isRoomFull =true;
@@ -131,7 +131,7 @@ class Reservation extends Model
     public function userHasReservation()
     {
         $hr =$this->where('user_id',auth('web')->id())->count();
-        if ($hr>=1){
+        if ($hr >= 1){
             $hasReservation = true;
         }else{
             $hasReservation = false;
@@ -139,7 +139,16 @@ class Reservation extends Model
         return $hasReservation;
     }
 
-
+    public static function userFactoryHasReservation($user)
+    {
+        $hr =self::whereUserId($user->id)->count();
+        if ($hr >= 1){
+            $hasReservation = true;
+        }else{
+            $hasReservation = false;
+        }
+        return $hasReservation;
+    }
     /*
      * Check if the current user has made payment
      * */

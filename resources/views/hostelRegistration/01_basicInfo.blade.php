@@ -120,7 +120,7 @@
 
                                                                                 @if ($errors->has('email.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.manager') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
@@ -130,7 +130,7 @@
 
                                                                                 @if ($errors->has('phone.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.manager') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
@@ -165,7 +165,7 @@
 
                                                                                 @if ($errors->has('email.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.manager') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
@@ -175,7 +175,7 @@
 
                                                                                 @if ($errors->has('phone.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.manager') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
@@ -212,7 +212,7 @@
 
                                                                                 @if ($errors->has('email.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('email.portal') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>
@@ -222,7 +222,7 @@
 
                                                                                 @if ($errors->has('phone.*'))
                                                                                     <span class="invalid-feedback">
-                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.*') }}</strong>
+                                                                                    <strong style="color: #ff0000;">{{ $errors->first('phone.portal') }}</strong>
                                                                                 </span>
                                                                                 @endif
                                                                             </p>

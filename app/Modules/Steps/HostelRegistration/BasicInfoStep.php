@@ -166,9 +166,11 @@ class BasicInfoStep extends Step
     public function messages()
     {
         return [
-            'uniqueManagerEmail' => 'The email address already exist in our database',
-            'uniqueManagerPhone' => 'The phone number already exist in our database',
-            'array' => 'The email address already exist in our database',
+            'email.manager.unique_manager_email' => 'The email address already exists in our database',
+            'email.portal.unique_manager_email' => 'The email address already exists in our database',
+            'phone.manager.unique_manager_phone' => 'The phone number already exists in our database',
+            'phone.portal.unique_manager_phone' => 'The phone number already exists in our database',
+            'array' => 'The email address already exists in our database',
             'phone.required' => 'The :attribute field is required.',
             'firstName_3' =>'The portal first name field must be provided',
             'lastName_3' =>'The portal last name field must be provided'

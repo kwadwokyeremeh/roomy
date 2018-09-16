@@ -33,6 +33,7 @@ class HostelDetailsStep extends Step
     public function process(Request $request)
     {
 
+
         /*
          Get the Latitude and Longitude returned from the Google Maps Address.
        */
@@ -120,7 +121,7 @@ class HostelDetailsStep extends Step
 
 
 
-        (new HostelRegistration)::firstOrCreate([
+        (new HostelRegistration)::create([
             'hosteller_id' => Auth::guard('hosteller')->user()->id,
             'hostel_id' =>$hostel->id,
             'basic_info' => true,
@@ -143,11 +144,11 @@ class HostelDetailsStep extends Step
     {
 
         return [
-            'name' =>               'required|string|min:3|max:255|unique:hostels',
-            'alias' =>              'nullable|string|max:255',
+            'name' =>               'required|string|min:3|max:255|uniqueHostelName:{$request->name}|uniqueSlug',
+            'alias' =>              'nullable|string|max:255|uniqueSlug',
             'street_address' =>     'required|string|max:255',
             'city' =>               'required|string|max:255',
-            'number_of_blocks'=>    'required',
+
             'roomType'  =>          'array|required',
             'roomType.roomType.*'=> 'required|string|min:3',
             'roomType.beds.*'=>     'required|integer|min:1',
@@ -161,6 +162,9 @@ class HostelDetailsStep extends Step
     {
         return [
             'name.required' =>'A hostel name is required',
+            'name.unique_hostel_name' => 'The hostel name provided exists already in our database',
+            'name.unique_slug' => 'The hostel name provided exists already in our database',
+            'alias.unique_slug' => 'The slang provided exists already in our database',
         ];
     }
     public function customAttributes()

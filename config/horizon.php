@@ -79,14 +79,28 @@ return [
                 'processes' => 10,
                 'tries' => 3,
             ],
+                'supervisor-2' => [
+                    'connection'=> "redis",
+                    'queue'=> "notifications,emails",
+                    'maxProcesses'=> 5,
+                    'minProcesses'=> 1,
+                    'delay'=> 0,
+                    'memory'=> 128,
+                    'timeout'=> 60,
+                    'sleep'=> 3,
+                    'maxTries'=> 0,
+                    'balance'=> "simple", // could be simple, auto, or null
+                    'force'=> false,
+                ],
         ],
+
 
         'local' => [
             'supervisor-1' => [
                 'connection' => 'redis',
                 'queue' => ['default'],
                 'balance' => 'auto',
-                'processes' => 3,
+                'processes' => 6,
                 'tries' => 3,
             ],
         ],

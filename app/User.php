@@ -2,15 +2,15 @@
 
 namespace myRoommie;
 
-use myRoommie\Modules\Booking\Reservation;
-use myRoommie\Modules\Hostel\Comment;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use myRoommie\Modules\Booking\Reservation;
+use myRoommie\Modules\Hostel\Comment;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 
 /**
@@ -49,7 +49,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @property-read \myRoommie\Modules\Booking\Reservation $reservation
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
  */
-
 class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
 {
     use MustVerifyEmail, Notifiable, HasMediaTrait;
@@ -61,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
      * @var array
      */
     protected $fillable = [
-        'firstName','lastName', 'email','phone', 'password','sex', 'avatar','image'
+        'firstName', 'lastName', 'email', 'phone', 'password', 'sex', 'avatar', 'image'
     ];
 
     /**
@@ -73,9 +72,19 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
         'password', 'remember_token',
     ];
 
-/*
- * Get the bed associated with the user
- * */
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    /*protected $dispatchesEvents = [
+        'saved' => UserSaved::class,
+        'deleted' => UserDeleted::class,
+    ];*/
+    /*
+     * Get the bed associated with the user
+     * */
     public function bed()
     {
         return $this->hasOne('myRoommie\Modules\Hostel\Bed');
@@ -103,15 +112,15 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
     /**
      * Get the gender of a user.
      *
-     * @param  string  $value
+     * @param  string $value
      * @return string
      */
     public function getSexAttribute($value)
     {
-        if ($value=='M') {
+        if ($value == 'M') {
             $value = 'Male';
-        }else{
-            $value='Female';
+        } else {
+            $value = 'Female';
         }
         return $value;
 
@@ -133,9 +142,9 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
     public function registerMediaCollections()
     {
         $this
-            ->addMediaCollection('user')
+            ->addMediaCollection('user-avatar')
             ->singleFile()
-            ->registerMediaConversions(function (Media $media =null) {
+            ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('user-thumb')
                     ->width(160)
                     ->height(160)

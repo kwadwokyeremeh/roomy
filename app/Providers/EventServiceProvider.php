@@ -13,13 +13,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'myRoommie\Events\Event' => [
+        /*'myRoommie\Events\Event' => [
             'myRoommie\Listeners\EventListener',
-        ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        ],*/
+        /*\SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // add your listeners (aka providers) here
             'SocialiteProviders\\LinkedIn\\LinkedInExtendSocialite@handle',
-        ],
+        ],*/
+        'Spatie\MediaLibrary\Events\MediaHasBeenAdded' => [
+            'myRoommmie\Listeners\MediaLogger'],
         /*'Illuminate\Auth\Events\Registered' => [
             'App\Listeners\LogRegisteredUser',
         ],

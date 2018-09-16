@@ -99,18 +99,26 @@ class CompleteHostelRegistrationProcess
                 if (! isset( $hostel_registration->hostel_details)){
                     return $next($request);
                 }else{
-                    return redirect()->intended(route('hostel.registration','00'));
+                    return redirect()->intended(route('hostel.registration','08'));
                 }
                 break;
             case $step == '/hosteller/hostelRegistration/01':
-                return $next($request);
+                if (! isset( $hostel_registration->hostel_details)){
+                    return $next($request);
+                }else{
+                    return redirect()->intended(route('hostel.registration','08'));
+                }
                 break;
             case $step == '/hosteller/hostelRegistration/00':
+                return $next($request);
+                break;
+
+            case $step == '/hosteller/hostelRegistration':
                 return $next($request);
                 break;
                 default;
         }
 
-        return abort(404);
+        return abort(499);
     }
 }
