@@ -2,7 +2,10 @@
 
 namespace myRoommie\Modules\Hostel;
 
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * myRoommie\Modules\Hostel\RoomDescription
@@ -24,8 +27,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomDescription whereRoomType($value)
  * @mixin \Eloquent
  */
-class RoomDescription extends Model
+class RoomDescription extends Model  implements HasMedia
 {
+
+    use HasMediaTrait;
+
+
     protected $fillable =[
         'hostel_id',
         'room_type',
@@ -88,6 +95,22 @@ class RoomDescription extends Model
     {
 
         $this->attributes['room_type'] = mb_strtolower($value);
+    }
+
+    public function registerMediaCollections()
+    {
+        /*
+ * This is responsible for handling all the images for
+ * the type of room associated with a hostel
+ * */
+        $this
+            ->addMediaCollection('roomType')
+            ->registerMediaConversions(function (Media $media = null) {
+                $this->addMediaConversion('room_type')
+                    ->width(370)
+                    ->height(270)
+                    ->sharpen(10);
+            });
     }
 
 }

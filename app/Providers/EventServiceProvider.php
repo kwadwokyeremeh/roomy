@@ -23,35 +23,35 @@ class EventServiceProvider extends ServiceProvider
         'Spatie\MediaLibrary\Events\MediaHasBeenAdded' => [
             'myRoommmie\Listeners\MediaLogger'],
         /*'Illuminate\Auth\Events\Registered' => [
-            'App\Listeners\LogRegisteredUser',
+            'myRoommie\Listeners\LogRegisteredUser',
         ],
 
         'Illuminate\Auth\Events\Attempting' => [
-            'App\Listeners\LogAuthenticationAttempt',
+            'myRoommie\Listeners\LogAuthenticationAttempt',
         ],
 
         'Illuminate\Auth\Events\Authenticated' => [
-            'App\Listeners\LogAuthenticated',
+            'myRoommie\Listeners\LogAuthenticated',
         ],
 
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogSuccessfulLogin',
+            'myRoommie\Listeners\LogSuccessfulLogin',
         ],
 
         'Illuminate\Auth\Events\Failed' => [
-            'App\Listeners\LogFailedLogin',
+            'myRoommie\Listeners\LogFailedLogin',
         ],
 
         'Illuminate\Auth\Events\Logout' => [
-            'App\Listeners\LogSuccessfulLogout',
+            'myRoommie\Listeners\LogSuccessfulLogout',
         ],
 
         'Illuminate\Auth\Events\Lockout' => [
-            'App\Listeners\LogLockout',
+            'myRoommie\Listeners\LogLockout',
         ],
 
         'Illuminate\Auth\Events\PasswordReset' => [
-            'App\Listeners\LogPasswordReset',
+            'myRoommie\Listeners\LogPasswordReset',
         ],*/
     ];
 

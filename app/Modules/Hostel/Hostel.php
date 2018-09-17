@@ -375,6 +375,7 @@ class Hostel extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('frontViews')
+            ->singleFile()
             ->registerMediaConversions(function (Media $media =null) {
                 $this->addMediaConversion('front-thumb')
                     ->width(370)
@@ -391,6 +392,7 @@ class Hostel extends Model implements HasMedia
 
         $this
             ->addMediaCollection('leftViews')
+            ->singleFile()
             ->registerMediaConversions(function (Media $media =null) {
                 $this->addMediaConversion('slider-left')
                     ->width(1920)
@@ -401,6 +403,7 @@ class Hostel extends Model implements HasMedia
 
         $this
             ->addMediaCollection('rightViews')
+            ->singleFile()
             ->registerMediaConversions(function (Media $media =null) {
                 $this->addMediaConversion('slider-right')
                     ->width(1920)
