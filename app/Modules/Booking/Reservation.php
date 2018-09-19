@@ -107,8 +107,8 @@ class Reservation extends Model
 
     public function isRoomFull($room) : bool
     {
-        $reservedBeds = $this->whereRoomId($room)->lockForUpdate()->count();
-        $roomDetails = Room::whereId($room)->lockForUpdate()->first();
+        $reservedBeds = $this->whereRoomId($room)->count();
+        $roomDetails = Room::whereId($room)->first();
         $rs = $roomDetails->roomDescription->number_of_beds;
 
         // return true when room is full

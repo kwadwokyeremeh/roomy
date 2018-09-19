@@ -19,6 +19,11 @@ class Helper
      */
     public $gender;
 
+    public function __construct()
+    {
+
+       }
+
     /**
      * Get the gender for the user.
      *

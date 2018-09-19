@@ -141,7 +141,8 @@
                                                         <div class="col-md-6 vk-dark-our-room-item-left  vk-clear-padding">
                                                             <div class="vk-dark-our-room-item-img">
                                                                 {{--@foreach($hostel->hostelViews->front as $hostelView)--}}
-                                                                <img src="{{asset('storage/'.$hostel->hostelViews->pluck('front')->first())}}" alt="" class="img-responsive">
+                                                                {{--<img src="{{asset('storage/'.$hostel->hostelViews->pluck('front')->first())}}" alt="" class="img-responsive">--}}
+                                                                <img src="{{asset($hostel->getFirstMediaUrl('frontViews','front-thumb'))}}" alt="" class="img-responsive">
                                                                     {{--@endforeach--}}
                                                             </div>
                                                         </div>

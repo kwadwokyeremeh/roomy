@@ -77,7 +77,7 @@ class AddMediaStep extends Step
 
 
         $hostel->addMedia('storage/'.$hostelView->front)->preservingOriginal()->toMediaCollection('frontViews');
-        $hostel-> addMedia('storage/'.$hostelView->left)->preservingOriginal()->toMediaCollection('sideViews');
+        $hostel-> addMedia('storage/'.$hostelView->left)->preservingOriginal()->toMediaCollection('leftViews');
         $hostel-> addMedia('storage/'.$hostelView->right)->preservingOriginal()->toMediaCollection('rightViews');
 
 
@@ -100,11 +100,12 @@ class AddMediaStep extends Step
                 }
 
 
-            }
-            $roomMedia->insert($arr);
+            }$roomMedia->insert($arr);
+
 
             foreach ($arr as $path){
-                    $hostel->addMedia('storage/' . $path['image'])->preservingOriginal()->toMediaCollection('roomType');
+                $roomDesc = RoomDescription::find($path['room_description_id' ]);
+                    $roomDesc->addMedia('storage/' . $path['image'])->preservingOriginal()->toMediaCollection('roomType');
             }
 
 

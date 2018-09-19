@@ -3,8 +3,8 @@
 namespace myRoommie\Modules\Hostel;
 
 
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
 /**
  * myRoommie\Modules\Hostel\RoomTypeMedia
  *
@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class RoomTypeMedia extends Model
 {
+
+
 /*
  * This model is responsible for handling all the images for
  * the type of room associated with a hostel

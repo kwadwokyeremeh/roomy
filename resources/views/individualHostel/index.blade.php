@@ -11,9 +11,9 @@
                             <div id="owl-slide-home" class="owl-carousel owl-theme">
                                 <div class="item">
                                     <div class="vk-item-slide">
-                                        @foreach($hostel->hostelViews as $hostelView)
-                                            <img src="{{asset('storage/'.$hostelView->front)}}" alt="" class="img-responsive">
-                                        @endforeach
+
+                                            <img src="{{asset($hostel->getFirstMediaUrl('frontViews','slider-front'))}}" alt="" class="img-responsive">
+
                                             <div class="vk-slide-caption">
                                             @if($hostel->alias)
                                             <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
@@ -24,9 +24,9 @@
                                 </div>
                                 <div class="item">
                                     <div class="vk-item-slide">
-                                        @foreach($hostel->hostelViews as $hostelView)
-                                            <img src="{{asset('storage/'.$hostelView->right)}}" alt="" class="img-responsive">
-                                        @endforeach
+
+                                            <img src="{{asset($hostel->getFirstMediaUrl('leftViews','slider-left'))}}" alt="" class="img-responsive">
+
                                             <div class="vk-slide-caption">
                                             @if($hostel->alias)
                                             <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
@@ -37,9 +37,9 @@
                                 </div>
                                 <div class="item">
                                     <div class="vk-item-slide">
-                                        @foreach($hostel->hostelViews as $hostelView)
-                                            <img src="{{asset('storage/'.$hostelView->left)}}" alt="" class="img-responsive">
-                                        @endforeach
+
+                                            <img src="{{asset($hostel->getFirstMediaUrl('rightViews','slider-right'))}}" alt="" class="img-responsive">
+
                                         <div class="vk-slide-caption">
                                             @if($hostel->alias)
                                             <h3 class="animated fadeInDown slide-delay-1">{{$hostel->alias}}</h3>
@@ -162,7 +162,7 @@
                                                     {{--@foreach($hostel->roomTypeMedia as $item)
                                                         <a href="#"><img src="{{asset('storage/'.$item->image)}}" alt="" class="img-responsive"></a>
                                                     @endforeach--}}
-                                                    <a href="#"><img src="{{asset('storage/'.$roomType->roomTypeMedia->first()->image)}}" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="{{asset($roomType->getFirstMediaUrl('roomType','room_type'))}}" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="vk-item-text">
                                                     <h2><a href="{{$hostel->slug.'/'.$roomType->room_token}}">{{$roomType->room_type}}</a></h2>
@@ -597,7 +597,7 @@
                                         <div class="col-md-7 vk-clear-padding">
                                             <div class="vk-contact-us-map">
                                                 <div id="map"></div>
-                                                <iframe class="map" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCffNTwIH4gq4MXS3Yr003uFpcuENRnkUo&q={{$hostel->name}},{{$hostel->street_address}}+{{$hostel->city}}+{{$hostel->country}}&center={{$hostel->latitude}},{{$hostel->longitude}}" height="585" style="border:0" allowfullscreen></iframe>
+                                                <iframe class="map" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCffNTwIH4gq4MXS3Yr003uFpcuENRnkUo&q={{$hostel->name}},{{$hostel->street_address}}+{{$hostel->city}}+{{$hostel->country}}{{--&center={{$hostel->latitude}},{{$hostel->longitude}}--}}" height="585" style="border:0" allowfullscreen></iframe>
                                             </div>
                                         </div>
                                         <div class="col-md-5 vk-clear-padding">

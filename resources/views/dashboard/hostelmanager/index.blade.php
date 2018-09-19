@@ -14,7 +14,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Available Rooms</span>
-                            <span class="info-box-number">90<small></small></span>
+                            <span class="info-box-number">{{$hostel->rooms->count()}}<small></small></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -27,7 +27,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Alloted Beds</span>
-                            <span class="info-box-number">41,410</span>
+                            <span class="info-box-number">{{$hostel->reservations->count()}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -44,7 +44,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Vacated Rooms</span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-number">440</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

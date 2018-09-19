@@ -378,11 +378,13 @@ class Hostel extends Model implements HasMedia
             ->singleFile()
             ->registerMediaConversions(function (Media $media =null) {
                 $this->addMediaConversion('front-thumb')
+                    //->watermark(public_path().'/myroommie.png')
                     ->width(370)
                     ->height(270)
                     ->sharpen(10);
 
                 $this->addMediaConversion('slider-front')
+                    ->watermark(public_path().'/myroommie.png')
                     ->width(1920)
                     ->height(940)
                     ->sharpen(10);
@@ -395,6 +397,7 @@ class Hostel extends Model implements HasMedia
             ->singleFile()
             ->registerMediaConversions(function (Media $media =null) {
                 $this->addMediaConversion('slider-left')
+                    ->watermark(public_path().'/myroommie.png')
                     ->width(1920)
                     ->height(940)
                     ->sharpen(10);
@@ -406,6 +409,7 @@ class Hostel extends Model implements HasMedia
             ->singleFile()
             ->registerMediaConversions(function (Media $media =null) {
                 $this->addMediaConversion('slider-right')
+                    ->watermark(public_path().'/myroommie.png')
                     ->width(1920)
                     ->height(940)
                     ->sharpen(10);
@@ -419,6 +423,7 @@ class Hostel extends Model implements HasMedia
             ->addMediaCollection('misc')
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('misc-thumb')
+                    ->watermark(public_path().'/myroommie.png')
                     ->width(639)
                     ->height(500)
                     ->sharpen(10);
@@ -426,21 +431,6 @@ class Hostel extends Model implements HasMedia
 
             });
 
-
-        /*
- * This is responsible for handling all the images for
- * the type of room associated with a hostel
- * */
-
-        $this
-            ->addMediaCollection('roomType')
-            ->registerMediaConversions(function (Media $media = null) {
-                $this->addMediaConversion('room_type')
-                    ->width(370)
-                    ->height(270)
-                    ->sharpen(10);
-
-            });
 
 
     }

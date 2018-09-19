@@ -20,8 +20,8 @@ class EventServiceProvider extends ServiceProvider
             // add your listeners (aka providers) here
             'SocialiteProviders\\LinkedIn\\LinkedInExtendSocialite@handle',
         ],*/
-        'Spatie\MediaLibrary\Events\MediaHasBeenAdded' => [
-            'myRoommmie\Listeners\MediaLogger'],
+        '\Spatie\MediaLibrary\Events\MediaHasBeenAdded' => [
+            'myRoommie\Listeners\MediaLogger'],
         /*'Illuminate\Auth\Events\Registered' => [
             'myRoommie\Listeners\LogRegisteredUser',
         ],

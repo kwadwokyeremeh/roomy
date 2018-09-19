@@ -10,10 +10,10 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use myRoommie\Jobs\GenerateMap;
 use myRoommie\Modules\Hostel\HostellerHostel;
 use Smajti1\Laravel\Step;
 use Illuminate\Http\Request;
-use myRoommie\Repository\GoogleMaps;
 use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -34,11 +34,6 @@ class HostelDetailsStep extends Step
     {
 
 
-        /*
-         Get the Latitude and Longitude returned from the Google Maps Address.
-       */
-        $coordinates =GoogleMaps::geocodeAddress( $request->get('name'),$request->get('street_address'), $request->get('city'), $request->get('region'),$request->get('country') );
-
 
 
 
@@ -49,15 +44,15 @@ class HostelDetailsStep extends Step
         $hostel = new Hostel;
         $hostel ->name = $request->get('name');
         $hostel ->alias = $request->get('alias');
-        $hostel ->slug = $this->slugHostel($request);
+        $hostel ->slug = $hostel->slugHostel($request);
         $hostel ->street_address = $request->get('street_address');
         //$hostel ->number_of_blocks = $request->get('number_of_blocks');
         $hostel ->city = $request->get('city');
         //$hostel ->hosteller_id = Auth::guard('hosteller')->user()->id;
         $hostel ->region = 'Ashanti';
         $hostel ->country = 'Ghana';
-        $hostel ->latitude = $coordinates['lat'];
-        $hostel ->longitude = $coordinates['lng'];
+        //$hostel ->latitude = $coordinates['lat'];
+        //$hostel ->longitude = $coordinates['lng'];
         if ($request->has('hostel_email')){
             $hostel ->hostel_email = $request->get('hostel_email');
         }
@@ -65,6 +60,7 @@ class HostelDetailsStep extends Step
             $hostel ->hostel_phone = $request->get('hostel_phone');
         }
         $hostel->save();
+
 
 
         /*
@@ -87,6 +83,8 @@ class HostelDetailsStep extends Step
                 array_push($host,[
                     'hosteller_id'=>$hostellers[$i],
                     'hostel_id'     => $hostel->id,
+                    'email_verified_at'=>now()->toDateTimeString(),
+                    //'status'    =>true,
                 ]);
             }
             $assocHosteller->insert($host);
@@ -137,6 +135,7 @@ class HostelDetailsStep extends Step
 
         // next if you want save one step progress to session use
         $this->saveProgress($request);
+        //GenerateMap::dispatch($hostel)->onQueue('default');
         return true;
     }
 

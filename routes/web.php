@@ -16,9 +16,9 @@
 /*************************
  * * Testing Routes
  ************************/
-//Route::get('ll', function (){
-  // return view('auth.verify');
-//});
+Route::get('ll', function (){
+    return;
+});
 /*************************
  * * Testing Routes
  ************************/

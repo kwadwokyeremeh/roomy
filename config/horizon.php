@@ -74,7 +74,7 @@ return [
         'production' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
+                'queue' => ['default','image'],
                 'balance' => 'auto',
                 'processes' => 10,
                 'tries' => 3,
@@ -82,14 +82,13 @@ return [
                 'supervisor-2' => [
                     'connection'=> "redis",
                     'queue'=> "notifications,emails",
-                    'maxProcesses'=> 5,
-                    'minProcesses'=> 1,
+                    'processes' => 4,
                     'delay'=> 0,
                     'memory'=> 128,
                     'timeout'=> 60,
                     'sleep'=> 3,
                     'maxTries'=> 0,
-                    'balance'=> "simple", // could be simple, auto, or null
+                    'balance'=> "auto", // could be simple, auto, or null
                     'force'=> false,
                 ],
         ],
@@ -98,8 +97,15 @@ return [
         'local' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
+                'queue' => ['default','image','notifications,emails'],
                 'balance' => 'auto',
+                'maxProcesses'=> 5,
+                'minProcesses'=> 1,
+                'delay'=> 0,
+                'memory'=> 128,
+                'timeout'=> 60,
+                'sleep'=> 3,
+                'maxTries'=> 0,
                 'processes' => 6,
                 'tries' => 3,
             ],

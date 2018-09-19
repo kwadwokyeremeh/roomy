@@ -1,3 +1,203 @@
 Horizon started successfully.
 Horizon started successfully.
 Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+[2018-09-18 12:46:29][66] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 12:46:29][66] Processed:  myRoommie\Jobs\ProcessMail
+[2018-09-18 12:49:41][67] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 12:49:41][67] Processed:  myRoommie\Jobs\ProcessMail
+[2018-09-18 12:50:53][68] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 12:50:53][68] Processed:  myRoommie\Jobs\ProcessMail
+Horizon started successfully.
+Horizon started successfully.
+[2018-09-18 12:55:09][69] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 12:55:09][69] Processed:  myRoommie\Jobs\ProcessMail
+[2018-09-18 12:55:09][70] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 12:55:09][70] Processed:  myRoommie\Jobs\ProcessMail
+[2018-09-18 12:55:27][71] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 12:55:27][71] Processed:  myRoommie\Jobs\ProcessMail
+[2018-09-18 13:13:49][77] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 13:13:49][77] Processed:  myRoommie\Jobs\ProcessMail
+Horizon started successfully.
+[2018-09-18 13:24:29][80] Processing: myRoommie\Jobs\ProcessMail
+[2018-09-18 13:24:30][80] Processed:  myRoommie\Jobs\ProcessMail
+
+   Predis\Connection\ConnectionException  : Connection refused [tcp://127.0.0.1:6379]
+
+  at /media/kyerematics/fb73796c-852e-4b81-aecd-677cd19215ce/Kwadwo/codex/myroommie/vendor/predis/predis/src/Connection/AbstractConnection.php:155
+    151|      */
+    152|     protected function onConnectionError($message, $code = null)
+    153|     {
+    154|         CommunicationException::handle(
+  > 155|             new ConnectionException($this, static::createExceptionMessage($message), $code)
+    156|         );
+    157|     }
+    158| 
+    159|     /**
+
+  Exception trace:
+
+  1   Predis\Connection\AbstractConnection::onConnectionError("Connection refused")
+      /media/kyerematics/fb73796c-852e-4b81-aecd-677cd19215ce/Kwadwo/codex/myroommie/vendor/predis/predis/src/Connection/StreamConnection.php:128
+
+  2   Predis\Connection\StreamConnection::createStreamSocket(Object(Predis\Connection\Parameters), "tcp://127.0.0.1:6379")
+      /media/kyerematics/fb73796c-852e-4b81-aecd-677cd19215ce/Kwadwo/codex/myroommie/vendor/predis/predis/src/Connection/StreamConnection.php:178
+
+  Please use the argument -v to see more details.
+Horizon started successfully.
+Horizon started successfully.
+[2018-09-19 15:38:04][84] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 15:38:08][85] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 15:38:18][84] Failed:     myRoommie\Jobs\GenerateMap
+[2018-09-19 15:38:18][85] Failed:     myRoommie\Jobs\GenerateMap
+[2018-09-19 15:50:22][86] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 15:50:37][86] Processed:  myRoommie\Jobs\GenerateMap
+[2018-09-19 16:00:32][87] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 16:00:39][87] Processed:  myRoommie\Jobs\GenerateMap
+[2018-09-19 16:09:26][88] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 16:09:41][88] Processed:  myRoommie\Jobs\GenerateMap
+[2018-09-19 16:21:33][89] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 16:21:44][89] Processed:  myRoommie\Jobs\GenerateMap
+[2018-09-19 16:27:21][90] Processing: myRoommie\Jobs\GenerateMap
+[2018-09-19 16:27:26][90] Processed:  myRoommie\Jobs\GenerateMap
+[2018-09-19 16:35:07][91] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:35:09][92] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:35:11][91] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:35:11][92] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:40:35][93] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:40:35][93] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:40:35][94] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:40:35][94] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:43:50][95] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:43:50][95] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:43:50][96] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:43:50][96] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:44:41][97] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:44:41][97] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:44:41][98] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:44:41][98] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:45:38][99] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:45:38][99] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:45:38][100] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:45:38][100] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:46:17][101] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:46:17][101] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:46:17][102] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:46:17][102] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:47:03][103] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:47:03][103] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:47:03][104] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:47:03][104] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:05][1] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:05][1] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:05][2] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:05][2] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:35][3] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:36][3] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:36][4] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:48:36][4] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:57:13][7] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:57:13][7] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:57:13][8] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 16:57:13][8] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:14:28][10] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:14:28][10] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:14:28][9] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:14:28][9] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:15:11][12] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:15:11][12] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:15:42][14] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:15:42][14] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:26:45][20] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:26:45][20] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][22] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][22] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][24] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][24] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][25] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][25] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][21] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][21] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][23] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:41:13][23] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][3] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][3] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][5] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][5] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:47][7] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:47][7] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][1] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][1] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][2] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][2] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][4] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][4] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][6] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:43:46][6] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][2] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][2] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][4] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][4] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][6] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][6] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][1] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][1] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][3] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][3] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][5] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][5] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][7] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:45:56][7] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][8] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][8] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][10] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][10] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][9] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][9] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][11] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][11] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][13] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][13] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][12] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][12] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][14] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:46:44][14] Failed:     Spatie\MediaLibrary\Jobs\PerformConversions
+Horizon started successfully.
+[2018-09-19 17:49:00][15] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:00][16] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:01][15] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:01][18] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:01][16] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:01][17] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:12][18] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:12][19] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:14][19] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:14][20] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:14][17] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:14][21] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:16][21] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 17:49:16][20] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:54][22] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:56][22] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:56][23] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:56][24] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:57][23] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:57][25] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:25:58][26] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:07][24] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:07][27] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:07][26] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:07][28] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:08][28] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:08][29] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:08][29] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:08][30] Processing: Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:08][30] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:10][25] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions
+[2018-09-19 18:26:11][27] Processed:  Spatie\MediaLibrary\Jobs\PerformConversions

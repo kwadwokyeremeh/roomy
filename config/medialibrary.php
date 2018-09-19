@@ -18,7 +18,7 @@ return [
      * This queue will be used to generate derived and responsive images.
      * Leave empty to use the default queue.
      */
-    'queue_name' => env('QUEUE_DRIVER', 'redis'),
+    'queue_name' => 'image',
 
     /*
      * The class names of the models that should be used.
