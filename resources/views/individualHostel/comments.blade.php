@@ -64,9 +64,6 @@
                             </div>
                             <!--Add a comment-->
                             <div class="vk-event-details-left-comment">
-                                <div class="alert alert-info">
-                                    @{{ count }} people reading
-                                </div>
                                 @if($comments)
                                 <h4>{{count($comments)}} comments</h4>
                                 <ul>

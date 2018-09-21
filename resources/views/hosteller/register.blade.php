@@ -127,6 +127,7 @@
                                                                             <label for="password" class="">Confirm Password <abbr class="required" title="required">*</abbr></label>
                                                                             <input type="password" class="input-text " name="password_confirmation" id="password" placeholder="" value="" >
                                                                         </p>
+                                                                        @captcha
 
 
                                                                         <div class="row">

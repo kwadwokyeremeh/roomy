@@ -27,6 +27,7 @@ class IndividualHostelController extends Controller
         $bedsAvailable  =count($hostel->beds->where('status','=',0));
         $maleBeds   =count($hostel->beds);
         $femaleBeds  =count($hostel->beds);
+        
 
         /*$hostelView =HostelView::whereHostelId($hostel->id)->firstOrFail()
             ->addMedia('storage/'.implode(',',array_values($hostel->hostelViews->pluck('front')->toArray())))

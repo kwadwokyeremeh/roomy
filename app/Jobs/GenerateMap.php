@@ -13,7 +13,7 @@ use myRoommie\Repository\GoogleMaps;
 
 class GenerateMap implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable; //SerializesModels;
 
 
     protected $hostel;

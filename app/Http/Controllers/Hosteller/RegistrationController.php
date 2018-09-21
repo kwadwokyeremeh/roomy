@@ -64,6 +64,7 @@ class RegistrationController extends Controller
             'phone' => 'required|max:10|unique:hostellers',
             'role' => 'required',
             'password' => 'required|string|min:6|confirmed',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
          $hosteller = new Hosteller;

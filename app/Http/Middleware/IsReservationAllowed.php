@@ -25,7 +25,7 @@ class IsReservationAllowed
     public function handle($request, Closure $next)
     {
         $hostel =Hostel::whereSlug($request->hostelName)
-            ->with('reservationDate')->first();
+            ->with('reservationDate')->firstOrFail();
 
 
         $a =$hostel->retrieveReservationDateRange();

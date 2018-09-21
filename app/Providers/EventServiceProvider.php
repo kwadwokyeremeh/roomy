@@ -22,7 +22,8 @@ class EventServiceProvider extends ServiceProvider
         ],*/
         '\Spatie\MediaLibrary\Events\MediaHasBeenAdded' => [
             'myRoommie\Listeners\MediaLogger'],
-        /*'Illuminate\Auth\Events\Registered' => [
+
+        'Illuminate\Auth\Events\Registered' => [
             'myRoommie\Listeners\LogRegisteredUser',
         ],
 
@@ -52,7 +53,10 @@ class EventServiceProvider extends ServiceProvider
 
         'Illuminate\Auth\Events\PasswordReset' => [
             'myRoommie\Listeners\LogPasswordReset',
-        ],*/
+        ],
+        'Illuminate\Auth\Events\Verified'   => [
+            'myRoommie\Listeners\LogVerified',
+        ],
     ];
 
     /**

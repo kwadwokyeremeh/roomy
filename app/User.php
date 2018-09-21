@@ -78,10 +78,11 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
      *
      * @var array
      */
-    /*protected $dispatchesEvents = [
+    protected $dispatchesEvents = [
         'saved' => UserSaved::class,
         'deleted' => UserDeleted::class,
-    ];*/
+        'updated' => UserUpdated::class,
+    ];
     /*
      * Get the bed associated with the user
      * */

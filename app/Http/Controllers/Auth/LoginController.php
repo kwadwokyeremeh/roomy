@@ -37,6 +37,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout','destroy');
     }
+
+
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+    }
+
     public function destroy()
     {
         auth('web')->logout();

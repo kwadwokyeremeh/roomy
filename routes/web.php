@@ -16,9 +16,16 @@
 /*************************
  * * Testing Routes
  ************************/
-Route::get('ll', function (){
-    return;
-});
+if(env('APP_ENV') == 'local'){
+
+    Route::get('ll', function (){
+        return;
+    });
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+}
+
+
 /*************************
  * * Testing Routes
  ************************/
@@ -162,8 +169,10 @@ Route::middleware('published')->group(function (){
 
 /*
  * These routes should always be last
+ * i have discovered that these routes are not  necessary but it is still there
  * */
-Route::get('/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}','ErrorController@error');
+
+Route::get('/{error?}/{error1?}/{error2?}/{error3?}/{error4?}/{error5?}/{error6?}/{error7?}/{error8?}/{error9?}/{error10?}/{error11?}/{error12?}','ErrorController@error');
 Route::domain('{error?}.'.env('APP_URL'))->group(function (){
-    Route::get('/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}/{error?}','ErrorController@error');
+    Route::get('/{error?}/{error1?}/{error2?}/{error3?}/{error4?}/{error5?}/{error6?}/{error7?}/{error8?}/{error9?}/{error10?}/{error11?}/{error12?}','ErrorController@error');
 }) ;

@@ -128,7 +128,7 @@
                                                                                 <input type="password" class="input-text " name="password_confirmation" id="password" placeholder="" value="" >
                                                                             </p>
 
-
+                                                                            @captcha
                                                                             <div class="row">
                                                                                 <div class="form-row">
                                                                                     <button type="submit" class="vk-btn  vk-btn-l vk-btn-default text-uppercase multi-submit-prevent">

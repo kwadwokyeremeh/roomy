@@ -466,11 +466,13 @@
                                         </ul>
                                         <div class="vk-iso-nav-line"></div>
                                     </div>
+                                    @if($hostel->miscellaneous)
                                     <div class="vk-main-iso">
                                         <div id="lightgallery">
+                                            @foreach($hostel->miscellaneous as $misc)
                                             <div class="col-md-4 vk-clear-padding item a c d col-sm-4" data-src="images/02_03_gallery_grid_full_width/1.jpg">
                                                 <div class="vk-item-img">
-                                                    <a href="#"><img src="../images/02_03_gallery_grid_full_width/1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="#"><img src="{{$misc->getFirstMediaUrl('misc','misc-thumb')}}" alt="" class="img-responsive"></a>
                                                     <div class="vk-item-caption">
                                                         <div class="featured-slider-overlay"></div>
                                                         <div class="vk-item-caption-text">
@@ -480,7 +482,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 vk-clear-padding item b d e  col-sm-4" data-src="images/02_03_gallery_grid_full_width/2.jpg">
+                                            @endforeach
+                                            {{--<div class="col-md-4 vk-clear-padding item b d e  col-sm-4" data-src="images/02_03_gallery_grid_full_width/2.jpg">
                                                 <div class="vk-item-img">
                                                     <a href="#"><img src="../images/02_03_gallery_grid_full_width/2.jpg" alt="" class="img-responsive"></a>
                                                     <div class="vk-item-caption">
@@ -575,9 +578,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                     </div>
+                                    @endif
 
 
                                     {{--<div class="vk-btn-more">
