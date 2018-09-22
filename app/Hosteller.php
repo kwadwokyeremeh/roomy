@@ -43,6 +43,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
  * @property-read mixed $full_name
  * @property string|null $email_verified_at
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereEmailVerifiedAt($value)
+ * @property string|null $avatar
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereAvatar($value)
  */
 
 

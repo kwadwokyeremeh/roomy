@@ -163,6 +163,8 @@ return [
         myRoommie\Providers\BroadcastServiceProvider::class,
         myRoommie\Providers\EventServiceProvider::class,
         myRoommie\Providers\RouteServiceProvider::class,
+        //myRoommie\Providers\EloquentQueryServiceProvider::class,
+        myRoommie\Providers\EloquentModelServiceProvider::class,
 
 
     ],

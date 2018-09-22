@@ -19,21 +19,26 @@ return [
         'secret' => env('MAILGUN_SECRET'),
     ],
 
+
     'ses' => [
         'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
         'region' => env('SES_REGION', 'us-east-1'),
     ],
 
+
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
+
 
     'stripe' => [
         'model' => myRoommie\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+
+
     'interpayafrica' => [
         'model' => myRoommie\User::class,
         'app_id' => env('INTERPAY_AFRICA_APP_ID'),
@@ -41,17 +46,20 @@ return [
         'merchant_account' => env('INTERPAY_AFRICA_MERCHANT'),
     ],
 
+
     'facebook' => [
         'client_id'     =>env('FACEBOOK_ID'),
         'client_secret' =>env('FACEBOOK_SECRET'),
         'redirect'      =>env('FACEBOOK_REDIRECT'),
     ],
 
+
     'google' => [
         'client_id'     =>env('GOOGLE_ID'),
         'client_secret' =>env('GOOGLE_SECRET'),
         'redirect'      =>env('GOOGLE_REDIRECT'),
     ],
+
 
     'linkedin' => [
         'client_id'     =>env('LINKEDIN_ID'),

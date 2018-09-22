@@ -18,8 +18,9 @@
  ************************/
 if(env('APP_ENV') == 'local'){
 
-    Route::get('ll', function (){
-        return;
+    Route::get('/mailable', function (){
+        $user = myRoommie\User::find(1);
+        new \myRoommie\Mail\UserCreated($user);
     });
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

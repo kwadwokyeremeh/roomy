@@ -8,9 +8,18 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserCreatedMail extends Mailable implements ShouldQueue
+class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
+
+    /**
+     * The order instance.
+     *
+     * @var User
+     */
+    public $user;
+
+
 
     /**
      * Create a new message instance.
@@ -19,7 +28,7 @@ class UserCreatedMail extends Mailable implements ShouldQueue
      */
     public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -29,6 +38,7 @@ class UserCreatedMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mail.userCreated');
+        return $this->from(env('MAIL_FROM_ADDRESS'),env('MAIL_FROM_NAME'))
+            ->markdown('vendor.mail.userCreated');
     }
 }

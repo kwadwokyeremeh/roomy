@@ -3,14 +3,19 @@
 namespace myRoommie;
 
 use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Modules\Hostel\Comment;
+use myRoommie\Notifications\UserResetPasswordNotification;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use myRoommie\Events\UserSaved;
+use myRoommie\Events\UserUpdated;
+use myRoommie\Events\UserDeleted;
 
 
 /**
@@ -48,6 +53,8 @@ use Spatie\MediaLibrary\Models\Media;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\User whereEmailVerifiedAt($value)
  * @property-read \myRoommie\Modules\Booking\Reservation $reservation
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @property string|null $avatar
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\User whereAvatar($value)
  */
 class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
 {
@@ -83,6 +90,29 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
         'deleted' => UserDeleted::class,
         'updated' => UserUpdated::class,
     ];
+
+
+    /*
+     * This sends an email verification
+     *
+     * */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UserResetPasswordNotification($token));
+    }
+
+
     /*
      * Get the bed associated with the user
      * */

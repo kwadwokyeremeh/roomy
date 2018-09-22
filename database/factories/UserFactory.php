@@ -10,6 +10,6 @@ $factory->define(myRoommie\User::class, function (Faker $faker) {
         'phone'     => random_int(1200000001,99999999999),
         'sex'       => array_random(['F','M']),
         'password'  => \Illuminate\Support\Facades\Hash::make('testing'),
-        $faker->imageUrl()
+        'avatar'    =>$faker->imageUrl()
     ];
 });

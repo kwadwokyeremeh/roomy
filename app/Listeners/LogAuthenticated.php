@@ -5,9 +5,11 @@ namespace myRoommie\Listeners;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
-class LogAuthenticated implements ShouldQueue
+class LogAuthenticated
 {
+    //public $queue = 'default';
     /**
      * Create the event listener.
      *
@@ -26,6 +28,6 @@ class LogAuthenticated implements ShouldQueue
      */
     public function handle(Authenticated $event)
     {
-        //
+        //Log::info('Authenticated User',[$event->guard,$event->user]);
     }
 }

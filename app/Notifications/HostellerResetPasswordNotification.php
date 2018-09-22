@@ -7,12 +7,14 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class HostellerResetPasswordNotification extends Notification
+class HostellerResetPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
 
     public $token;
+
+    //public $queue = 'notifications';
 
     /**
      * Create a new notification instance.
@@ -44,6 +46,7 @@ class HostellerResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('Reset Password Notification')
             ->line('You are receiving this email because we received a password reset request from your account')
             ->action('Reset Password', route('hosteller.password.reset', $this->token))
             ->line('If you did not request a password reset, no further action is required');

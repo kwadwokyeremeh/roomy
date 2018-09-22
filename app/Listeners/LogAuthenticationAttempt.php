@@ -5,9 +5,14 @@ namespace myRoommie\Listeners;
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
+use myRoommie\User;
 
-class LogAuthenticationAttempt implements ShouldQueue
+class LogAuthenticationAttempt
 {
+
+   // public $queue ='default';
+
     /**
      * Create the event listener.
      *
@@ -15,7 +20,7 @@ class LogAuthenticationAttempt implements ShouldQueue
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -26,6 +31,7 @@ class LogAuthenticationAttempt implements ShouldQueue
      */
     public function handle(Attempting $event)
     {
-        //
+
+        Log::notice('Authentication Attempt',[$event->guard,$event->credentials['email']]);
     }
 }

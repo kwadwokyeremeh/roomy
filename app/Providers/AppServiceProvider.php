@@ -59,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
             }
                 return 'The provided data is inconsistent.';
         });
+
+
     }
 
     /**

@@ -16,7 +16,7 @@ class GenerateMap implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable; //SerializesModels;
 
 
-    protected $hostel;
+    public $hostel;
 
     /**
      * The number of times the job may be attempted.
@@ -55,6 +55,7 @@ class GenerateMap implements ShouldQueue
         Get the Latitude and Longitude returned from the Google Maps Address.
       */
         $coordinates =GoogleMaps::geocodeAddress( $request->get('name'),$request->get('street_address'), $request->get('city'), $request->get('region'),$request->get('country') );
+
 
 
         $hostel->update([

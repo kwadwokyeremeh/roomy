@@ -5,9 +5,11 @@ namespace myRoommie\Listeners;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
-class LogLockout implements ShouldQueue
+class LogLockout
 {
+    //public $queue ='default';
     /**
      * Create the event listener.
      *
@@ -26,6 +28,6 @@ class LogLockout implements ShouldQueue
      */
     public function handle(Lockout $event)
     {
-        //
+        Log::notice('Lockout User',$event->request);
     }
 }

@@ -13,7 +13,7 @@ use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Http\Controllers\Controller;
 use myRoommie\Modules\Hostel\RoomDescription;
 use myRoommie\Http\Middleware\IsReservationAllowed;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
@@ -324,14 +324,14 @@ class ReservationController extends Controller
     public function previousReservation($hostelName,$room_token,Reservation $reservation)
     {
 
-        $userReservation =$this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
-        $hostel =Hostel::whereId($userReservation['hostel_id'])->firstOrFail();
+        $this->userReservation =$this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
+        $hostel =Hostel::whereId($this->userReservation['hostel_id'])->firstOrFail();
 
-        $roomSelected =$hostel->rooms()->where('id',$userReservation['room_id'])->firstOrFail();
+        $roomSelected =$hostel->rooms()->where('id',$this->userReservation['room_id'])->firstOrFail();
         session()->flash('message');
         return view('individualHostel.booking.04_payment',compact('hostel','roomSelected'))
             ->with(['messages'=>['Your reservation has been successful, please proceed to make payment',
-                'Your reservation would expire in '.(Carbon::parse(($userReservation['end_date']))->diffForHumans()) . ' if you fail to make payment before then'
+                'Your reservation would expire in '.(Carbon::parse(($this->userReservation['end_date']))->diffForHumans()) . ' if you fail to make payment before then'
             ]]);
 
     }

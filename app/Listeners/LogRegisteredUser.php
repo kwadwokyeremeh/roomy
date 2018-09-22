@@ -5,9 +5,11 @@ namespace myRoommie\Listeners;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
-class LogRegisteredUser implements ShouldQueue
+class LogRegisteredUser
 {
+
     /**
      * Create the event listener.
      *
@@ -26,6 +28,6 @@ class LogRegisteredUser implements ShouldQueue
      */
     public function handle(Registered $event)
     {
-        //
+        Log::notice('Registered User',$event->user);
     }
 }

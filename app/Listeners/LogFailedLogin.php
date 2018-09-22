@@ -5,9 +5,11 @@ namespace myRoommie\Listeners;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
-class LogFailedLogin implements ShouldQueue
+class LogFailedLogin
 {
+    //public $queue ='default';
     /**
      * Create the event listener.
      *
@@ -26,6 +28,6 @@ class LogFailedLogin implements ShouldQueue
      */
     public function handle(Failed $event)
     {
-        //
+        Log::warning('Failed Login', [$event->guard,$event->credentials['email']]);
     }
 }

@@ -53,9 +53,26 @@ class EventServiceProvider extends ServiceProvider
 
         'Illuminate\Auth\Events\PasswordReset' => [
             'myRoommie\Listeners\LogPasswordReset',
+            'myRoommie\Listeners\User\UserPasswordResetListener'
         ],
         'Illuminate\Auth\Events\Verified'   => [
             'myRoommie\Listeners\LogVerified',
+            'myRoommie\Listeners\User\UserVerifiedListener'
+        ],
+        'Illuminate\Mail\Events\MessageSending' => [
+            'myRoommie\Listeners\LogSendingMessage',
+        ],
+        'Illuminate\Mail\Events\MessageSent' => [
+            'myRoommie\Listeners\LogSentMessage',
+        ],
+        'myRoommie\Events\UserSaved'    =>[
+            'myRoommie\Listeners\User\UserSavedListener'
+        ],
+        'myRoommie\Events\UserUpdated'  =>[
+            'myRoommie\Listeners\User\UserUpdatedListener'
+        ],
+        'myRoommie\Events\UserDeleted'  =>[
+            'myRoommie\Listeners\User\UserDeletedListener'
         ],
     ];
 
