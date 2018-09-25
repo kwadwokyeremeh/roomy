@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
-/public/storage
-/public/medialibrary
+/public/storage/*
+/public/medialibrary/*
 /storage/*.key
 /vendor
 /.idea
