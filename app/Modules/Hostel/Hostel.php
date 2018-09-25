@@ -5,6 +5,7 @@ namespace myRoommie\Modules\Hostel;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use myRoommie\Events\Hostel\HostelSaved;
 use myRoommie\Hosteller;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\File;
@@ -88,6 +89,34 @@ class Hostel extends Model implements HasMedia
         'hostel_phone',
         //'hosteller_id',
     ];
+
+    protected $dispatchesEvents = [
+      'created' => HostelSaved::class,
+    ];
+
+
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->hostel_phone;
+    }
+
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->hostel_email;
+    }
 
     /*
      *

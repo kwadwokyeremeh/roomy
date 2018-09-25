@@ -7,7 +7,7 @@ use myRoommie\Modules\Hostel\Hostel;
 
 $factory->define(myRoommie\Modules\Booking\Reservation::class, function (Faker $faker) {
 
-sleep(0.001);
+//sleep(0.001);
         $reservation =new myRoommie\Modules\Booking\Reservation;
         $hostelName =Hostel::all(['slug'])->toArray();
         $hostel =Hostel::whereSlug(array_random($hostelName))->first();
@@ -15,7 +15,8 @@ sleep(0.001);
         $rooms  =$hostel->rooms()->pluck('id')->toArray();
         $roomSelected = array_random($rooms);
         $choosenRoom = \myRoommie\Modules\Hostel\Room::whereId($roomSelected)->lockForUpdate()->first();
-        $user =\myRoommie\User::whereId(random_int(1,553))->first();
+        $users=\myRoommie\User::all(['id'])->toArray();
+        $user =\myRoommie\User::whereId(array_random($users))->first();
         $price =$choosenRoom->roomDescription->price;
         $data =[
             'token'             =>mb_strtoupper(uniqid()),

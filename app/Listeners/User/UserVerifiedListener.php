@@ -31,11 +31,12 @@ class UserVerifiedListener
      */
     public function handle(Verified $event)
     {
-        $message = (new UserVerified($event->user))
-            ->onQueue('emails');
 
+            $message = (new UserVerified($event->user))
+                ->onQueue('emails');
 
-        Mail::to($event->user)
-            ->queue($message);
+            Mail::to($event->user)
+                ->queue($message);
+
     }
 }

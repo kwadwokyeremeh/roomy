@@ -6,6 +6,7 @@ namespace myRoommie\Http\Controllers\Booking;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use myRoommie\Modules\Booking\Reservation;
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Room;
@@ -336,5 +337,23 @@ class ReservationController extends Controller
 
     }
 
+    public function proceedToMakePayment(Request $request,$hostelName,$room_token,Reservation $reservation)
+    {
+
+        if (URL::hasValidSignature($request)){
+            $this->userReservation =$this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
+            $hostel =Hostel::whereId($this->userReservation['hostel_id'])->firstOrFail();
+
+            $roomSelected =$hostel->rooms()->where('id',$this->userReservation['room_id'])->firstOrFail();
+            session()->flash('message');
+            return view('individualHostel.booking.04_payment',compact('hostel','roomSelected'))
+                ->with(['messages'=>['Your reservation has been successful, please proceed to make payment',
+                    'Your reservation would expire in '.(Carbon::parse(($this->userReservation['end_date']))->diffForHumans()) . ' if you fail to make payment before then'
+                ]]);
+        }
+
+        return abort(498);
+
+    }
 
 }

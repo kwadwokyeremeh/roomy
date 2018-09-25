@@ -67,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
      * @var array
      */
     protected $fillable = [
-        'firstName', 'lastName', 'email', 'phone', 'password', 'sex', 'avatar', 'image'
+        'firstName', 'lastName', 'email', 'phone', 'password', 'sex', 'avatar',
     ];
 
     /**
@@ -110,6 +110,29 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new UserResetPasswordNotification($token));
+    }
+
+
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
     }
 
 

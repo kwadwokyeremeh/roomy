@@ -85,12 +85,48 @@ class Hosteller extends Authenticatable implements MustVerifyEmailContract
         $this->notify(new HostellerResetPasswordNotification($token));
     }
 
+
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
+
     public function hostel()
     {
         return $this->belongsToMany('myRoommie\Modules\Hostel\Hostel','hosteller_hostel','hosteller_id','hostel_id')
             ->using(HostellerHostel::class)
             ->withPivot('hosteller_id','hostel_id')
             ->as('management');
+    }
+
+    /**
+     * Scope a query to only include hostellers of a given role.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $role
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfRole($query, $role)
+    {
+        return $query->where('role',$role);
     }
 
     public function hostelRegistration()

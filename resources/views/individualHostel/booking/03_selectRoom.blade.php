@@ -105,6 +105,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
+
                                         <p>Do you want to undo your previous reservation and proceed with the current one?</p>
                                         <span>Click <b>Yes</b> to unreserve bed unreserve bed and continue with the current one</span><br>
                                         <span>Click <b>No</b> to continue with your previous reservation</span><br>
@@ -115,10 +116,10 @@
                                             @csrf
                                             <button type="submit" class="vk-btn vk-btn-m vk-btn-default pull-right"> Yes</button>
                                         </form>
-                                        <form action="{{request()->getRequestUri().'/previousReservation'}}" method="get">
-                                            @csrf
+                                        <a href="{{\Illuminate\Support\Facades\URL::temporarySignedRoute('proceedToMakePayment',$user->end_date,['hostelName'=>$user->hostel->slug, 'room_token'=>$user->room->roomDescription->room_token])}}">
+
                                             <button type="submit" class="vk-btn vk-btn-m vk-btn-transparent"> No</button>
-                                        </form>
+                                        </a>
                                         </div>
                                 </div>
                             </div>
@@ -184,7 +185,7 @@
                                                                                     <span class="title">{{$room->roomDescription->room_type}}</span>
                                                                                     <span class="description">Price: {{$room->roomDescription->price}}</span><br>
                                                                                             <span class="description">{{$room->sex_type}}</span>
-                                                                                    <span class="description">{{($room->reservations->count()==$room->roomDescription->number_of_beds) ? 'Room Full' : $room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>
+                                                                                    <span class="description">{{($room->reservations->count()>=$room->roomDescription->number_of_beds) ? 'Room Full' : $room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>
                                                                                     {{--<span class="description">{{$room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>--}}
                                                                                     <label for="selectedRoom">
                                                                                         <input type="radio" name="selectedRoom" value="{{$room->id}}" required/>

@@ -11,16 +11,15 @@
 |
 */
 
-
+use Illuminate\Support\Facades\Route;
 
 /*************************
  * * Testing Routes
  ************************/
 if(env('APP_ENV') == 'local'){
 
-    Route::get('/mailable', function (){
-        $user = myRoommie\User::find(1);
-        new \myRoommie\Mail\UserCreated($user);
+    Route::get('/ll', function (){
+        factory(myRoommie\Modules\Booking\Reservation::class,500)->create();
     });
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
@@ -161,7 +160,8 @@ Route::middleware('published')->group(function (){
     Route::post('/{hostelName}/{room_token}','Booking\ReservationController@saveProgress')->name('reserveRoom');
     Route::put('/{hostelName}/{room_token}','Booking\ReservationController@makePayment')->name('reserveRoom');
     Route::get('/{hostelName}/{room_token}/unreserve','Booking\ReservationController@unReserveBed')->name('unReserveBed');
-    Route::get('/{hostelName}/{room_token}/previousReservation','Booking\ReservationController@previousReservation')->name('previousReservation');
+    //Route::get('/{hostelName}/{room_token}/previousReservation','Booking\ReservationController@previousReservation')->name('previousReservation');
+    Route::get('/{hostelName}/{room_token}/proceedToMakePayment','Booking\ReservationController@proceedToMakePayment')->name('proceedToMakePayment');
 });
 
 

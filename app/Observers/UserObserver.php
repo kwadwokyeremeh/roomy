@@ -16,6 +16,7 @@ class UserObserver
      */
     public function created(User $user)
     {
+
         $message = (new UserCreated($user))
             ->onQueue('emails');
 

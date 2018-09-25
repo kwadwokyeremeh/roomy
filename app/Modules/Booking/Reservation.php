@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Room;
+use myRoommie\Scopes\ExpireAtScope;
 use myRoommie\User;
 
 /**
@@ -64,6 +65,19 @@ class Reservation extends Model
         'status',
         'user_id'
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ExpireAtScope);
+
+    }
 
     /*
      *

@@ -10,9 +10,11 @@ namespace myRoommie\Repository;
 
 
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class GoogleMaps
+class GoogleMaps implements ShouldQueue
 {
+    public $queue = 'default';
     /*
  Geo-codes an address so we can get the latitude and longitude
 */

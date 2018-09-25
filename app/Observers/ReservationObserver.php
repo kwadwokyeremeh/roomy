@@ -2,7 +2,9 @@
 
 namespace myRoommie\Observers;
 
+use Illuminate\Support\Facades\Notification;
 use myRoommie\Modules\Booking\Reservation;
+use myRoommie\Notifications\UserReservationNotification;
 
 class ReservationObserver
 {
@@ -14,7 +16,8 @@ class ReservationObserver
      */
     public function created(Reservation $reservation)
     {
-        dd($reservation->user,$reservation->hostel->hosteller,$reservation->hostel,$reservation->room(), $reservation->room);
+        $reservation->user->notify(new UserReservationNotification($reservation));
+
     }
 
     /**

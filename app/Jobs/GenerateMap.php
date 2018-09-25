@@ -47,18 +47,18 @@ class GenerateMap implements ShouldQueue
      *
      * @param Request $request
      * @param  Hostel $hostel
-     * @return void
+     * @return
      */
     public function handle(Request $request, Hostel $hostel)
     {
         /*
         Get the Latitude and Longitude returned from the Google Maps Address.
       */
-        $coordinates =GoogleMaps::geocodeAddress( $request->get('name'),$request->get('street_address'), $request->get('city'), $request->get('region'),$request->get('country') );
+        $coordinates =GoogleMaps::geocodeAddress( $this->hostel->name,$this->hostel->street_address, $this->hostel->city, $this->hostel->region,$this->hostel->country );
 
 
 
-        $hostel->update([
+        return $this->hostel->update([
             'latitude' => $coordinates['lat'],
             'longitude' => $coordinates['lng'],
             ]);
