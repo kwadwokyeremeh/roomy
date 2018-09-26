@@ -3,6 +3,7 @@
 namespace myRoommie\Providers;
 
 
+use myRoommie\Hosteller;
 use myRoommie\User;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Observers\UserObserver;
@@ -10,6 +11,7 @@ use myRoommie\Observers\HostelObserver;
 use Illuminate\Support\ServiceProvider;
 use myRoommie\Modules\Booking\Reservation;
 use myRoommie\Observers\ReservationObserver;
+use myRoommie\Observers\HostellerObserver;
 
 
 
@@ -25,7 +27,8 @@ class EloquentModelServiceProvider extends ServiceProvider
 
         User::observe(UserObserver::class);
         Reservation::observe(ReservationObserver::class);
-        //Hostel::observe(HostelObserver::class);
+        Hostel::observe(HostelObserver::class);
+        Hosteller::observe(HostellerObserver::class);
 
     }
 

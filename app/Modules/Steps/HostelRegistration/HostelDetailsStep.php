@@ -72,6 +72,7 @@ class HostelDetailsStep extends Step
         $auth =[
             'hosteller_id' => \auth('hosteller')->id(),
             'hostel_id'     => $hostel->id,
+            'creation_state'=> 'CREATOR',
         ];
         $assocHosteller->insert($auth);
 
@@ -83,7 +84,7 @@ class HostelDetailsStep extends Step
                 array_push($host,[
                     'hosteller_id'=>$hostellers[$i],
                     'hostel_id'     => $hostel->id,
-                    'email_verified_at'=>now()->toDateTimeString(),
+                    'creation_state'=> 'CREATED',
                     //'status'    =>true,
                 ]);
             }
@@ -173,23 +174,4 @@ class HostelDetailsStep extends Step
         ];
     }
 
-    public function slugHostel(Request $request)
-    {
-        /*
-        * Convert the hostel name or alias into a unique URL address
-        * */
-        if (!is_null($request->get('alias'))) {
-            $uSlug = $request['alias'];
-        }else{
-            $uSlug =$request['name'];
-        }
-        $slug =mb_strtolower($uSlug);
-        if (str_contains($slug,'hostel')){
-            $tSlug =str_slug(str_replace('hostel','',$slug),'');
-        }else{
-            $tSlug =str_slug($slug,'');
-        }
-
-        return $tSlug;
-    }
 }

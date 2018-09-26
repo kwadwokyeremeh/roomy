@@ -24,6 +24,7 @@ class HostellerResetPasswordNotification extends Notification implements ShouldQ
     public function __construct($token)
     {
         $this->token = $token;
+        $this->onQueue('emails');
     }
 
     /**

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 if(env('APP_ENV') == 'local'){
 
     Route::get('/ll', function (){
-        factory(myRoommie\Modules\Booking\Reservation::class,500)->create();
+         phpinfo();
     });
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

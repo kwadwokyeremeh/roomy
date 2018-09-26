@@ -3,20 +3,19 @@
 namespace myRoommie\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use myRoommie\Modules\Booking\Reservation;
 
-class HostellerReservationNotification extends Notification implements ShouldQueue
+class HostelReservationNotification extends Notification
 {
     use Queueable;
 
     public $reservation;
     /**
      * Create a new notification instance.
-     *
+     * @param Reservation $reservation
      * @return void
      */
     public function __construct(Reservation $reservation)
@@ -33,7 +32,7 @@ class HostellerReservationNotification extends Notification implements ShouldQue
      */
     public function via($notifiable)
     {
-        return ['mail','nexmo'];
+        return ['mail'];
     }
 
     /**
@@ -44,7 +43,10 @@ class HostellerReservationNotification extends Notification implements ShouldQue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('vendor.mail.hostellerReservation');
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -59,19 +61,4 @@ class HostellerReservationNotification extends Notification implements ShouldQue
             //
         ];
     }
-
-
-    /**
-     * Get the Nexmo / SMS representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return NexmoMessage
-     */
-    public function toNexmo($notifiable)
-    {
-        return (new NexmoMessage)
-            ->content('A student just place a reservation for a bed in your hostel');
-    }
-
-
 }

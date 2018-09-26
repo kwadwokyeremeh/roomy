@@ -11,6 +11,7 @@ use myRoommie\Hosteller;
  * @property int $id
  * @property int $hosteller_id
  * @property int $hostel_id
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostellerHostel whereHostelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostellerHostel whereHostellerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\HostellerHostel whereId($value)
@@ -19,7 +20,7 @@ use myRoommie\Hosteller;
 class HostellerHostel extends Pivot
 {
     protected $fillable =[
-        'hostel_id','hosteller_id'
+        'hostel_id','hosteller_id','creation_state'
     ];
 
 

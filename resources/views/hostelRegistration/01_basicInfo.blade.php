@@ -91,7 +91,7 @@
                                                                     <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST">
                                                                             @csrf
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
-                                                                @if(Auth::guard('hosteller')->user()->role == 'manager')
+                                                                @if(\Illuminate\Support\Facades\Auth::guard('hosteller')->user()->role == 'manager')
                                                                         <h3>Hostel Owner Details</h3>
 
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
@@ -106,7 +106,7 @@
                                                                                 </p>
                                                                             <p class="form-row form-row-last validate-required col-md-6" id="billing_last_name_field_detail" data-priority="20">
                                                                                 <label for="lastName" class="">Last name <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="lastName" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autofocus>
+                                                                                <input id="lastName" type="text" class="input-text {{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autofocus required>
 
                                                                                 @if ($errors->has('lastName'))
                                                                                     <span class="invalid-feedback">
@@ -116,7 +116,7 @@
                                                                             </p>
                                                                             <p class="form-row form-row-last validate-required col-md-7" id="email" data-priority="20">
                                                                                 <label for="email" class="">Email <abbr class="required" title="required">*</abbr></label>
-                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email.*') ? ' is-invalid' : '' }}" name="email[manager]" value="{{ old('email.manager') }}">
+                                                                                <input id="email" type="email" class="input-text {{ $errors->has('email.*') ? ' is-invalid' : '' }}" name="email[manager]" value="{{ old('email.manager') }}" required>
 
                                                                                 @if ($errors->has('email.*'))
                                                                                     <span class="invalid-feedback">

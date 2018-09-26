@@ -4,6 +4,7 @@ namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use myRoommie\Events\Hostel\HostelSaved;
 use myRoommie\Hosteller;
@@ -75,7 +76,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Hostel extends Model implements HasMedia
 {
 
-    use HasMediaTrait;
+    use HasMediaTrait, Notifiable;
 
     protected $fillable = [
         'name','alias',

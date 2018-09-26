@@ -3,7 +3,7 @@ Hi, {{$user->firstName}}
 
 Your account has successfully been verified.
 
-@component('mail::button', ['url' => secure_url(route('student')), 'color'=> 'green'])
+@component('mail::button', ['url' => \Illuminate\Support\Facades\URL::route('student'), 'color'=> 'green'])
 Go to dashboard
 @endcomponent
 

@@ -48,7 +48,8 @@ class BasicInfoStep extends Step
                 'phone' => $request->get('phone')['manager'],
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role'],
-                /*'password' => Hash::make('password'),*/
+                'email_verified_at' => now()->toDateTimeString(),
+
             ]);
             $hosteller->create([
                 'firstName' => $request['firstName_3'],
@@ -57,17 +58,15 @@ class BasicInfoStep extends Step
                 'phone' => $request->get('phone')['portal'],
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role_3'],
+                'email_verified_at' => now()->toDateTimeString(),
                 ]);
 
             $request->session()->put(['hostellersId'=> []]);
             foreach ($hosteller as $hostellerId) {
                 $request->session()->put(['hostellersId' => $hostellerId->id,]);
             }
-            /*$registerHostel = new HostelRegistration;
-            $registerHostel-> firstOrCreate([
-                'hosteller_id' => Auth::guard('hosteller')->user()->id,
-                '1_basic_info' => true
-            ]);*/
+
+            return true;
 
         }
 
@@ -83,6 +82,7 @@ class BasicInfoStep extends Step
             'phone' => $request->get('phone')['manager'],
             'password' => Hash::make(str_random(10)),
             'role' => $request['role'],
+            'email_verified_at' => now()->toDateTimeString(),
 
             /*'password' => Hash::make($request['password']),*/
 
@@ -91,12 +91,8 @@ class BasicInfoStep extends Step
             foreach ($hosteller as $hostellerId) {
                 $request->session()->put(['hostellersId' => $hostellerId->id,]);
             }
-            /*$registerHostel = new HostelRegistration;
-            $registerHostel->create([
-                'hosteller_id' => Auth::guard('hosteller')->user()->id,
-                '1_basic_info' => true
-            ]);*/
 
+            return true;
         }
         elseif (is_null($request->get('email')['manager']) && ($request->get('email')['portal'] !=null))
         {
@@ -110,28 +106,20 @@ class BasicInfoStep extends Step
                 'phone' => $request->get('phone')['portal'],
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role_3'],
+                'email_verified_at' => now()->toDateTimeString(),
 
-                /*'password' => Hash::make($request['password']),*/
 
             ]);
-            /*$registerHostel = new HostelRegistration;
-            $registerHostel->create([
-                'hosteller_id' => Auth::guard('hosteller')->user()->id,
-                '1_basic_info' => true
-            ]);*/
+
             $request->session()->put(['hostellersId'=> []]);
             foreach ($hostellers as $hostellerId) {
                 $request->session()->put(['hostellersId' => $hostellerId->id,]);
             }
-
+            return true;
         }
         elseif (is_null($request->get('email')['manager'] && $request->get('email')['portal'])) {
-            // next if you want save one step progress to session use
-           /* $registerHostel = new HostelRegistration;
-            $registerHostel->create([
-                'hosteller_id' => Auth::guard('hosteller')->user()->id,
-                '1_basic_info' => true
-            ]);*/
+
+
            $this->saveProgress($request);
 
            return true;

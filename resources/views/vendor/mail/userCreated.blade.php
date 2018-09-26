@@ -4,7 +4,7 @@
 {{$user->full_name}}
 The body of your message.
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => \Illuminate\Support\Facades\URL::route('student')])
 Button Text
 @endcomponent
 

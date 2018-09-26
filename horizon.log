@@ -4070,3 +4070,102 @@ Horizon started successfully.
 [2018-09-25 18:24:54][933] Failed:     myRoommie\Notifications\UserReservationNotification
 [2018-09-25 18:24:54][940] Processing: myRoommie\Notifications\UserReservationNotification
 [2018-09-25 18:24:54][940] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:18:02][1002] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:18:10][1002] Processed:  myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+[2018-09-25 21:23:58][1003] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:24:01][1003] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:24:01][1003] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:24:02][1003] Failed:     myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+[2018-09-25 21:26:54][1005] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:54][1004] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:57][1005] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:57][1005] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:57][1005] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:58][1004] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:58][1004] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:26:58][1004] Failed:     myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+[2018-09-25 21:30:31][1006] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:30:31][1006] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:30:31][1006] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:30:31][1006] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:43:58][1007] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:43:59][1008] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:44:02][1007] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:44:02][1007] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:44:02][1007] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:44:02][1008] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:44:02][1008] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:44:02][1008] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:46:35][1009] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:46:36][1010] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:46:37][1010] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:46:38][1010] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:46:38][1010] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:46:39][1009] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:38][1011] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:38][1012] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:39][1011] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:39][1011] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:39][1011] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:42][1012] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:43][1012] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 21:59:43][1012] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:13][1013] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:13][1014] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:13][1013] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:13][1013] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:13][1013] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:15][1014] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:15][1014] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:09:15][1014] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:13][1015] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:14][1015] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:14][1015] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:14][1015] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:14][1016] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:17][1016] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:17][1016] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:11:18][1016] Failed:     myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+[2018-09-25 22:12:40][1017] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:12:40][1018] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:12:42][1017] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:12:42][1017] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:12:42][1017] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:12:50][1018] Processing: myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+[2018-09-25 22:59:34][1] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:59:35][1] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:59:35][1] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:59:35][1] Failed:     myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:59:34][2] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 22:59:37][2] Processed:  myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+[2018-09-25 23:03:53][1] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:03:53][2] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:03:55][2] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:04:00][1] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:09:16][3] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:09:16][4] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:09:18][4] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:09:20][3] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:12:45][5] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:12:47][6] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:12:50][6] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:12:53][5] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:50:43][8] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:50:45][7] Processing: myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:50:46][8] Processed:  myRoommie\Notifications\UserReservationNotification
+[2018-09-25 23:50:54][7] Processed:  myRoommie\Notifications\UserReservationNotification
+Horizon started successfully.
+[2018-09-26 08:09:44][9] Processing: myRoommie\Notifications\HostellerReservationNotification
+[2018-09-26 08:09:45][9] Failed:     myRoommie\Notifications\HostellerReservationNotification
+[2018-09-26 08:09:45][10] Processing: myRoommie\Notifications\HostellerReservationNotification
+[2018-09-26 08:09:45][10] Failed:     myRoommie\Notifications\HostellerReservationNotification
