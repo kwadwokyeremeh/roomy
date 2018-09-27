@@ -10,6 +10,7 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use myRoommie\Hosteller;
 use myRoommie\Jobs\GenerateMap;
 use myRoommie\Modules\Hostel\HostellerHostel;
 use Smajti1\Laravel\Step;
@@ -35,7 +36,7 @@ class HostelDetailsStep extends Step
 
 
 
-
+        $hosteller = Auth::guard('hosteller')->user()->id;
 
         /*
          * Create new hostel
@@ -68,17 +69,29 @@ class HostelDetailsStep extends Step
          * created hostel
          *
          * */
-        $assocHosteller = new HostellerHostel;
+        $hosteller->hostel()->attach($hostel->id,['creation_state'=>'CREATOR']);
+        if (session()->has('hostellersId')) {
+
+            $hostellers = session()->get('hostellersId');
+            foreach ($hostellers as $host) {
+                $hostellier = Hosteller::find($host);
+                $hostellier->hostel()->attach($hostel->id, ['creation_state' => 'CREATED']);
+            }
+        }
+        /*$assocHosteller = new HostellerHostel;
         $auth =[
             'hosteller_id' => \auth('hosteller')->id(),
             'hostel_id'     => $hostel->id,
             'creation_state'=> 'CREATOR',
         ];
-        $assocHosteller->insert($auth);
+        $assocHosteller->create($auth);
 
         if (session()->has('hostellersId')){
 
             $hostellers =session()->get('hostellersId');
+            foreach ($hostellers as $hostellier) {
+               $hostellier->hostel()->attach($hostel->id,['creation_state'=>'CREATED']);
+            }
             $host = [];
             for ($i =0; $i < count($hostellers); $i++){
                 array_push($host,[
@@ -89,7 +102,7 @@ class HostelDetailsStep extends Step
                 ]);
             }
             $assocHosteller->insert($host);
-        }
+        }*/
 
 
         /*
@@ -108,7 +121,7 @@ class HostelDetailsStep extends Step
                 'room_type'     => $roomTypes[$i],
                 'number_of_beds'=> $beds[$i],
                 'price'         => $prices[$i],
-                'room_token'    => str_random(36),
+                'room_token'    => str_random(12),
 
             ]);
         }
@@ -121,7 +134,7 @@ class HostelDetailsStep extends Step
 
 
         (new HostelRegistration)::create([
-            'hosteller_id' => Auth::guard('hosteller')->user()->id,
+            'hosteller_id' => $hosteller,
             'hostel_id' =>$hostel->id,
             'basic_info' => true,
             'hostel_details' => true

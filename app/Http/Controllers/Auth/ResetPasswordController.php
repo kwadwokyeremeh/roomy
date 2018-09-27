@@ -2,6 +2,9 @@
 
 namespace myRoommie\Http\Controllers\Auth;
 
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use myRoommie\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -36,4 +39,6 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+
 }

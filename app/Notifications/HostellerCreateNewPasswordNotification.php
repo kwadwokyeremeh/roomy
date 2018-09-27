@@ -3,25 +3,27 @@
 namespace myRoommie\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use myRoommie\Hosteller;
 
-class HostellerCreatedNotification extends Notification implements ShouldQueue
+class HostellerCreateNewPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $token;
     public $hosteller;
     /**
      * Create a new notification instance.
-     * @param Hosteller $hosteller
      *
+     * @param $token
+     * @param Hosteller $hosteller
      * @return void
      */
-    public function __construct(Hosteller $hosteller)
+    public function __construct(Hosteller $hosteller,$token)
     {
+        $this->token = $token;
         $this->hosteller = $hosteller;
         $this->onQueue('notifications');
     }
@@ -34,7 +36,7 @@ class HostellerCreatedNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail','nexmo'];
+        return ['mail'];
     }
 
     /**
@@ -45,14 +47,15 @@ class HostellerCreatedNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $hosteller = $this->hosteller;
         return (new MailMessage)
-            ->subject(config('app.name').' - Welcome')
-            ->line('Thank you for signing up')
-            ->action('Go to Dashboard', route('dashboard.hostel'));
-            //->line('If you do not know anything about this contact your hostel management team')
-            //->line('If you have no clue, no further action is required');
-            //->markdown('vendor.mail.hostellerCreated',compact('hosteller'));
+                    ->subject(config('app.name').' - Create a new password')
+            ->greeting('Hello, '.$this->hosteller->full_name)
+            ->line('You are receiving this email because a hostel management team member created a profile of you  on '.url(env('APP_URL')).' ')
+            ->line('Click on create password to create a new password for your account')
+            ->action('Create Password', route('hosteller.password.reset', $this->token))
+            ->line('If you do not know anything about this contact your hostel management team')
+            ->line('If you have no clue, no further action is required');
+
     }
 
     /**
@@ -66,17 +69,5 @@ class HostellerCreatedNotification extends Notification implements ShouldQueue
         return [
             //
         ];
-    }
-
-    /**
-     * Get the Nexmo / SMS representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return NexmoMessage
-     */
-    public function toNexmo($notifiable)
-    {
-        return (new NexmoMessage)
-            ->content('Hi, thank you for signing up on '.config('app.name'));
     }
 }

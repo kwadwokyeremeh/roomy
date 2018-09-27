@@ -15,9 +15,12 @@ class HostelObserver
      */
     public function created(Hostel $hostel)
     {
-       //
+
     }
 
+    public function saved(Hostel $hostel){
+
+    }
     /**
      * Handle the hostel "updated" event.
      *

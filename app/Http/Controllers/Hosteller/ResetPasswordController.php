@@ -3,6 +3,7 @@
 namespace myRoommie\Http\Controllers\Hosteller;
 
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Routing\Route;
 use myRoommie\Hosteller;
 use myRoommie\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -30,8 +31,12 @@ class ResetPasswordController extends Controller
      * Where to redirect hostellers after resetting their password.
      *
      * @var string
+     * @return Route
      */
-    protected $redirectTo = '/dashboard.hostel';
+    protected function redirectTo()
+    {
+        return route('dashboard.hostel');
+    }
 
     protected $user;
     /**

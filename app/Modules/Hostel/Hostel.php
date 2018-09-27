@@ -128,7 +128,8 @@ class Hostel extends Model implements HasMedia
     {
         return $this->belongsToMany(Hosteller::class,'hosteller_hostel','hostel_id','hosteller_id')
             ->using(HostellerHostel::class)->as('management')
-            ->withPivot('hosteller_id','hostel_id');
+            ->withPivot('hosteller_id','hostel_id')
+            ->withTimestamps();
     }
 
     public function hostelRegistration()

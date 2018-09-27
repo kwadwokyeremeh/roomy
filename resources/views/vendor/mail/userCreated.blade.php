@@ -1,7 +1,7 @@
 @component('mail::message')
 # Thank you signing up on {{env('MAIL_FROM_NAME')}}
 
-{{$user->full_name}}
+Hello, {{$user->full_name}}
 The body of your message.
 
 @component('mail::button', ['url' => \Illuminate\Support\Facades\URL::route('student')])

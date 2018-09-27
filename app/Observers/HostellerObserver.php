@@ -15,14 +15,19 @@ class HostellerObserver
      */
     public function created(Hosteller $hosteller)
     {
-        $message = (new HostellerCreatedNotification($hosteller))
+
+        /*$message = (new HostellerCreatedNotification($hosteller))
             ->onQueue('emails');
 
 
         Mail::to($hosteller)
-            ->queue($message);
+            ->queue($message);*/
     }
 
+    public function saved(Hosteller $hosteller)
+    {
+
+    }
     /**
      * Handle the hosteller "updated" event.
      *
@@ -66,4 +71,7 @@ class HostellerObserver
     {
         //
     }
+
+
+
 }

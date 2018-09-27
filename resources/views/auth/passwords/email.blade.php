@@ -39,8 +39,13 @@
                                                         <div class="vk-checkout-login">
                                                             <div class="row">
                                                                 @if (session('status'))
-                                                                    <div class="alert alert-success">
-                                                                        {{ session('status') }}
+                                                                    <div class="row  vk-notification-boxes-body" style="padding-top: 1px; padding-bottom: 1px">
+                                                                        <div class="list-item" style="padding-bottom: 1px">
+
+                                                                        <div class="vk-alert vk-alert-success" style="padding-bottom: 3px">
+                                                                        <span><i class="fa fa-check-circle" aria-hidden="true"></i></span>{{session('status')}}
+                                                                    </div>
+                                                                        </div>
                                                                     </div>
                                                                 @endif
                                                                 <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('password.email') }}">

@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 if(env('APP_ENV') == 'local'){
 
     Route::get('/ll', function (){
-         phpinfo();
+        $hosteller=\myRoommie\Hosteller::find(1);
+        $hostel=\myRoommie\Modules\Hostel\Hostel::find(1);
+        $hosteller->hostel()->attach($hostel->id,['creation_state'=>'CREATED']);
     });
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
@@ -46,7 +48,8 @@ Route::prefix('knust')->group(function (){
 /*********************
  ** User Routes
  *********************/
-Auth::routes(['verify'=> true]);
+//Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+\Illuminate\Support\Facades\Auth::routes(['verify'=> true]);
 
 Route::get('/user/', 'HomeController@index')->middleware('verified')->name('student');
 

@@ -2,12 +2,20 @@
 
 namespace myRoommie;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use myRoommie\Modules\Hostel\HostellerHostel;
-use myRoommie\Notifications\HostellerResetPasswordNotification;
-use Illuminate\Auth\Passwords\CanResetPassword;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use myRoommie\Modules\Hostel\HostellerHostel;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use myRoommie\Observers\HostellerHostelObserver;
+use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use myRoommie\Notifications\HostellerCreatedNotification;
+use myRoommie\Notifications\HostellerResetPasswordNotification;
+use myRoommie\Notifications\HostellerCreateNewPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 
@@ -50,7 +58,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 class Hosteller extends Authenticatable implements MustVerifyEmailContract
 {
-    use MustVerifyEmail, Notifiable;
+    use MustVerifyEmail, Notifiable, PivotEventTrait;
 
     protected $guard = 'hosteller';
 
@@ -72,7 +80,53 @@ class Hosteller extends Authenticatable implements MustVerifyEmailContract
         'password', 'remember_token',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
 
+        //self::observe(HostellerHostelObserver::class);
+
+        static::pivotAttaching(function ($hosteller, $relationName, $pivotIds, $pivotIdsAttributes) {
+           // dd($relationName,$pivotIds,array_pluck($pivotIdsAttributes,'creation_state'),$hosteller->hostel->sortBy('updated_at')->pluck('name'),$hosteller);
+        });
+
+        static::pivotAttached(function ($hosteller, $relationName, $pivotIds, $pivotIdsAttributes) {
+
+            if (implode(',',array_flatten($pivotIdsAttributes)) == 'CREATOR'){
+                //Send a welcome message and a link to continue registration
+                $hosteller->notify(new HostellerCreatedNotification($hosteller));
+            }elseif(implode(',',array_flatten($pivotIdsAttributes)) == 'CREATED'){
+
+                //Send a password reset notification
+                $token = str_random(64);
+                DB::table('hostellers_password_resets')->insert([
+                    'email'=>$hosteller->email,
+                    'token'=>Hash::make($token),
+                    'created_at'=>now()->toDateTimeString(),
+                ]);
+                $hosteller->notify(new HostellerCreateNewPasswordNotification($hosteller,$token));
+
+            }
+            //dd($model,$relationName,$pivotIds,$pivotIdsAttributes,$model->hostel->pluck('name'));
+
+        });
+
+        static::pivotDetaching(function ($model, $relationName, $pivotIds) {
+            //
+        });
+
+        static::pivotDetached(function ($model, $relationName, $pivotIds) {
+            //
+        });
+
+        static::pivotUpdating(function ($model, $relationName, $pivotIds, $pivotIdsAttributes) {
+            //
+        });
+
+        static::pivotUpdated(function ($model, $relationName, $pivotIds, $pivotIdsAttributes) {
+            //
+        });
+    }
 
     /**
      * Send the password reset notification.
@@ -111,10 +165,10 @@ class Hosteller extends Authenticatable implements MustVerifyEmailContract
 
     public function hostel()
     {
-        return $this->belongsToMany('myRoommie\Modules\Hostel\Hostel','hosteller_hostel','hosteller_id','hostel_id')
-            ->using(HostellerHostel::class)
+        return $this->belongsToMany(Hostel::class,'hosteller_hostel','hosteller_id','hostel_id')
+            ->using(HostellerHostel::class)->as('management')
             ->withPivot('hosteller_id','hostel_id')
-            ->as('management');
+            ->withTimestamps();
     }
 
     /**

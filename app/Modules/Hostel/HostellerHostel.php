@@ -3,6 +3,7 @@
 namespace myRoommie\Modules\Hostel;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
 use myRoommie\Hosteller;
 
 /**
@@ -19,6 +20,7 @@ use myRoommie\Hosteller;
  */
 class HostellerHostel extends Pivot
 {
+
     protected $fillable =[
         'hostel_id','hosteller_id','creation_state'
     ];
@@ -37,5 +39,6 @@ class HostellerHostel extends Pivot
     {
         return $this->belongsTo(Hostel::class);
     }*/
+
 
 }

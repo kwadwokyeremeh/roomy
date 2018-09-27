@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        //Schema::defaultStringLength(191);
 
         Validator::extend('uniqueManagerEmail', function ($attribute, $value, $parameters, $validator) {
             $count = DB::table('hostellers')->where('email', $value)

@@ -165,6 +165,7 @@ return [
         myRoommie\Providers\RouteServiceProvider::class,
         //myRoommie\Providers\EloquentQueryServiceProvider::class,
         myRoommie\Providers\EloquentModelServiceProvider::class,
+        myRoommie\Providers\CollectionServiceProvider::class,
 
 
     ],

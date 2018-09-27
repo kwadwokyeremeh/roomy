@@ -41,8 +41,15 @@
 
                                                             <div class="row  vk-notification-boxes-body" style="padding-top: 1px; padding-bottom: 1px">
                                                                 <div class="list-item" style="padding-bottom: 1px">
-
-                                                                    <div class="vk-alert vk-alert-success" style="padding-bottom: 3px">
+                                                                    @if(session('errors'))
+                                                                        {{session('status')}}
+                                                                        @foreach($errors as $error)
+                                                                            <div class="vk-alert vk-alert-warning" style="padding-bottom: 3px">
+                                                                                <span><i class="fa fa-times-circle" aria-hidden="true"></i></span> {{$error}}
+                                                                            </div>
+                                                                        @endforeach
+                                                                    @endif
+                                                                    {{--<div class="vk-alert vk-alert-success" style="padding-bottom: 3px">
                                                                         <span><i class="fa fa-check-circle" aria-hidden="true"></i></span>Be at least 8 characters long.
                                                                     </div>
 
@@ -55,12 +62,13 @@
                                                                     </div>
                                                                     <div class="vk-alert vk-alert-danger" style="padding-bottom: 3px">
                                                                         <span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>  Have at least 1 symbol.
-                                                                    </div>
+                                                                    </div>--}}
                                                                 </div>
-                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('password.request') }}">
+                                                                <form class="woocomerce-form woocommerce-form-login login" method="POST" action="{{ route('password.update') }}">
                                                                     @csrf
 
                                                                     <div class="col-md-12">
+                                                                        <input type="hidden" name="token" value="{{$token}}">
                                                                         <p class="form-row form-row-last">
                                                                             <label for="password" class="">Email <abbr class="required" title="required">*</abbr></label>
                                                                             <input id="email" type="email" class="input-text {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>

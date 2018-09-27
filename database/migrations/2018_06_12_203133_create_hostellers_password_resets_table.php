@@ -15,7 +15,7 @@ class CreateHostellersPasswordResetsTable extends Migration
     {
         Schema::create('hostellers_password_resets', function (Blueprint $table) {
             $table->string('email')->index();
-            $table->string('token');
+            $table->string('token',255);
             $table->timestamp('created_at')->nullable();
         });
     }
