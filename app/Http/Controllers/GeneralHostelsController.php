@@ -12,12 +12,12 @@ class GeneralHostelsController extends Controller
 
     public function __construct()
     {
-        return $this->middleware('published');
+        //return $this->middleware('published');
     }
 
     public function index()
     {
-        $allHostels = Hostel::where('published','=',0)
+        $allHostels = Hostel::published()
         ->with(['hostelViews','roomDescription'])
         ->orderBy('name')
             /*where('status','=',1)*/

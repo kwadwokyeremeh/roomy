@@ -39,6 +39,7 @@ class RoomDescription extends Model  implements HasMedia
         'room_type',
         'number_of_beds',
         'price',
+        'room_token',
     ];
      public $timestamps = false;
     /*

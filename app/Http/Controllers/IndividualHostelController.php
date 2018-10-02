@@ -8,13 +8,14 @@ use myRoommie\Modules\Hostel\HostelView;
 
 class IndividualHostelController extends Controller
 {
-    protected $hostel;
+
+    //protected $hostel;
     /*
      * Show the individual hostel page
      * */
     public function showHostel($hostelName)
     {
-        $hostel = Hostel::whereSlug($hostelName)
+        $hostel = Hostel::whereSlug($hostelName)->published()
             //->orWhere('slug', $hostelName)
             ->with([
                 'services',
@@ -27,7 +28,7 @@ class IndividualHostelController extends Controller
         $bedsAvailable  =count($hostel->beds->where('status','=',0));
         $maleBeds   =count($hostel->beds);
         $femaleBeds  =count($hostel->beds);
-        
+
 
         /*$hostelView =HostelView::whereHostelId($hostel->id)->firstOrFail()
             ->addMedia('storage/'.implode(',',array_values($hostel->hostelViews->pluck('front')->toArray())))

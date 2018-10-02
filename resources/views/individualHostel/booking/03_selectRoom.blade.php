@@ -107,7 +107,7 @@
                                     <div class="modal-body">
 
                                         <p>Do you want to undo your previous reservation and proceed with the current one?</p>
-                                        <span>Click <b>Yes</b> to unreserve bed unreserve bed and continue with the current one</span><br>
+                                        <span>Click <b>Yes</b> to unreserve bed and continue with the current one</span><br>
                                         <span>Click <b>No</b> to continue with your previous reservation</span><br>
 
                                     </div>
@@ -185,7 +185,7 @@
                                                                                     <span class="title">{{$room->roomDescription->room_type}}</span>
                                                                                     <span class="description">Price: {{$room->roomDescription->price}}</span><br>
                                                                                             <span class="description">{{$room->sex_type}}</span>
-                                                                                    <span class="description">{{($room->reservations->count()>=$room->roomDescription->number_of_beds) ? 'Room Full' : $room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>
+                                                                                    <span class="description label {{($room->reservations->count()>=$room->roomDescription->number_of_beds)? 'label-danger':'label-success'}}">{{($room->reservations->count()>=$room->roomDescription->number_of_beds) ? 'Room Full' : $room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>
                                                                                     {{--<span class="description">{{$room->reservations->count().'/'.$room->roomDescription->number_of_beds}}</span>--}}
                                                                                     <label for="selectedRoom">
                                                                                         <input type="radio" name="selectedRoom" value="{{$room->id}}" required/>

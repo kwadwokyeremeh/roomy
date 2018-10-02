@@ -36,6 +36,6 @@ class IsReservationAllowed
 
         }
 
-        return abort(423)->withErrors('Reservations for this hostel is closed');
+        return abort(423)->withErrors('Reservations for '.$hostel->name.' is closed');
     }
 }

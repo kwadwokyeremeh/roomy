@@ -2,13 +2,14 @@
 
 namespace myRoommie\Repository;
 
+use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesHostellers
 {
-    use RedirectsHostellers, ThrottlesHostellers;
+    use RedirectsUsers, ThrottlesHostellers;
 
     /**
      * Show the application's login form.

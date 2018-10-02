@@ -55,6 +55,7 @@
 <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('/dist/js/pages/dashboard2.js')}}"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

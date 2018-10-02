@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use myRoommie\Modules\Booking\Reservation;
 
-class HostelReservationNotification extends Notification
+class HostelReservationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

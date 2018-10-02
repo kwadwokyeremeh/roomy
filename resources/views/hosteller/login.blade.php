@@ -95,7 +95,7 @@
                                                                     </div>
                                                                     <div class="clear"></div>
 
-                                                                    @captcha
+                                                                    {{--@captcha--}}
                                                                     <div class="col-md-12">
                                                                         <div class="vk-checkout-login">
                                                                             <div class="row">

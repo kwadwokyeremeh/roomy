@@ -21,6 +21,7 @@ class CreateHostellerHostelTable extends Migration
             $table->timestamps();
             $table->foreign('hosteller_id')->references('id')->on('hostellers')->onDelete('cascade');
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
+            $table->unique(['hosteller_id','hostel_id']);
         });
     }
 

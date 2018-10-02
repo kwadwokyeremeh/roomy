@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use myRoommie\Modules\Hostel\HostellerHostel;
 
-class HostellerHostelNotification extends Notification
+class HostellerHostelNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

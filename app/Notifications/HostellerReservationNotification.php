@@ -16,7 +16,7 @@ class HostellerReservationNotification extends Notification implements ShouldQue
     public $reservation;
     /**
      * Create a new notification instance.
-     *
+     * @param Reservation $reservation
      * @return void
      */
     public function __construct(Reservation $reservation)

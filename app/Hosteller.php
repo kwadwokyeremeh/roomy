@@ -53,6 +53,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereEmailVerifiedAt($value)
  * @property string|null $avatar
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller whereAvatar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Hosteller ofRole($role)
  */
 
 
@@ -91,11 +92,13 @@ class Hosteller extends Authenticatable implements MustVerifyEmailContract
         });
 
         static::pivotAttached(function ($hosteller, $relationName, $pivotIds, $pivotIdsAttributes) {
+                $implode =implode(',',array_flatten($pivotIdsAttributes));
 
-            if (implode(',',array_flatten($pivotIdsAttributes)) == 'CREATOR'){
+            if ( $implode == 'CREATOR'){
                 //Send a welcome message and a link to continue registration
                 $hosteller->notify(new HostellerCreatedNotification($hosteller));
-            }elseif(implode(',',array_flatten($pivotIdsAttributes)) == 'CREATED'){
+            }
+            elseif($implode == 'CREATED'){
 
                 //Send a password reset notification
                 $token = str_random(64);

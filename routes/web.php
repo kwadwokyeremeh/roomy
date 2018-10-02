@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 if(env('APP_ENV') == 'local'){
 
     Route::get('/ll', function (){
-        $hosteller=\myRoommie\Hosteller::find(1);
-        $hostel=\myRoommie\Modules\Hostel\Hostel::find(1);
-        $hosteller->hostel()->attach($hostel->id,['creation_state'=>'CREATED']);
+        dd(Route::middleware('published'));
     });
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
@@ -42,6 +40,8 @@ Route::prefix('knust')->group(function (){
 
     Route::get('hostels','GeneralHostelsController@index')->name('allHostels');
     Route::get('search','SearchResultsController@index')->name('search');
+    Route::redirect('blog','/');
+    Route::redirect('help','/');
 
 });
 
@@ -66,7 +66,7 @@ Route::get('/user/', 'HomeController@index')->middleware('verified')->name('stud
  ** Hosteller's Login and Registration routes
  *****************/
 Route::prefix('hosteller')->group(function (){
-    Route::get('/login', 'Hosteller\LoginController@showLoginForm')->name('hosteller.login');
+    Route::get('/login', 'Hosteller\LoginController@showLoginForm')->middleware('throttle')->name('hosteller.login');
     Route::post('/login', 'Hosteller\LoginController@authenticate')->name('hosteller.login.submit');
     Route::get('/register', 'Hosteller\RegistrationController@showRegistrationForm')->name('hosteller.register');
     Route::post('/register', 'Hosteller\RegistrationController@register')->name('hosteller.register.submit');
@@ -111,36 +111,38 @@ Route::prefix('hostelRegistration')->group(function (){
     /*********************************
      *  Hosteller's Dashboard
      *********************************/
+Route::middleware('hvs')->group(function (){
+    Route::get('/', 'Hosteller\Dashboard\HostellerController@lockscreen')->name('dashboard.hostel');
+    Route::get('/{hostelName}', 'Hosteller\Dashboard\HostellerController@index');
+    Route::get('{hostelName}/reservationDate', 'Hosteller\Dashboard\HostellerController@reservationDate');
+    Route::get('{hostelName}/editContent', 'Hosteller\Dashboard\HostellerController@editContent');
+    Route::get('{hostelName}/color', 'Hosteller\Dashboard\HostellerController@color');
+    Route::get('{hostelName}/roomSettings', 'Hosteller\Dashboard\HostellerController@roomSettings');
+    Route::get('{hostelName}/paymentSettings', 'Hosteller\Dashboard\HostellerController@paymentSettings');
+    Route::get('{hostelName}/occupants', 'Hosteller\Dashboard\HostellerController@occupants');
+    Route::get('{hostelName}/allotABed', 'Hosteller\Dashboard\HostellerController@allotABed');
+    Route::get('{hostelName}/vacateAnOccupant', 'Hosteller\Dashboard\HostellerController@vacateAnOccupant');
+    Route::get('{hostelName}/changeOccupantRoom', 'Hosteller\Dashboard\HostellerController@changeOccupantRoom');
+    Route::get('{hostelName}/paidList', 'Hosteller\Dashboard\HostellerController@paidList');
+    Route::get('{hostelName}/reservedBedList', 'Hosteller\Dashboard\HostellerController@reservedBedList');
+    Route::get('{hostelName}/r&c', 'Hosteller\Dashboard\HostellerController@reviewsAndComments');
+    Route::get('{hostelName}/inbox', 'Hosteller\Dashboard\HostellerController@inbox');
+    Route::get('{hostelName}/compose', 'Hosteller\Dashboard\HostellerController@compose');
+    Route::get('{hostelName}/read', 'Hosteller\Dashboard\HostellerController@read');
+    Route::get('{hostelName}/owner', 'Hosteller\Dashboard\HostellerController@owner');
+    Route::get('{hostelName}/manager', 'Hosteller\Dashboard\HostellerController@manager');
+    Route::get('{hostelName}/portal', 'Hosteller\Dashboard\HostellerController@portal');
+    Route::get('{hostelName}/docs', 'Hosteller\Dashboard\HostellerController@docs');
+    Route::get('{hostelName}/faqs', 'Hosteller\Dashboard\HostellerController@faqs');
+    Route::get('{hostelName}/notice', 'Hosteller\Dashboard\HostellerController@notice');
+    Route::get('{hostelName}/uploads', 'Hosteller\Dashboard\HostellerController@uploads');
+    Route::get('{hostelName}/roomCancellationPolicy', 'Hosteller\Dashboard\HostellerController@roomCancellationPolicy');
+    Route::get('{hostelName}/policy', 'Hosteller\Dashboard\HostellerController@policy');
+    Route::get('{hostelName}/termsOfService', 'Hosteller\Dashboard\HostellerController@termOfService');
+    Route::get('{hostelName}/archives', 'Hosteller\Dashboard\HostellerController@archives');
+    Route::get('{hostelName}/addHostel', 'Hosteller\Dashboard\HostellerController@addHostel');
 
-    Route::get('/', 'Hosteller\HostellerController@lockscreen')->name('dashboard.hostel')->middleware('hvs');
-    Route::get('/{hostelName}', 'Hosteller\HostellerController@index')->middleware('hvs');
-    Route::get('{hostelName}/reservationDate', 'Hosteller\HostellerController@reservationDate')->middleware('hvs');
-    Route::get('{hostelName}/editContent', 'Hosteller\HostellerController@editContent')->middleware('hvs');
-    Route::get('{hostelName}/color', 'Hosteller\HostellerController@color')->middleware('hvs');
-    Route::get('{hostelName}/roomSettings', 'Hosteller\HostellerController@roomSettings')->middleware('hvs');
-    Route::get('{hostelName}/paymentSettings', 'Hosteller\HostellerController@paymentSettings')->middleware('hvs');
-    Route::get('{hostelName}/occupants', 'Hosteller\HostellerController@occupants')->middleware('hvs');
-    Route::get('{hostelName}/allotABed', 'Hosteller\HostellerController@allotABed')->middleware('hvs');
-    Route::get('{hostelName}/vacateAnOccupant', 'Hosteller\HostellerController@vacateAnOccupant')->middleware('hvs');
-    Route::get('{hostelName}/changeOccupantRoom', 'Hosteller\HostellerController@changeOccupantRoom')->middleware('hvs');
-    Route::get('{hostelName}/paidList', 'Hosteller\HostellerController@paidList')->middleware('hvs');
-    Route::get('{hostelName}/reservedBedList', 'Hosteller\HostellerController@reservedBedList')->middleware('hvs');
-    Route::get('{hostelName}/r&c', 'Hosteller\HostellerController@reviewsAndComments')->middleware('hvs');
-    Route::get('{hostelName}/inbox', 'Hosteller\HostellerController@inbox')->middleware('hvs');
-    Route::get('{hostelName}/compose', 'Hosteller\HostellerController@compose')->middleware('hvs');
-    Route::get('{hostelName}/read', 'Hosteller\HostellerController@read')->middleware('hvs');
-    Route::get('{hostelName}/owner', 'Hosteller\HostellerController@owner')->middleware('hvs');
-    Route::get('{hostelName}/manager', 'Hosteller\HostellerController@manager')->middleware('hvs');
-    Route::get('{hostelName}/portal', 'Hosteller\HostellerController@portal')->middleware('hvs');
-    Route::get('{hostelName}/docs', 'Hosteller\HostellerController@docs')->middleware('hvs');
-    Route::get('{hostelName}/faqs', 'Hosteller\HostellerController@faqs')->middleware('hvs');
-    Route::get('{hostelName}/notice', 'Hosteller\HostellerController@notice')->middleware('hvs');
-    Route::get('{hostelName}/uploads', 'Hosteller\HostellerController@uploads')->middleware('hvs');
-    Route::get('{hostelName}/roomCancellationPolicy', 'Hosteller\HostellerController@roomCancellationPolicy')->middleware('hvs');
-    Route::get('{hostelName}/policy', 'Hosteller\HostellerController@policy')->middleware('hvs');
-    Route::get('{hostelName}/termsOfService', 'Hosteller\HostellerController@termOfService')->middleware('hvs');
-    Route::get('{hostelName}/archives', 'Hosteller\HostellerController@archives')->middleware('hvs');
-    Route::get('{hostelName}/addHostel', 'Hosteller\HostellerController@addHostel')->middleware('hvs');
+});
 
 
 });

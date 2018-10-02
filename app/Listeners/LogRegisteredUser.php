@@ -28,6 +28,6 @@ class LogRegisteredUser
      */
     public function handle(Registered $event)
     {
-        Log::notice('Registered User',$event->user);
+        Log::notice('Registered User',[$event->user]);
     }
 }

@@ -10,6 +10,7 @@ namespace myRoommie\Wizard\Steps\HostelRegistration;
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use myRoommie\Modules\HostelRegistration;
 use Smajti1\Laravel\Step;
@@ -41,7 +42,7 @@ class BasicInfoStep extends Step
 
             //  register Hostel manager or owner and portal
             $hosteller = new Hosteller;
-            $hosteller->create([
+            $id1 =$hosteller->insertGetId([
                 'firstName' => $request['firstName'],
                 'lastName' => $request['lastName'],
                 'email' => $request->get('email')['manager'],
@@ -49,9 +50,21 @@ class BasicInfoStep extends Step
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role'],
                 'email_verified_at' => now()->toDateTimeString(),
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
 
             ]);
-            $hosteller->create([
+
+            $request->session()->put(['hostellersId'=> [$id1]]);
+
+            DB::table('hostellers_creation_states')->insert([
+                'creator'=>Auth::guard('hosteller')->id(),
+                'created'=>$id1,
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
+            ]);
+
+            $id2 =$hosteller->insertGetId([
                 'firstName' => $request['firstName_3'],
                 'lastName' => $request['lastName_3'],
                 'email' => $request->get('email')['portal'],
@@ -59,12 +72,17 @@ class BasicInfoStep extends Step
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role_3'],
                 'email_verified_at' => now()->toDateTimeString(),
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
                 ]);
 
-            $request->session()->put(['hostellersId'=> []]);
-            foreach ($hosteller as $hostellerId) {
-                $request->session()->put(['hostellersId' => $hostellerId->id,]);
-            }
+            $request->session()->put(['hostellersId'=> [$id2]]);
+            DB::table('hostellers_creation_states')->insert([
+                'creator'=>Auth::guard('hosteller')->id(),
+                'created'=>$id2,
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
+            ]);
 
             return true;
 
@@ -75,7 +93,7 @@ class BasicInfoStep extends Step
 
         $hosteller = new Hosteller;
 
-            $hosteller->create([
+            $id =$hosteller->insertGetId([
             'firstName' => $request['firstName'],
             'lastName' => $request['lastName'],
             'email' => $request->get('email')['manager'],
@@ -83,14 +101,19 @@ class BasicInfoStep extends Step
             'password' => Hash::make(str_random(10)),
             'role' => $request['role'],
             'email_verified_at' => now()->toDateTimeString(),
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
 
             /*'password' => Hash::make($request['password']),*/
 
         ]);
-            $request->session()->put(['hostellersId'=> []]);
-            foreach ($hosteller as $hostellerId) {
-                $request->session()->put(['hostellersId' => $hostellerId->id,]);
-            }
+            $request->session()->put(['hostellersId'=> [$id]]);
+            DB::table('hostellers_creation_states')->insert([
+                'creator'=>Auth::guard('hosteller')->id(),
+                'created'=>$id,
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
+            ]);
 
             return true;
         }
@@ -99,7 +122,7 @@ class BasicInfoStep extends Step
 
             $hostellers = new Hosteller;
 
-            $hostellers->create([
+            $id =$hostellers->insertGetId([
                 'firstName' => $request['firstName_3'],
                 'lastName' => $request['lastName_3'],
                 'email' => $request->get('email')['portal'],
@@ -107,14 +130,20 @@ class BasicInfoStep extends Step
                 'password' => Hash::make(str_random(10)),
                 'role' => $request['role_3'],
                 'email_verified_at' => now()->toDateTimeString(),
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
 
 
             ]);
 
-            $request->session()->put(['hostellersId'=> []]);
-            foreach ($hostellers as $hostellerId) {
-                $request->session()->put(['hostellersId' => $hostellerId->id,]);
-            }
+            $request->session()->put(['hostellersId'=> [$id]]);
+            DB::table('hostellers_creation_states')->insert([
+                'creator'=>Auth::guard('hosteller')->id(),
+                'created'=>$id,
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
+            ]);
+
             return true;
         }
         elseif (is_null($request->get('email')['manager'] && $request->get('email')['portal'])) {

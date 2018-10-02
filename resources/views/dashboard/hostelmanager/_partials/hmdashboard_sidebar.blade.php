@@ -6,7 +6,7 @@
         <!-- Sidebar hostel panel (optional) hostel image and name-->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{asset($hostel->getFirstMediaUrl('frontViews','front-tiny'))}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <h4>{{$hostel->name}}</h4>

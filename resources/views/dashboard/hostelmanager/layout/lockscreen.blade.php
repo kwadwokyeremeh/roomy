@@ -53,14 +53,30 @@
         <!-- /.lockscreen credentials -->
 
     </div>
+    <form action="{{route('hosteller.logout')}}" method="post">
+        @csrf
+        <div class="help-block text-center">
+            <button class="btn btn-secondary" type="submit">Logout</button>
+        </div>
+    </form>
+    @if($hosteller->hostel->count()!==0)
     <div class="help-block text-center">
         Please select the hostel you want to want with today
     </div>
-    @foreach($hosteller->hostel as $hostel)
+        @else
         <div class="help-block text-center">
-            <a href="hosteller/{{$hostel->slug}}"><h2>{{$hostel->name}}</h2></a>
+            Please, you are seeing this page because your hostel management team is not done with the registration process.
+            Please contact your hostel management team for more information
         </div>
+    @endif
+
+    <div class="help-block text-center">
+    @foreach($hosteller->hostel as $hostel)
+
+            <a href="hosteller/{{$hostel->slug}}"><h2>{{$hostel->name}}</h2></a>
+
     @endforeach
+</div>
     {{--<!-- /.lockscreen-item -->
     <div class="help-block text-center">
         Enter your password to retrieve your session

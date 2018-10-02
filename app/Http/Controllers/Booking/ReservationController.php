@@ -5,6 +5,7 @@ namespace myRoommie\Http\Controllers\Booking;
 
 
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use myRoommie\Modules\Booking\Reservation;
@@ -20,7 +21,7 @@ class ReservationController extends Controller
 {
     protected $reservation;
     protected $data;
-
+    protected $userReservation;
 
     public function __construct(Reservation $reservation)
     {
@@ -29,72 +30,6 @@ class ReservationController extends Controller
         $this->middleware(['auth:web,hosteller',IsReservationAllowed::class]);
 
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \myRoommie\Modules\Booking\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Reservation $reservation)
-    {
-        //
     }
 
     /**
@@ -144,9 +79,11 @@ class ReservationController extends Controller
 
     }
 
-    /*
-     * @param \Illuminate\Http\Request
-     * @param  Hostel $hostelName $room_token
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param  $hostelName
+     * @param  $room_token
+     * @param  Reservation $reservation
      * @return \Illuminate\Http\Response
      *
      * */
@@ -156,7 +93,7 @@ class ReservationController extends Controller
             //->orWhere('slug', $hostelName)
             ->with(['blocks','floors','rooms','beds','roomDescription','reservationDate'])
             ->firstOrFail();
-        /*
+        /**
          *  Checking if the route uri is booking or room token
          * */
         if ($room_token=='booking'){
@@ -203,9 +140,7 @@ class ReservationController extends Controller
                         ->withInput();
         }
 
-
-
-        /*
+        /**
          *  Persist the data to the database
          *  @param \Illuminate\Http\Request $request
          * */
@@ -214,7 +149,7 @@ class ReservationController extends Controller
         $roomSelected =$hostel->rooms()->where('id',$request['selectedRoom'])->lockForUpdate()->firstOrFail();
 
 
-        /*
+        /**
                  * Retrieve hostel default reservation date
                  * */
 
@@ -231,7 +166,7 @@ class ReservationController extends Controller
             'user_id'           =>$user->id,
 
         ];
-        /*
+        /**
          *  Check if the selected room is having a gender associated with it
          * */
         if ($roomSelected->sex_type == 'No Gender'){
@@ -272,32 +207,23 @@ class ReservationController extends Controller
                     'Your reservation would expire in '. $duration->diffForHumans(). ' if you fail to make payment before then'
                 ]]);
 
-
-
-
-    }
-
-    /*
-     *
-     *
-     * */
-    public function makePayment($hostelName)
-    {
-
-        $hostel = Hostel::whereSlug($hostelName)
-            //->orWhere('slug',$hostelName)
-            ->firstOrFail();
-        return view('individualHostel.booking.04_payment',compact('hostel'));
     }
 
 
 
 
-    /*
+    /**
      * Un-reserve a user reservation
      * Same as edit a reservation
-     * */
-    public function unReserveBed($hostelName, Reservation $reservation)
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  $hostelName
+     * @param  $room_token
+     * @param  Reservation $reservation
+     * @return \Illuminate\Http\Response
+     *
+     **/
+    public function unReserveBed($hostelName, Request $request, Reservation $reservation, $room_token)
     {
 
     $hostel = Hostel::findHostel($hostelName);
@@ -312,6 +238,7 @@ class ReservationController extends Controller
 
 
     session()->flash('unreserve','You bed have been successfully unreserved, Select a room to proceed');
+          //$this->saveProgress($hostelName, $room_token, $request, $reservation);
     return redirect()->back();
         //view('individualHostel.booking.03_selectRoom',compact('hostel','reservation'));
 
@@ -321,8 +248,8 @@ class ReservationController extends Controller
     /*
      * Redirect user to his/her previous reservation process
      * */
-    protected $userReservation;
-    public function previousReservation($hostelName,$room_token,Reservation $reservation)
+
+    /*public function previousReservation($hostelName,$room_token,Reservation $reservation)
     {
 
         $this->userReservation =$this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
@@ -335,7 +262,7 @@ class ReservationController extends Controller
                 'Your reservation would expire in '.(Carbon::parse(($this->userReservation['end_date']))->diffForHumans()) . ' if you fail to make payment before then'
             ]]);
 
-    }
+    }*/
 
     public function proceedToMakePayment(Request $request,$hostelName,$room_token,Reservation $reservation)
     {

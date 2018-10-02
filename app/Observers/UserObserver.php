@@ -4,6 +4,7 @@ namespace myRoommie\Observers;
 
 use Illuminate\Support\Facades\Mail;
 use myRoommie\Mail\UserCreated;
+use myRoommie\Notifications\UserVerificationNotification;
 use myRoommie\User;
 
 class UserObserver
@@ -17,12 +18,13 @@ class UserObserver
     public function created(User $user)
     {
 
-        $message = (new UserCreated($user))
+        $user->notify(new UserVerificationNotification($user));
+        /*$message = (new UserCreated($user))
             ->onQueue('emails');
 
 
         Mail::to($user)
-            ->queue($message);
+            ->queue($message);*/
 
     }
 

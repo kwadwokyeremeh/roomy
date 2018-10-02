@@ -37,24 +37,25 @@
                             <th>Amount to pay</th>
                             <th></th>
                         </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
+                        @foreach($hostel->reservations as $reservation)
+                        <tr style="border-bottom: dashed; border-color: #3affff;">
                             <td>
                                 <img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
                             </td>
                             <td>
-                                <p><span class="label label-info">Name</span> Adwoa Kyeremaa</p>
-                                <p><span class="label label-info">Reference Number</span> 20304043</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6972</p>
-                                <p><span class="label label-info">Sex</span> Female</p>
+                                <p><span class="label label-info">Name</span> {{$reservation->user->fullName}}</p>
+                                {{--<p><span class="label label-info">Reference Number</span> 20304043</p>
+                                <p><span class="label label-info">Department/College</span> College of Engineering</p>--}}
+                                <p><span class="label label-info">Phone Number</span> {{$reservation->user->phone}}</p>
+                                <p><span class="label label-info">Sex</span> {{$reservation->user->sex}}</p>
                             </td>
                             <td>
-                                <p><span class="label label-info">Room Number</span> 033</p>
-                                <p><span class="label label-info">Room Type</span> Two in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Female</p>
+                                <p><span class="label label-info">Room Number</span> {{$reservation->room->name ?? $reservation->room->number}}</p>
+                                <p><span class="label label-info">Room Type</span>{{$reservation->room->roomDescription->room_type}}</p>
+                                <p><span class="label label-info">Room Gender</span>{{$reservation->room->sex_type}}</p>
                             </td>
                             <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 1800</p>
+                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; {{$reservation->amount_to_be_paid}}</p>
                             </td>
                             <td>
                                 <!-- Expiry Date -->
@@ -62,7 +63,7 @@
                                     <label for="datepicker">Expiry Date:</label>
 
                                     <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
+                                        <input type="text" class="form-control pull-right" id="datepicker" value="{{$reservation->end_date}}">
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
@@ -74,339 +75,8 @@
                                 <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
                             </td>
                         </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../dist/img/user8-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Kwadwo Kyeremeh</p>
-                                <p><span class="label label-info">Reference Number</span> 20304045</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6970</p>
-                                <p><span class="label label-info">Sex</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 034</p>
-                                <p><span class="label label-info">Room Type</span> One in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 2500</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
+                        @endforeach
 
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Adwoa Kyeremaa</p>
-                                <p><span class="label label-info">Reference Number</span> 20304043</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6972</p>
-                                <p><span class="label label-info">Sex</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 033</p>
-                                <p><span class="label label-info">Room Type</span> Two in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 1800</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../dist/img/user8-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Kwadwo Kyeremeh</p>
-                                <p><span class="label label-info">Reference Number</span> 20304045</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6970</p>
-                                <p><span class="label label-info">Sex</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 034</p>
-                                <p><span class="label label-info">Room Type</span> One in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 2500</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Adwoa Kyeremaa</p>
-                                <p><span class="label label-info">Reference Number</span> 20304043</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6972</p>
-                                <p><span class="label label-info">Sex</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 033</p>
-                                <p><span class="label label-info">Room Type</span> Two in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 1800</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../dist/img/user8-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Kwadwo Kyeremeh</p>
-                                <p><span class="label label-info">Reference Number</span> 20304045</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6970</p>
-                                <p><span class="label label-info">Sex</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 034</p>
-                                <p><span class="label label-info">Room Type</span> One in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 2500</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Adwoa Kyeremaa</p>
-                                <p><span class="label label-info">Reference Number</span> 20304043</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6972</p>
-                                <p><span class="label label-info">Sex</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 033</p>
-                                <p><span class="label label-info">Room Type</span> Two in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 1800</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../dist/img/user8-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Kwadwo Kyeremeh</p>
-                                <p><span class="label label-info">Reference Number</span> 20304045</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6970</p>
-                                <p><span class="label label-info">Sex</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 034</p>
-                                <p><span class="label label-info">Room Type</span> One in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 2500</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Adwoa Kyeremaa</p>
-                                <p><span class="label label-info">Reference Number</span> 20304043</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6972</p>
-                                <p><span class="label label-info">Sex</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 033</p>
-                                <p><span class="label label-info">Room Type</span> Two in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Female</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 1800</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
-                        <tr style="border-style: dashed; border-color: #3affff;">
-                            <td>
-                                <img class="profile-user-img img-responsive img-circle" src="../dist/img/user8-128x128.jpg" alt="User profile picture">
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Name</span> Kwadwo Kyeremeh</p>
-                                <p><span class="label label-info">Reference Number</span> 20304045</p>
-                                <p><span class="label label-info">Department/College</span> College of Engineering</p>
-                                <p><span class="label label-info">Phone Number</span> 020-459-6970</p>
-                                <p><span class="label label-info">Sex</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info">Room Number</span> 034</p>
-                                <p><span class="label label-info">Room Type</span> One in a room</p>
-                                <p><span class="label label-info">Room Gender</span> Male</p>
-                            </td>
-                            <td>
-                                <p><span class="label label-info"><span>&cent; :</span>Amount to pay</span> &cent; 2500</p>
-                            </td>
-                            <td>
-                                <!-- Expiry Date -->
-                                <div class="form-group">
-                                    <label for="datepicker">Expiry Date:</label>
-
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
-                            </td>
-                        </tr>
 
 
                     </table>

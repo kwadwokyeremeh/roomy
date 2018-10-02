@@ -26,6 +26,7 @@ class HostellerCreateNewPasswordNotification extends Notification implements Sho
         $this->token = $token;
         $this->hosteller = $hosteller;
         $this->onQueue('notifications');
+        $this->delay(now()->addMinutes(10));
     }
 
     /**

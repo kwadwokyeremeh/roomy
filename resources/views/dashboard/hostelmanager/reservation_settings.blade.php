@@ -30,13 +30,13 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" id="reservation">
+                            <input type="text" class="form-control pull-right" id="reservation" value="{{$hostel->reservationDate?? '14/02/2018-16/10/2018'}}">
                         </div>
                         <!-- /.input group -->
                     </div>
             <!-- /.form group -->
                     <p>Set the duration for which a reserved bed can last or expire. The default is 3 days</p>
-                    <input type="number" min="1" placeholder="3 days">
+                    <input type="number" min="1" class="form-control" placeholder="3 days" value="{{$hostel->reservationDate ?? '3'}}">
                 </div>
         </div>
 @endsection
@@ -45,9 +45,9 @@
 <script src="{{asset('/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 <script>
     //Date range picker
-    $('#reservation').daterangepicker()
+    $('#reservation').daterangepicker();
     //Date range picker with time picker
-    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
     //Date range as a button
     $('#daterange-btn').daterangepicker(
         {
@@ -65,7 +65,7 @@
         function (start, end) {
             $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
         }
-    )
+    );
 
     //Date picker
     $('#datepicker').datepicker({

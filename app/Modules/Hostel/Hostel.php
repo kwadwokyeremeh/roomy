@@ -5,6 +5,7 @@ namespace myRoommie\Modules\Hostel;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use myRoommie\Events\Hostel\HostelSaved;
 use myRoommie\Hosteller;
@@ -72,6 +73,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Reservation[] $reservations
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  */
 class Hostel extends Model implements HasMedia
 {
@@ -413,6 +415,11 @@ class Hostel extends Model implements HasMedia
                     ->width(370)
                     ->height(270)
                     ->sharpen(10);
+                $this->addMediaConversion('front-tiny')
+                    //->watermark(public_path().'/myroommie.png')
+                    ->width(32)
+                    ->height(32)
+                    ->sharpen(10);
 
                 $this->addMediaConversion('slider-front')
                     ->watermark(public_path().'/myroommie.png')
@@ -432,6 +439,12 @@ class Hostel extends Model implements HasMedia
                     ->width(1920)
                     ->height(940)
                     ->sharpen(10);
+                $this->addMediaConversion('left-thumb')
+                    //->watermark(public_path().'/myroommie.png')
+                    ->width(370)
+                    ->height(270)
+                    ->sharpen(10);
+
             });
 
 
@@ -444,6 +457,13 @@ class Hostel extends Model implements HasMedia
                     ->width(1920)
                     ->height(940)
                     ->sharpen(10);
+
+                $this->addMediaConversion('right-thumb')
+                    //->watermark(public_path().'/myroommie.png')
+                    ->width(370)
+                    ->height(270)
+                    ->sharpen(10);
+
 
             });
 
@@ -466,5 +486,23 @@ class Hostel extends Model implements HasMedia
 
     }
 
+
+    /*
+     * Scope of a query only to include published hostels
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     *
+     * */
+
+    public function scopePublished($query)
+    {
+        if (App::environment() =='local'){
+            $publish = false;
+        }else{
+            $publish = true;
+        }
+        return $query->where('published','=',$publish);
+    }
 
 }

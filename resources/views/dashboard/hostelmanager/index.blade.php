@@ -157,7 +157,9 @@
                 </div>
                 <!-- /.box-footer -->
             </div>
-            <!-- /.box --><!-- TABLE: LATEST RESERVED ROOMS -->
+            <!-- /.box -->
+            @if($hostel->reservations->count() !=0)
+            <!-- TABLE: LATEST RESERVED ROOMS -->
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Latest Reserved Beds</h3>
@@ -174,69 +176,26 @@
                         <table class="table no-margin">
                             <thead>
                             <tr>
-                                <th>Reserved ID</th>
-                                <th>Name</th>
-                                <th></th>
-                                <th>Room Details</th>
+                                <th>Reservation ID</th>
+                                <th>Prospective Name</th>
+                                <th>Room </th>
+                                <th>Room Type</th>
+                                <th>Room Sex Type</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($hostel->reservations->sortBy('created_at')->take(10) as $reservation)
                             <tr>
-                                <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                <td>Call of Duty IV</td>
-                                <td><span class="label label-success">Shipped</span></td>
+                                <td><a href="pages/examples/invoice.html">{{$reservation->token}}</a></td>
+                                <td>{{$reservation->user->fullName}}</td>
+                                <td><span class="#">{{($reservation->room->name) ? ($reservation->room->name):($reservation->room->number)}}</span></td>
                                 <td>
-                                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                                    <div class="sparkbar" data-color="#00a65a">{{$reservation->room->roomDescription->room_type}}</div>
                                 </td>
+                                <td><span class="#">{{$reservation->room->sex_type}}</span></td>
                             </tr>
-                            <tr>
-                                <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                <td>Samsung Smart TV</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                <td>iPhone 6 Plus</td>
-                                <td><span class="label label-danger">Delivered</span></td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                <td>Samsung Smart TV</td>
-                                <td><span class="label label-info">Processing</span></td>
-                                <td>
-                                    <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                <td>Samsung Smart TV</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                <td>iPhone 6 Plus</td>
-                                <td><span class="label label-danger">Delivered</span></td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                <td>Call of Duty IV</td>
-                                <td><span class="label label-success">Shipped</span></td>
-                                <td>
-                                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                </td>
-                            </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -244,11 +203,12 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
-                   <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Payments</a>
+                   <a href="{{url('hosteller/'.$hostel->slug.'/reservedBedList')}}" class="btn btn-sm btn-default btn-flat pull-right">View All Reservations</a>
                 </div>
                 <!-- /.box-footer -->
             </div>
             <!-- /.box -->
+            @endif
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Payment Summary</h3>

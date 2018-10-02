@@ -64,20 +64,23 @@ class HostelDetailsStep extends Step
 
 
 
+
         /*
          * Associated the created hostellers with the the just
          * created hostel
          *
          * */
-        $hosteller->hostel()->attach($hostel->id,['creation_state'=>'CREATOR']);
-        if (session()->has('hostellersId')) {
+        Hosteller::find($hosteller)->hostel()->attach($hostel->id,['creation_state'=>'CREATOR']);
 
-            $hostellers = session()->get('hostellersId');
-            foreach ($hostellers as $host) {
-                $hostellier = Hosteller::find($host);
-                $hostellier->hostel()->attach($hostel->id, ['creation_state' => 'CREATED']);
+
+            $hostellers = DB::table('hostellers_creation_states')->where(['creator' => $hosteller])->get();
+            foreach ($hostellers->pluck('created') as $host) {
+                Hosteller::find($host)->hostel()->attach($hostel->id, ['creation_state' => 'CREATED']);
             }
-        }
+        DB::table('hostellers_creation_states')->where(['creator' => $hosteller])->delete();
+
+
+
         /*$assocHosteller = new HostellerHostel;
         $auth =[
             'hosteller_id' => \auth('hosteller')->id(),

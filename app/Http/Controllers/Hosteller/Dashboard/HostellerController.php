@@ -1,11 +1,13 @@
 <?php
 
-namespace myRoommie\Http\Controllers\Hosteller;
+namespace myRoommie\Http\Controllers\Hosteller\Dashboard;
 
-use Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use myRoommie\Hosteller;
 use myRoommie\Http\Controllers\Controller;
+use myRoommie\Http\Middleware\CheckHostellerStatus;
 use myRoommie\Modules\Hostel\Hostel;
 
 class HostellerController extends Controller
@@ -13,13 +15,13 @@ class HostellerController extends Controller
     //
     public function __construct()
     {
-        $this->middleware(['auth:hosteller','hvs']);
+        $this->middleware(['auth:hosteller']);
     }
 
     public function lockscreen()
     {
         $hosteller = Hosteller::findOrFail(auth('hosteller')->id());
-        if(count($hosteller->hostel) == 1){
+        if($hosteller->hostel->count() == 1){
             $hostel =$hosteller->hostel()->firstOrFail();
             return view('dashboard.hostelmanager.index',compact('hostel'));
         }
