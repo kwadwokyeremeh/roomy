@@ -74,6 +74,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Reservation[] $reservations
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Hostel published()
  */
 class Hostel extends Model implements HasMedia
 {
@@ -497,6 +498,7 @@ class Hostel extends Model implements HasMedia
 
     public function scopePublished($query)
     {
+
         if (App::environment() =='local'){
             $publish = false;
         }else{

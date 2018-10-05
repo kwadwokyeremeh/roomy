@@ -5,6 +5,8 @@ namespace myRoommie\Providers;
 
 use myRoommie\Hosteller;
 
+use myRoommie\Modules\Hostel\Room;
+use myRoommie\Observers\RoomObserver;
 use myRoommie\User;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Observers\UserObserver;
@@ -33,6 +35,7 @@ class EloquentModelServiceProvider extends ServiceProvider
         Hostel::observe(HostelObserver::class);
         Hosteller::observe(HostellerObserver::class);
         HostellerHostel::observe(HostellerHostelObserver::class);
+        Room::observe(RoomObserver::class);
 
     }
 

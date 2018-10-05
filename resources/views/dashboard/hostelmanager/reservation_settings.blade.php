@@ -22,21 +22,63 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <p>Set the date-time period for which you want students to reserve a bed in your hostel</p>
+                        <p>Set the date-time period for which you want students to reserve a bed in your hostel in an academic year</p>
                         <p>The default date range is between mid February to mid September</p>
                         <label>Date range:</label>
-
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
+                        <br>
+                        @if($errors->any())
+                            @foreach($errors as $error)
+                                {{$error}}
+                            @endforeach
+                        @endif
+                        @if(session()->has('date.success'))
+                            <span class="text text-success">
+                            <strong>Reservation date updated Successfully</strong>
+                        </span><br>
+                        @endif
+                        @if(isset($hostel->reservationDate->reservation_start_date))
+                        <span class="text text-info">
+                            <label for="" class="label label-info">Start Date:</label> {{\Carbon\Carbon::parse($hostel->reservationDate->reservation_start_date)->toDayDateTimeString()??''}}
+                        </span><br>
+                        <span class="text text-info">
+                            <label for="" class="label label-info">End Date:</label> {{\Carbon\Carbon::parse($hostel->reservationDate->reservation_end_date)->toDayDateTimeString()??''}}
+                        </span>
+                        @endif
+                        <form action="{{url('hosteller/'.$hostel->slug.'/updateDate')}}" method="post">
+                            @csrf
+                            <div class="input-group margin">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control" id="reservation" name="date" required>
+                                <span class="input-group-btn">
+                      <button type="submit" class="btn btn-info btn-flat">Update</button>
+                    </span>
                             </div>
-                            <input type="text" class="form-control pull-right" id="reservation" value="{{$hostel->reservationDate?? '14/02/2018-16/10/2018'}}">
-                        </div>
+                        </form>
                         <!-- /.input group -->
                     </div>
             <!-- /.form group -->
                     <p>Set the duration for which a reserved bed can last or expire. The default is 3 days</p>
-                    <input type="number" min="1" class="form-control" placeholder="3 days" value="{{$hostel->reservationDate ?? '3'}}">
+
+                    @if(session()->has('duration.success'))
+                        <span class="text text-success">
+                            <strong>Duration updated Successfully</strong>
+                        </span>
+                    @endif
+                    <form action="{{url('hosteller/'.$hostel->slug.'/updateDuration')}}" method="post">
+                        @csrf
+                        <div class="input-group margin">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="number" min="1" class="form-control" placeholder="3 days" name="duration" value="{{$hostel->reservationDate->reservation_duration ?? ''}}" required>
+                            <span class="input-group-btn">
+                      <button type="submit" class="btn btn-info btn-flat">Update</button>
+                    </span>
+                        </div>
+                    </form>
+
                 </div>
         </div>
 @endsection

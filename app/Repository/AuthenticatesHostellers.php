@@ -9,7 +9,7 @@ use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesHostellers
 {
-    use RedirectsUsers, ThrottlesHostellers;
+    use RedirectsHostellers, ThrottlesHostellers;
 
     /**
      * Show the application's login form.

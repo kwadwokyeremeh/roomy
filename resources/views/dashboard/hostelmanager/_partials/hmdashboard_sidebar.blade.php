@@ -40,7 +40,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{'/hosteller/'.$hostel->slug.'/editContent'}}">Edit Content</a></li>
-                    <li><a href="{{'/hosteller/'.$hostel->slug.'/color'}}">Color Picker</a></li>
+                    {{--<li><a href="{{'/hosteller/'.$hostel->slug.'/color'}}">Color Picker</a></li>--}}
                 </ul>
             </li>
 

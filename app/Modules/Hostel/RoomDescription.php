@@ -27,6 +27,14 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomDescription whereRoomType($value)
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Models\Media[] $media
+ * @property string|null $deleted_at
+ * @property-read mixed $urls
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Hostel\RoomDescription onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\RoomDescription whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Hostel\RoomDescription withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Hostel\RoomDescription withoutTrashed()
  */
 class RoomDescription extends Model  implements HasMedia
 {
@@ -115,5 +123,24 @@ class RoomDescription extends Model  implements HasMedia
             });
     }
 
+
+    public function getUrlsAttribute()
+    {
+        $roomType= $this->getMedia('roomType')->map(function (Media $media){
+        return $media->getUrl('room_type');
+    });
+
+        return $roomType;
+        //return $this->getFirstMediaUrl('roomType','room_type');
+    }
+
+    public function removeItemById($collectionName)
+    {
+        $this->getMedia($collectionName)
+            ->reject(function (Media $currentMediaItem) {
+                return in_array($currentMediaItem->id, $this->getMedia('roomType')->toArray());
+            })
+            ;
+ }
 
 }

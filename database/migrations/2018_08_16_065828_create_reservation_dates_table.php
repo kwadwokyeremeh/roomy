@@ -18,11 +18,11 @@ class CreateReservationDatesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('hostel_id');
             //$table->year('academic_year');
-            $table->tinyInteger('reservation_duration');
-            $table->dateTime('reservation_start_date');
-            $table->dateTime('reservation_end_date');
-            $table->dateTime('booking_start_date');
-            $table->dateTime('booking_end_date');
+            $table->tinyInteger('reservation_duration')->nullable();
+            $table->dateTime('reservation_start_date')->nullable();
+            $table->dateTime('reservation_end_date')->nullable();
+            $table->dateTime('booking_start_date')->nullable();
+            $table->dateTime('booking_end_date')->nullable();
             $table->timestamps();
 
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');

@@ -38,7 +38,8 @@ class HostelRegistrationController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:hosteller',CompleteHostelRegistrationProcess::class])->except('logout','destroy');
+        $this->middleware(['auth:hosteller',])->except('logout','destroy');
+        $this->middleware(CompleteHostelRegistrationProcess::class);
         /*$this->middleware('chrp');*/
 
 

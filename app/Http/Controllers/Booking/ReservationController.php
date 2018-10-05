@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use myRoommie\Modules\Booking\Reservation;
 use Illuminate\Http\Request;
 use myRoommie\Modules\Hostel\Room;
@@ -103,16 +104,11 @@ class ReservationController extends Controller
 
         }
 
-        $this->validate($request,[
-            'selectedRoom' => ['numeric','required',
-
-                ]
-                ],
-            ['required' => 'Please select a room']);
+        //$this->validate($request,['selectedRoom' => ['numeric','required',]], ['required' => 'Please select a room']);
         $v = Validator::make($request->all(),
             ['selectedRoom' => ['numeric','required',]],
             ['required' => 'Please select a room']);
-
+        $v->validate();
         $v->after(function ($v){
                 if ($this->reservation->isRoomFull(\request(['selectedRoom'])) == true){
                     $v->errors()->add('selectedRoom', 'Sorry the selected room is full');
@@ -266,7 +262,6 @@ class ReservationController extends Controller
 
     public function proceedToMakePayment(Request $request,$hostelName,$room_token,Reservation $reservation)
     {
-
         if (URL::hasValidSignature($request)){
             $this->userReservation =$this->reservation->whereUserId(auth('web')->id())->latest()->firstOrFail();
             $hostel =Hostel::whereId($this->userReservation['hostel_id'])->firstOrFail();

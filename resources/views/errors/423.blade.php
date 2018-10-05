@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('main-content')
-
+@php
+$hostel= \myRoommie\Modules\Hostel\Hostel::whereSlug(request()->hostelName)->first();
+@endphp
     <div class="vk-404page">
         <section class="site-content-area">
             <div class="container-fluid">
@@ -11,7 +13,7 @@
                             <div class="vk-about-banner-destop">
                                 <div class="vk-banner-img"></div>
                                 <div class="vk-about-banner-caption">
-                                    <h2>Reservations for this hostel is closed</h2>
+                                    <h2>Reservations for {{$hostel->name}} is closed</h2>
                                     <h3>
                                         <a href="#">Page</a>
                                         <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
@@ -25,9 +27,9 @@
 
                     <div class="vk-404page-content">
                         <div class="container">
-                            <p>Notify me when {{request()->hostelName}} opens reservations
+                            <p>Notify me when {{$hostel->name}} opens reservations
 
-                            <br>Go back to  <a href="{{route('hostel',request()->hostelName)}}"> {{request()->hostelName}} </a></p>
+                            <br>Go back to  <a href="{{route('hostel',request()->hostelName)}}"> {{$hostel->name}} </a></p>
 
                         </div>
                         <div class="vk-coming-soon-email">

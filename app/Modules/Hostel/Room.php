@@ -35,9 +35,17 @@ use myRoommie\Modules\Booking\Reservation;
  * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereStatus($value)
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\myRoommie\Modules\Booking\Booking[] $bookings
+ * @property string|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Hostel\Room onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\myRoommie\Modules\Hostel\Room whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Hostel\Room withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\myRoommie\Modules\Hostel\Room withoutTrashed()
  */
 class Room extends Model
 {
+
 
     protected $fillable =['sex_type'];
     /**
@@ -156,6 +164,24 @@ class Room extends Model
         }
 
         $this->attributes['sex_type'] = $v;
+    }
+    /**
+     * Set the genderlity of a room.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function changeSexType($value)
+    {
+        if ($value == 'Male' || $value=='M'){
+            $v = 'M';
+        }elseif ($value == 'Female' || $value=='F'){
+            $v = 'F';
+        }else{
+            $v = null;
+        }
+
+        return $v;
     }
 
     public function isBooked()
