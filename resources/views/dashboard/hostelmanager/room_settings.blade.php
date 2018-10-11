@@ -33,14 +33,21 @@
                             <strong>Room Description updated successfully</strong>
                         </span>
                     @endif
-                        @if(session()->has('delete.roomDesc.success'))
-                            <span class="text text-success">
+
+                    @if(session()->has('roomDesc.added.success'))
+                        <span class="text text-success">
+                            <strong>Room Description added successfully</strong>
+                            <a href="{{url('hosteller/'.$hostel->slug.'/editContent#rm'.session('token'))}}"><em>Please click here proceed to add sample images of the room description</em></a>
+                        </span>
+                    @endif
+                    @if(session()->has('delete.roomDesc.success'))
+                        <span class="text text-success">
                             <strong>Room Description deleted successfully</strong>
                         </span>
-                        @endif
+                    @endif
                     @if($errors->any())
                         @foreach($errors->all() as $e)
-                        <span class="text text-danger">
+                            <span class="text text-danger">
                             <strong>{{$e}}</strong>
                         </span>
                         @endforeach
@@ -78,7 +85,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th><input type="button" class="btn btn-flat bg-maroon-gradient" id="add" value="Add More"></th>
+                                <th><input type="button" class="btn btn-flat bg-maroon-gradient" id="addRoomDescription" value="Add More"></th>
                             </tr>
                         </table>
                     </form>
@@ -97,6 +104,8 @@
                 <h3 class="box-title">{{$block->name}}</h3>
 
                 <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-flat bg-maroon-gradient addFloor" >
+                        Add Floor</button>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
                         <i class="fa fa-minus"></i></button>
                     {{--<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
@@ -105,18 +114,16 @@
             </div>
             {{--Floors--}}
             @foreach($block->floors as $floor)
-            <div class="box-body">
-                @if(session()->has('room.update.success'))
-                    <span class="text text-success">
+                <div class="box-body">
+                    @if(session()->has('room.update.success'))
+                        <span class="text text-success">
                             <strong>Room updated successfully</strong>
                         </span>
-                @endif
-                <h4>{{$floor->name}}</h4>
-                {{--Rooms--}}
-                @foreach($floor->rooms as $room)
-                    <div class="updateRoom">
-                        <form action="{{url('hosteller/'.$hostel->slug.'/updateRoom')}}" method="post"  class="col-xs-4 col-sm-2" style="padding:2px;" >
-                            @csrf
+                    @endif
+                    <h4>{{$floor->name}}</h4>
+                    {{--Rooms--}}
+                    @foreach($floor->rooms as $room)
+                        <div class="updateRoom col-xs-4 col-sm-2" style="padding:2px;">
 
                             <input type="hidden" name="room" value="{{$room->id}}">
                             <input type="text" class="form-control" title="" name="roomName" value="{{$room->name??$room->number}}">
@@ -136,21 +143,34 @@
                             <div class="help-block center-block">
                                 <input type="button" class="btn btn-flat bg-purple update" data-toggle="modal" id="{{$room->id}}" data-target="#modal-default" value="Update">
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
-                @endforeach
-                {{--.rooms--}}
+                    @endforeach
+                    {{--.rooms--}}
+                </div>
+        @endforeach
+        {{--.floors--}}
+        <!-- /.box-body -->
+            <div class="newFloor">
+
             </div>
-            @endforeach
-            {{--.floors--}}
-            <!-- /.box-body -->
             <div class="box-footer">
                 {{$block->name}}
             </div>
             <!-- /.box-footer-->
         </div>
     @endforeach
+
+    <form class="newHouse">
+        <div class="newBlock">
+
+        </div>
+        <div>
+            <button type="button" class="addBlock btn btn-block btn-outline-success">Add Block</button>
+        </div>
+    </form>
+
+
     {{--.Edit Rooms--}}
     <div class="modal modal-danger fade in" id="modal-danger">
         <div class="modal-dialog">
@@ -221,7 +241,9 @@
         {{--//Dynamically Add or Remove input fields in PHP with JQuery--}}
         $(document).ready(function(){
             var i=1;
-            $('#add').click(function(){
+            var roomCounter = {{$hostel->rooms->count()}} +1;
+            var blockCounter ={{$hostel->blocks->count()+1}}
+            $('#addRoomDescription').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'">' +
                     '                            <td><input type="text" class="form-control input-sm" name="roomType[]" required title="roomType"  placeholder="Room Type"></td>' +
@@ -232,6 +254,71 @@
                     '                        </tr>');
             });
 
+            /*
+            * Add Block
+            * */
+            $(document).on('click','.addBlock',function () {
+                $(this).closest("form.newHouse").find("div.newBlock").append('<div class="box" id="row'+i+'">' +
+                    '    <div class="box-header with-border">' +
+                    '        <h3 class="box-title"><input type="text" class="form-control" placeholder="Block '+blockCounter+'" required></h3>' +
+                    '' +
+                    '        <div class="box-tools pull-right">' +
+                    '            <button type="button" class="btn btn-flat bg-maroon-gradient addFloor" >' +
+                    '                Add Floor</button>' +
+                    '            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">' +
+                    '                <i class="fa fa-minus"></i></button>' +
+                    '            <button type="button" class="btn btn-box-tool btn_remove" id="'+i+'" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">' +
+                    '                <i class="fa fa-times"></i></button>' +
+                    '        </div>' +
+                    '    </div>' +
+                    '    <div class="box-body">' +
+                    '        <div class="newFloor">' +
+                    '' +
+                    '        </div>' +
+                    '    </div>' +
+                    '</div>');
+
+                blockCounter++
+            });
+
+            /*
+            *   Add Floor
+            * */
+            $(document).on('click','.addFloor',function () {
+                $(this).closest("div.box").find("div.newFloor").append('<div class="box-body">' +
+                    '    <div class="input-group margin">' +
+                    '        <input type="text" placeholder="Floor Name" class="form-control" required>' +
+                    '        <span class="input-group-btn">' +
+                    '                      <button type="button" class="btn btn-info btn-flat addRoom">Add Room</button>' +
+                    '                      <button type="submit" class="btn btn-success btn-flat">Save </button>' +
+                    '                    </span>' +
+                    '    </div>' +
+                    '    <div class="newRooms">' +
+                    '' +
+                    '    </div>' +
+                    '</div>');
+            });
+
+            $(document).on('click','.addRoom', function () {
+               $(this).closest('div.box-body').find('div.newRooms').append('<div class="col-xs-4 col-sm-2" style="padding:2px;">' +
+                   '    <input type="hidden" name="room" value="">' +
+                   '    <input type="text" class="form-control" title="" name="roomName" value="'+roomCounter+'"  placeholder="Room '+roomCounter+'">' +
+                   '    <select name="roomType" id="" title="" class="form-control" required>' +
+                       '<option>Room Type</option> '+
+                @foreach($hostel->roomDescription as $roomDesc)
+
+                       '<option value="{{$roomDesc->id}}">{{$roomDesc->room_type}}</option>' +
+                @endforeach
+                   '    </select>' +
+                   '    <select name="sexType" id="" title="" class="form-control">' +
+                   '        <option value="">Gender</option>' +
+                   '        <option value="">No Gender</option>' +
+                   '        <option value="F">Female</option>' +
+                   '        <option value="M">Male</option>' +
+                   '    </select>' +
+                   '</div>');
+                roomCounter++;
+            });
 
             $(document).on('click', '.btn_remove', function(){
                 var button_id = $(this).attr("id");
@@ -239,14 +326,14 @@
             });
 
             $(document).on('click', '.update', function () {
-               var room =$(this).closest("div.updateRoom").find("input[name='room']").val();
-               var roomType =$(this).closest("div.updateRoom").find("select[name='roomType']").val();
-               var roomName =$(this).closest("div.updateRoom").find("input[name='roomName']").val();
-               var sexType =$(this).closest("div.updateRoom").find("select[name='sexType']").val();
-               $('#room').val(room);
-               $('#roomType').val(roomType);
-               $('#roomName').val(roomName);
-               $('#sexType').val(sexType);
+                var room =$(this).closest("div.updateRoom").find("input[name='room']").val();
+                var roomType =$(this).closest("div.updateRoom").find("select[name='roomType']").val();
+                var roomName =$(this).closest("div.updateRoom").find("input[name='roomName']").val();
+                var sexType =$(this).closest("div.updateRoom").find("select[name='sexType']").val();
+                $('#room').val(room);
+                $('#roomType').val(roomType);
+                $('#roomName').val(roomName);
+                $('#sexType').val(sexType);
             });
 
             $(document).on('click','.edit',function () {

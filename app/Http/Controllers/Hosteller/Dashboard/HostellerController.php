@@ -15,14 +15,18 @@ use myRoommie\Http\Middleware\CheckHostellerStatus;
 use myRoommie\Modules\Hostel\Hostel;
 use myRoommie\Modules\Hostel\Room;
 use myRoommie\Rules\ExplodeDate;
+use myRoommie\User;
 use Spatie\MediaLibrary\Models\Media;
+use myRoommie\Events\UserReservationDeleted;
 
 class HostellerController extends Controller
 {
+
     //
     public function __construct()
     {
         $this->middleware(['auth:hosteller']);
+
     }
 
     /**
@@ -53,7 +57,7 @@ class HostellerController extends Controller
      */
     public function index($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.index',compact('hostel'));
     }
 
@@ -86,7 +90,7 @@ class HostellerController extends Controller
      */
     public function updateDate(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -118,7 +122,7 @@ class HostellerController extends Controller
      */
     public function updateDuration(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -142,7 +146,7 @@ class HostellerController extends Controller
     public function editContent($hostelName)
     {
 
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -160,7 +164,7 @@ class HostellerController extends Controller
 
     public function updateContent(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -222,7 +226,7 @@ class HostellerController extends Controller
 
     public function deleteRoomDescMedia(Request $request,$hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -255,7 +259,7 @@ class HostellerController extends Controller
      */
     public function updateRoomDescMedia(Request $request,$hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -285,7 +289,7 @@ class HostellerController extends Controller
      */
     public function deleteMisc(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -307,7 +311,7 @@ class HostellerController extends Controller
      */
     public function updateMisc(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -327,7 +331,7 @@ class HostellerController extends Controller
      */
     public function color($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -342,7 +346,7 @@ class HostellerController extends Controller
      */
     public function roomSettings($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -360,7 +364,7 @@ class HostellerController extends Controller
 
     public function updateRoomDesc(Request $request,$hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -403,7 +407,7 @@ class HostellerController extends Controller
      */
     public function createRoomDesc(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -429,9 +433,10 @@ class HostellerController extends Controller
             ]);
         }
             $hostel->roomDescription()->insert($arr);
+        $token =collect($arr)->pluck('room_token')->first();
 
-        session()->flash('success.roomDesc');
-        return redirect()->back();
+        session()->flash('roomDesc.added.success');
+        return redirect()->back()->with('token',$token);
 
     }
 
@@ -446,7 +451,7 @@ class HostellerController extends Controller
 
     public function deleteRoomDesc(Request $request, $hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -467,13 +472,13 @@ class HostellerController extends Controller
      * Update the specified resource in.
      *
      * @param  \Illuminate\Http\Request  $request
-     *
+     * @param  Room $room
      * @param $hostelName
      * @return \Illuminate\Http\Response
      */
     public function updateRoom(Request $request, $hostelName, Room $room)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -516,7 +521,7 @@ class HostellerController extends Controller
      */
     public function paymentSettings($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -531,7 +536,7 @@ class HostellerController extends Controller
      */
     public function occupants($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.occupants',compact('hostel'));
     }
 
@@ -543,7 +548,7 @@ class HostellerController extends Controller
      */
     public function allotABed($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -559,7 +564,7 @@ class HostellerController extends Controller
      */
     public function vacateAnOccupant($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -575,7 +580,7 @@ class HostellerController extends Controller
   public function changeOccupantRoom($hostelName)
     {
 
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -591,7 +596,7 @@ class HostellerController extends Controller
      */
     public function paidList($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -607,8 +612,40 @@ class HostellerController extends Controller
      */
     public function reservedBedList($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.reserved_bed_list',compact('hostel'));
+    }
+
+    /**
+     * Un-reserve a user reservation
+     * Same as edit a reservation
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  $hostelName
+     * @return \Illuminate\Http\Response
+     *
+     **/
+    public function unReserveBed($hostelName, Request $request)
+    {
+        $this->validate($request,['prospectiveOccupant'=> 'required|email','reason'=>'required|string|min:10']);
+        $reason = $request['reason'];
+        $hostel = Hosteller::getHostel($hostelName);
+        $user = User::whereEmail($request['prospectiveOccupant'])->firstOrFail();
+
+        $unReserveBed = $hostel->reservations()->whereUserId($user->id)->latest()->firstOrFail();
+        //Count if the number of occupants in the room is zero, unset the room gender
+        $room =$unReserveBed['room_id'];
+        event(new UserReservationDeleted($unReserveBed,$reason));
+        $unReserveBed->delete();
+        $count = $hostel->reservations()->whereRoomId($room)->count();
+        if ($count == 0){
+            $hostel->rooms()->whereId($room)->update(['sex_type'=>null]);
+        }
+
+        session()->flash('unreserve','You have successfully unreserved '.$user->full_name.' \'s bed');
+
+        return redirect()->back();
+
     }
 
 
@@ -620,7 +657,7 @@ class HostellerController extends Controller
      */
     public function reviewsAndComments($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -636,7 +673,7 @@ class HostellerController extends Controller
      */
     public function owner($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal') || Gate::allows('isManager')){
             return view('errors.401',compact('hostel'));
         }
@@ -652,7 +689,7 @@ class HostellerController extends Controller
      */
     public function manager($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -668,7 +705,7 @@ class HostellerController extends Controller
      */
     public function portal($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.hostelportal',compact('hostel'));
     }
 
@@ -681,7 +718,7 @@ class HostellerController extends Controller
      */
     public function docs($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.docs',compact('hostel'));
     }
 
@@ -695,7 +732,7 @@ class HostellerController extends Controller
      */
     public function uploads($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.uploads',compact('hostel'));
     }
 
@@ -709,7 +746,7 @@ class HostellerController extends Controller
      */
     public function notice($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.notice',compact('hostel'));
     }
 
@@ -721,7 +758,7 @@ class HostellerController extends Controller
      */
     public function training($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.training',compact('hostel'));
     }
 
@@ -734,7 +771,7 @@ class HostellerController extends Controller
      */
     public function faqs($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.faqs',compact('hostel'));
     }
 
@@ -747,7 +784,7 @@ class HostellerController extends Controller
      */
     public function roomCancellationPolicy($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.room_cancellation',compact('hostel'));
     }
 
@@ -760,7 +797,7 @@ class HostellerController extends Controller
      */
     public function policy($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.hostel_policy',compact('hostel'));
     }
 
@@ -773,7 +810,7 @@ class HostellerController extends Controller
      */
     public function termOfService($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.terms_of_service',compact('hostel'));
     }
 
@@ -786,7 +823,7 @@ class HostellerController extends Controller
      */
     public function archives($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.archives',compact('hostel'));
     }
 
@@ -800,7 +837,7 @@ class HostellerController extends Controller
     public function addHostel($hostelName)
     {
 
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         if (Gate::allows('isPortal')){
             return view('errors.401',compact('hostel'));
         }
@@ -816,7 +853,7 @@ class HostellerController extends Controller
      */
 public function inbox($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.mailbox.mailbox',compact('hostel'));
     }
 
@@ -829,7 +866,7 @@ public function inbox($hostelName)
      */
 public function read($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.mailbox.read-mail',compact('hostel'));
     }
 
@@ -842,7 +879,7 @@ public function read($hostelName)
      */
 public function compose($hostelName)
     {
-        $hostel = Hosteller::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+        $hostel = Hosteller::getHostel($hostelName);
         return view('dashboard.hostelmanager.mailbox.compose',compact('hostel'));
     }
 

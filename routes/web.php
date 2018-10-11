@@ -137,6 +137,7 @@ Route::middleware('hvs')->group(function (){
     Route::get('{hostelName}/changeOccupantRoom', 'Hosteller\Dashboard\HostellerController@changeOccupantRoom');
     Route::get('{hostelName}/paidList', 'Hosteller\Dashboard\HostellerController@paidList');
     Route::get('{hostelName}/reservedBedList', 'Hosteller\Dashboard\HostellerController@reservedBedList');
+    Route::post('{hostelName}/reservedBedList', 'Hosteller\Dashboard\HostellerController@unReserveBed');
     Route::get('{hostelName}/r&c', 'Hosteller\Dashboard\HostellerController@reviewsAndComments');
     Route::get('{hostelName}/inbox', 'Hosteller\Dashboard\HostellerController@inbox');
     Route::get('{hostelName}/compose', 'Hosteller\Dashboard\HostellerController@compose');

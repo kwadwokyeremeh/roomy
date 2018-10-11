@@ -77,6 +77,9 @@ class EventServiceProvider extends ServiceProvider
         'myRoommie\Events\Hostel\HostelSaved'   =>[
             'myRoommie\Listeners\Hostel\HostelSavedListener'
         ],
+        'myRoommie\Events\UserReservationDeleted'   =>[
+            'myRoommie\Listeners\User\ReservationDeletedListener'
+        ]
     ];
 
     /**

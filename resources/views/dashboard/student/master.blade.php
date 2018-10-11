@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-@include ('dashboard.student._partials.st_head')
+@include('dashboard.student._partials.st_head')
 
-<body class="hold-transition skin-red-light sidebar-mini">
+<body class="hold-transition skin-yellow-light sidebar-mini">
 <div class="wrapper">
 
     <!-- Main Header -->
-    @include ('dashboard.student._partials.st_header')
-    <!-- Left side column. contains the logo and sidebar -->
-    @include ('dashboard.student._partials.st_sidebar')'
+    @include('dashboard.student._partials.st_header')
+<!-- Left side column. contains the logo and sidebar -->
+@include('dashboard.student._partials.st_sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @include ('dashboard.student._partials.st_mainNav')
-        <!-- Content Header (Page header) -->
+    @include('dashboard.student._partials.st_mainNav')
+    <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 Dashboard Summary
@@ -28,7 +28,9 @@
         <!-- Main content -->
         <section class="content container-fluid">
 
-            @yield('main-content')
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
 
         </section>
         <!-- /.content -->
@@ -36,11 +38,11 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    @include ('dashboard.student._partials.st_footer')
+@include('dashboard.student._partials.st_footer')
 
-    <!-- Control Sidebar -->
-    @include ('dashboard.student._partials.st_sidepane')
-    <!-- /.control-sidebar -->
+<!-- Control Sidebar -->
+    @include('dashboard.student._partials.st_sidepane')
+<!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
@@ -55,7 +57,6 @@
 <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
-<script src="{{asset('/dist/js/pages/dashboard2.js')}}"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

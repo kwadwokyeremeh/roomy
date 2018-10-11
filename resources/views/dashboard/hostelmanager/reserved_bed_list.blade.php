@@ -29,13 +29,25 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
+                    @if(session()->has('unreserve'))
+                        <span class="text text-success">
+                            <strong>{{session('unreserve')}}</strong>
+                        </span>
+                    @endif
+                        @if($errors->any())
+                            @foreach($errors->all() as $e)
+                                <span class="text text-danger">
+                            <strong>{{$e}}</strong>
+                        </span>
+                            @endforeach
+                        @endif
                     <table class="table table-hover">
                         <tr>
                             <th>Prospective</th>
                             <th>Occupant details</th>
                             <th>Room Details</th>
                             <th>Amount to pay</th>
-                            <th></th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         </tr>
                         @foreach($hostel->reservations as $reservation)
                         <tr style="border-bottom: dashed; border-color: #3affff;">
@@ -59,20 +71,27 @@
                             </td>
                             <td>
                                 <!-- Expiry Date -->
-                                <div class="form-group">
+                                <form class="form-group">
+                                    @csrf
+                                    <textarea name="reason" class="form-control form-control-plaintext" placeholder="Reasons for unreserving the bed" required id="" cols="30" rows="2"></textarea>
                                     <label for="datepicker">Expiry Date:</label>
 
                                     <div class="input-group date">
-                                        <input type="text" class="form-control pull-right" id="datepicker" value="{{$reservation->end_date}}">
+                                        <input type="text" class="form-control pull-right" id="datepicker" value="{{\Illuminate\Support\Carbon::parse($reservation->end_date)->toDayDateTimeString()}}" disabled>
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
                                     </div>
                                     <!-- /.input group -->
-                                </div>
+                                    <p>&nbsp;</p>
+                                    <input type="hidden" name="prospectiveOccupant" value="{{$reservation->user->email}}">
+                                    <button type="submit" formaction="{{url('/hosteller/'.$hostel->slug.'/reservedBedList')}}" formmethod="post" class="btn btn-block btn-dropbox btn-flat">Unreserve Bed</button>
+                                </form>
                                 <!-- /.form group -->
-                                <p>&nbsp;</p>
-                                <button type="button" class="btn btn-block btn-dropbox btn-flat">Unreserve Room</button>
+
+
+
+
                             </td>
                         </tr>
                         @endforeach

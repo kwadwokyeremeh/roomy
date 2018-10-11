@@ -30,13 +30,17 @@ class CompleteHostelRegistrationProcess
     public function handle($request, Closure $next)
     {
 
-        $hostel_registration =HostelRegistration::where(['hosteller_id'=>Auth::guard('hosteller')->id()])->latest()->first();
+        $hostel_registration =HostelRegistration::whereHostellerId(Auth::guard('hosteller')->id())->latest()->first();
         $step = $request->getRequestUri();
 
         switch ($step){
             case $step =='/hosteller/hostelRegistration/08':
                 if (! isset($hostel_registration->confirmation)){
                     return redirect()->intended(route('hostel.registration','00'));
+                }
+                elseif ($hostel_registration->confirmation ==true && $hostel_registration->payment == true  && $hostel_registration->policies == true   && $hostel_registration->layout_n_pricing == true && $hostel_registration->amenities == true && $hostel_registration->add_media == true)
+                {
+                    return abort(499);
                 }
                 elseif ($hostel_registration->confirmation ==false && $hostel_registration->payment == true  && $hostel_registration->policies == true   && $hostel_registration->layout_n_pricing == true && $hostel_registration->amenities == true && $hostel_registration->add_media == true){
                     return $next($request);

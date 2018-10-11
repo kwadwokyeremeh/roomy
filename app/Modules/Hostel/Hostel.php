@@ -145,7 +145,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function blocks()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Block');
+        return $this->hasMany(Block::class);
     }
 
 
@@ -154,7 +154,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function floors()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Floor');
+        return $this->hasMany(Floor::class);
     }
 
 
@@ -163,7 +163,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function rooms()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Room');
+        return $this->hasMany(Room::class);
     }
 
 
@@ -172,7 +172,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function beds()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Bed');
+        return $this->hasMany(Bed::class);
     }
 
 
@@ -181,7 +181,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function facilities()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Facility');
+        return $this->hasMany(Facility::class);
     }
 
 
@@ -190,7 +190,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function services()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Service');
+        return $this->hasMany(Service::class);
     }
 
 
@@ -199,16 +199,16 @@ class Hostel extends Model implements HasMedia
      * */
     public function food()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Food');
+        return $this->hasMany(Food::class);
     }
 
 
     /*
-     *  Get the Prices associated with the hostel
+     *  Get the room description associated with the hostel
      * */
     public function roomDescription()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\RoomDescription');
+        return $this->hasMany(RoomDescription::class);
     }
 
 
@@ -217,7 +217,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function utilities()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Utility');
+        return $this->hasMany(Utility::class);
     }
 
 
@@ -226,7 +226,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function policies()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Policy');
+        return $this->hasMany(Policy::class);
     }
 
 
@@ -235,7 +235,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function payment()
     {
-        return $this->hasMany('myRoommie\Modules\Hostel\Payment');
+        return $this->hasMany(Payment::class);
     }
 
 
@@ -244,7 +244,7 @@ class Hostel extends Model implements HasMedia
      * */
     public function roomTypeMedia()
     {
-        return $this->hasManyThrough('myRoommie\Modules\Hostel\RoomTypeMedia',RoomDescription::class);
+        return $this->hasManyThrough(RoomTypeMedia::class,RoomDescription::class);
     }
 
     /*

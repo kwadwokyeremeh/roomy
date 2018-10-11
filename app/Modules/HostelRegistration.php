@@ -60,7 +60,7 @@ class HostelRegistration extends Model
 
     public function hosteller()
     {
-        return $this->belongsTo(Hosteller::class)->where('role','manager')->orWhere('role','owner');
+        return $this->belongsTo(Hosteller::class);//->where('role','manager')->orWhere('role','owner');
     }
 
     public function hostel()

@@ -138,6 +138,21 @@ class Reservation extends Model
     }
 
 
+    /**
+     * Sum the total amount to be paid
+     *  @param Room $room
+     * @return float
+     * */
+    public function sumAmount($room)
+    {
+       return array_sum([
+            $room->roomDescription->price,
+            $room->roomDescription->price * env('GHANA_TAX'),
+            $room->roomDescription->price * env('MYROOMMIE_COMMISSION')
+
+        ]);
+    }
+
 
     /*
      * Check if the current user has a reservation

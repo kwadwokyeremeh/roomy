@@ -1,96 +1,96 @@
-    <section class="site-content-area">
-        <div class="vk-gallery-grid-full-banner">
-            <div class="vk-about-banner">
-                <div class="vk-about-banner-destop">
-                    <div class="vk-banner-img"></div>
-                    <div class="vk-about-banner-caption">
-                        <h2>Register your hostel</h2>
-                        <h3>
-                            <a href="#">Register your hostel</a>
-                            <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                            <a href="#">Hostel Details</a>
-                        </h3>
-                    </div>
+<section class="site-content-area">
+    <div class="vk-gallery-grid-full-banner">
+        <div class="vk-about-banner">
+            <div class="vk-about-banner-destop">
+                <div class="vk-banner-img"></div>
+                <div class="vk-about-banner-caption">
+                    <h2>Register your hostel</h2>
+                    <h3>
+                        <a href="#">Register your hostel</a>
+                        <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                        <a href="#">Hostel Details</a>
+                    </h3>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="vk-room-select-complete-content">
-            <div class="container">
-                <div class="vk-select-room-breakcrumb">
-                    <ul>
-                        <li class="completed">
-                            <a href="javascript:void(0);" style="font-size: 0.55em">1.Basic Info</a>
-                        </li>
-                        <li class="active">
-                            <a href="javascript:void(0);" style="font-size: 0.55em"><small>2.Hostel Details</small></a>
-                            <span class="round-tabs five">
+    <div class="vk-room-select-complete-content">
+        <div class="container">
+            <div class="vk-select-room-breakcrumb">
+                <ul>
+                    <li class="completed">
+                        <a href="javascript:void(0);" style="font-size: 0.55em">1.Basic Info</a>
+                    </li>
+                    <li class="active">
+                        <a href="javascript:void(0);" style="font-size: 0.55em"><small>2.Hostel Details</small></a>
+                        <span class="round-tabs five">
                              <i class="fa fa-check" aria-hidden="true"></i>
                          </span>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">3.Add media</a>
-                            <span class="round-tabs five">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" style="font-size: 0.55em">3.Add media</a>
+                        <span class="round-tabs five">
                               <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">4.Amenities</a>
-                            <span class="round-tabs five">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" style="font-size: 0.55em">4.Amenities</a>
+                        <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout</a>
-                            <span class="round-tabs five">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" style="font-size: 0.55em">5.Layout</a>
+                        <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">6.Policies</a>
-                            <span class="round-tabs five">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" style="font-size: 0.55em">6.Policies</a>
+                        <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">7.Payment</a>
-                            <span class="round-tabs five">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" style="font-size: 0.55em">7.Payment</a>
+                        <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" style="font-size: 0.55em">8.Confirmation</a>
-                            <span class="round-tabs five">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" style="font-size: 0.55em">8.Confirmation</a>
+                        <span class="round-tabs five">
                              <i class="fa fa-angle-right" aria-hidden="true"></i>
                          </span>
-                        </li>
-                    </ul>
-                   {{-- @include('hostelRegistration._partials.progressBar')--}}
-                   </div>
-                <div class="vk-shop-checkout-body">
-                    <div class="container">
-                        <main id="main" class="clearfix right_sidebar">
-                            <div class="tg-container">
-                                <div id="primary">
+                    </li>
+                </ul>
+                {{-- @include('hostelRegistration._partials.progressBar')--}}
+            </div>
+            <div class="vk-shop-checkout-body">
+                <div class="container">
+                    <main id="main" class="clearfix right_sidebar">
+                        <div class="tg-container">
+                            <div id="primary">
 
 
-                                    <div class="entry-thumbnail">
+                                <div class="entry-thumbnail">
 
-                                        <div class="entry-content-text-wrapper clearfix">
-                                            <div class="entry-content-wrapper">
-                                                <div class="entry-content">
-                                                    <div class="woocommerce">
+                                    <div class="entry-content-text-wrapper clearfix">
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-content">
+                                                <div class="woocommerce">
 
-                                                        <div class="row">
-                                                            <div class="vk-checkout-billing-left">
-                                                                <div class="col-md-12">
-                                                                    <div class="woocommerce-billing-fields">
+                                                    <div class="row">
+                                                        <div class="vk-checkout-billing-left">
+                                                            <div class="col-md-12">
+                                                                <div class="woocommerce-billing-fields">
                                                                     <form action="{{ route('hostel.registration.submit', [$step::$slug]) }}" method="POST">
-                                                                            @csrf
+                                                                        @csrf
                                                                         <h3>Hostel Name</h3>
                                                                         <div class="woocommerce-billing-fields__field-wrapper">
                                                                             <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_hostel_name_field_detail" data-priority="20">
-                                                                            <label for="hostel_name" class="">Hostel Name <abbr class="required" title="required">*</abbr></label>
+                                                                                <label for="hostel_name" class="">Hostel Name <abbr class="required" title="required">*</abbr></label>
                                                                                 <input type="text" class="input-text {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}"  name="name" id="hostel_name" placeholder="Enter your hostel name" autocomplete="given-name" required autofocus>
 
                                                                                 @if ($errors->has('name'))
@@ -273,16 +273,16 @@
                                                                                             <ul class="errors"  style="color: #ff0000;">
                                                                                                 @if ($errors->has('roomType.roomType.*'))
                                                                                                     <li class="invalid-feedback">
-                                                                                            <strong style="color: #ff0000;">{{ $errors->first('roomType.roomType.*') }}</strong></li>
+                                                                                                        <strong style="color: #ff0000;">{{ $errors->first('roomType.roomType.*') }}</strong></li>
                                                                                                 @endif
-                                                                                                    @if ($errors->has('roomType.beds.*'))
-                                                                                                        <li class="invalid-feedback">
-                                                                                            <strong style="color: #ff0000;">{{ $errors->first('roomType.beds.*') }}</strong></li>
-                                                                                                    @endif
-                                                                                                    @if ($errors->has('roomType.price.*'))
-                                                                                                        <li class="invalid-feedback">
-                                                                                            <strong style="color: #ff0000;">{{ $errors->first('roomType.price.*') }}</strong></li>
-                                                                                                    @endif
+                                                                                                @if ($errors->has('roomType.beds.*'))
+                                                                                                    <li class="invalid-feedback">
+                                                                                                        <strong style="color: #ff0000;">{{ $errors->first('roomType.beds.*') }}</strong></li>
+                                                                                                @endif
+                                                                                                @if ($errors->has('roomType.price.*'))
+                                                                                                    <li class="invalid-feedback">
+                                                                                                        <strong style="color: #ff0000;">{{ $errors->first('roomType.price.*') }}</strong></li>
+                                                                                                @endif
                                                                                                 @else
                                                                                                     @foreach($errors->all() as $message)
                                                                                                         <li>{{ $message }}</li>
@@ -314,24 +314,24 @@
                                                                                                 <span class="custom-control-description">Three in a room</span>
                                                                                             </label><br>
                                                                                         </p>--}}
-                                                                                    <div class="woocommerce-billing-fields__field-wrapper">
+                                                                                        <div class="woocommerce-billing-fields__field-wrapper">
 
-                                                                                        <div class="row" id="dynamic_field">
-                                                                                            <div id="1">
-                                                                                                <p class="col-sm-5 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
-                                                                                                    <label class="" for="1">Room Type
+                                                                                            <div class="row" id="dynamic_field">
+                                                                                                <div id="1">
+                                                                                                    <p class="col-sm-5 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                                                        <label class="" for="1">Room Type
                                                                                                         </label>
-                                                                                                    <input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text {{ $errors->has('roomType.roomType.0') ? ' is-invalid' : '' }}" value="{{ old('roomType.roomType.0') }}" required/></p>
-                                                                                                <p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
-                                                                                                    <label class="" for="1">Price per bed
+                                                                                                        <input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text {{ $errors->has('roomType.roomType.0') ? ' is-invalid' : '' }}" value="{{ old('roomType.roomType.0') }}" required/></p>
+                                                                                                    <p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                                                        <label class="" for="1">Price per bed
                                                                                                         </label>
-                                                                                                    <input type="text" name="roomType[price][]" placeholder="Price" class=" input-text {{ $errors->has('roomType.price.0') ? ' is-invalid' : '' }}" value="{{ old('roomType.price.0') }}" required/></p>
-                                                                                                <p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
-                                                                                                    <label class="" for="1">Number of bed(s) in the room
+                                                                                                        <input type="text" name="roomType[price][]" placeholder="Price" class=" input-text {{ $errors->has('roomType.price.0') ? ' is-invalid' : '' }}" value="{{ old('roomType.price.0') }}" required/></p>
+                                                                                                    <p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                                                        <label class="" for="1">Number of bed(s) in the room
                                                                                                         </label>
-                                                                                                    <input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text {{ $errors->has('roomType.beds.0') ? ' is-invalid' : '' }}" value=" {{ old('roomType.beds.0') }}" required/></p>
+                                                                                                        <input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text {{ $errors->has('roomType.beds.0') ? ' is-invalid' : '' }}" value=" {{ old('roomType.beds.0') }}" required/></p>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
                                                                                             {{--<p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
                                                                                                 <label class="custom-checkbox custom-control">
                                                                                                     <input type="checkbox" autocomplete="off" class="col-md-1 custom-control-input" value="other">
@@ -341,142 +341,142 @@
                                                                                                 <input type="text" name="roomType[]" placeholder="Enter the room type" class="col-md-8 input-text" />
                                                                                             </p>--}}
 
-                                                                                        <p>
-                                                                                            <label class="custom-checkbox custom-control">
-                                                                                                <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
-                                                                                            </label><br>
-                                                                                        </p>
+                                                                                            <p>
+                                                                                                <label class="custom-checkbox custom-control">
+                                                                                                    <span class="custom-control-description">Please specify if you have any other room type by clicking on the Add button</span>
+                                                                                                </label><br>
+                                                                                            </p>
                                                                                             <button type="button" id="add" class="vk-btn vk-btn-m  vk-btn-default "><i class="fa fa-plus"></i></button>
 
-                                                                                    </div>
+                                                                                        </div>
 
-                                                                                   {{-- <div class="form-group">
+                                                                                        {{-- <div class="form-group">
 
-                                                                                            <div class="table-responsive">
-                                                                                                <table class="table" id="dynamic_field">
-                                                                                                    <tr>
-                                                                                                        <td>
-                                                                                                            <label class="custom-checkbox custom-control">
-                                                                                                                <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
-                                                                                                                <span aria-hidden="true" class="custom-control-indicator"></span>
-                                                                                                                <span class="custom-control-description"></span>
-                                                                                                            </label>
-                                                                                                            <input type="text" name="roomType[]" placeholder="Enter the room type" class="input-text" />
-                                                                                                        </td>
-                                                                                                        <td><button type="button" name="add" id="add" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius"><i class="fa fa-plus"></i></button></td>
-                                                                                                    </tr>
-                                                                                                </table>
-                                                                                            </div>
+                                                                                                 <div class="table-responsive">
+                                                                                                     <table class="table" id="dynamic_field">
+                                                                                                         <tr>
+                                                                                                             <td>
+                                                                                                                 <label class="custom-checkbox custom-control">
+                                                                                                                     <input type="checkbox" autocomplete="off" class="custom-control-input" value="other">
+                                                                                                                     <span aria-hidden="true" class="custom-control-indicator"></span>
+                                                                                                                     <span class="custom-control-description"></span>
+                                                                                                                 </label>
+                                                                                                                 <input type="text" name="roomType[]" placeholder="Enter the room type" class="input-text" />
+                                                                                                             </td>
+                                                                                                             <td><button type="button" name="add" id="add" class="vk-btn vk-btn-m  vk-btn-default vk-border-radius"><i class="fa fa-plus"></i></button></td>
+                                                                                                         </tr>
+                                                                                                     </table>
+                                                                                                 </div>
 
-                                                                                    </div>--}}
+                                                                                         </div>--}}
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         @include('hostelRegistration._partials.wizardControl')
                                                                     </form>
-                                                                    </div>
                                                                 </div>
-
-
-
-
                                                             </div>
-                                                        </div><!-- .entry-content -->
-                                                    </div>
+
+
+
+
+                                                        </div>
+                                                    </div><!-- .entry-content -->
                                                 </div>
                                             </div>
+                                        </div>
 
 
-                                        </div> <!-- Primary end -->
-                                    </div>
+                                    </div> <!-- Primary end -->
                                 </div>
+                            </div>
                         </div>
                     </main>
                 </div>
             </div>
         </div>
-        </div>
-    </section>
+    </div>
+</section>
 
 @section('custom-script')
     <script>
-    {{--// Same floor yes or no trigger
-    $('#r11').on('click', function(){
-    $(this).parent().find('a').trigger('click')
-    });
+        {{--// Same floor yes or no trigger
+        $('#r11').on('click', function(){
+        $(this).parent().find('a').trigger('click')
+        });
 
-    $('#r12').on('click', function(){
-    $(this).parent().find('a').trigger('click')
-    });--}}
-
-
-    {{--//Dynamically Add or Remove input fields in PHP with JQuery--}}
-    $(document).ready(function(){
-    var i=1;
-    $('#add').click(function(){
-    i++;
-    $('#dynamic_field').append('<div id="row'+i+'">' +
-        '<p class="col-sm-5 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
-        '<label class="" for="'+i+'">'+'Room Type' +
-            '</label>'+''+
-        '<input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text " value="" required/>' + '</p>' +
-        '<p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
-        '<label class="" for="'+i+'">'+'Price per bed' +
-            '</label>'+''+
-        '<input type="text" name="roomType[price][]" placeholder="Price" class=" input-text" value="" required/>' + '</p>' +
-        '<p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">'  +
-        '<label class="" for="'+i+'">' +'Number of bed(s) in the room'+
-        '</label>'+''+
-        '<input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text" value="" required/>' + '</p>' + '<p class="col-sm-1">'  +
-        '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></p></div>');
-    });
-
-
-    $(document).on('click', '.btn_remove', function(){
-    var button_id = $(this).attr("id");
-    $('#row'+button_id+'').remove();
-    });
-
-   {{-- $('#submit').click(function(){
-    $.ajax({
-    url:"name.php",
-    method:"POST",
-    data:$('#add_name').serialize(),
-    success:function(data)
-    {
-    alert(data);
-    $('#add_name')[0].reset();
-    }
-    });
-    });--}}
-
-
-
-        {{--$('#oneInRoom').change(function(){
-            if($('#oneInRoom').is(':checked')) {
-                $(this).append('<input type="hidden" id="bed1" name="roomType[beds][]" value="1">' +
-                    '<input type="number" class="input-text" id="price1" name="roomType[price][]">');
-            }else {
-                $('#bed1').remove();
-                $('#price1').remove();
-            }
-        });$('#twoInRoom').change(function(){
-            if($('#twoInRoom').is(':checked')) {
-                $(this).append('<input type="hidden" id="bed2" name="roomType[beds][]" value="2">' +
-                    '<input type="number" class="input-text" id="price2" name="roomType[price][]">');
-            }else {
-                $('#bed2').remove();
-                $('#price2').remove();
-            }
-        });$('#threeInRoom').change(function(){
-            if($('#threeInRoom').is(':checked')) {
-                $(this).append('<input type="hidden" id="bed3" name="roomType[beds][]" value="3">' +
-                    '<input type="number" class="input-text" id="price2" name="roomType[price][]">');
-            }else {
-                $('#bed3').remove();
-                $('#price3').remove();
-            }
+        $('#r12').on('click', function(){
+        $(this).parent().find('a').trigger('click')
         });--}}
-    });
-</script>
+
+
+        {{--//Dynamically Add or Remove input fields in PHP with JQuery--}}
+        $(document).ready(function(){
+            var i=1;
+            $('#add').click(function(){
+                i++;
+                $('#dynamic_field').append('<div id="row'+i+'">' +
+                    '<p class="col-sm-5 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
+                    '<label class="" for="'+i+'">'+'Room Type' +
+                    '</label>'+''+
+                    '<input type="text" name="roomType[roomType][]" placeholder="Room type" class=" input-text " value="" required/>' + '</p>' +
+                    '<p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">' +
+                    '<label class="" for="'+i+'">'+'Price per bed' +
+                    '</label>'+''+
+                    '<input type="text" name="roomType[price][]" placeholder="Price" class=" input-text" value="" required/>' + '</p>' +
+                    '<p class="col-sm-3 form-row form-row-last validate-required woocommerce-invalid woocommerce-invalid-required-field">'  +
+                    '<label class="" for="'+i+'">' +'Number of bed(s) in the room'+
+                    '</label>'+''+
+                    '<input type="number" min="1" name="roomType[beds][]" placeholder="Number of bed(s)" class="input-text" value="" required/>' + '</p>' + '<p class="col-sm-1">'  +
+                    '<button type="button" name="remove" id="'+i+'" class="vk-btn vk-btn-m vk-btn-default btn_remove"><i class="fa fa-remove"></i></button></p></div>');
+            });
+
+
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+            });
+
+            {{-- $('#submit').click(function(){
+             $.ajax({
+             url:"name.php",
+             method:"POST",
+             data:$('#add_name').serialize(),
+             success:function(data)
+             {
+             alert(data);
+             $('#add_name')[0].reset();
+             }
+             });
+             });--}}
+
+
+
+            {{--$('#oneInRoom').change(function(){
+                if($('#oneInRoom').is(':checked')) {
+                    $(this).append('<input type="hidden" id="bed1" name="roomType[beds][]" value="1">' +
+                        '<input type="number" class="input-text" id="price1" name="roomType[price][]">');
+                }else {
+                    $('#bed1').remove();
+                    $('#price1').remove();
+                }
+            });$('#twoInRoom').change(function(){
+                if($('#twoInRoom').is(':checked')) {
+                    $(this).append('<input type="hidden" id="bed2" name="roomType[beds][]" value="2">' +
+                        '<input type="number" class="input-text" id="price2" name="roomType[price][]">');
+                }else {
+                    $('#bed2').remove();
+                    $('#price2').remove();
+                }
+            });$('#threeInRoom').change(function(){
+                if($('#threeInRoom').is(':checked')) {
+                    $(this).append('<input type="hidden" id="bed3" name="roomType[beds][]" value="3">' +
+                        '<input type="number" class="input-text" id="price2" name="roomType[price][]">');
+                }else {
+                    $('#bed3').remove();
+                    $('#price3').remove();
+                }
+            });--}}
+        });
+    </script>
 @endsection

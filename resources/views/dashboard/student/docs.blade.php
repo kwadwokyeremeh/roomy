@@ -6,14 +6,14 @@
 <div class="wrapper">
 
     <!-- Main Header -->
-    <?php include "_partials/st_header.php";?>
-    <!-- Left side column. contains the logo and sidebar -->
-    <?php include "_partials/st_sidebar.php";?>
+<?php include "_partials/st_header.php";?>
+<!-- Left side column. contains the logo and sidebar -->
+<?php include "_partials/st_sidebar.php";?>
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <?php include "_partials/st_mainNav.php";?>
-        <!-- Content Header (Page header) -->
+    <?php include "_partials/st_mainNav.php";?>
+    <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 Documentation and training
@@ -38,11 +38,11 @@
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <?php include "_partials/st_footer.php";?>
+<?php include "_partials/st_footer.php";?>
 
-    <!-- Control Sidebar -->
-    <?php include "_partials/st_sidepane.php";?>
-    <!-- /.control-sidebar -->
+<!-- Control Sidebar -->
+<?php include "_partials/st_sidepane.php";?>
+<!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>

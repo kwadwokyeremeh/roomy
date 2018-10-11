@@ -189,7 +189,7 @@
                 </div>
                 <!-- /.box-header -->
 
-                <div class="box-body">
+                <div class="box-body"   id="rm{{$roomDesc->room_token}}">
                     @if($roomDesc->getMedia('roomType')->count()==0)
                         <h3 class="text text-danger">Please upload at least one image</h3>
                     @endif

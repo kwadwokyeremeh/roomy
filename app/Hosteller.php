@@ -3,13 +3,17 @@
 namespace myRoommie;
 
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use myRoommie\Modules\Hostel\Hostel;
 use Illuminate\Auth\MustVerifyEmail;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use myRoommie\Modules\Hostel\HostellerHostel;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use myRoommie\Observers\HostellerHostelObserver;
 use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -57,9 +61,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
  */
 
 
-class Hosteller extends Authenticatable implements MustVerifyEmailContract
+class Hosteller extends Authenticatable implements MustVerifyEmailContract, HasMedia
 {
-    use MustVerifyEmail, Notifiable, PivotEventTrait;
+    use MustVerifyEmail, Notifiable, PivotEventTrait,HasMediaTrait;
 
     protected $guard = 'hosteller';
 
@@ -204,6 +208,40 @@ class Hosteller extends Authenticatable implements MustVerifyEmailContract
      * */
     public function getFullNameAttribute()
     {
-        return "{$this->firstName} {$this->lastName}";
+        return ucwords("{$this->firstName} {$this->lastName}");
+
+    }
+
+
+
+    /**
+     * Retrieve the hostel belonging to this hosteller
+     * @param Request $hostelName
+     * @return Hostel $hostel
+     */
+
+    public static function getHostel($hostelName)
+    {
+        return static::findOrFail(auth('hosteller')->id())->hostel()->whereSlug($hostelName)->firstOrFail();
+    }
+
+
+    /*
+    *  This method applies media conversion to the uploaded multimedia files
+    * */
+
+    public function registerMediaCollections()
+    {
+        $this
+            ->addMediaCollection('avatar')
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media = null) {
+                $this->addMediaConversion('thumb')
+                    ->width(160)
+                    ->height(160)
+                    ->sharpen(10);
+
+
+            });
     }
 }

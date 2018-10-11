@@ -2,20 +2,21 @@
 
 namespace myRoommie;
 
+
+use myRoommie\Events\UserSaved;
+use myRoommie\Events\UserDeleted;
+use myRoommie\Events\UserUpdated;
 use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use myRoommie\Modules\Hostel\Comment;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Notifications\Notifiable;
 use myRoommie\Modules\Booking\Reservation;
-use myRoommie\Modules\Hostel\Comment;
-use myRoommie\Notifications\UserResetPasswordNotification;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
-use myRoommie\Events\UserSaved;
-use myRoommie\Events\UserUpdated;
-use myRoommie\Events\UserDeleted;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use myRoommie\Notifications\UserResetPasswordNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 
 /**
@@ -179,13 +180,30 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
         return $value;
 
     }
+    /**
+     * Set the gender of a user.
+     *
+     * @param  string $value
+     * @return string
+     */
+    public function setSexAttribute($value)
+    {
+        $v = mb_strtolower($value);
+        if ($v == 'm' || $v == 'male') {
+            $v = 'M';
+        } else {
+            $v = 'F';
+        }
+        $this->attributes['sex'] = $v;
+
+    }
 
     /*
     * Get the user full name
     * */
     public function getFullNameAttribute()
     {
-        return "{$this->firstName} {$this->lastName}";
+        return ucwords("{$this->firstName} {$this->lastName}");
     }
 
 
@@ -196,10 +214,10 @@ class User extends Authenticatable implements MustVerifyEmailContract, HasMedia
     public function registerMediaCollections()
     {
         $this
-            ->addMediaCollection('user-avatar')
+            ->addMediaCollection('avatar')
             ->singleFile()
             ->registerMediaConversions(function (Media $media = null) {
-                $this->addMediaConversion('user-thumb')
+                $this->addMediaConversion('thumb')
                     ->width(160)
                     ->height(160)
                     ->sharpen(10);

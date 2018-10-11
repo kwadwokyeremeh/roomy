@@ -150,7 +150,7 @@ class ReservationController extends Controller
                  * */
 
         $duration = $hostel->retrieveDuration();
-        $price =$roomSelected->roomDescription->price;
+        $price =$reservation->sumAmount($roomSelected);
         $this->data =[
             'token'             =>mb_strtoupper(uniqid()),
             'start_date'        =>now()->toDateTimeString(),

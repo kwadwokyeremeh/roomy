@@ -75,7 +75,21 @@ class HostelDetailsStep extends Step
 
             $hostellers = DB::table('hostellers_creation_states')->where(['creator' => $hosteller])->get();
             foreach ($hostellers->pluck('created') as $host) {
+                (new HostelRegistration)::create([
+                    'hosteller_id'=> $host,
+                    'hostel_id'=> $hostel->id,
+                    'basic_info'=>true,
+                    'hostel_details'=>true,
+                    'add_media'=>true,
+                    'amenities'=>true,
+                    'layout_n_pricing' =>true,
+                    'policies' =>true,
+                    'payment' =>true,
+                    'confirmation' =>true,
+                ]);
+
                 Hosteller::find($host)->hostel()->attach($hostel->id, ['creation_state' => 'CREATED']);
+
             }
         DB::table('hostellers_creation_states')->where(['creator' => $hosteller])->delete();
 

@@ -17,7 +17,7 @@ $factory->define(myRoommie\Modules\Booking\Reservation::class, function (Faker $
         $choosenRoom = \myRoommie\Modules\Hostel\Room::whereId($roomSelected)->lockForUpdate()->first();
         $users=\myRoommie\User::all(['id'])->toArray();
         $user =\myRoommie\User::whereId(array_random($users))->first();
-        $price =$choosenRoom->roomDescription->price;
+        $price =$reservation->sumAmount($choosenRoom);
         $data =[
             'token'             =>mb_strtoupper(uniqid()),
             'start_date'        =>now()->toDateTimeString(),
