@@ -71,11 +71,12 @@ class HostelDetailsStep extends Step
          *
          * */
         Hosteller::find($hosteller)->hostel()->attach($hostel->id,['creation_state'=>'CREATOR']);
-
+        $registrar =new HostelRegistration;
 
             $hostellers = DB::table('hostellers_creation_states')->where(['creator' => $hosteller])->get();
             foreach ($hostellers->pluck('created') as $host) {
-                (new HostelRegistration)::create([
+
+                $registrar->create([
                     'hosteller_id'=> $host,
                     'hostel_id'=> $hostel->id,
                     'basic_info'=>true,
@@ -150,7 +151,7 @@ class HostelDetailsStep extends Step
 
 
 
-        (new HostelRegistration)::create([
+        $registrar->create([
             'hosteller_id' => $hosteller,
             'hostel_id' =>$hostel->id,
             'basic_info' => true,
