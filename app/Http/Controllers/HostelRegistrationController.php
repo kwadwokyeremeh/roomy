@@ -127,10 +127,13 @@ public function wizard($step = null,Hosteller $id)
            ])->orderByRaw('created_at - updated_at DESC')->value('hostel_id');
        }
 
-       $data = Hostel::find($hostelId);
 
-
+        $data = Hostel::find($hostelId);
+     
    }
+    if (!isset($data)) {
+      $data ='';
+    }
 
     return view('hostelRegistration.master', compact('step','data'));
 }
