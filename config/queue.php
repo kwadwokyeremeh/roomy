@@ -58,7 +58,7 @@ return [
         ],
 
         'redis' => [
-            'driver' => 'redis',
+            'driver' => 'phpredis',
             'connection' => 'default',
             'queue' => ['default','processing','image'],
             'retry_after' => 90,
