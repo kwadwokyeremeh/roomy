@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-public class CreateCacheTable extends Migration
+class CreateCacheTable extends Migration
 {
     /**
      * Run the migrations.
